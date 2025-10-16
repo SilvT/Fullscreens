@@ -77,7 +77,7 @@ export function initMetricCounters() {
       ScrollTrigger.create({
         trigger: element,
         start: 'top 80%',
-        once: true, // Only animate once
+        once: false, // Only animate once
         onEnter: () => {
           // Reset to 0 before animating
           const displayObj = { value: 0 };
