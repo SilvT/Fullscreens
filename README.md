@@ -28,7 +28,3 @@ Run `npm run build` to create a production build.
 - Mobile-first approach
 - Optimized performance
 
-## Original Design
-
-The original Figma project is available at https://www.figma.com/design/52G29r8d3P0GkTZ47dxqTN/Landing-Page-Design.
-  

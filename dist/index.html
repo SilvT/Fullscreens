@@ -9,14 +9,24 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fascinate&family=Anonymous+Pro&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="/src/styles/styles.css" />
-  <script type="module" crossorigin src="/assets/main-X3KGjtJO.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-BeNKeEBr.css">
+  <script type="module" crossorigin src="/assets/main-CeQhApuM.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-DhlWG05F.css">
 </head>
 
 <body>
+  <!-- Decorative SVG Elements - Fixed to viewport -->
+  <div class="ellipse-decor">
+    <svg class="ellipse-decor__svg" width="1280" height="832" viewBox="0 0 1280 832" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <circle cx="610.5" cy="1292.5" r="718"/>
+        <path d="M-31.5 641.5C90.6802 641.5 189.5 732.282 189.5 844C189.5 955.718 90.6802 1046.5 -31.5 1046.5C-153.68 1046.5 -252.5 955.718 -252.5 844C-252.5 732.282 -153.68 641.5 -31.5 641.5Z"/>
+        <path d="M231 610.5C292.574 610.5 342.5 660.638 342.5 722.5C342.5 784.362 292.574 834.5 231 834.5C169.426 834.5 119.5 784.362 119.5 722.5C119.5 660.638 169.426 610.5 231 610.5Z"/>
+        <circle cx="380.5" cy="387.5" r="718"/>
+        <circle cx="1064" cy="612" r="111.5"/>
+      </g>
+    </svg>
+  </div>
+
   <!-- Sticky Navigation (outside sections) -->
   <nav class="top-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-wrapper">
@@ -39,15 +49,13 @@
         <div class="about-content">
           <div class="name-wrapper">
             <h1 class="name">
-              <span class="first-letter">S</span><span class="rest-name">ilvia Travieso</span>
+              <span class="first-letter">S·</span><span class="rest-name">ilvia Travieso</span>
             </h1>
           </div>
 
           <div class="description">
-            <div class="dynamic-job-title">
-              <p class="job-title hidden">UI</p>
-              <p class="job-title visible">Designer</p>
-              <p class="job-title hidden">Systems</p>
+            <div class="dynamic-job-title" role="status" aria-live="polite">
+              <!-- Flip-board animation will populate this dynamically -->
             </div>
 
             <div class="bio">
@@ -65,16 +73,16 @@
       <!-- Project Screen -->
       <div class="project-screen">
         <div class="project-nav top">
-          <p class="nav-title">↑ Design System Plugin</p>
+          <h3 class="nav-title">↑ Design System Plugin</h3>
           <p class="nav-subtitle">Figma Plugin to sync with Code</p>
         </div>
 
         <div class="project-content">
           <!-- Content Min -->
           <div class="content-min">
-            <h2 class="project-title">Marketing Management</h2>
+            <h1 class="project-title">Marketing Management</h1>
 
-            <p class="project-description">A unified CRM to consolidate fragmented data across 4 departments while pioneering the company's first design system.</p>
+            <h2 class="project-description">A unified CRM to consolidate fragmented data across 4 departments while pioneering the company's first design system.</h2>
 
             <p class="project-details">
               With 14k customers this desktop app was key to integrate the spread-out data from all campaigns and leads, while providing useful manipulation of them and displaying it on multiple dashboards.
@@ -130,7 +138,7 @@
         </div>
 
         <div class="project-nav bottom">
-          <p class="nav-title">↓ MkM - Design System</p>
+          <h3 class="nav-title">↓ MkM - Design System</h3>
           <p class="nav-subtitle">Pioneering Design Systems in engineering environments</p>
         </div>
       </div>
@@ -143,16 +151,16 @@
       <!-- Project Screen -->
       <div class="project-screen">
         <div class="project-nav top">
-          <p class="nav-title">↑ Marketing Management</p>
+          <h3 class="nav-title">↑ Marketing Management</h3>
           <p class="nav-subtitle">Unified CRM to serve 4 departments</p>
         </div>
 
         <div class="project-content">
           <!-- Content Min -->
           <div class="content-min">
-            <h2 class="project-title">MkM - Design System</h2>
+            <h1 class="project-title">MkM - Design System</h1>
 
-            <p class="project-description green">A unified CRM to consolidate fragmented data across 4 departments while pioneering the company's first design system.</p>
+            <h2 class="project-description green">A unified CRM to consolidate fragmented data across 4 departments while pioneering the company's first design system.</h2>
 
             <p class="project-details">
               With 14k customers this desktop app was key to integrate the spread-out data from all campaigns and leads, while providing useful manipulation of them and displaying it on multiple dashboards.
@@ -208,8 +216,8 @@
         </div>
 
         <div class="project-nav bottom">
-          <p class="nav-title">↓ tomato Energy microsite</p>
-          <p class="nav-subtitle">Help customer understand their journey</p>
+          <h3 class="nav-title">↓ tomato Energy microsite</h3>
+          <p class="nav-subtitle caption">Help customer understand their journey</p>
         </div>
       </div>
     </div>
@@ -221,16 +229,16 @@
       <!-- Project Screen -->
       <div class="project-screen">
         <div class="project-nav top">
-          <p class="nav-title">↑ MkM - Design System</p>
-          <p class="nav-subtitle">Pioneering Design Systems in engineering environments</p>
+          <h3 class="nav-title">↑ MkM - Design System</h3>
+          <p class="nav-subtitle caption">Pioneering Design Systems in engineering environments</p>
         </div>
 
         <div class="project-content">
           <!-- Content Min -->
           <div class="content-min">
-            <h2 class="project-title">MkM - Design System</h2>
+            <h1 class="project-title">MkM - Design System</h1>
 
-            <p class="project-description">A unified CRM to consolidate fragmented data across 4 departments while pioneering the company's first design system.</p>
+            <h2 class="project-description">A unified CRM to consolidate fragmented data across 4 departments while pioneering the company's first design system.</h2>
 
             <p class="project-details">
               With 14k customers this desktop app was key to integrate the spread-out data from all campaigns and leads, while providing useful manipulation of them and displaying it on multiple dashboards.
@@ -285,7 +293,7 @@
         </div>
 
         <div class="project-nav bottom">
-          <p class="nav-title">↓ Clinica Fabero</p>
+          <h3 class="nav-title">↓ Clinica Fabero</h3>
           <p class="nav-subtitle">End-to-End branding and website</p>
         </div>
       </div>

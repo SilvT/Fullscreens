@@ -27,7 +27,7 @@ import {
   initMetricHoverEffects,
 } from './js/modules/metricAnimations.js';
 import { initAccessibility, verifyColorContrast } from './js/modules/accessibility.js';
-import { initDynamicJobTitle } from './js/modules/dynamicJobTitle.js';
+import { initFlipBoardAnimation } from './js/modules/flipBoardAnimation.js';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -61,8 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initMetricCounters();
   initMetricHoverEffects();
 
-  // Initialize dynamic job title
-  initDynamicJobTitle();
+  // Initialize flip-board animation for job titles
+  initFlipBoardAnimation();
+
+  // Initialize ellipse visibility control
+  initEllipseVisibility();
 
   // Verify color contrast (development only)
   if (process.env.NODE_ENV === 'development') {
@@ -129,3 +132,38 @@ document.addEventListener('visibilitychange', () => {
     console.log('ScrollTrigger refreshed on visibility change');
   }
 });
+
+/**
+ * Initialize ellipse visibility control
+ * Hides decorative ellipses when user scrolls away from landing section
+ */
+function initEllipseVisibility() {
+  const ellipseDecor = document.querySelector('.ellipse-decor');
+  const landingSection = document.querySelector('#about-landing');
+
+  if (!ellipseDecor || !landingSection) {
+    console.warn('Ellipse decoration or landing section not found');
+    return;
+  }
+
+  // Show ellipses only when at the very top (no scroll)
+  const checkScroll = () => {
+    if (window.scrollY === 0) {
+      ellipseDecor.classList.add('visible');
+    } else {
+      ellipseDecor.classList.remove('visible');
+    }
+  };
+
+  // Listen to scroll events
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(checkScroll, 10);
+  }, { passive: true });
+
+  // Initial check
+  checkScroll();
+
+  console.log('✓ Ellipse visibility control initialized');
+}

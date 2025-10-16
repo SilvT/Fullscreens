@@ -9,12 +9,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fascinate&family=Anonymous+Pro&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="/src/styles/styles.css" />
 </head>
 
 <body>
+  <!-- Decorative SVG Elements - Fixed to viewport -->
+  <div class="ellipse-decor">
+    <svg class="ellipse-decor__svg" width="1280" height="832" viewBox="0 0 1280 832" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <circle cx="610.5" cy="1292.5" r="718"/>
+        <path d="M-31.5 641.5C90.6802 641.5 189.5 732.282 189.5 844C189.5 955.718 90.6802 1046.5 -31.5 1046.5C-153.68 1046.5 -252.5 955.718 -252.5 844C-252.5 732.282 -153.68 641.5 -31.5 641.5Z"/>
+        <path d="M231 610.5C292.574 610.5 342.5 660.638 342.5 722.5C342.5 784.362 292.574 834.5 231 834.5C169.426 834.5 119.5 784.362 119.5 722.5C119.5 660.638 169.426 610.5 231 610.5Z"/>
+        <circle cx="380.5" cy="387.5" r="718"/>
+        <circle cx="1064" cy="612" r="111.5"/>
+      </g>
+    </svg>
+  </div>
+
   <!-- Sticky Navigation (outside sections) -->
   <nav class="top-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-wrapper">
@@ -37,15 +47,13 @@
         <div class="about-content">
           <div class="name-wrapper">
             <h1 class="name">
-              <span class="first-letter">S</span><span class="rest-name">ilvia Travieso</span>
+              <span class="first-letter">S·</span><span class="rest-name">ilvia Travieso</span>
             </h1>
           </div>
 
           <div class="description">
-            <div class="dynamic-job-title">
-              <p class="job-title hidden">UI</p>
-              <p class="job-title visible">Designer</p>
-              <p class="job-title hidden">Systems</p>
+            <div class="dynamic-job-title" role="status" aria-live="polite">
+              <!-- Flip-board animation will populate this dynamically -->
             </div>
 
             <div class="bio">
