@@ -1,0 +1,330 @@
+@import 'landing.scss';
+
+.section-project {
+  &.project-blue {
+    background-color: $color-blue-light;
+
+    .project-screen {
+      background-color: $color-blue-light;
+    }
+  }
+
+  &.project-green {
+    background-color: $color-green-light;
+  }
+
+  &.project-neutral {
+    background-color: $color-cream;
+  }
+}
+
+
+.contentbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+
+// Project Screen
+.project-screen {
+  width: 100%;
+  flex: 1;
+  padding: 24px 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-nav {
+  text-align: right;
+  text-transform: capitalize;
+  line-height: 1;
+
+  &.top {
+    margin-bottom: 24px;
+  }
+
+  &.bottom {
+    margin-top: 24px;
+  }
+
+  .nav-title {
+    font-family: $font-bricolage;
+    font-weight: 500;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    font-size: 18px;
+    color: $color-blue-darker;
+  }
+
+  .nav-subtitle {
+    font-family: $font-bricolage;
+    font-weight: 400;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    font-size: 12px;
+    color: $color-blue-primary;
+  }
+}
+
+.project-content {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 60px 0 30px;
+
+}
+
+.content-min {
+//   width: 380px;
+  width: 25%;
+  height: 90%;
+//   height: 536px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .project-title {
+    font-family: $font-bricolage;
+    font-weight: 500;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    font-size: 36px;
+    line-height: 0.862;
+    color: $color-blue-darker;
+    text-transform: capitalize;
+    letter-spacing: 0;
+  }
+
+  .project-description {
+    font-family: $font-bricolage;
+    font-weight: 500;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    font-size: 16px;
+    line-height: 1.21;
+    color: $color-blue-dark;
+    letter-spacing: 0;
+
+    &.green {
+      color: $color-green-primary;
+    }
+  }
+
+  .project-details {
+    font-family: $font-bricolage;
+    font-weight: 300;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    font-size: 14px;
+    line-height: 1.21;
+    color: $color-blue-darker;
+    letter-spacing: 0;
+  }
+
+  .project-meta {
+    font-family: $font-anonymous;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 0.862;
+    color: $color-blue-dark;
+    letter-spacing: -0.28px;
+
+    &.green {
+      color: $color-green-primary;
+    }
+  }
+}
+
+// Metrics
+.metrics {
+  display: flex;
+  gap: 12px;
+  height: 15%;
+
+  .metric-card {
+    flex: 1;
+    background-color: rgba(0, 102, 255, 0.1);
+    border-radius: 2px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+
+  .metric-value {
+    font-family: $font-bricolage;
+    font-weight: 300;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    font-size: 22px;
+    line-height: 1.21;
+    color: $color-blue-dark;
+    letter-spacing: 0;
+  }
+
+  .metric-label {
+    font-family: $font-anonymous;
+    font-weight: 400;
+    font-size: 9px;
+    line-height: 1.1;
+    color: $color-blue-dark;
+  }
+
+  &.green {
+    .metric-card {
+      background-color: rgba(199, 205, 169, 0.3);
+    }
+
+    .metric-value,
+    .metric-label {
+      color: $color-green-dark;
+    }
+  }
+
+  &.neutral {
+    .metric-card {
+      background-color: rgba(227, 221, 211, 0.4);
+    }
+
+    .metric-value,
+    .metric-label {
+      color: $color-blue-dark;
+    }
+  }
+}
+
+// Left Content
+.left-content {
+//   width: 650px;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 32px;
+  align-items: flex-end;
+}
+
+.project-image-wrapper {
+  width: 100%;
+    //   height: 400px;
+  height: 70%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+
+  .background-gradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    &.blue-gradient {
+      background: radial-gradient(
+        circle at 0% 0%,
+        rgba(226, 238, 249, 1) 0%,
+        rgba(252, 253, 253, 1) 85%
+      );
+    }
+
+    &.green-gradient {
+      background: radial-gradient(
+        circle at 0% 0%,
+        rgba(170, 206, 228, 1) 0%,
+        rgba(211, 230, 241, 1) 42.5%,
+        rgba(252, 253, 253, 1) 85%
+      );
+    }
+  }
+
+  .project-image {
+    position: absolute;
+    width: 650px;
+    height: 299px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    z-index: 2;
+
+    &.contain {
+      height: 400px;
+      object-fit: contain;
+    }
+  }
+}
+
+// CTA Button
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 30%;
+  padding: 6px;
+  border: 2px solid $color-blue-darker;
+  border-radius: 2px;
+  background-color: transparent;
+  font-family: $font-bricolage;
+  font-weight: 500;
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
+  font-size: 14px;
+  line-height: 0.862;
+  color: $color-blue-darker;
+  text-decoration: none;
+  letter-spacing: 0;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-blue-darker;
+    color: white;
+  }
+}
+
+// Tags
+.tags {
+  width: 100%;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  background-color: $color-blue-dark;
+
+  &.green {
+    background-color: $color-green-dark;
+  }
+
+  &.neutral {
+    background-color: $color-neutral;
+  }
+
+  .tag-label {
+    font-family: $font-bricolage;
+    font-weight: 400;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    font-size: 9px;
+    color: white;
+    text-align: center;
+    width: 32px;
+  }
+
+  .tag-list {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: $font-anonymous;
+    font-weight: 400;
+    font-size: 11px;
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
