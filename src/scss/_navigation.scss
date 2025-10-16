@@ -1,0 +1,190 @@
+// ============================================
+// Navigation Styles - Sticky Header
+// ============================================
+
+// Sticky Navigation
+.top-nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(245, 243, 240, 0.7); // Semi-transparent cream
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+
+  // Scrolled state (added via JS)
+  &.scrolled {
+    background-color: rgba(245, 243, 240, 0.92);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  // Blue section state
+  &.section-blue {
+    background-color: rgba(237, 241, 243, 0.7);
+
+    &.scrolled {
+      background-color: rgba(237, 241, 243, 0.92);
+    }
+  }
+
+  // Green section state
+  &.section-green {
+    background-color: rgba(232, 235, 224, 0.7);
+
+    &.scrolled {
+      background-color: rgba(232, 235, 224, 0.92);
+    }
+  }
+
+  // Neutral section state
+  &.section-neutral {
+    background-color: rgba(245, 243, 240, 0.7);
+
+    &.scrolled {
+      background-color: rgba(245, 243, 240, 0.92);
+    }
+  }
+
+  .nav-wrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 8px 60px 24px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .navigation {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    width: 550px;
+  }
+
+  .nav-item {
+    font-family: $font-bricolage;
+    font-weight: 700;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    text-transform: uppercase;
+    color: $color-blue-primary;
+    text-decoration: none;
+    line-height: 0.862;
+    letter-spacing: 0;
+    white-space: nowrap;
+    transition: opacity 0.3s ease, font-size 0.3s ease;
+    cursor: pointer;
+
+    &.active {
+      font-size: 46px;
+      opacity: 1;
+    }
+
+    &:not(.active) {
+      font-size: 40px;
+      opacity: 0.3;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    img {
+      height: auto;
+      width: 60px;
+      display: block;
+    }
+  }
+}
+
+// Accessibility: Keyboard focus states
+.nav-item:focus {
+  outline: 2px solid $color-blue-primary;
+  outline-offset: 4px;
+  opacity: 1;
+}
+
+.nav-item:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.nav-item:focus-visible {
+  outline: 2px solid $color-blue-primary;
+  outline-offset: 4px;
+  opacity: 1;
+}
+
+// ============================================
+// Responsive Navigation
+// ============================================
+
+@media (max-width: 1200px) {
+  .top-nav {
+    .nav-wrapper {
+      padding: 8px 40px 20px;
+    }
+
+    .nav-item {
+      &.active {
+        font-size: 38px;
+      }
+
+      &:not(.active) {
+        font-size: 32px;
+      }
+    }
+
+    .logo img {
+      width: 50px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .top-nav {
+    .nav-wrapper {
+      padding: 8px 24px 16px;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .navigation {
+      width: auto;
+      gap: 8px;
+    }
+
+    .nav-item {
+      &.active {
+        font-size: 28px;
+      }
+
+      &:not(.active) {
+        font-size: 24px;
+      }
+    }
+
+    .logo img {
+      width: 40px;
+    }
+  }
+}
+
+// ============================================
+// Reduced Motion (Accessibility)
+// ============================================
+
+@media (prefers-reduced-motion: reduce) {
+  .top-nav {
+    transition: none;
+  }
+
+  .nav-item {
+    transition: none;
+  }
+}

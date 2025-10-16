@@ -291,10 +291,10 @@
 // Tags
 .tags {
   width: 100%;
-  padding: 8px 16px;
+  padding: 8px 24px;
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 32px;
   background-color: $color-blue-dark;
 
   &.green {
@@ -309,7 +309,7 @@
     font-family: $font-bricolage;
     font-weight: 400;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
-    font-size: 9px;
+    font-size: 12px;
     color: white;
     text-align: center;
     width: 32px;
@@ -322,9 +322,10 @@
     justify-content: space-between;
     font-family: $font-anonymous;
     font-weight: 400;
-    font-size: 11px;
+    font-size: 14px;
     color: white;
-    text-align: center;
+    text-align: left;
     white-space: nowrap;
+    padding-right: 32px;
   }
 }

@@ -49,69 +49,7 @@ body {
   background-color: $color-cream;
 }
 
-// Navigation
-.top-nav {
-  width: 100%;
-  position: relative;
-
-  &.blue-nav {
-    background-color: $color-blue-light;
-  }
-
-  .nav-wrapper {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding: 8px 60px 24px;
-  }
-
-  .navigation {
-    display: flex;
-    gap: 12px;
-    align-items: flex-end;
-    width: 550px;
-  }
-
-  .nav-item {
-    font-family: $font-bricolage;
-    font-weight: 700;
-    font-variation-settings: 'opsz' 14, 'wdth' 100;
-    text-transform: uppercase;
-    color: $color-blue-primary;
-    text-decoration: none;
-    line-height: 0.862;
-    letter-spacing: 0;
-    white-space: nowrap;
-    transition: opacity 0.3s ease;
-
-    &.active {
-      font-size: 46px;
-      opacity: 1;
-    }
-
-    &:not(.active) {
-      font-size: 40px;
-      opacity: 0.3;
-
-      &:hover {
-        opacity: 0.7;
-      }
-    }
-  }
-
-  .logo {
-    width: 60px;
-    height: 60px;
-    position: relative;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 50% 50%;
-    }
-  }
-}
+// Note: Navigation styles moved to _navigation.scss
 
 // About Section
 .about-sect {
