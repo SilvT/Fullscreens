@@ -35,8 +35,8 @@ export function initScrollSnap() {
     end: 'bottom bottom',
     snap: {
       snapTo: 1 / (numSections - 1), // Snap to each section
-      duration: { min: 0.2, max: 0.5 }, // Faster snap animation
-      delay: 0.05, // Minimal delay after scroll stops before snapping
+      duration: { min: 0.002, max: 0.005 }, // Faster snap animation
+      delay: 0.0, // Minimal delay after scroll stops before snapping
       ease: 'power2.inOut', // Snappier easing
       directional: true, // Only snap in scroll direction
     },
