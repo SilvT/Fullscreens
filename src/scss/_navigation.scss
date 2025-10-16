@@ -65,8 +65,8 @@
   }
 
   .nav-item {
-    font-family: $font-bricolage;
-    font-weight: 700;
+    // font-family: $font-bricolage;
+    font-weight: $font-weight-bold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     text-transform: uppercase;
     color: $color-blue-primary;
@@ -78,12 +78,12 @@
     cursor: pointer;
 
     &.active {
-      font-size: 46px;
+      font-size: $type-size-3xl;
       opacity: 1;
     }
 
     &:not(.active) {
-      font-size: 40px;
+      font-size: $type-size-3xl;
       opacity: 0.3;
 
       &:hover {
@@ -133,11 +133,11 @@
 
     .nav-item {
       &.active {
-        font-size: 38px;
+        font-size: $type-size-xl;
       }
 
       &:not(.active) {
-        font-size: 32px;
+        font-size: $type-size-xl;
       }
     }
 

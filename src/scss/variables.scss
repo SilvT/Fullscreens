@@ -1,0 +1,72 @@
+// Variables
+$color-cream: #f5f3f0;
+$color-blue-light: #edf1f3;
+$color-green-light: #e8ebe0;
+$color-blue-primary: #3980aa;
+$color-blue-dark: #286f98;
+$color-blue-darker: #3c5e70;
+$color-green-primary: #79854f;
+$color-green-dark: #525d2e;
+$color-neutral: #5c584f;
+
+// Fonts
+$font-bricolage: 'Bricolage Grotesque', sans-serif;
+$font-fascinate: 'Fascinate', 'Bricolage Grotesque', sans-serif;
+$font-anonymous: 'Anonymous Pro', monospace;
+
+
+//Typography Size
+$type-size-3xl:40px;
+$type-size-2xl:32px;
+$type-size-xl:28px;
+$type-size-l:22px;
+$type-size-base:18px;
+$type-size-s:16px;
+$type-size-xs:14px;
+
+//Typography Weight
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+
+//Text Styles
+h1, h2, h3, h4, h5, p, p.mid, p.caption {
+    font-family: $font-bricolage;
+    line-height: 150%;
+    letter-spacing: 0;
+}
+
+h1{
+font-size: $type-size-3xl;
+font-weight: $font-weight-bold;
+}
+h2{
+font-size: $type-size-l;
+font-weight: $font-weight-medium;
+line-height: 1.5;
+}
+h3{
+font-size: $type-size-l;
+font-weight: $font-weight-medium;
+line-height: 150%;
+}
+h4{
+font-size: $type-size-l;
+font-weight: $font-weight-medium;
+}
+
+p{
+font-size: $type-size-base;
+font-weight: $font-weight-light;
+}
+p.mid{
+font-weight: $font-weight-regular;
+font-size: $type-size-s;
+}
+p.caption{
+font-weight: $font-weight-regular;
+font-size: $type-size-xs;
+}
