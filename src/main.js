@@ -1,6 +1,7 @@
 // Import GSAP and ScrollTrigger
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import './scss/main.scss'
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
