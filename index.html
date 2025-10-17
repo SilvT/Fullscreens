@@ -19,10 +19,28 @@
         <circle class="large bottom" cx="610.5" cy="1292.5" r="718"/>
         <circle class="small bottom corner" cx="0" cy="840" r="195"/>
         <circle class="small bottom" cx="230" cy="720.5" r="111.5"/>
-        <circle class="large right" cx="380.5" cy="387.5" r="718"/>
+        <!-- Old decorative circle - commented out and replaced with scroll hint -->
+        <!-- <circle class="large right" cx="380.5" cy="387.5" r="718"/> -->
         <circle class="small right" cx="1064" cy="612" r="111.5"/>
       </g>
     </svg>
+  </div>
+
+  <!-- Scroll Hint SVG with animated arrow -->
+  <div class="scroll-hint">
+    <svg class="scroll-hint__svg" viewBox="-50 -50 364 1099" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin meet">
+      <!-- The curved path (visible as stroke) - Updated from ellipse-arrow.svg -->
+      <path id="scroll-path" d="M1.53711 1.79222C90.6027 75.695 160.526 169.993 205.375 276.683C250.223 383.374 268.673 499.309 259.158 614.651C249.644 729.993 212.446 841.338 150.721 939.237C138.027 959.369 124.374 978.81 109.823 997.5"
+            stroke="#3980AA" stroke-width="3" fill="none" opacity="0.3"/>
+
+      <!-- Animated arrow marker using arrow-tip.svg -->
+      <!-- Arrow scaled 3x, path is flipped 180deg, will rotate to follow path like plug through loop -->
+      <g id="scroll-arrow" transform="scale(5)">
+        <path transform="rotate(180, 3.136, 1.575)" d="M0.938461 0.364C0.611794 0.233333 0.299128 0.130667 0.000460622 0.056L0.000460557 1.554C0.607127 1.666 1.13913 1.85267 1.59646 2.114C2.06313 2.37533 2.43179 2.72067 2.70246 3.15L3.58446 3.15C3.76179 2.85133 3.99046 2.59467 4.27046 2.38C4.55046 2.17467 4.85846 2.002 5.19446 1.862C5.53979 1.73133 5.89913 1.62867 6.27246 1.554L6.27246 0C5.97379 0.084 5.66579 0.191333 5.34846 0.322C5.04046 0.452667 4.74646 0.625333 4.46646 0.84C4.19579 1.05467 3.95779 1.31133 3.75246 1.61L2.59046 1.61L2.53446 1.61C2.37579 1.32067 2.15179 1.07333 1.86246 0.868C1.58246 0.662666 1.27446 0.494666 0.938461 0.364Z" fill="#3980AA"/>
+      </g>
+    </svg>
+    <!-- Text that appears when arrow reaches the end -->
+    <span class="scroll-hint__text" id="scroll-text">scroll for work</span>
   </div>
 
   <!-- Sticky Navigation (outside sections) -->
@@ -57,7 +75,7 @@
             </div>
 
             <div class="bio">
-              <p>UI + Product Designer specialising in scalable design systems, component libraries, and user-centred interfaces.</p>
+              <p>UI + Product Designer specialising in scalable design systems, component libraries, and user-centred interfaces.<br> Currently dipping my toes into vibe coding.</p>
             </div>
           </div>
         </div>
@@ -156,10 +174,10 @@
           </div>
         </div>
 
-        <div class="project-nav bottom">
+        <button class="project-nav bottom project-nav-button">
           <h3 class="nav-title">↓ MkM - Design System</h3>
           <p class="nav-subtitle">Pioneering Design Systems in engineering environments</p>
-        </div>
+        </button>
       </div>
     </div>
   </section>
@@ -234,10 +252,10 @@
           </div>
         </div>
 
-        <div class="project-nav bottom">
+        <button class="project-nav bottom project-nav-button">
           <h3 class="nav-title">↓ tomato Energy microsite</h3>
           <p class="nav-subtitle caption">Help customer understand their journey</p>
-        </div>
+        </button>
       </div>
     </div>
   </section>
@@ -311,13 +329,52 @@
           </div>
         </div>
 
-        <div class="project-nav bottom">
+        <button class="project-nav bottom project-nav-button">
           <h3 class="nav-title">↓ Clinica Fabero</h3>
           <p class="nav-subtitle">End-to-End branding and website</p>
-        </div>
+        </button>
       </div>
     </div>
   </section>
+
+  <!-- Project Detail Page (Hidden by default) -->
+  <div id="project-detail-page" class="project-detail-page" data-theme="blue">
+    <!-- Close Button -->
+    <button class="project-detail-close" aria-label="Close project detail">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" aria-label="Breadcrumb navigation">
+      <a href="#project-1" class="breadcrumb-link" data-project="1">Marketing Management</a>
+      <span class="breadcrumb-separator">→</span>
+      <a href="#project-2" class="breadcrumb-link" data-project="2">MkM - Design System</a>
+      <span class="breadcrumb-separator">→</span>
+      <a href="#project-3" class="breadcrumb-link" data-project="3">Tomato Energy</a>
+    </nav>
+
+    <!-- Content Grid (5 columns) -->
+    <div class="project-detail-grid">
+      <!-- Written Content (2 columns) - Dynamically populated by JavaScript -->
+      <div class="detail-written-content">
+        <h1 class="detail-title"></h1>
+        <h2 class="detail-subtitle"></h2>
+        <!-- Sections will be dynamically added here -->
+      </div>
+
+      <!-- Technical Aspects (1 column) - Dynamically populated by JavaScript -->
+      <div class="detail-technical">
+        <!-- Technical sections will be dynamically added here -->
+      </div>
+
+      <!-- Image Content (2 columns) - Dynamically populated by JavaScript -->
+      <div class="detail-images">
+        <!-- Images will be dynamically added here -->
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

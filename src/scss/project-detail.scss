@@ -1,0 +1,376 @@
+@use 'variables' as *;
+
+// Project Detail Page
+.project-detail-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $color-blue-light;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  overflow-y: auto;
+  padding: 48px;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  // Theme variations
+  &[data-theme="blue"] {
+    background-color: $color-blue-light;
+  }
+
+  &[data-theme="green"] {
+    background-color: $color-green-light;
+  }
+
+  &[data-theme="neutral"] {
+    background-color: $color-cream;
+  }
+}
+
+// Close Button (top right, modal style)
+.project-detail-close {
+  position: fixed;
+  top: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  border: 2px solid $color-blue-darker;
+  border-radius: 4px;
+  background-color: transparent;
+  color: $color-blue-darker;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1001;
+
+  &:hover {
+    background-color: $color-blue-darker;
+    color: white;
+  }
+
+  &:focus {
+    outline: 2px solid $color-blue-darker;
+    outline-offset: 2px;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// Breadcrumbs Navigation
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  font-family: $font-bricolage;
+  font-size: $type-size-s;
+  flex-wrap: wrap;
+
+  .breadcrumb-link {
+    color: $color-blue-darker;
+    text-decoration: none;
+    font-weight: $font-weight-medium;
+    transition: color 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-blue-primary;
+      text-decoration: underline;
+    }
+
+    &.active {
+      color: $color-blue-primary;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  .breadcrumb-separator {
+    color: $color-blue-darker;
+    opacity: 0.5;
+  }
+}
+
+// 5-Column Grid Layout
+.project-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+// Written Content (2 columns)
+.detail-written-content {
+  grid-column: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .detail-title {
+    font-size: $type-size-4xl;
+    font-weight: $font-weight-bold;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    color: $color-blue-darker;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .detail-subtitle {
+    font-size: $type-size-xl;
+    font-weight: $font-weight-medium;
+    color: $color-blue-dark;
+    margin-bottom: 16px;
+  }
+
+  .detail-section-title {
+    font-size: $type-size-l;
+    font-weight: $font-weight-semibold;
+    color: $color-blue-darker;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  .detail-text {
+    font-size: $type-size-base;
+    font-weight: $font-weight-light;
+    color: $color-blue-darker;
+    line-height: 1.6;
+  }
+}
+
+// Technical Aspects (1 column)
+.detail-technical {
+  grid-column: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  .technical-title {
+    font-size: $type-size-s;
+    font-weight: $font-weight-semibold;
+    font-family: $font-anonymous;
+    color: $color-blue-darker;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+
+  .technical-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    li {
+      font-size: $type-size-s;
+      font-family: $font-anonymous;
+      color: $color-blue-darker;
+      position: relative;
+      padding-left: 16px;
+
+      &::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: $color-blue-primary;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// Image Content (2 columns)
+.detail-images {
+  grid-column: 4 / 6;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .detail-image-wrapper {
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    .detail-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+  }
+}
+
+// Theme-specific colors for green projects
+.project-detail-page[data-theme="green"] {
+  .project-detail-close {
+    border-color: $color-green-dark;
+    color: $color-green-dark;
+
+    &:hover {
+      background-color: $color-green-dark;
+    }
+
+    &:focus {
+      outline-color: $color-green-dark;
+    }
+  }
+
+  .breadcrumbs {
+    .breadcrumb-link {
+      color: $color-green-dark;
+
+      &:hover,
+      &.active {
+        color: $color-green-primary;
+      }
+    }
+
+    .breadcrumb-separator {
+      color: $color-green-dark;
+    }
+  }
+
+  .detail-written-content {
+    .detail-title,
+    .detail-section-title,
+    .detail-text {
+      color: $color-green-dark;
+    }
+
+    .detail-subtitle {
+      color: $color-green-primary;
+    }
+  }
+
+  .detail-technical {
+    .technical-title,
+    .technical-list li {
+      color: $color-green-dark;
+    }
+
+    .technical-list li::before {
+      color: $color-green-primary;
+    }
+  }
+}
+
+// Theme-specific colors for neutral projects
+.project-detail-page[data-theme="neutral"] {
+  .project-detail-close {
+    border-color: $color-neutral;
+    color: $color-neutral;
+
+    &:hover {
+      background-color: $color-neutral;
+    }
+
+    &:focus {
+      outline-color: $color-neutral;
+    }
+  }
+
+  .breadcrumbs {
+    .breadcrumb-link {
+      color: $color-neutral;
+
+      &:hover,
+      &.active {
+        color: $color-blue-darker;
+      }
+    }
+
+    .breadcrumb-separator {
+      color: $color-neutral;
+    }
+  }
+
+  .detail-written-content {
+    .detail-title,
+    .detail-section-title,
+    .detail-text {
+      color: $color-neutral;
+    }
+
+    .detail-subtitle {
+      color: $color-blue-darker;
+    }
+  }
+
+  .detail-technical {
+    .technical-title,
+    .technical-list li {
+      color: $color-neutral;
+    }
+
+    .technical-list li::before {
+      color: $color-blue-darker;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 1200px) {
+  .project-detail-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .detail-written-content {
+    grid-column: 1 / 2;
+  }
+
+  .detail-technical {
+    grid-column: 1 / 2;
+    grid-row: 2;
+  }
+
+  .detail-images {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-detail-page {
+    padding: 24px;
+  }
+
+  .project-detail-close {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .breadcrumbs {
+    margin-bottom: 24px;
+    font-size: $type-size-xs;
+  }
+
+  .project-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .detail-written-content,
+  .detail-technical,
+  .detail-images {
+    grid-column: 1 / 2;
+  }
+}

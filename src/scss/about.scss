@@ -60,12 +60,11 @@ body {
   justify-content: center;
 
   .about-content {
-    width: 70%;
+    width: 90%;
     display: flex;
     gap: 32px;
     align-items: center;
-    padding: 160px;
-  }
+  padding-left: 10rem;  }
 }
 
 .name-wrapper {
@@ -104,7 +103,7 @@ body {
   gap: 8px;
   position: relative;
   font-size: $type-size-xl;
-  width: 70%;
+  width: 20vw;
   color:$color-blue-primary;
 }
 
@@ -112,6 +111,7 @@ body {
   width: 100%;
   font-variation-settings: 'opsz' 14, 'wdth' 100; 
   color: $color-blue-darker;
+  padding-left: 8rem;
 }
 
 
@@ -186,10 +186,84 @@ body {
 }
 }
 
+// Scroll Hint with animated arrow
+.scroll-hint {
+  position: fixed;
+  top: 0;
+  bottom: 10vh; 
+  right: 32vw;
+  width: auto;
+  height: 100vh; // Let it stretch between top and bottom
+  pointer-events: none;
+  z-index: 9999; // Above navbar (nav is z-index: 1000)
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+  overflow: visible;
+
+  &.visible {
+    opacity: 1;
+  }
+
+  &__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-top: -7vh;
+    transform: rotate(7deg); // Rotate the SVG 7 degrees
+    transform-origin: center center;
+
+    #scroll-path {
+      stroke: $color-blue-primary;
+      stroke-width: 2;
+      fill: none;
+      opacity: 0.3;
+    }
+
+    #scroll-arrow {
+      // Arrow SVG is 7x4 units, center it at 3.5, 2
+      transform-origin: 3.136px 1.575px;
+      transform-box: fill-box;
+    }
+  }
+
+  &__text {
+    position: fixed; // Fixed positioning relative to viewport
+    bottom: calc(10vh + 20px); // Position relative to arrow at bottom
+    right: 47vw; // 17vw from right edge of viewport
+    font-size: 14px;
+    font-weight: 500;
+    color: $color-blue-primary;
+    opacity: 0; // Hidden initially
+    white-space: nowrap;
+    pointer-events: none;
+    transform: rotate(0deg); // Keep text horizontal (no rotation needed since it's independently positioned)
+  }
+}
+
 // Reduced motion support
 @media (prefers-reduced-motion: reduce) {
   .ellipse-decor {
     transition: none;
   }
+
+  .scroll-hint {
+    display: none; // Hide animated scroll hint for users who prefer reduced motion
+  }
 }
 
+//Text stack and other projects
+.stack{
+  position: relative;
+  align-self: flex-end;
+  padding-right: 8rem;
+  width: 35vw;
+  padding-left: 3rem;
+ color: $color-blue-darker;
+ & a{
+  color:$color-blue-primary;
+  text-decoration:none;
+  &:hover{
+    text-decoration:underline;
+ }
+}
+}

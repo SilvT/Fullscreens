@@ -1,0 +1,137 @@
+{
+  "1": {
+    "title": "Marketing Management",
+    "subtitle": "A unified CRM to consolidate fragmented data across 4 departments",
+    "sections": [
+      {
+        "heading": "Project Overview",
+        "content": "With 14k customers this desktop app was key to integrate the spread-out data from all campaigns and leads, while providing useful manipulation of them and displaying it on multiple dashboards.\n\nThis project became the proof-of-concept for the company's first design system, now adopted company-wide."
+      },
+      {
+        "heading": "The Challenge",
+        "content": "Marketing data was scattered across 4 different departments with no centralized system. Customer complaints via Facebook were handled manually, leading to slow resolution times."
+      },
+      {
+        "heading": "The Solution",
+        "content": "Created a unified CRM platform that integrated all marketing touchpoints, automated Facebook complaint tracking, and established the foundation for a scalable design system."
+      }
+    ],
+    "technical": {
+      "Technical Details": [
+        "Desktop Application",
+        "CRM Integration",
+        "Facebook API",
+        "Real-time Dashboards",
+        "Multi-department Access"
+      ],
+      "Role & Timeline": [
+        "Solo Product Designer",
+        "UI/UX Design",
+        "Design Systems Lead",
+        "2024 - 2025"
+      ],
+      "Tools Used": [
+        "Figma",
+        "Adobe CC",
+        "HTML/CSS",
+        "JavaScript"
+      ]
+    },
+    "images": [
+      "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
+      "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
+      "/src/assets/6720397c415946385e1e030ee7203c624878df15.png"
+    ],
+    "theme": "blue"
+  },
+  "2": {
+    "title": "MkM - Design System",
+    "subtitle": "Pioneering design systems in engineering-first environments",
+    "sections": [
+      {
+        "heading": "Project Overview",
+        "content": "Building the company's first comprehensive design system from the ground up. This system needed to serve both designers and front-end developers while maintaining flexibility for rapid product iteration."
+      },
+      {
+        "heading": "The Challenge",
+        "content": "Engineers were building UI components without design guidance, leading to inconsistent user experiences. No documentation existed for reusable components."
+      },
+      {
+        "heading": "The Solution",
+        "content": "Developed a comprehensive design system with component libraries, detailed documentation, and code snippets that empowered front-end teams to work independently while maintaining design consistency."
+      }
+    ],
+    "technical": {
+      "Technical Details": [
+        "Component Library",
+        "Design Tokens",
+        "Documentation Portal",
+        "Version Control",
+        "Accessibility (WCAG AA)"
+      ],
+      "Role & Timeline": [
+        "Design System Lead",
+        "Component Architecture",
+        "Developer Enablement",
+        "2024 - 2025"
+      ],
+      "Tools Used": [
+        "Figma",
+        "Storybook",
+        "React",
+        "Sass/CSS"
+      ]
+    },
+    "images": [
+      "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+      "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+      "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png"
+    ],
+    "theme": "green"
+  },
+  "3": {
+    "title": "Tomato Energy Microsite",
+    "subtitle": "Helping customers understand their energy journey",
+    "sections": [
+      {
+        "heading": "Project Overview",
+        "content": "A customer-facing microsite designed to simplify the complex energy switching process and help users understand their energy consumption patterns."
+      },
+      {
+        "heading": "The Challenge",
+        "content": "Energy customers found the switching process confusing and were unclear about their consumption patterns and potential savings."
+      },
+      {
+        "heading": "The Solution",
+        "content": "Created an intuitive microsite with clear visualizations, step-by-step guidance, and personalized energy insights that demystified the switching process."
+      }
+    ],
+    "technical": {
+      "Technical Details": [
+        "Responsive Design",
+        "Data Visualization",
+        "Progressive Web App",
+        "Performance Optimized",
+        "Cross-browser Support"
+      ],
+      "Role & Timeline": [
+        "Product Designer",
+        "UX Research",
+        "UI Design",
+        "2024"
+      ],
+      "Tools Used": [
+        "Figma",
+        "HTML/CSS/JS",
+        "Chart.js",
+        "Lighthouse"
+      ]
+    },
+    "images": [
+      "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
+      "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
+      "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png"
+    ],
+    "theme": "neutral"
+  }
+}

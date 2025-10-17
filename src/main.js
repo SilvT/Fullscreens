@@ -28,6 +28,8 @@ import {
 } from './js/modules/metricAnimations.js';
 import { initAccessibility, verifyColorContrast } from './js/modules/accessibility.js';
 import { initFlipBoardAnimation } from './js/modules/flipBoardAnimation.js';
+import { initProjectDetail } from './js/modules/projectDetail.js';
+import { initScrollHint } from './js/modules/scrollHint.js';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -63,6 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize flip-board animation for job titles
   initFlipBoardAnimation();
+
+  // Initialize project detail page
+  initProjectDetail();
+
+  // Initialize scroll hint animation
+  initScrollHint();
 
   // Initialize ellipse visibility control
   initEllipseVisibility();
