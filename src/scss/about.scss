@@ -153,6 +153,22 @@ body {
     path {
       stroke: $color-blue-darker; // Different color for paths
       opacity: 0.5;
+      @keyframes ColorStroke{
+        0%{
+          stroke: $color-cream;
+        }
+        50%{
+          stroke: $color-blue-primary;
+        }
+        70%{
+          stroke: $color-blue-darker;
+        }
+        100%{
+          stroke: $color-cream;
+        }
+
+      }
+      animation: ColorStroke 10s infinite alternate;
     }
   }
 }
