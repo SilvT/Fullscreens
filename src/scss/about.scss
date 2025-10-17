@@ -143,36 +143,47 @@ body {
       stroke: $color-blue-primary; // Override stroke color
       stroke-width: 0.5; // Override stroke width
       fill: none; // Keep fill transparent
-      animation: ColorStroke 10s infinite alternate;
-            @keyframes ColorStroke{
-        0%{
-          stroke: $color-cream;
-        }
-        50%{
-          stroke: $color-blue-primary;
-        }
-        70%{
-          stroke: $color-blue-darker;
-        }
-        100%{
-          stroke: $color-cream;
-        }
-
-      }
-      animation: ColorStroke 10s infinite alternate;
     }
 
     // Target specific elements if needed
     circle {
       opacity: 0.8; // Adjust opacity
-      
     }
 
-    path {
-      stroke: $color-blue-darker; // Different color for paths
-      opacity: 0.5;
-    }
+  .large.right {
+    stroke-dasharray: 3000 10;
+    animation: longTrail 30s linear infinite;
+    @keyframes longTrail {
+    from {
+    stroke-dashoffset: 0;
+    stroke:$color-blue-primary;
+   }
+   to {
+    stroke-dashoffset: -3010;
+    stroke:$color-cream;
   }
+}
+  }
+  .large.bottom {
+      /* La estela y el hueco */
+    stroke-dasharray: 3000 1000;
+    /* 3000 unidades visibles + 1000 invisibles */
+  
+    animation: moveTrail 130s linear infinite;
+}
+@keyframes moveTrail {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -4000;
+    /* Debe ser -(suma de ambos valores del dasharray) */
+  }
+}
+    .small {
+      stroke-width: 0.4;
+  }
+}
 }
 
 // Reduced motion support
