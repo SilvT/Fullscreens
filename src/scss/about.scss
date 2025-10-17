@@ -143,17 +143,8 @@ body {
       stroke: $color-blue-primary; // Override stroke color
       stroke-width: 0.5; // Override stroke width
       fill: none; // Keep fill transparent
-    }
-
-    // Target specific elements if needed
-    circle {
-      opacity: 0.8; // Adjust opacity
-    }
-
-    path {
-      stroke: $color-blue-darker; // Different color for paths
-      opacity: 0.5;
-      @keyframes ColorStroke{
+      animation: ColorStroke 10s infinite alternate;
+            @keyframes ColorStroke{
         0%{
           stroke: $color-cream;
         }
@@ -169,6 +160,17 @@ body {
 
       }
       animation: ColorStroke 10s infinite alternate;
+    }
+
+    // Target specific elements if needed
+    circle {
+      opacity: 0.8; // Adjust opacity
+      
+    }
+
+    path {
+      stroke: $color-blue-darker; // Different color for paths
+      opacity: 0.5;
     }
   }
 }
