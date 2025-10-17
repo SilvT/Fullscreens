@@ -13,7 +13,7 @@ const CONFIG = {
 };
 
 // Character set for cycling (uppercase letters, numbers, space)
-const CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 '.split('');
+const CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ*0123456789*!?@<>+- '.split('');
 
 /**
  * Check if user prefers reduced motion

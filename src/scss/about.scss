@@ -72,17 +72,18 @@ body {
   flex: 1;
 
   .name {
-    font-size: $type-size-3xl;
+    font-size: $type-size-4xl;
     color: $color-blue-darker;
     text-transform: capitalize;
 
     .first-letter {
       font-family: $font-fascinate;
       font-weight: $font-weight-regular;
+      padding-right: 0.5rem;
     }
 
     .rest-name {
-      font-weight: $font-weight-bold;
+      font-weight: $font-weight-regular;
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       letter-spacing: 0.05rem;
     }
