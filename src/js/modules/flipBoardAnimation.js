@@ -6,10 +6,10 @@
 // Configuration
 const CONFIG = {
   titles: ['UI Designer', 'Design Systems', 'Product Thinking', 'Atomic Design', 'Variables Geek'],
-  flipDuration: 100, // ms per character flip (faster for cycling)
+  flipDuration: 200, // ms per character flip (even slower)
   cycleCount: 8, // Number of random characters to cycle through
-  staggerDelay: 50, // ms between each character starting
-  pauseDuration: 3000, // ms pause after all characters finish
+  staggerDelay: 120, // ms between each character starting (much slower stagger)
+  pauseDuration: 6000, // ms pause after all characters finish (longer pause - 6 seconds)
 };
 
 // Character set for cycling (uppercase letters, numbers, space)
@@ -37,19 +37,30 @@ function getRandomChar() {
 }
 
 /**
- * Split text into individual character spans
+ * Split text into individual character spans with line break after first word
  */
 function createCharacterSpans(text) {
-  return text
-    .split('')
-    .map((char) => {
+  const words = text.split(' ');
+  const elements = [];
+
+  words.forEach((word, wordIndex) => {
+    word.split('').forEach((char) => {
       const span = document.createElement('span');
       span.className = 'flip-char';
-      span.textContent = char === ' ' ? '\u00A0' : char; // Non-breaking space
+      span.textContent = char;
       span.setAttribute('aria-hidden', 'true');
-      span.dataset.targetChar = char === ' ' ? '\u00A0' : char;
-      return span;
+      span.dataset.targetChar = char;
+      elements.push(span);
     });
+
+    // Add line break after first word
+    if (wordIndex === 0) {
+      const br = document.createElement('br');
+      elements.push(br);
+    }
+  });
+
+  return elements;
 }
 
 /**
@@ -80,53 +91,53 @@ async function cycleCharacter(charElement, targetChar) {
 }
 
 /**
- * Transition to new title with character cycling
+ * Transition to new title with character cycling (two-line layout)
  */
 async function transitionToTitle(container, newTitle) {
   const upperTitle = newTitle.toUpperCase();
-  const currentChars = Array.from(container.querySelectorAll('.flip-char'));
-  const maxLength = Math.max(currentChars.length, upperTitle.length);
+  const words = upperTitle.split(' ');
 
-  // Ensure we have enough character elements
-  while (currentChars.length < maxLength) {
-    const span = document.createElement('span');
-    span.className = 'flip-char';
-    span.textContent = '\u00A0';
-    span.setAttribute('aria-hidden', 'true');
-    container.appendChild(span);
-    currentChars.push(span);
-  }
+  // Clear container and rebuild with two lines
+  container.innerHTML = '';
 
-  // Start cycling each character with stagger
   const promises = [];
-  for (let i = 0; i < maxLength; i++) {
-    await sleep(CONFIG.staggerDelay);
+  let charIndex = 0;
 
-    const targetChar = i < upperTitle.length ? upperTitle[i] : ' ';
-    const charElement = currentChars[i];
+  words.forEach((word, wordIndex) => {
+    word.split('').forEach((targetChar) => {
+      const span = document.createElement('span');
+      span.className = 'flip-char';
+      span.textContent = getRandomChar();
+      span.setAttribute('aria-hidden', 'true');
+      container.appendChild(span);
 
-    // Start cycling this character (don't await - let them run in parallel)
-    promises.push(cycleCharacter(charElement, targetChar));
-  }
+      // Start cycling this character with stagger
+      const delay = charIndex * CONFIG.staggerDelay;
+      promises.push(
+        sleep(delay).then(() => cycleCharacter(span, targetChar))
+      );
+
+      charIndex++;
+    });
+
+    // Add line break after first word
+    if (wordIndex === 0) {
+      const br = document.createElement('br');
+      container.appendChild(br);
+    }
+  });
 
   // Wait for all characters to finish cycling
   await Promise.all(promises);
-
-  // Clean up extra characters if new title is shorter
-  if (upperTitle.length < currentChars.length) {
-    for (let i = upperTitle.length; i < currentChars.length; i++) {
-      currentChars[i].remove();
-    }
-  }
 }
 
 /**
- * Instantly swap text (for reduced motion)
+ * Instantly swap text (for reduced motion) with two-line layout
  */
 function swapTextInstantly(container, newTitle) {
   container.innerHTML = '';
-  const newCharacters = createCharacterSpans(newTitle.toUpperCase());
-  newCharacters.forEach((char) => container.appendChild(char));
+  const newElements = createCharacterSpans(newTitle.toUpperCase());
+  newElements.forEach((element) => container.appendChild(element));
 }
 
 /**

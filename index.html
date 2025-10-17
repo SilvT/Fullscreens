@@ -29,9 +29,13 @@
   <!-- Scroll Hint SVG with animated arrow -->
   <div class="scroll-hint">
     <svg class="scroll-hint__svg" viewBox="-50 -50 364 1099" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin meet">
-      <!-- The curved path (visible as stroke) - Updated from ellipse-arrow.svg -->
+      <!-- The curved path (blue - reveals as arrow moves) -->
       <path id="scroll-path" d="M1.53711 1.79222C90.6027 75.695 160.526 169.993 205.375 276.683C250.223 383.374 268.673 499.309 259.158 614.651C249.644 729.993 212.446 841.338 150.721 939.237C138.027 959.369 124.374 978.81 109.823 997.5"
-            stroke="#3980AA" stroke-width="3" fill="none" opacity="0.3"/>
+            stroke="#3980AA" stroke-width="3" fill="none" opacity="0.3" stroke-linecap="butt"/>
+
+      <!-- Eraser path (cream color - grows from top to hide the blue path) -->
+      <path id="scroll-path-eraser" d="M1.53711 1.79222C90.6027 75.695 160.526 169.993 205.375 276.683C250.223 383.374 268.673 499.309 259.158 614.651C249.644 729.993 212.446 841.338 150.721 939.237C138.027 959.369 124.374 978.81 109.823 997.5"
+            stroke="#F5F3F0" stroke-width="4" fill="none" stroke-linecap="butt"/>
 
       <!-- Animated arrow marker using arrow-tip.svg -->
       <!-- Arrow scaled 3x, path is flipped 180deg, will rotate to follow path like plug through loop -->

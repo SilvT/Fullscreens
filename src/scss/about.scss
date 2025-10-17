@@ -71,7 +71,7 @@ body {
   flex: 1;
 
   .name {
-    font-size: $type-size-4xl;
+    font-size: $type-size-3xl;
     color: $color-blue-darker;
     text-transform: capitalize;
 
@@ -103,8 +103,19 @@ body {
   gap: 8px;
   position: relative;
   font-size: $type-size-xl;
-  width: 20vw;
-  color:$color-blue-primary;
+  width: 21vw;
+  color: $color-blue-primary;
+
+  .flip-char {
+    display: inline-block;
+    color: $color-blue-primary; // Static state color
+    transition: color 0.2s ease, opacity 0.2s ease;
+
+    &.flipping {
+      color: $color-blue-darker; // Darker blue while flipping
+      opacity: 0.7; // 70% opacity
+    }
+  }
 }
 
 .bio {
@@ -164,22 +175,22 @@ body {
   }
 }
   }
-  .large.bottom {
-      /* La estela y el hueco */
-    stroke-dasharray: 3000 1000;
-    /* 3000 unidades visibles + 1000 invisibles */
+//   .large.bottom {
+//       /* La estela y el hueco */
+//     stroke-dasharray: 3000 1000;
+//     /* 3000 unidades visibles + 1000 invisibles */
   
-    animation: moveTrail 130s linear infinite;
-}
-@keyframes moveTrail {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: -4000;
-    /* Debe ser -(suma de ambos valores del dasharray) */
-  }
-}
+//     animation: moveTrail 130s linear infinite;
+// }
+// @keyframes moveTrail {
+//   from {
+//     stroke-dashoffset: 0;
+//   }
+//   to {
+//     stroke-dashoffset: -4000;
+//     /* Debe ser -(suma de ambos valores del dasharray) */
+//   }
+// }
     .small {
       stroke-width: 0.4;
   }
