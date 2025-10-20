@@ -26,7 +26,16 @@ export function initScrollSnap() {
   }
 
   const sections = gsap.utils.toArray('section');
-  const numSections = sections.length;
+
+  // Calculate the center position of each section for proper snapping
+  const snapPositions = sections.map((section) => {
+    const offsetTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const viewportHeight = window.innerHeight;
+
+    // Calculate position where section center aligns with viewport center
+    return (offsetTop + sectionHeight / 2 - viewportHeight / 2) / (document.documentElement.scrollHeight - viewportHeight);
+  });
 
   // Create ScrollTrigger with snap functionality
   ScrollTrigger.create({
@@ -34,19 +43,17 @@ export function initScrollSnap() {
     start: 'top top',
     end: 'bottom bottom',
     snap: {
-      snapTo: 1 / (numSections - 1), // Snap to each section
-      duration: { min: 0.002, max: 0.005 }, // Faster snap animation
-      delay: 0.0, // Minimal delay after scroll stops before snapping
-      ease: 'power2.inOut', // Snappier easing
+      snapTo: snapPositions, // Snap to calculated center positions
+      duration: { min: 0.2, max: 0.5 }, // Smooth snap animation
+      delay: 0.1, // Brief delay after scroll stops before snapping
+      ease: 'power2.inOut',
       directional: true, // Only snap in scroll direction
     },
-    // Smooth scrolling
     scrub: false,
-    // Debug markers (set to true for development)
     markers: false,
   });
 
-  console.log('Scroll snap initialized for', numSections, 'sections');
+  console.log('GSAP scroll snap initialized for', sections.length, 'sections with center alignment');
 }
 
 /**

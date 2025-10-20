@@ -147,7 +147,7 @@ document.addEventListener('visibilitychange', () => {
 
 /**
  * Initialize ellipse visibility control
- * Hides decorative ellipses when user scrolls away from landing section
+ * Shows decorative ellipses when About section is in view
  */
 function initEllipseVisibility() {
   const ellipseDecor = document.querySelector('.ellipse-decor');
@@ -158,9 +158,15 @@ function initEllipseVisibility() {
     return;
   }
 
-  // Show ellipses only when at the very top (no scroll)
-  const checkScroll = () => {
-    if (window.scrollY === 0) {
+  // Show ellipses when About section is in viewport
+  const checkVisibility = () => {
+    const rect = landingSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Check if About section is visible in viewport (centered or near center)
+    const isVisible = rect.top < windowHeight / 2 && rect.bottom > windowHeight / 2;
+
+    if (isVisible) {
       ellipseDecor.classList.add('visible');
     } else {
       ellipseDecor.classList.remove('visible');
@@ -171,11 +177,11 @@ function initEllipseVisibility() {
   let scrollTimeout;
   window.addEventListener('scroll', () => {
     clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(checkScroll, 10);
+    scrollTimeout = setTimeout(checkVisibility, 10);
   }, { passive: true });
 
-  // Initial check
-  checkScroll();
+  // Initial check with small delay to ensure GSAP snap has finished
+  setTimeout(checkVisibility, 100);
 
   console.log('✓ Ellipse visibility control initialized');
 }

@@ -162,7 +162,7 @@ function scrollToProjectCard(projectId) {
   const projectSection = document.querySelector(`#project-${projectId}`);
 
   if (projectSection) {
-    projectSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    projectSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
     console.log(`Scrolled to project card: ${projectId}`);
   } else {
     console.warn(`Project section not found: #project-${projectId}`);

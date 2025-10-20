@@ -41,6 +41,10 @@ body {
 .section-landing {
   background-color: $color-cream;
 
+  // CSS scroll snap - start alignment for landing page
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+
   --dot-size: 1px;
   --dot-space: 22px;
 	background:

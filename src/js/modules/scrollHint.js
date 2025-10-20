@@ -200,7 +200,7 @@ export function initScrollHint() {
 }
 
 /**
- * Show scroll hint (similar to ellipse visibility)
+ * Show scroll hint when About section is in view
  */
 function showScrollHint() {
   const scrollHint = document.querySelector('.scroll-hint');
@@ -210,9 +210,15 @@ function showScrollHint() {
     return;
   }
 
-  // Show hint only when at the top
-  const checkScroll = () => {
-    if (window.scrollY === 0) {
+  // Show hint when About section is visible in viewport
+  const checkVisibility = () => {
+    const rect = landingSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Check if About section is visible in viewport (centered or near center)
+    const isVisible = rect.top < windowHeight / 2 && rect.bottom > windowHeight / 2;
+
+    if (isVisible) {
       scrollHint.classList.add('visible');
     } else {
       scrollHint.classList.remove('visible');
@@ -223,9 +229,9 @@ function showScrollHint() {
   let scrollTimeout;
   window.addEventListener('scroll', () => {
     clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(checkScroll, 10);
+    scrollTimeout = setTimeout(checkVisibility, 10);
   }, { passive: true });
 
-  // Initial check
-  checkScroll();
+  // Initial check with small delay to ensure GSAP snap has finished
+  setTimeout(checkVisibility, 100);
 }
