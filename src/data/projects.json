@@ -2,6 +2,13 @@
   "1": {
     "title": "Marketing Management",
     "subtitle": "A unified CRM to consolidate fragmented data across 4 departments",
+    "company": "Senapt LTD",
+    "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "0→1"],
+    "metrics": [
+      { "value": "x1.5", "label": "expected customer growth" },
+      { "value": "60%", "label": "faster complaint resolution (Facebook-CRM integration)" },
+      { "value": "4", "label": "departments workflows centralised" }
+    ],
     "sections": [
       {
         "heading": "Project Overview",
@@ -47,6 +54,13 @@
   "2": {
     "title": "MkM - Design System",
     "subtitle": "Pioneering design systems in engineering-first environments",
+    "company": "Senapt LTD",
+    "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "Component Libraries"],
+    "metrics": [
+      { "value": "40%", "label": "front-end independence via design systems docs" },
+      { "value": "70%", "label": "faster design iteration through reusable components" },
+      { "value": "CEO", "label": "buy-in & proof of concept." }
+    ],
     "sections": [
       {
         "heading": "Project Overview",
@@ -92,6 +106,13 @@
   "3": {
     "title": "Tomato Energy Microsite",
     "subtitle": "Helping customers understand their energy journey",
+    "company": "",
+    "tags": ["Product Design", "UI/UX", "Responsive Design", "B2C", "Data Visualization"],
+    "metrics": [
+      { "value": "40%", "label": "front-end independence via design systems docs" },
+      { "value": "70%", "label": "faster design iteration through reusable components" },
+      { "value": "CEO", "label": "buy-in & proof of concept." }
+    ],
     "sections": [
       {
         "heading": "Project Overview",
@@ -137,6 +158,13 @@
   "4": {
     "title": "Figma Design Distributor Plugin",
     "subtitle": "Design token automation for Figma Variables, Collections, and styles",
+    "company": "",
+    "tags": [ "Figma Plugin", "Design Systems", "Automation", "APIs", "AI Dev"],
+    "metrics": [
+      { "value": "100%", "label": "automation of design token extraction" },
+      { "value": "5min", "label": "from manual hours to automated minutes" },
+      { "value": "GitHub", "label": "integrated workflow support" }
+    ],
     "sections": [
       {
         "heading": "Project Overview",
@@ -163,8 +191,8 @@
         "Performance Optimization"
       ],
       "Role & Timeline": [
-      "Product Designer",
-      " Design Technologist",
+        "Design Technologist",
+        "Product Designer",
       "2025"
       ],
       "Tools Used": [

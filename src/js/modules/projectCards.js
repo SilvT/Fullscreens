@@ -292,10 +292,8 @@ function createProjectDetails(project) {
  * @returns {string} HTML string
  */
 function createMetrics(project) {
-  // Extract metrics from project data
-  // For now, using hardcoded metrics structure
-  // TODO: Add metrics to JSON schema
-  const metrics = getMetricsForProject(project.title);
+  // Extract metrics from project data in JSON
+  const metrics = project.metrics || [];
 
   if (!metrics || metrics.length === 0) return '';
 
@@ -322,10 +320,10 @@ function createProjectMeta(project) {
   const roleTimeline = project.technical['Role & Timeline'];
   if (!roleTimeline || roleTimeline.length === 0) return '';
 
-  // Extract company, role, and timeline
+  // Extract company, role, and timeline from JSON and technical data
   const role = roleTimeline.find(item => !item.includes('202') && !item.includes('Solo'));
   const timeline = roleTimeline.find(item => item.includes('202'));
-  const company = getCompanyForProject(project.title);
+  const company = project.company || ''; // Read from JSON
 
   const themeClass = project.theme !== 'blue' ? project.theme : '';
 
@@ -340,8 +338,11 @@ function createProjectMeta(project) {
  * @returns {string} HTML string
  */
 function createTags(project) {
-  // Default tags based on technical details
-  const tags = ['Product Design', 'UI/UX', 'Design Systems', 'B2B', '0→1'];
+  // Read tags from JSON
+  const tags = project.tags || [];
+
+  if (!tags || tags.length === 0) return '';
+
   const themeClass = project.theme !== 'blue' ? project.theme : '';
 
   return `
@@ -385,46 +386,3 @@ function getNextProject(currentId) {
   return projectData[nextId];
 }
 
-/**
- * Get metrics for a specific project
- * TODO: Move this data to projects.json
- * @param {string} projectTitle - Project title
- * @returns {Array} Array of metric objects
- */
-function getMetricsForProject(projectTitle) {
-  const metricsMap = {
-    'Marketing Management': [
-      { value: 'x1.5', label: 'expected customer growth' },
-      { value: '60%', label: 'faster complaint resolution (Facebook-CRM integration)' },
-      { value: '4', label: 'departments workflows centralised' }
-    ],
-    'MkM - Design System': [
-      { value: '40%', label: 'front-end independence via design systems docs' },
-      { value: '70%', label: 'faster design iteration through reusable components' },
-      { value: 'CEO', label: 'buy-in & proof of concept.' }
-    ],
-    'Tomato Energy Microsite': [
-      { value: '40%', label: 'front-end independence via design systems docs' },
-      { value: '70%', label: 'faster design iteration through reusable components' },
-      { value: 'CEO', label: 'buy-in & proof of concept.' }
-    ]
-  };
-
-  return metricsMap[projectTitle] || [];
-}
-
-/**
- * Get company name for a specific project
- * TODO: Add company to projects.json
- * @param {string} projectTitle - Project title
- * @returns {string} Company name
- */
-function getCompanyForProject(projectTitle) {
-  const companyMap = {
-    'Marketing Management': 'Senapt LTD',
-    'MkM - Design System': 'Senapt LTD',
-    'Tomato Energy Microsite': ''
-  };
-
-  return companyMap[projectTitle] || '';
-}
