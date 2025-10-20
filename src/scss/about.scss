@@ -64,11 +64,14 @@ body {
     display: flex;
     gap: 32px;
     align-items: center;
-  padding-left: 10rem;  }
+    padding-left: 10rem;  
+    justify-content: space-evenly;
+  }
 }
 
 .name-wrapper {
   flex: 1;
+  max-width: fit-content;
 
   .name {
     font-size: $type-size-3xl;
@@ -120,9 +123,11 @@ body {
 
 .bio {
   width: 100%;
-  font-variation-settings: 'opsz' 14, 'wdth' 100; 
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
   color: $color-blue-darker;
   padding-left: 8rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 

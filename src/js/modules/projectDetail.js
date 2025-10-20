@@ -12,9 +12,6 @@ import projectData from '../../data/projects.json';
 export function initProjectDetail() {
   const detailPage = document.querySelector('#project-detail-page');
   const closeButton = document.querySelector('.project-detail-close');
-  const breadcrumbLinks = document.querySelectorAll('.breadcrumb-link');
-  const ctaButtons = document.querySelectorAll('.cta-button');
-  const projectNavButtons = document.querySelectorAll('.project-nav');
 
   if (!detailPage) {
     console.warn('Project detail page not found');
@@ -22,38 +19,18 @@ export function initProjectDetail() {
   }
 
   // Handle CTA button clicks (e.g., "read case study")
-  ctaButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
+  // Using event delegation since buttons are dynamically generated
+  document.addEventListener('click', (e) => {
+    const ctaButton = e.target.closest('.cta-button');
+    if (ctaButton) {
       e.preventDefault();
-      const href = button.getAttribute('href');
+      const href = ctaButton.getAttribute('href');
 
       // Extract project info from the href
       if (href && href.includes('case-study')) {
         const projectId = href.replace('#case-study-', '');
         openProjectDetail(projectId);
       }
-    });
-  });
-
-  // Handle project nav button clicks (top/bottom navigation)
-  projectNavButtons.forEach((button) => {
-    // Only add click handler if it's a button element
-    if (button.tagName === 'BUTTON') {
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        const navTitle = button.querySelector('.nav-title').textContent;
-
-        // Determine project based on title
-        if (navTitle.includes('Marketing Management') || navTitle.includes('↑ Marketing Management')) {
-          openProjectDetail('1');
-        } else if (navTitle.includes('Design System') || navTitle.includes('MkM')) {
-          openProjectDetail('2');
-        } else if (navTitle.includes('tomato Energy') || navTitle.includes('Energy microsite')) {
-          openProjectDetail('3');
-        } else if (navTitle.includes('Plugin') || navTitle.includes('Design System Plugin')) {
-          openProjectDetail('1'); // Default to first project for plugin
-        }
-      });
     }
   });
 
@@ -64,13 +41,10 @@ export function initProjectDetail() {
     });
   }
 
-  // Handle breadcrumb navigation
-  breadcrumbLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const projectId = link.getAttribute('data-project');
-      openProjectDetail(projectId);
-    });
+  // Listen for custom event from breadcrumb clicks (handled in projectCards.js)
+  window.addEventListener('openProjectDetail', (e) => {
+    const { projectId } = e.detail;
+    openProjectDetail(projectId);
   });
 
   // Handle ESC key to close

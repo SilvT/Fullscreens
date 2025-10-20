@@ -133,5 +133,56 @@
       "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png"
     ],
     "theme": "neutral"
+  },
+  "4": {
+    "title": "Figma Design Distributor Plugin",
+    "subtitle": "Design token automation for Figma Variables, Collections, and styles",
+    "sections": [
+      {
+        "heading": "Project Overview",
+        "content": "Automating Design Token Extraction for Better Design-Dev Handoff"
+      },
+      {
+        "heading": "The Problem",
+        "content": "Design teams manually extract and share design tokens from Figma, leading to inconsistencies, versioning issues, and time wasted on repetitive tasks. Teams needed an automated solution that respects existing GitHub workflows."
+      },
+      {
+        "heading": "The Solution",
+        "content": "A Figma plugin that automatically extracts design tokens (colours, typography, spacing, variables) and pushes them to GitHub repositories or downloads locally, with comprehensive error handling and security considerations."
+      },
+       {
+        "heading": "Process",
+        "content": "Research and Planning:\n- Identified core requirements from design systems workflows\n- Mapped technical constraints of Figma's plugin environment\n- Defined architecture supporting both GitHub and local distribution"
+      }
+    ],
+    "technical": {
+      "Technical Details": [
+        "Vibe Coding",
+        "Design Systems Ops",
+        "Cross-team Collaboration",
+        "Performance Optimization"
+      ],
+      "Role & Timeline": [
+      "Product Designer",
+      " Design Technologist",
+      "2025"
+      ],
+      "Tools Used": [
+        "Figma pluging API",
+        "API",
+        "Typescript",
+        "GitHub API",
+        "build-figma-plugin",
+        "Claude Code"
+      ]
+    },
+    "images": [
+      "/src/assets/plugin/plugin-1.png",
+      "/src/assets/plugin/plugin-2.png",
+      "/src/assets/plugin/plugin-3.png",
+      "/src/assets/plugin/plugin-4.png",
+      "/src/assets/plugin/plugin-5.png"
+    ],
+    "theme": "blue"
   }
 }

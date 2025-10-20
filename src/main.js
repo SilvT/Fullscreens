@@ -30,6 +30,7 @@ import { initAccessibility, verifyColorContrast } from './js/modules/accessibili
 import { initFlipBoardAnimation } from './js/modules/flipBoardAnimation.js';
 import { initProjectDetail } from './js/modules/projectDetail.js';
 import { initScrollHint } from './js/modules/scrollHint.js';
+import { initProjectCards } from './js/modules/projectCards.js';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -42,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize accessibility features first
   initAccessibility();
+
+  // Generate project cards from JSON first
+  initProjectCards();
 
   // Initialize navigation
   initNavigation();
