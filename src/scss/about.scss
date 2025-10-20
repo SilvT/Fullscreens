@@ -263,18 +263,30 @@ body {
 }
 
 //Text stack and other projects
-.stack{
+.more-info{
   position: relative;
   align-self: flex-end;
   padding-right: 8rem;
   width: 35vw;
   padding-left: 3rem;
- color: $color-blue-darker;
- & a{
-  color:$color-blue-primary;
-  text-decoration:none;
-  &:hover{
-    text-decoration:underline;
- }
-}
+  color: $color-blue-darker;
+
+  & h3{
+    font-weight: $font-weight-light;
+    margin-bottom: 0.5rem;
+  }
+  & .stack{
+    margin-bottom: 2rem;
+  }
+  & .stack-list{
+    font-family: $font-anonymous;
+  }
+
+  & a{
+   color:$color-blue-primary;
+   text-decoration:none;
+   &:hover{
+     text-decoration:underline;
+  }
+   }
 }
