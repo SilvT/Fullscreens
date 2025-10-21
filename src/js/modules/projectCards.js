@@ -271,13 +271,13 @@ function createBottomNavigation(nextProject) {
  * @returns {string} HTML string
  */
 function createProjectDetails(project) {
-  // Get the first section's content (Project Overview)
-  const overview = project.sections.find(s => s.heading === 'Project Overview');
+  // Use cardOverview if available, otherwise fall back to first section's content
+  const overviewText = project.cardOverview || project.sections.find(s => s.heading === 'Project Overview')?.content;
 
-  if (!overview) return '';
+  if (!overviewText) return '';
 
   // Split content by double newlines to create paragraphs
-  const paragraphs = overview.content.split('\n\n').map(p => p.trim()).filter(p => p);
+  const paragraphs = overviewText.split('\n\n').map(p => p.trim()).filter(p => p);
 
   return `
     <p class="project-details">

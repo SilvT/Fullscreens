@@ -4,6 +4,7 @@
     "subtitle": "A unified CRM to consolidate fragmented data across 4 departments",
     "company": "Senapt LTD",
     "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "0→1"],
+    "cardOverview": "With 14k customers this desktop app was key to integrate the spread-out data from all campaigns and leads, while providing useful manipulation of them and displaying it on multiple dashboards.\n\nThis project became the proof-of-concept for the company's first design system, now adopted company-wide.",
     "metrics": [
       { "value": "x1.5", "label": "expected customer growth" },
       { "value": "60%", "label": "faster complaint resolution (Facebook-CRM integration)" },
@@ -52,23 +53,28 @@
     "theme": "blue"
   },
   "2": {
-    "title": "MkM - Design System",
+    "title": "Marketing Management Platform – Design System",
     "subtitle": "Pioneering design systems in engineering-first environments",
     "company": "Senapt LTD",
     "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "Component Libraries"],
+    "cardOverview": "Built a greenfield design system from scratch with a remote developer 8 time zones away. The constraint forced unambiguous design—every token and component had to work for async, text-only handoffs. Result: 90% implementation accuracy and a system now scaling company-wide.",
     "metrics": [
-      { "value": "40%", "label": "front-end independence via design systems docs" },
       { "value": "70%", "label": "faster design iteration through reusable components" },
+      { "value": "90%", "label": "implementation accuracy" },
       { "value": "CEO", "label": "buy-in & proof of concept." }
     ],
     "sections": [
       {
         "heading": "Project Overview",
-        "content": "Building the company's first comprehensive design system from the ground up. This system needed to serve both designers and front-end developers while maintaining flexibility for rapid product iteration."
+        "content": "When I joined as a mid-level designer, I got an unusual opportunity: build a greenfield product with no systems culture and a remote developer 8 time zones away who didn't speak fluent English. Most designers at that level inherit systems—I built one from scratch out of necessity. The constraint forced unambiguous design: every token, component, and interaction had to work for async, text-only handoffs. The result: 90% implementation accuracy, an automated Figma-to-Git pipeline for JavaFX, a system now scaling company-wide, and a role that evolved to senior-level systems ownership."
+      },
+            {
+        "heading": "The Setup",
+        "content": "As the solo product designer, I built a unified marketing platform from scratch—unifying fragmented data across 4 departments while pioneering the company's first design system. The project became the proof-of-concept for systematic design, now adopted company-wide."
       },
       {
         "heading": "The Challenge",
-        "content": "Engineers were building UI components without design guidance, leading to inconsistent user experiences. No documentation existed for reusable components."
+        "content": "My frontend developer was 8 time zones ahead, didn't speak fluent English, and communicated only via Figma comments and async messages. If I couldn't hop on a call to explain a design decision, the design itself had to be unambiguous."
       },
       {
         "heading": "The Solution",
@@ -76,24 +82,29 @@
       }
     ],
     "technical": {
-      "Technical Details": [
-        "Component Library",
-        "Design Tokens",
-        "Documentation Portal",
-        "Version Control",
-        "Accessibility (WCAG AA)"
+      "Metrics": [
+        "4-layers architecture",
+        "400+ tokens",
+        "200+ components",
+        "Git Version Control"
       ],
       "Role & Timeline": [
         "Design System Lead",
         "Component Architecture",
-        "Developer Enablement",
+        "Solo Product Designer",
         "2024 - 2025"
+      ],
+      "Scope": [
+        "UI/UX Design",
+        "Systems Architecture",
+        "Design-to-Code Automation",
+        "JavaFX CSS"
       ],
       "Tools Used": [
         "Figma",
-        "Storybook",
-        "React",
-        "Sass/CSS"
+        "Token Studio Plugin",
+        "Git Actions",
+        "JavaFX Documentation"
       ]
     },
     "images": [
@@ -108,6 +119,7 @@
     "subtitle": "Helping customers understand their energy journey",
     "company": "",
     "tags": ["Product Design", "UI/UX", "Responsive Design", "B2C", "Data Visualization"],
+    "cardOverview": "A customer-facing microsite designed to simplify the complex energy switching process and help users understand their energy consumption patterns.",
     "metrics": [
       { "value": "40%", "label": "front-end independence via design systems docs" },
       { "value": "70%", "label": "faster design iteration through reusable components" },
@@ -159,7 +171,8 @@
     "title": "Figma Design Distributor Plugin",
     "subtitle": "Design token automation for Figma Variables, Collections, and styles",
     "company": "",
-    "tags": [ "Figma Plugin", "Design Systems", "Automation", "APIs", "AI Dev"],
+    "tags": [ "Figma Plugin", "Design Systems", "Git Automation", "APIs", "AI-Assisted Dev"],
+    "cardOverview": "Automating Design Token Extraction for Better Design-Dev Handoff",
     "metrics": [
       { "value": "100%", "label": "automation of design token extraction" },
       { "value": "5min", "label": "from manual hours to automated minutes" },

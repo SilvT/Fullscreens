@@ -13,7 +13,7 @@
   pointer-events: none;
   transition: opacity 0.3s ease;
   overflow-y: auto;
-  padding: 48px;
+  padding: 2.5rem;
 
   &.active {
     opacity: 1;
@@ -37,10 +37,10 @@
 // Close Button (top right, modal style)
 .project-detail-close {
   position: fixed;
-  top: 32px;
-  right: 32px;
-  width: 48px;
-  height: 48px;
+  top: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
   border: 2px solid $color-blue-darker;
   border-radius: 4px;
   background-color: transparent;
@@ -54,7 +54,7 @@
 
   &:hover {
     background-color: $color-blue-darker;
-    color: white;
+    color: $color-cream !important;
   }
 
   &:focus {
@@ -72,8 +72,8 @@
 .breadcrumbs {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 48px;
+  gap: 0.8rem;
+  margin-bottom: 7rem;
   font-family: $font-bricolage;
   font-size: $type-size-s;
   flex-wrap: wrap;
@@ -119,7 +119,7 @@
   gap: 24px;
 
   .detail-title {
-    font-size: $type-size-4xl;
+    font-size: $type-size-2xl;
     font-weight: $font-weight-bold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
@@ -128,7 +128,7 @@
   }
 
   .detail-subtitle {
-    font-size: $type-size-xl;
+    font-size: $type-size-l;
     font-weight: $font-weight-medium;
     color: $color-blue-dark;
     margin-bottom: 16px;
@@ -155,7 +155,8 @@
   grid-column: 3 / 4;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 2rem;
+  margin-top: 35vh;
 
   .technical-title {
     font-size: $type-size-s;
