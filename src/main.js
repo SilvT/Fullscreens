@@ -13,6 +13,7 @@ import './scss/main.scss';
 
 // Import modules
 import { initScrollSnap, watchMotionPreference } from './js/modules/scrollSnap.js';
+import { initScrollTransitions, watchMotionPreference as watchTransitionMotion } from './js/modules/scrollTransitions.js';
 import { initNavigation, initKeyboardNav } from './js/modules/navigation.js';
 import {
   initSectionAnimations,
@@ -51,19 +52,24 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initKeyboardNav();
 
-  // Initialize scroll snapping
-  initScrollSnap();
-  watchMotionPreference();
+  // TEMPORARY: Disable GSAP scroll snap, use native CSS instead (snappier like CodePen)
+  // initScrollSnap();
+  // watchMotionPreference();
 
-  // Initialize animations
-  initSectionAnimations();
-  initTextAnimations();
-  initImageAnimations();
-  initCTAAnimations();
-  initTagAnimations();
+  // Initialize scroll-driven transitions (like CodePen reference)
+  // Options: 'fade' (simple), 'blink' (blur+contrast), 'horizontalSlide', 'zoom', 'verticalSlide'
+  initScrollTransitions('fade');
+  watchTransitionMotion();
 
-  // Initialize metric animations
-  initMetricAnimations();
+  // TEMPORARY: Disable individual element animations (conflicts with scroll transitions)
+  // initSectionAnimations();
+  // initTextAnimations();
+  // initImageAnimations();
+  // initCTAAnimations();
+  // initTagAnimations();
+
+  // Keep metric animations (not conflicting)
+  // initMetricAnimations();
   initMetricCounters();
   initMetricHoverEffects();
 

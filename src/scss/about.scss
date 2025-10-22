@@ -7,7 +7,11 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  // Remove smooth scroll-behavior to make snap instant (snappier)
+  // scroll-behavior: smooth;
+
+  // Native CSS scroll snap (like CodePen reference)
+  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -32,18 +36,16 @@ body {
 .section-landing,
 .section-project {
   width: 100%;
-  height: 832px;
   position: relative;
-  // overflow: hidden;
-  height: 100vh;
+  height: 100vh; // Full viewport height for scroll snapping
+
+  // Native CSS scroll snap (like CodePen)
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .section-landing {
   background-color: $color-cream;
-
-  // CSS scroll snap - start alignment for landing page
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 
   --dot-size: 1px;
   --dot-space: 22px;
@@ -51,6 +53,16 @@ body {
 		linear-gradient(90deg, $color-cream calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
 		linear-gradient( $color-cream calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
 		$color-blue-primary;
+
+  // Contentbox inherits the dotted background
+  .contentbox {
+    --dot-size: 1px;
+    --dot-space: 22px;
+    background:
+      linear-gradient(90deg, $color-cream calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+      linear-gradient( $color-cream calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+      $color-blue-primary;
+  }
 }
 
 // Note: Navigation styles moved to _navigation.scss

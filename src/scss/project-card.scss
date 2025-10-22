@@ -4,6 +4,10 @@
   &.project-blue {
     background-color: $color-blue-light;
 
+    .contentbox {
+      background-color: $color-blue-light;
+    }
+
     .project-screen {
       background-color: $color-blue-light;
     }
@@ -11,23 +15,45 @@
 
   &.project-green {
     background-color: $color-green-light;
+
+    .contentbox {
+      background-color: $color-green-light;
+    }
   }
 
   &.project-neutral {
     background-color: $color-cream;
+
+    .contentbox {
+      background-color: $color-cream;
+    }
   }
 }
 
 
 .contentbox {
-  position: absolute;
+  // Fixed position so content stacks (like CodePen reference)
+  // Parent sections remain in flow for scroll-snapping
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start; // Align to top, not center
   height: 100vh;
+  overflow: hidden;
+  will-change: opacity, transform; // Optimize for animations
+
+  // TEMPORARY: Start visible for debugging
+  // (GSAP will control opacity via animations)
+  opacity: 1;
+  visibility: visible;
+
+  // Stacking below nav but above decorations
+  z-index: 10;
 }
 
 
