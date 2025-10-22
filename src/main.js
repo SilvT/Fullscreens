@@ -32,6 +32,7 @@ import { initFlipBoardAnimation } from './js/modules/flipBoardAnimation.js';
 import { initProjectDetail } from './js/modules/projectDetail.js';
 import { initScrollHint } from './js/modules/scrollHint.js';
 import { initProjectCards } from './js/modules/projectCards.js';
+import { initAllCardEnhancements } from './js/modules/cardEnhancements.js';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -45,8 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize accessibility features first
   initAccessibility();
 
-  // Generate project cards from JSON first
-  initProjectCards();
+  // Generate project cards from JSON first, THEN initialize enhancements
+  initProjectCards().then(() => {
+    console.log('Project cards ready, initializing enhancements...');
+
+    // Initialize all card enhancements AFTER cards are generated
+    initAllCardEnhancements();
+
+    // Initialize scroll-driven transitions AFTER cards are ready
+    initScrollTransitions('fade');
+    watchTransitionMotion();
+  });
 
   // Initialize navigation
   initNavigation();
@@ -55,11 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // TEMPORARY: Disable GSAP scroll snap, use native CSS instead (snappier like CodePen)
   // initScrollSnap();
   // watchMotionPreference();
-
-  // Initialize scroll-driven transitions (like CodePen reference)
-  // Options: 'fade' (simple), 'blink' (blur+contrast), 'horizontalSlide', 'zoom', 'verticalSlide'
-  initScrollTransitions('fade');
-  watchTransitionMotion();
 
   // TEMPORARY: Disable individual element animations (conflicts with scroll transitions)
   // initSectionAnimations();
@@ -70,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Keep metric animations (not conflicting)
   // initMetricAnimations();
-  initMetricCounters();
+  // initMetricCounters(); // Moved to cardEnhancements
   initMetricHoverEffects();
 
   // Initialize flip-board animation for job titles
