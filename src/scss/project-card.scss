@@ -50,15 +50,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; // Align to top, not center
+  justify-content: space-between; // Changed to space-between to allow more-info to sit at bottom
   height: 100vh;
   overflow: hidden;
   will-change: opacity, transform; // Optimize for animations
 
   // TEMPORARY: Start visible for debugging
   // (GSAP will control opacity via animations)
-  opacity: 1;
-  visibility: visible;
+  opacity: 0;
+  visibility: hidden;
 
   // Stacking below nav but above decorations
   z-index: 10;

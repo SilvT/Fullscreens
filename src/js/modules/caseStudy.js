@@ -74,47 +74,80 @@ function openCaseStudy(projectId) {
     return;
   }
 
-  // Store current project ID for navigation
-  caseStudyPage.setAttribute('data-current-project', projectId);
+  // Check if modal is already open (navigating between projects)
+  const isAlreadyOpen = caseStudyPage.classList.contains('active');
 
-  // Set theme
-  caseStudyPage.setAttribute('data-theme', project.theme);
+  if (isAlreadyOpen) {
+    // Fade out current content first, then switch
+    gsap.to('.cs-hero, .cs-metrics, .cs-layout-grid', {
+      opacity: 0,
+      duration: 0.15,
+      ease: 'power2.in',
+      onComplete: () => {
+        // After fade out, update content
+        caseStudyPage.setAttribute('data-current-project', projectId);
+        caseStudyPage.setAttribute('data-theme', project.theme);
+        populateCaseStudy(project, projectId);
+        updateBreadcrumbs(projectId);
+        setupKeyboardNavigation();
+        updateProjectMetaTags(projectId);
+        caseStudyPage.scrollTop = 0;
 
-  // Populate content
-  populateCaseStudy(project, projectId);
+        // Then fade in new content
+        gsap.fromTo(
+          '.cs-hero, .cs-metrics, .cs-layout-grid',
+          { x: 20, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.25,
+            ease: 'power2.out',
+          }
+        );
+      }
+    });
+  } else {
+    // First time opening modal
+    // Store current project ID for navigation
+    caseStudyPage.setAttribute('data-current-project', projectId);
 
-  // Update breadcrumbs
-  updateBreadcrumbs(projectId);
+    // Set theme
+    caseStudyPage.setAttribute('data-theme', project.theme);
 
-  // Setup keyboard navigation
-  setupKeyboardNavigation();
+    // Populate content
+    populateCaseStudy(project, projectId);
 
-  // Prevent body scroll
-  body.style.overflow = 'hidden';
+    // Update breadcrumbs
+    updateBreadcrumbs(projectId);
 
-  // Pause About section animations
-  pauseAboutAnimations();
+    // Setup keyboard navigation
+    setupKeyboardNavigation();
 
-  // Update meta tags for this specific project
-  updateProjectMetaTags(projectId);
+    // Update meta tags for this specific project
+    updateProjectMetaTags(projectId);
 
-  // Show page
-  caseStudyPage.classList.add('active');
+    // Scroll to top
+    caseStudyPage.scrollTop = 0;
+    // First time opening - prevent body scroll and animate modal in
+    body.style.overflow = 'hidden';
 
-  // Scroll to top
-  caseStudyPage.scrollTop = 0;
+    // Pause About section animations
+    pauseAboutAnimations();
 
-  // Animate in with GSAP (like project-detail)
-  gsap.fromTo(
-    caseStudyPage,
-    { opacity: 0, y: 20 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.4,
-      ease: 'power2.out',
-    }
-  );
+    // Show page
+    caseStudyPage.classList.add('active');
+
+    // Animate in with GSAP (slide up without full opacity change)
+    gsap.fromTo(
+      caseStudyPage,
+      { y: 30 },
+      {
+        y: 0,
+        duration: 0.4,
+        ease: 'power2.out',
+      }
+    );
+  }
 
   console.log(`Opened case study: ${projectId} (${project.theme})`);
 }

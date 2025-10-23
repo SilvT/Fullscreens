@@ -16,7 +16,6 @@
   z-index: 1000;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
   overflow-y: auto;
   padding: 2.5rem;
 
@@ -249,6 +248,8 @@
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: start;
+  overflow: visible; // Allow image to bleed
+  z-index: 1; // Behind other content sections
 
   .cs-hero-content {
     grid-column: 1;
@@ -259,14 +260,19 @@
     position: relative;
     display: flex;
     gap: 1rem;
-    align-items: center;
-    justify-content: flex-end;
+    align-items: flex-start; // Align to top
+    justify-content: flex-start;
+    margin-right: -4rem; // Extend beyond section padding to bleed right
+    overflow: visible;
 
     img {
-      max-width: 100%;
+      max-width: none;
+      width: auto;
       height: auto;
+      max-height: 450px;
       border-radius: 4px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: scale(1.3);
+      transform-origin: top left; // Anchor at top-left corner
     }
   }
 
@@ -339,8 +345,10 @@
 
 // Metrics Section (Key Achievements)
 .cs-metrics {
+  position: relative;
   padding: 3rem 4rem;
   background-color: white;
+  z-index: 10; // Above hero image
 
   .cs-section-title {
     font-size: $type-size-xs;
@@ -488,12 +496,14 @@
 
 // Main Layout Grid
 .cs-layout-grid {
+  position: relative;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 4rem;
   padding: 3rem 4rem;
   background-color: white;
   align-items: start;
+  z-index: 10; // Above hero image
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -588,9 +598,7 @@
   background-color: $color-cream;
 
   .cs-sidebar-content {
-    // background-color: white;
     border-radius: 4px;
-    // border: 1px solid rgba(0, 0, 0, 0.08);
     padding: 2rem;
   }
 

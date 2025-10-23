@@ -72,7 +72,7 @@
         "JavaScript"
       ]
     },
-    "heroImage": "/src/assets/giffycanvas 1.png",
+    "heroImage": "/src/assets/mkm-hero.png",
     "images": [
       "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
       "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
@@ -135,6 +135,7 @@
         "JavaFX Documentation"
       ]
     },
+        "heroImage": "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
     "images": [
       "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
       "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
@@ -188,6 +189,8 @@
         "Lighthouse"
       ]
     },
+     "heroImage": "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
+
     "images": [
       "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
       "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
@@ -245,6 +248,8 @@
         "Claude Code"
       ]
     },
+    "heroImage": "/src/assets/plugin/plugin-1.png",
+
     "images": [
       "/src/assets/plugin/plugin-1.png",
       "/src/assets/plugin/plugin-2.png",
