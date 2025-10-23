@@ -3,14 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Silvia Travieso - Portfolio</title>
+  <title>Silvia Travieso - UI/UX Designer Portfolio | Product Design & Design Systems</title>
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Silvia Travieso - UI/UX Designer Portfolio">
+  <meta name="description" content="UI/UX Designer specializing in product design, design systems, and B2B applications. View case studies showcasing CRM platforms, dashboards, and user-centered design solutions.">
+  <meta name="keywords" content="UI/UX Designer, Product Designer, Design Systems, B2B Design, Dashboard Design, User Experience, Interface Design, Portfolio">
+  <meta name="author" content="Silvia Travieso">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://silviatravieso.com/">
+  <meta property="og:title" content="Silvia Travieso - UI/UX Designer Portfolio">
+  <meta property="og:description" content="UI/UX Designer specializing in product design, design systems, and B2B applications. View case studies showcasing innovative design solutions.">
+  <meta property="og:image" content="https://silviatravieso.com/og-image.jpg">
+  <meta property="og:site_name" content="Silvia Travieso Portfolio">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://silviatravieso.com/">
+  <meta name="twitter:title" content="Silvia Travieso - UI/UX Designer Portfolio">
+  <meta name="twitter:description" content="UI/UX Designer specializing in product design, design systems, and B2B applications.">
+  <meta name="twitter:image" content="https://silviatravieso.com/og-image.jpg">
+
+  <!-- Portfolio-Specific Meta Tags for AI Scrapers -->
+  <meta property="portfolio:type" content="UI/UX Design">
+  <meta property="portfolio:specialization" content="Product Design, Design Systems, B2B Applications">
+  <meta property="portfolio:experience" content="Senior UI/UX Designer">
+  <meta property="portfolio:location" content="Remote">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://silviatravieso.com/">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fascinate&family=Anonymous+Pro&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/main-CY2D9udh.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-DSCzndwO.css">
+  <script type="module" crossorigin src="/assets/main-B1gG6yrC.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-Qkwg1upt.css">
 </head>
 
 <body>
@@ -64,28 +96,28 @@
   </nav>
 
   <!-- About Landing Section -->
-  <section id="about-landing" class="section-landing" data-section="about">
+  <section id="about-landing" class="section-landing" data-section="about" aria-labelledby="portfolio-heading">
     <div class="contentbox">
       <!-- About Section -->
-      <div class="about-sect">
+      <article class="about-sect">
         <div class="about-content">
           <div class="name-wrapper">
-            <h1 class="name">
-              <span class="first-letter">S·</span><span class="rest-name">Silvia Travieso</span>
+            <h1 id="portfolio-heading" class="name">
+              <span class="first-letter" aria-hidden="true">S·</span><span class="rest-name">Silvia Travieso</span>
             </h1>
           </div>
 
           <div class="description">
-            <div class="dynamic-job-title" role="status" aria-live="polite">
+            <div class="dynamic-job-title" role="status" aria-live="polite" aria-label="Current job title">
               <!-- Flip-board animation will populate this dynamically -->
             </div>
 
-            <div class="bio">
+            <div class="bio" role="contentinfo" aria-label="Professional biography">
               <p>UI + Product Designer specialising in scalable design systems, component libraries, and user-centred interfaces.<br> Currently dipping my toes into vibe coding.</p>
             </div>
           </div>
         </div>
-      </div>
+      </article>
       <div class="more-info">
        <div class="stack">
          <h3 class="info-title">Tech Stack</h3>
@@ -109,7 +141,13 @@
       <div class="other-projects">
         <h3 class="info-title">Side projects</h3>
         <a href="https://www.silvarium.es/" class="other-projects-link">→ Branding</a> <br>
-        <a href="https://talesofmelancholia.com/" class="other-projects-link">→ Fine Photography</a> 
+        <a href="https://talesofmelancholia.com/" class="other-projects-link">→ Fine Photography</a>
+      </div>
+      <!-- TEST BUTTON for Case Study Modal -->
+      <div style="margin-top: 2rem;">
+        <button class="open-case-study" data-project="1" style="padding: 10px 20px; background: #0066FF; color: white; border: none; border-radius: 4px; cursor: pointer; font-family: 'Bricolage Grotesque', sans-serif;">
+          Open Case Study (Test)
+        </button>
       </div>
     </div>
   </section>
@@ -148,6 +186,72 @@
         <!-- Images will be dynamically added here -->
       </div>
     </div>
+  </div>
+
+  <!-- Case Study Page (Full Page like Project Detail) -->
+  <div id="case-study-page" class="case-study-page" data-theme="blue">
+    <!-- Close Button -->
+    <button class="case-study-close" aria-label="Close case study">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- Navigation Hints -->
+    <div class="cs-nav-hint cs-nav-hint--left" aria-hidden="true">
+      <span class="cs-nav-hint__arrow">←</span>
+      <span class="cs-nav-hint__text">Previous</span>
+    </div>
+    <div class="cs-nav-hint cs-nav-hint--right" aria-hidden="true">
+      <span class="cs-nav-hint__text">Next</span>
+      <span class="cs-nav-hint__arrow">→</span>
+    </div>
+
+    <!-- Breadcrumbs (Same treatment as project-detail) -->
+    <nav class="cs-breadcrumbs" aria-label="Case study navigation"></nav>
+
+        <!-- Hero Section -->
+        <section class="cs-hero">
+          <div class="cs-hero-content">
+            <div class="cs-hero-header">
+              <p class="cs-hero-company"></p>
+              <h1 class="cs-hero-title"></h1>
+              <h2 class="cs-hero-subtitle"></h2>
+            </div>
+            <div class="cs-hero-tags"></div>
+            <p class="cs-hero-overview"></p>
+          </div>
+          <div class="cs-hero-images">
+            <!-- Hero images will be dynamically added here -->
+          </div>
+        </section>
+
+        <!-- Metrics Section -->
+        <section class="cs-metrics">
+          <h3 class="cs-section-title">Impact</h3>
+          <div class="cs-metrics-grid"></div>
+        </section>
+
+        <!-- Main Layout Grid -->
+        <div class="cs-layout-grid">
+          <!-- Main Content (left column) -->
+          <div class="cs-main-content">
+            <!-- Sections will be dynamically added here -->
+          </div>
+
+          <!-- Sidebar (right column) -->
+          <aside class="cs-sidebar">
+            <div class="cs-sidebar-content">
+              <!-- Technical details will be dynamically added here -->
+            </div>
+          </aside>
+        </div>
+
+    <!-- Image Gallery -->
+    <section class="cs-gallery">
+      <h3 class="cs-section-title">Visual Documentation</h3>
+      <div class="cs-gallery-grid"></div>
+    </section>
   </div>
 
 <footer>
@@ -192,7 +296,6 @@
 </footer>
 
   <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- GSAP loaded via npm/Vite, not CDN -->
 </body>
 </html>

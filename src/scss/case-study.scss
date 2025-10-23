@@ -1,38 +1,33 @@
 @use 'variables' as *;
 
 /**
- * Case Study Modal
- * Traditional case study presentation format
+ * Case Study Page
+ * Full-page case study layout (like project-detail)
  */
 
-// Modal Overlay
-.case-study-modal {
+// Full Page
+.case-study-page {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2000;
+  background-color: $color-blue-light;
+  z-index: 1000;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
-  backdrop-filter: blur(4px);
+  overflow-y: auto;
+  padding: 2.5rem;
 
   &.active {
     opacity: 1;
     pointer-events: all;
   }
 
-  // Theme variations
+  // Theme variations (full page background)
   &[data-theme="blue"] {
-    .case-study-container {
-      background-color: $color-cream;
-    }
-
-    .cs-hero {
-      background-color: $color-blue-light;
-    }
+    background-color: $color-blue-light;
 
     .cs-tag {
       background-color: rgba(0, 102, 255, 0.1);
@@ -40,18 +35,26 @@
     }
 
     .cs-metric-card {
-      background-color: $color-blue-light;
-      border-left: 4px solid $color-blue-primary;
+      background-color: white;
     }
   }
 
   &[data-theme="green"] {
-    .case-study-container {
-      background-color: $color-cream;
-    }
+    background-color: $color-green-light;
 
-    .cs-hero {
-      background-color: $color-green-light;
+    .cs-breadcrumbs {
+      .cs-breadcrumb-link {
+        color: $color-green-dark;
+
+        &:hover,
+        &.active {
+          color: $color-green-primary;
+        }
+      }
+
+      .cs-breadcrumb-separator {
+        color: $color-green-dark;
+      }
     }
 
     .cs-tag {
@@ -60,18 +63,26 @@
     }
 
     .cs-metric-card {
-      background-color: $color-green-light;
-      border-left: 4px solid $color-green-primary;
+      background-color: white;
     }
   }
 
   &[data-theme="neutral"] {
-    .case-study-container {
-      background-color: white;
-    }
+    background-color: $color-cream;
 
-    .cs-hero {
-      background-color: $color-cream;
+    .cs-breadcrumbs {
+      .cs-breadcrumb-link {
+        color: $color-neutral;
+
+        &:hover,
+        &.active {
+          color: $color-blue-darker;
+        }
+      }
+
+      .cs-breadcrumb-separator {
+        color: $color-neutral;
+      }
     }
 
     .cs-tag {
@@ -80,70 +91,42 @@
     }
 
     .cs-metric-card {
-      background-color: $color-cream;
-      border-left: 4px solid $color-blue-darker;
+      background-color: white;
     }
   }
 }
 
-// Modal Content (scrollable)
-.case-study-content {
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 2rem;
-}
-
-// Main Container - Nearly Full Screen
-.case-study-container {
-  position: relative;
-  max-width: 95vw;
-  width: 100%;
-  min-height: calc(100vh - 4rem);
-  background-color: white;
-  border-radius: 8px;
-  padding: 0;
-  opacity: 0;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-}
-
-// Close Button
+// Close Button (same style as project-detail)
 .case-study-close {
-  position: sticky;
+  position: fixed;
   top: 2rem;
   right: 2rem;
-  float: right;
   width: 3rem;
   height: 3rem;
   border: 2px solid $color-blue-darker;
-  border-radius: 50%;
-  background-color: white;
+  border-radius: 4px;
+  background-color: transparent;
   color: $color-blue-darker;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  z-index: 10;
-  margin: 2rem 2rem 0 0;
+  z-index: 1001;
 
   &:hover {
     background-color: $color-blue-darker;
-    color: white;
-    transform: rotate(90deg);
+    color: $color-cream !important;
   }
 
   &:focus {
-    outline: 2px solid $color-blue-primary;
+    outline: 2px solid $color-blue-darker;
     outline-offset: 2px;
   }
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -209,85 +192,91 @@
   }
 }
 
-// Breadcrumbs - match hero background
+// Breadcrumbs (same style as project-detail)
 .cs-breadcrumbs {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin: 0;
-  padding: 1.5rem 4rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  gap: 0.8rem;
+  margin-bottom: 3rem;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  border-radius: 4px;
+  font-family: $font-bricolage;
+  font-size: $type-size-s; // 16px
   flex-wrap: wrap;
-  background-color: inherit; // Inherits from theme
+  width: fit-content;
 
   .cs-breadcrumb-link {
-    font-family: $font-bricolage;
-    font-size: $type-size-s;
-    font-weight: $font-weight-medium;
-    color: $color-blue-dark;
+    // Reset button styles
     background: none;
     border: none;
-    padding: 0.25rem 0.5rem;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+
+    // Breadcrumb link styles
+    color: $color-blue-darker;
+    text-decoration: none;
+    font-weight: $font-weight-medium; // 500
+    transition: color 0.2s ease;
     cursor: pointer;
-    transition: all 0.2s ease;
-    border-radius: 2px;
 
     &:hover {
-      color: $color-blue-darker;
-      background-color: rgba(0, 102, 255, 0.05);
+      color: $color-blue-primary;
+      text-decoration: underline;
     }
 
     &.active {
-      color: $color-blue-darker;
+      color: $color-blue-primary;
       font-weight: $font-weight-semibold;
-      background-color: rgba(0, 102, 255, 0.1);
-    }
-
-    &:focus {
-      outline: 2px solid $color-blue-primary;
-      outline-offset: 2px;
     }
   }
 
   .cs-breadcrumb-separator {
-    color: $color-blue-dark;
+    color: $color-blue-darker;
     opacity: 0.5;
-    font-size: $type-size-s;
   }
 }
 
-// Hero Section with Decorative Image
+// Hero Section with Hero Images
 .cs-hero {
   position: relative;
   padding: 2rem 4rem 3rem;
-  background-color: $color-blue-light;
-  border-radius: 8px 8px 0 0;
-  overflow: hidden;
+  background-color: transparent;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
 
-  // Decorative partial image on right side
-  &::after {
-    content: '';
-    position: absolute;
-    right: -10%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40%;
-    height: 120%;
-    background: linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.3) 100%);
-    pointer-events: none;
-    opacity: 0.5;
+  .cs-hero-content {
+    grid-column: 1;
+  }
+
+  .cs-hero-images {
+    grid-column: 2;
+    position: relative;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-end;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
   }
 
   .cs-hero-header {
-    position: relative;
-    z-index: 1;
-    margin-bottom: 2rem;
-    max-width: 70%; // Leave space for decorative element
+    margin-bottom: 1.5rem;
   }
 
   .cs-hero-company {
     font-family: $font-anonymous;
-    font-size: $type-size-s;
+    font-size: $type-size-xs;
     color: $color-blue-dark;
     margin-bottom: 0.5rem;
     text-transform: uppercase;
@@ -299,87 +288,200 @@
     font-weight: $font-weight-semibold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
-    margin-bottom: 0.75rem;
-    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
   }
 
   .cs-hero-subtitle {
-    font-size: $type-size-xl;
+    font-size: $type-size-base;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-dark;
-    line-height: 1.3;
-    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
   }
 
   .cs-hero-tags {
-    position: relative;
-    z-index: 1;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .cs-tag {
     font-family: $font-anonymous;
     font-size: $type-size-xs;
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 0.75rem;
     background-color: rgba(0, 102, 255, 0.1);
     color: $color-blue-dark;
     border-radius: 2px;
   }
 
   .cs-hero-overview {
-    position: relative;
-    z-index: 1;
-    font-size: $type-size-base;
+    font-size: $type-size-s;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
     line-height: 1.6;
-    max-width: 70%; // Leave space for decorative element
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+
+    .cs-hero-content {
+      grid-column: 1;
+    }
+
+    .cs-hero-images {
+      grid-column: 1;
+      grid-row: 2;
+    }
   }
 }
 
-// Metrics Section
+// Metrics Section (Key Achievements)
 .cs-metrics {
   padding: 3rem 4rem;
   background-color: white;
 
   .cs-section-title {
-    font-size: $type-size-l;
+    font-size: $type-size-xs;
     font-weight: $font-weight-semibold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
-    color: $color-blue-darker;
-    margin-bottom: 1.5rem;
+    color: $color-blue-primary;
+    margin-bottom: 2rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1.5px;
   }
 
   .cs-metrics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .cs-metric-card {
-    padding: 2rem;
-    background-color: $color-blue-light;
-    border-radius: 4px;
-    border-left: 4px solid $color-blue-primary;
+    position: relative;
+    min-width: 270px;
+    min-height: 130px;
+
+    .cs-metric-content {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 100%;
+      min-height: 123px;
+      padding: 1.5rem;
+      background-color: white;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cs-metric-border {
+      position: absolute;
+      inset: 0;
+      border: 0.5px solid #3980aa;
+      pointer-events: none;
+      border-radius: 0;
+    }
+
+    &:hover .cs-metric-content {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .cs-metric-header {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .cs-metric-icon-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cs-metric-icon {
+      font-size: 18px;
+      color: #3c5e70;
+      line-height: 1;
+    }
 
     .cs-metric-value {
-      font-size: $type-size-2xl;
-      font-weight: $font-weight-bold;
+      font-family: $font-bricolage;
+      font-weight: $font-weight-medium;
+      font-size: 18px;
+      line-height: 1.21;
+      color: #3c5e70;
+      text-align: center;
+      white-space: nowrap;
+      position: relative;
+      flex-shrink: 0;
+      width: 100%;
       font-variation-settings: 'opsz' 14, 'wdth' 100;
-      color: $color-blue-darker;
-      margin-bottom: 0.5rem;
     }
 
     .cs-metric-label {
-      font-family: $font-anonymous;
-      font-size: $type-size-s;
-      color: $color-blue-dark;
-      line-height: 1.4;
+      font-family: $font-bricolage;
+      font-weight: $font-weight-light;
+      font-size: 14px;
+      line-height: 1.1;
+      color: #5b7787;
+      text-align: center;
+      width: 100%;
+      position: relative;
+      flex-shrink: 0;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+    }
+
+    // Corner Dots
+    .cs-metric-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+
+      svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      &.dot-bottom-right {
+        bottom: -4px;
+        right: -4px;
+      }
+
+      &.dot-top-right {
+        top: -4px;
+        right: -4px;
+      }
+
+      &.dot-bottom-left {
+        bottom: -4px;
+        left: -4px;
+      }
+
+      &.dot-top-left {
+        top: -4px;
+        left: -4px;
+      }
     }
   }
 }
@@ -388,9 +490,10 @@
 .cs-layout-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 3rem;
+  gap: 4rem;
   padding: 3rem 4rem;
   background-color: white;
+  align-items: start;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -438,7 +541,7 @@
       width: 100%;
       height: auto;
       border-radius: 4px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       display: block;
     }
 
@@ -462,7 +565,7 @@
       width: 100%;
       height: auto;
       border-radius: 4px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      // box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
       display: block;
     }
 
@@ -479,13 +582,20 @@
 
 // Sidebar - Right Column
 .cs-sidebar {
+  position: sticky;
+  top: 6rem;
   align-self: start;
+  background-color: $color-cream;
+
+  .cs-sidebar-content {
+    // background-color: white;
+    border-radius: 4px;
+    // border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+  }
 
   .cs-sidebar-section {
     margin-bottom: 2rem;
-    padding: 1.5rem;
-    background-color: $color-cream;
-    border-radius: 4px;
 
     &:last-child {
       margin-bottom: 0;
@@ -494,12 +604,12 @@
 
   .cs-sidebar-title {
     font-family: $font-anonymous;
-    font-size: $type-size-s;
+    font-size: $type-size-xs;
     font-weight: $font-weight-semibold;
-    color: $color-blue-darker;
-    margin-bottom: 0.75rem;
+    color: $color-blue-primary;
+    margin-bottom: 1rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1.5px;
   }
 
   .cs-sidebar-list {
@@ -593,7 +703,7 @@
     border-radius: 4px;
     overflow: hidden;
     background-color: $color-cream;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {

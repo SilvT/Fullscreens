@@ -1,7 +1,7 @@
 /**
- * Case Study Modal Module
- * Traditional case study presentation format
- * Separate from projectDetail.js - both can coexist
+ * Case Study Page Module
+ * Full-page case study presentation format (like project-detail)
+ * Traditional case study layout with breadcrumb navigation
  */
 
 import gsap from 'gsap';
@@ -9,14 +9,14 @@ import projectData from '../../data/projects.json';
 import { updateProjectMetaTags, clearProjectMetaTags } from './structuredData.js';
 
 /**
- * Initialize case study modal functionality
+ * Initialize case study page functionality
  */
 export function initCaseStudy() {
-  const caseStudyModal = document.querySelector('#case-study-modal');
+  const caseStudyPage = document.querySelector('#case-study-page');
   const closeButton = document.querySelector('.case-study-close');
 
-  if (!caseStudyModal) {
-    console.warn('Case study modal not found');
+  if (!caseStudyPage) {
+    console.warn('Case study page not found');
     return;
   }
 
@@ -42,14 +42,14 @@ export function initCaseStudy() {
 
   // Handle ESC key to close
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && caseStudyModal.classList.contains('active')) {
+    if (e.key === 'Escape' && caseStudyPage.classList.contains('active')) {
       closeCaseStudy();
     }
   });
 
   // Handle backdrop click to close
-  caseStudyModal.addEventListener('click', (e) => {
-    if (e.target === caseStudyModal) {
+  caseStudyPage.addEventListener('click', (e) => {
+    if (e.target === caseStudyPage) {
       closeCaseStudy();
     }
   });
@@ -58,14 +58,14 @@ export function initCaseStudy() {
 }
 
 /**
- * Open case study modal
+ * Open case study page
  * @param {string} projectId - The project ID
  */
 function openCaseStudy(projectId) {
-  const caseStudyModal = document.querySelector('#case-study-modal');
+  const caseStudyPage = document.querySelector('#case-study-page');
   const body = document.body;
 
-  if (!caseStudyModal) return;
+  if (!caseStudyPage) return;
 
   // Get project data
   const project = projectData[projectId];
@@ -75,10 +75,10 @@ function openCaseStudy(projectId) {
   }
 
   // Store current project ID for navigation
-  caseStudyModal.setAttribute('data-current-project', projectId);
+  caseStudyPage.setAttribute('data-current-project', projectId);
 
   // Set theme
-  caseStudyModal.setAttribute('data-theme', project.theme);
+  caseStudyPage.setAttribute('data-theme', project.theme);
 
   // Populate content
   populateCaseStudy(project, projectId);
@@ -98,23 +98,20 @@ function openCaseStudy(projectId) {
   // Update meta tags for this specific project
   updateProjectMetaTags(projectId);
 
-  // Show modal
-  caseStudyModal.classList.add('active');
+  // Show page
+  caseStudyPage.classList.add('active');
 
   // Scroll to top
-  const modalContent = caseStudyModal.querySelector('.case-study-content');
-  if (modalContent) {
-    modalContent.scrollTop = 0;
-  }
+  caseStudyPage.scrollTop = 0;
 
-  // Animate in
+  // Animate in with GSAP (like project-detail)
   gsap.fromTo(
-    caseStudyModal.querySelector('.case-study-container'),
-    { opacity: 0, y: 30 },
+    caseStudyPage,
+    { opacity: 0, y: 20 },
     {
       opacity: 1,
       y: 0,
-      duration: 0.5,
+      duration: 0.4,
       ease: 'power2.out',
     }
   );
@@ -150,6 +147,27 @@ function populateCaseStudy(project) {
     });
   }
 
+  // Hero Image(s)
+  const heroImagesContainer = document.querySelector('.cs-hero-images');
+  if (heroImagesContainer) {
+    heroImagesContainer.innerHTML = '';
+
+    // Support both single heroImage and multiple heroImages
+    let imagesToDisplay = [];
+    if (project.heroImage) {
+      imagesToDisplay = [project.heroImage];
+    } else if (project.heroImages) {
+      imagesToDisplay = project.heroImages;
+    }
+
+    imagesToDisplay.forEach((imageSrc) => {
+      const img = document.createElement('img');
+      img.src = imageSrc;
+      img.alt = `${project.title} preview`;
+      heroImagesContainer.appendChild(img);
+    });
+  }
+
   // Metrics
   const metricsContainer = document.querySelector('.cs-metrics-grid');
   if (metricsContainer && project.metrics) {
@@ -157,9 +175,47 @@ function populateCaseStudy(project) {
     project.metrics.forEach((metric) => {
       const card = document.createElement('div');
       card.className = 'cs-metric-card';
+
+      let iconHTML = '';
+      if (metric.icon) {
+        iconHTML = `
+          <div class="cs-metric-icon-wrapper">
+            <div class="cs-metric-icon">${metric.icon}</div>
+          </div>
+        `;
+      }
+
       card.innerHTML = `
-        <div class="cs-metric-value">${metric.value}</div>
-        <div class="cs-metric-label">${metric.label}</div>
+        <div class="cs-metric-content">
+          <div class="cs-metric-header">
+            ${iconHTML}
+            <div class="cs-metric-value">${metric.value}</div>
+          </div>
+          <div class="cs-metric-label">${metric.label}</div>
+        </div>
+        <div class="cs-metric-border" aria-hidden="true"></div>
+
+        <!-- Corner Dots -->
+        <div class="cs-metric-dot dot-bottom-right">
+          <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+            <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
+          </svg>
+        </div>
+        <div class="cs-metric-dot dot-top-right">
+          <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+            <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
+          </svg>
+        </div>
+        <div class="cs-metric-dot dot-bottom-left">
+          <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+            <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
+          </svg>
+        </div>
+        <div class="cs-metric-dot dot-top-left">
+          <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+            <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
+          </svg>
+        </div>
       `;
       metricsContainer.appendChild(card);
     });
@@ -311,22 +367,22 @@ function populateCaseStudy(project) {
 }
 
 /**
- * Close case study modal
+ * Close case study page
  */
 function closeCaseStudy() {
-  const caseStudyModal = document.querySelector('#case-study-modal');
+  const caseStudyPage = document.querySelector('#case-study-page');
   const body = document.body;
 
-  if (!caseStudyModal) return;
+  if (!caseStudyPage) return;
 
-  // Animate out
-  gsap.to(caseStudyModal.querySelector('.case-study-container'), {
+  // Animate out (like project-detail)
+  gsap.to(caseStudyPage, {
     opacity: 0,
-    y: 30,
+    y: 20,
     duration: 0.3,
     ease: 'power2.in',
     onComplete: () => {
-      caseStudyModal.classList.remove('active');
+      caseStudyPage.classList.remove('active');
       body.style.overflow = '';
 
       // Resume About section animations
@@ -337,7 +393,7 @@ function closeCaseStudy() {
     },
   });
 
-  console.log('Closed case study modal');
+  console.log('Closed case study page');
 }
 
 /**
@@ -380,7 +436,7 @@ function updateBreadcrumbs(currentProjectId) {
     if (projectId !== projectIds[projectIds.length - 1]) {
       const separator = document.createElement('span');
       separator.className = 'cs-breadcrumb-separator';
-      separator.textContent = '/';
+      separator.textContent = '→';
       separator.setAttribute('aria-hidden', 'true');
       breadcrumbs.appendChild(separator);
     }
@@ -391,19 +447,19 @@ function updateBreadcrumbs(currentProjectId) {
  * Setup keyboard arrow navigation
  */
 function setupKeyboardNavigation() {
-  const caseStudyModal = document.querySelector('#case-study-modal');
-  if (!caseStudyModal) return;
+  const caseStudyPage = document.querySelector('#case-study-page');
+  if (!caseStudyPage) return;
 
   // Remove previous listener if exists
-  if (caseStudyModal._keyboardHandler) {
-    document.removeEventListener('keydown', caseStudyModal._keyboardHandler);
+  if (caseStudyPage._keyboardHandler) {
+    document.removeEventListener('keydown', caseStudyPage._keyboardHandler);
   }
 
   // Create new handler
   const keyboardHandler = (e) => {
-    if (!caseStudyModal.classList.contains('active')) return;
+    if (!caseStudyPage.classList.contains('active')) return;
 
-    const currentProjectId = caseStudyModal.getAttribute('data-current-project');
+    const currentProjectId = caseStudyPage.getAttribute('data-current-project');
     const projectIds = Object.keys(projectData);
     const currentIndex = projectIds.indexOf(currentProjectId);
 
@@ -421,7 +477,7 @@ function setupKeyboardNavigation() {
   };
 
   // Store handler reference for cleanup
-  caseStudyModal._keyboardHandler = keyboardHandler;
+  caseStudyPage._keyboardHandler = keyboardHandler;
 
   // Add listener
   document.addEventListener('keydown', keyboardHandler);
