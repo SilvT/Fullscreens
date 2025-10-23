@@ -227,7 +227,7 @@ body {
   width: auto;
   height: 100vh; // Let it stretch between top and bottom
   pointer-events: none;
-  z-index: 9999; // Above navbar (nav is z-index: 1000)
+  z-index: 1500; // Above navbar but below modals (nav: 1000, modals: 2000)
   opacity: 0;
   transition: opacity 0.6s ease-in-out;
   overflow: visible;

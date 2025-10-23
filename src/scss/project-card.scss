@@ -19,12 +19,20 @@
     .contentbox {
       background-color: $color-green-light;
     }
+
+    .project-screen {
+      background-color: $color-green-light;
+    }
   }
 
   &.project-neutral {
     background-color: $color-cream;
 
     .contentbox {
+      background-color: $color-cream;
+    }
+
+    .project-screen {
       background-color: $color-cream;
     }
   }

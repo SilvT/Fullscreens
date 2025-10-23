@@ -14,7 +14,7 @@
   // background-color: $color-cream; // Semi-transparent cream
   // backdrop-filter: blur(12px) saturate(180%);
   // -webkit-backdrop-filter: blur(12px) saturate(180%);
-  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+  // No transition - background should change instantly to match section theme
 
   // Scrolled state (added via JS)
   &.scrolled {
@@ -25,28 +25,28 @@
 
   // Blue section state
   &.section-blue {
-    background-color: rgba(237, 241, 243, 0.7);
+    background-color:$color-blue-light;
 
     &.scrolled {
-      background-color: rgba(237, 241, 243, 0.92);
+    background-color:$color-blue-light;
     }
   }
 
   // Green section state
   &.section-green {
-    background-color: rgba(232, 235, 224, 0.7);
+    background-color:$color-green-light;
 
     &.scrolled {
-      background-color: rgba(232, 235, 224, 0.92);
+      background-color: $color-green-light;
     }
   }
 
   // Neutral section state
   &.section-neutral {
-    background-color: rgba(245, 243, 240, 0.7);
+    background-color: $color-cream;
 
     &.scrolled {
-      background-color: rgba(245, 243, 240, 0.92);
+      background-color: $color-cream;
     }
   }
 

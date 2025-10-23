@@ -13,15 +13,42 @@
     "sections": [
       {
         "heading": "Project Overview",
-        "content": "With 14k customers this desktop app was key to integrate the spread-out data from all campaigns and leads, while providing useful manipulation of them and displaying it on multiple dashboards.\n\nThis project became the proof-of-concept for the company's first design system, now adopted company-wide."
+        "blocks": [
+          {
+            "type": "text",
+            "content": "With 14k customers this desktop app was key to integrate the spread-out data from all campaigns and leads, while providing useful manipulation of them and displaying it on multiple dashboards.\n\nThis project became the proof-of-concept for the company's first design system, now adopted company-wide."
+          }
+        ]
       },
       {
         "heading": "The Challenge",
-        "content": "Marketing data was scattered across 4 different departments with no centralized system. Customer complaints via Facebook were handled manually, leading to slow resolution times."
+        "blocks": [
+          {
+            "type": "text",
+            "content": "Marketing data was scattered across 4 different departments with no centralized system. Customer complaints via Facebook were handled manually, leading to slow resolution times."
+          },
+          {
+            "type": "image",
+            "src": "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
+            "alt": "Data fragmentation diagram",
+            "caption": "Marketing data scattered across 4 departments"
+          }
+        ]
       },
       {
         "heading": "The Solution",
-        "content": "Created a unified CRM platform that integrated all marketing touchpoints, automated Facebook complaint tracking, and established the foundation for a scalable design system."
+        "blocks": [
+          {
+            "type": "text",
+            "content": "Created a unified CRM platform that integrated all marketing touchpoints, automated Facebook complaint tracking, and established the foundation for a scalable design system."
+          },
+          {
+            "type": "image-full",
+            "src": "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
+            "alt": "Unified CRM dashboard",
+            "caption": "Centralized dashboard bringing all data together - Full width showcase"
+          }
+        ]
       }
     ],
     "technical": {

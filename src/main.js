@@ -30,9 +30,11 @@ import {
 import { initAccessibility, verifyColorContrast } from './js/modules/accessibility.js';
 import { initFlipBoardAnimation } from './js/modules/flipBoardAnimation.js';
 import { initProjectDetail } from './js/modules/projectDetail.js';
+import { initCaseStudy } from './js/modules/caseStudy.js';
 import { initScrollHint } from './js/modules/scrollHint.js';
 import { initProjectCards } from './js/modules/projectCards.js';
 import { initAllCardEnhancements } from './js/modules/cardEnhancements.js';
+import { initStructuredData } from './js/modules/structuredData.js';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -45,6 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize accessibility features first
   initAccessibility();
+
+  // Initialize structured data (JSON-LD) for SEO and AI scrapers
+  initStructuredData();
 
   // Generate project cards from JSON first, THEN initialize enhancements
   initProjectCards().then(() => {
@@ -83,6 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize project detail page
   initProjectDetail();
+
+  // Initialize case study modal (traditional case study format)
+  initCaseStudy();
 
   // Initialize scroll hint animation
   initScrollHint();
