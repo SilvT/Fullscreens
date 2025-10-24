@@ -8,6 +8,30 @@ import gsap from 'gsap';
 import projectData from '../../data/projects.json';
 import { updateProjectMetaTags, clearProjectMetaTags } from './structuredData.js';
 import '@phosphor-icons/web/regular';
+import 'iconoir/css/iconoir.css';
+
+/**
+ * Render icon based on library prefix
+ * @param {string} iconString - Icon string with optional prefix (e.g., "ph:rocket" or "iconoir:check" or "rocket")
+ * @returns {string} HTML string for icon
+ */
+function renderIcon(iconString) {
+  if (!iconString) return '';
+
+  // Check for prefix
+  if (iconString.includes(':')) {
+    const [library, iconName] = iconString.split(':');
+
+    if (library === 'iconoir') {
+      return `<i class="iconoir-${iconName}"></i>`;
+    } else if (library === 'ph' || library === 'phosphor') {
+      return `<i class="ph ph-${iconName}"></i>`;
+    }
+  }
+
+  // Default to Phosphor if no prefix
+  return `<i class="ph ph-${iconString}"></i>`;
+}
 
 /**
  * Initialize case study page functionality
@@ -212,19 +236,18 @@ function populateCaseStudy(project) {
 
       let iconHTML = '';
       if (metric.icon) {
+        const iconElement = renderIcon(metric.icon);
         iconHTML = `
           <div class="cs-metric-icon-wrapper">
-            <i class="cs-metric-icon ph ph-${metric.icon}"></i>
+            <span class="cs-metric-icon">${iconElement}</span>
           </div>
         `;
       }
 
       card.innerHTML = `
         <div class="cs-metric-content">
-          <div class="cs-metric-header">
-            ${iconHTML}
-            <div class="cs-metric-value">${metric.value}</div>
-          </div>
+          ${iconHTML}
+          <div class="cs-metric-value">${metric.value}</div>
           <div class="cs-metric-label">${metric.label}</div>
         </div>
         <div class="cs-metric-border" aria-hidden="true"></div>
@@ -509,19 +532,18 @@ function renderMetricsInline(block) {
 
     let iconHTML = '';
     if (metric.icon) {
+      const iconElement = renderIcon(metric.icon);
       iconHTML = `
         <div class="cs-metric-icon-wrapper">
-          <i class="cs-metric-icon ph ph-${metric.icon}"></i>
+          <span class="cs-metric-icon">${iconElement}</span>
         </div>
       `;
     }
 
     card.innerHTML = `
       <div class="cs-metric-content">
-        <div class="cs-metric-header">
-          ${iconHTML}
-          <div class="cs-metric-value">${metric.value}</div>
-        </div>
+        ${iconHTML}
+        <div class="cs-metric-value">${metric.value}</div>
         <div class="cs-metric-label">${metric.label}</div>
       </div>
       <div class="cs-metric-border" aria-hidden="true"></div>

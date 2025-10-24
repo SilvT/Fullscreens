@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@phosphor-icons/web": "^2.1.2",
-    "gsap": "^3.13.0"
+    "gsap": "^3.13.0",
+    "iconoir": "^7.11.0"
   },
   "devDependencies": {
     "sass": "^1.69.5",

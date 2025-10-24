@@ -84,17 +84,6 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
-  .cs-metric-header {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    flex-shrink: 0;
-  }
-
   .cs-metric-icon-wrapper {
     position: relative;
     overflow: hidden;
@@ -104,6 +93,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto 0.5rem;
   }
 
   .cs-metric-icon {
@@ -123,6 +113,7 @@
     position: relative;
     flex-shrink: 0;
     width: 100%;
+    margin-bottom: 0.5rem;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
   }
 

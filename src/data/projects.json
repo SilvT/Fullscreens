@@ -21,9 +21,9 @@
       ]
     },
     "metrics": [
-      { "value": "x1.5", "label": "expected customer growth", "icon": "trend-up" },
-      { "value": "60%", "label": "faster complaint resolution (Facebook-CRM integration)", "icon": "lightning" },
-      { "value": "4", "label": "departments workflows centralised", "icon": "folders" }
+      { "icon": "arrows-in", "value": "4 Departments unified", "label": "Single platform consolidating fragmented marketing data and workflows" },
+      { "icon": "iconoir:file-not-found","value": "No Product team", "label": "faster complaint resolution (Facebook-CRM integration)" },
+      { "icon": "iconoir:cloud-xmark", "value": "Async collaboration", "label": "8-hour time zone gap with remote developer via Figma comments only." }
     ],
     "contentBlocks": [
       {
@@ -119,9 +119,9 @@
       ]
     },
     "metrics": [
-      { "value": "70%", "label": "faster design iteration through reusable components", "icon": "rocket" },
-      { "value": "90%", "label": "implementation accuracy", "icon": "check-circle" },
-      { "value": "CEO", "label": "buy-in & proof of concept.", "icon": "trophy" }
+      {"icon": "rocket", "value": "70%", "label": "faster design iteration through reusable components" },
+      {"icon": "check-circle", "value": "90%", "label": "implementation accuracy" },
+      {"icon": "trophy", "value": "CEO", "label": "buy-in & proof of concept." }
     ],
     "contentBlocks": [
       {
@@ -154,9 +154,9 @@
       {
         "type": "metrics-inline",
         "metrics": [
-          { "value": "400+", "label": "design tokens", "icon": "swatches" },
-          { "value": "200+", "label": "components", "icon": "package" },
-          { "value": "4", "label": "layer architecture", "icon": "stack" }
+          {"icon": "swatches", "value": "400+", "label": "design tokens" },
+          {"icon": "package", "value": "200+", "label": "components" },
+          { "icon": "stack","value": "4", "label": "layer architecture" }
         ]
       },
       {
@@ -218,9 +218,9 @@
       ]
     },
     "metrics": [
-      { "value": "40%", "label": "front-end independence via design systems docs", "icon": "code" },
-      { "value": "70%", "label": "faster design iteration through reusable components", "icon": "rocket" },
-      { "value": "CEO", "label": "buy-in & proof of concept.", "icon": "trophy" }
+      {"icon": "code", "value": "40%", "label": "front-end independence via design systems docs" },
+      { "icon": "rocket","value": "70%", "label": "faster design iteration through reusable components" },
+      { "icon": "trophy","value": "CEO", "label": "buy-in & proof of concept."}
     ],
     "contentBlocks": [
       {
@@ -294,9 +294,9 @@
       ]
     },
     "metrics": [
-      { "value": "100%", "label": "automation of design token extraction", "icon": "robot" },
-      { "value": "5min", "label": "from manual hours to automated minutes", "icon": "timer" },
-      { "value": "GitHub", "label": "integrated workflow support", "icon": "git-branch" }
+      { "icon": "robot", "value": "100%", "label": "automation of design token extraction" },
+      { "icon": "timer", "value": "5min", "label": "from manual hours to automated minutes" },
+      {  "icon": "git-branch", "value": "GitHub", "label": "integrated workflow support" }
     ],
     "contentBlocks": [
       {
@@ -367,3 +367,4 @@
     ]
   }
 }
+
