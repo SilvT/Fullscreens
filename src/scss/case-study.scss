@@ -192,7 +192,7 @@
   }
 }
 
-// Breadcrumbs (same style as project-detail)
+// Breadcrumbs 
 .cs-breadcrumbs {
   display: flex;
   align-items: center;
@@ -420,10 +420,10 @@
     color: $color-blue-primary;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    // border-bottom: 2px solid $color-blue-light;
   }
 
   .cs-content-section {
+    max-width: 45vw;
 
     & .cs-text-block-heading{
       font-size: $type-size-l;
@@ -438,7 +438,7 @@
       line-height: 130%;
       margin-bottom: $space-12;
     }
-    & .cs-section-text, ul li{
+    & .cs-section-text{
       font-size: $type-size-base;
       font-weight: $font-weight-light;
       line-height: 130%;
@@ -449,8 +449,46 @@
         color:$color-blue-200;
       }
     }
-    li:last-child{
-      margin-bottom: $space-20;
+    & .callout{
+      background: $color-cards-background;
+      padding: 2px 0;
+      min-height: 40px;
+      color: $color-blue-300;
+      font-weight: $font-weight-medium;
+      text-align: center;
+      padding:$space-16 12rem;
+      margin:$space-8 0;
+    }
+
+    // Text block list styling
+    .cs-text-block-list {
+      margin: $space-12 0;
+      padding: 0;
+
+      li{
+        list-style: none;
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: $space-8;
+        font-size: $type-size-base;
+        font-weight: $font-weight-light;
+        line-height: 130%;
+        color:$color-neutral-light;
+
+        &:before {
+          content: '·';
+          position: absolute;
+          left: 0;
+          top: 0;
+          color: $color-blue-400;
+          font-weight: bold;
+          font-size: 1.1em;
+        }
+
+        &:last-child{
+          margin-bottom: $space-20;
+        }
+      }
     }
   }
 
@@ -470,10 +508,11 @@
     .cs-image-caption {
       font-family: $font-anonymous;
       font-size: $type-size-xs;
-      color: $color-blue-dark;
+      color: $color-neutral-light;
+      line-height: 121%;
       margin-top: 1rem;
-      text-align: center;
-      font-style: italic;
+      text-align: left;
+      // font-style: italic;
     }
   }
 
@@ -491,14 +530,14 @@
       display: block;
     }
 
-    .cs-image-caption {
-      font-family: $font-anonymous;
-      font-size: $type-size-xs;
-      color: $color-blue-dark;
-      margin-top: 1rem;
-      text-align: center;
-      font-style: italic;
-    }
+    // .cs-image-caption {
+    //   font-family: $font-anonymous;
+    //   font-size: $type-size-xs;
+    //   color: $color-blue-dark;
+    //   margin-top: 1rem;
+    //   text-align: center;
+    //   font-style: italic;
+    // }
   }
 }
 
@@ -508,6 +547,15 @@
   top: 6rem;
   align-self: start;
   background-color: $color-cream;
+
+  // Hide background when sidebar is empty
+  &.cs-sidebar--empty {
+    background-color: transparent;
+
+    .cs-sidebar-content {
+      padding: 0;
+    }
+  }
 
   .cs-sidebar-content {
     border-radius: 4px;
@@ -526,7 +574,7 @@
     font-family: $font-anonymous;
     font-size: $type-size-s;
     font-weight: $font-weight-bold;
-    color: $color-neutral-light;
+    color: $color-blue-400;
     margin-bottom: $space-20;
     text-transform: uppercase;
     letter-spacing: -2%;
@@ -541,8 +589,6 @@
     dt {
       font-family: $font-anonymous;
       font-size: $type-size-xs;
-      font-weight: $font-weight-semibold;
-      color: $color-blue-darker;
       margin-bottom: 0.25rem;
       margin-top: 0.75rem;
 
@@ -616,14 +662,14 @@
     display: block;
   }
 
-  .cs-image-caption {
-    font-family: $font-anonymous;
-    font-size: $type-size-xs;
-    color: $color-blue-dark;
-    margin-top: 1rem;
-    text-align: center;
-    font-style: italic;
-  }
+  // .cs-image-caption {
+  //   font-family: $font-anonymous;
+  //   font-size: $type-size-xs;
+  //   color: $color-blue-dark;
+  //   margin-top: 1rem;
+  //   text-align: center;
+  //   font-style: italic;
+  // }
 }
 
 // Block: Image Grid
@@ -633,6 +679,7 @@
   .cs-image-grid {
     display: grid;
     gap: 2rem;
+    align-items: start;
 
     &.cs-image-grid-2 {
       grid-template-columns: repeat(2, 1fr);
@@ -653,23 +700,36 @@
 
   .cs-image-grid-item {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   .cs-grid-img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     border-radius: 4px;
     display: block;
   }
 
-  .cs-image-caption {
-    font-family: $font-anonymous;
-    font-size: $type-size-xs;
-    color: $color-blue-dark;
-    margin-top: 0.75rem;
-    text-align: center;
-    font-style: italic;
+  .cs-grid-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    background-color: $color-neutral;
   }
+
+ .cs-image-caption {
+   font-family: $font-anonymous;
+     font-size: $type-size-xs;
+     color: $color-neutral-light;
+     margin-top: $space-8;
+     text-align: left;
+    //  font-style: italic;
+   }
 }
 
 // Block: Inline Metrics
@@ -773,14 +833,14 @@
       display: block;
     }
 
-    .cs-image-caption {
-      font-family: $font-anonymous;
-      font-size: $type-size-xs;
-      color: $color-blue-dark;
-      margin-top: 1rem;
-      text-align: center;
-      font-style: italic;
-    }
+    //  .cs-image-caption {
+    //    font-family: $font-anonymous;
+    //    font-size: $type-size-xs;
+    //    color: $color-blue-dark;
+    //    margin-top: 1rem;
+    //    text-align: center;
+    //    font-style: italic;
+    //  }
   }
 }
 

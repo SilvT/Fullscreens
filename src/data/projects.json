@@ -79,17 +79,63 @@
       "columns": 2,
       "images": [
         {
-          "src": "src/assets/mkm/0_create campaign steps.mov",
+          "src": "/src/assets/mkm/0_create campaign steps.mov",
           "alt": "Image 1 description",
           "caption": "Campaign detail view and Create Campaign stepper flow."
         },
         {
-          "src": "/src/assets/mkm/may-24-Dashboard.png",
+          "src": "/src/assets/mkm/may24-Dashboard.png",
           "alt": "Image 2 description",
           "caption": "Dashboard overview showing multi-channel campaign  performance, lead tracking, and budget allocation"
         }
       ]
       },
+      {
+  "type": "two-column-with-sidebar",
+  "left": [
+    {
+      "heading": "Section Heading",
+      "text": "Plain text content (legacy)",
+      "blocks": [ 
+          {
+                "type": "heading",
+                "level": "h3",
+                "text": "The Brief"
+              },
+        {
+                "type": "paragraph",
+                "text": "The brief was simple but broad:"
+              },        
+        {
+                "type": "paragraph",
+                "class": "callout",
+                "text": "Create a unified platform to consolidate marketing data across 4 departments."
+              },
+                 {
+                "type": "paragraph",
+                "text": "That was it. No product manager. No established patterns. No component library to work from."
+              },
+               {
+                "type": "paragraph",
+                "text": "This project became my transition from graphic design to product and systems design—learning both disciplines while building."
+              }
+    ],
+      "image": {
+        "src": "/path/to/image.png",
+        "alt": "Image description",
+        "caption": "Optional caption"
+      },
+      "imageFull": {
+        "src": "/path/to/full-width-image.png",
+        "alt": "Full width image",
+        "caption": "Optional caption"
+      }
+    }
+  ],
+  "sidebar": {
+
+  }
+},
       {
         "type": "full-width-image",
         "src": "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",

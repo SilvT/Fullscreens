@@ -453,42 +453,51 @@ function renderTwoColumnWithSidebar(block) {
   const sidebarContent = document.createElement('div');
   sidebarContent.className = 'cs-sidebar-content';
 
-  Object.entries(block.sidebar).forEach(([title, items]) => {
-    const section = document.createElement('div');
-    section.className = 'cs-sidebar-section';
+  // Check if sidebar has content
+  const hasSidebarContent = block.sidebar && Object.keys(block.sidebar).length > 0;
 
-    const h4 = document.createElement('h4');
-    h4.className = 'cs-sidebar-title';
-    h4.textContent = title;
-    h4.setAttribute('id', `sidebar-${title.toLowerCase().replace(/\s+/g, '-')}`);
-    section.appendChild(h4);
+  if (!hasSidebarContent) {
+    sidebar.classList.add('cs-sidebar--empty');
+  }
 
-    const dl = document.createElement('dl');
-    dl.className = 'cs-sidebar-list';
-    dl.setAttribute('aria-labelledby', h4.id);
+  if (hasSidebarContent) {
+    Object.entries(block.sidebar).forEach(([title, items]) => {
+      const section = document.createElement('div');
+      section.className = 'cs-sidebar-section';
 
-    items.forEach((item) => {
-      if (item.includes(':')) {
-        const [key, value] = item.split(':').map(s => s.trim());
-        const dt = document.createElement('dt');
-        dt.textContent = key;
-        dt.className = 'cs-sidebar-term';
-        const dd = document.createElement('dd');
-        dd.textContent = value;
-        dd.className = 'cs-sidebar-definition';
-        dl.appendChild(dt);
-        dl.appendChild(dd);
-      } else {
-        const dd = document.createElement('dd');
-        dd.textContent = item;
-        dd.className = 'cs-sidebar-item';
-        dl.appendChild(dd);
-      }
+      const h4 = document.createElement('h4');
+      h4.className = 'cs-sidebar-title';
+      h4.textContent = title;
+      h4.setAttribute('id', `sidebar-${title.toLowerCase().replace(/\s+/g, '-')}`);
+      section.appendChild(h4);
+
+      const dl = document.createElement('dl');
+      dl.className = 'cs-sidebar-list';
+      dl.setAttribute('aria-labelledby', h4.id);
+
+      items.forEach((item) => {
+        if (item.includes(':')) {
+          const [key, value] = item.split(':').map(s => s.trim());
+          const dt = document.createElement('dt');
+          dt.textContent = key;
+          dt.className = 'cs-sidebar-term';
+          const dd = document.createElement('dd');
+          dd.textContent = value;
+          dd.className = 'cs-sidebar-definition';
+          dl.appendChild(dt);
+          dl.appendChild(dd);
+        } else {
+          const dd = document.createElement('dd');
+          dd.textContent = item;
+          dd.className = 'cs-sidebar-item';
+          dl.appendChild(dd);
+        }
+      });
+
+      section.appendChild(dl);
+      sidebarContent.appendChild(section);
     });
-
-    section.appendChild(dl);
-    sidebarContent.appendChild(section);
-  });
+  }
 
   sidebar.appendChild(sidebarContent);
 
@@ -527,6 +536,16 @@ function renderFullWidthImage(block) {
 }
 
 /**
+ * Check if file is a video based on extension
+ * @param {string} src - File path
+ * @returns {boolean} True if video file
+ */
+function isVideoFile(src) {
+  const videoExtensions = ['.mov', '.mp4', '.webm', '.ogg'];
+  return videoExtensions.some(ext => src.toLowerCase().endsWith(ext));
+}
+
+/**
  * Render image grid block
  */
 function renderImageGrid(block) {
@@ -540,11 +559,26 @@ function renderImageGrid(block) {
     const figure = document.createElement('figure');
     figure.className = 'cs-image-grid-item';
 
-    const img = document.createElement('img');
-    img.src = image.src;
-    img.alt = image.alt || '';
-    img.className = 'cs-grid-img';
-    figure.appendChild(img);
+    // Check if it's a video file
+    if (isVideoFile(image.src)) {
+      const video = document.createElement('video');
+      video.src = image.src;
+      video.className = 'cs-grid-video';
+      video.autoplay = true;
+      video.muted = true;
+      video.loop = true;
+      video.setAttribute('playsinline', '');
+      if (image.alt) {
+        video.setAttribute('aria-label', image.alt);
+      }
+      figure.appendChild(video);
+    } else {
+      const img = document.createElement('img');
+      img.src = image.src;
+      img.alt = image.alt || '';
+      img.className = 'cs-grid-img';
+      figure.appendChild(img);
+    }
 
     if (image.caption) {
       const figcaption = document.createElement('figcaption');
