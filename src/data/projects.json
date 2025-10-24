@@ -5,80 +5,97 @@
     "company": "Senapt LTD",
     "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "0→1"],
     "cardOverview": "With 14k customers this desktop app was key to integrate the spread-out data from all campaigns and leads, while providing useful manipulation of them and displaying it on multiple dashboards.\n\nThis project became the proof-of-concept for the company's first design system, now adopted company-wide.",
-    "metrics": [
-      { "value": "x1.5", "label": "expected customer growth" },
-      { "value": "60%", "label": "faster complaint resolution (Facebook-CRM integration)" },
-      { "value": "4", "label": "departments workflows centralised" }
-    ],
-    "sections": [
-      {
-        "heading": "Project Overview",
-        "blocks": [
-          {
-            "type": "text",
-            "content": "With 14k customers this desktop app was key to integrate the spread-out data from all campaigns and leads, while providing useful manipulation of them and displaying it on multiple dashboards.\n\nThis project became the proof-of-concept for the company's first design system, now adopted company-wide."
-          }
-        ]
-      },
-      {
-        "heading": "The Challenge",
-        "blocks": [
-          {
-            "type": "text",
-            "content": "Marketing data was scattered across 4 different departments with no centralized system. Customer complaints via Facebook were handled manually, leading to slow resolution times."
-          },
-          {
-            "type": "image",
-            "src": "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
-            "alt": "Data fragmentation diagram",
-            "caption": "Marketing data scattered across 4 departments"
-          }
-        ]
-      },
-      {
-        "heading": "The Solution",
-        "blocks": [
-          {
-            "type": "text",
-            "content": "Created a unified CRM platform that integrated all marketing touchpoints, automated Facebook complaint tracking, and established the foundation for a scalable design system."
-          },
-          {
-            "type": "image-full",
-            "src": "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
-            "alt": "Unified CRM dashboard",
-            "caption": "Centralized dashboard bringing all data together - Full width showcase"
-          }
-        ]
-      }
-    ],
-    "technical": {
-      "Technical Details": [
-        "Desktop Application",
-        "CRM Integration",
-        "Facebook API",
-        "Real-time Dashboards",
-        "Multi-department Access"
-      ],
-      "Role & Timeline": [
-        "Solo Product Designer",
-        "UI/UX Design",
-        "Design Systems Lead",
-        "2024 - 2025"
-      ],
-      "Tools Used": [
-        "Figma",
-        "Adobe CC",
-        "HTML/CSS",
-        "JavaScript"
-      ]
-    },
     "heroImage": "/src/assets/mkm-hero.png",
+    "theme": "blue",
     "images": [
       "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
       "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
       "/src/assets/6720397c415946385e1e030ee7203c624878df15.png"
     ],
-    "theme": "blue"
+    "technical": {
+      "Role & Timeline": [
+        "Solo Product Designer",
+        "UI/UX Design",
+        "Design Systems Lead",
+        "2024 - 2025"
+      ]
+    },
+    "metrics": [
+      { "value": "x1.5", "label": "expected customer growth", "icon": "trend-up" },
+      { "value": "60%", "label": "faster complaint resolution (Facebook-CRM integration)", "icon": "lightning" },
+      { "value": "4", "label": "departments workflows centralised", "icon": "folders" }
+    ],
+    "contentBlocks": [
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "Project Overview",
+            "text": "With 14k customers this desktop app was key to integrate the spread-out data from all campaigns and leads, while providing useful manipulation of them and displaying it on multiple dashboards.\n\nThis project became the proof-of-concept for the company's first design system, now adopted company-wide."
+          },
+          {
+            "heading": "The Challenge",
+            "text": "Marketing data was scattered across 4 different departments with no centralized system. Customer complaints via Facebook were handled manually, leading to slow resolution times.",
+            "image": {
+              "src": "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
+              "alt": "Data fragmentation diagram",
+              "caption": "Marketing data scattered across 4 departments"
+            }
+          }
+        ],
+        "sidebar": {
+          "Technical Details": [
+            "Desktop Application",
+            "CRM Integration",
+            "Facebook API",
+            "Real-time Dashboards",
+            "Multi-department Access"
+          ],
+          "Role & Timeline": [
+            "Solo Product Designer",
+            "UI/UX Design",
+            "Design Systems Lead",
+            "2024 - 2025"
+          ],
+          "Tools Used": [
+            "Figma",
+            "Adobe CC",
+            "HTML/CSS",
+            "JavaScript"
+          ]
+        }
+      },
+      {
+        "type": "full-width-image",
+        "src": "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
+        "alt": "Unified CRM dashboard",
+        "caption": "Centralized dashboard bringing all data together"
+      },
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "The Solution",
+            "text": "Created a unified CRM platform that integrated all marketing touchpoints, automated Facebook complaint tracking, and established the foundation for a scalable design system."
+          }
+        ],
+        "sidebar": {
+          "Impact": [
+            "14k customers managed",
+            "4 departments unified",
+            "Real-time data sync"
+          ]
+        }
+      },
+      {
+        "type": "gallery",
+        "images": [
+          "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
+          "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
+          "/src/assets/6720397c415946385e1e030ee7203c624878df15.png"
+        ]
+      }
+    ]
   },
   "2": {
     "title": "Marketing Management Platform – Design System",
@@ -86,62 +103,98 @@
     "company": "Senapt LTD",
     "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "Component Libraries"],
     "cardOverview": "Built a greenfield design system from scratch with a remote developer 8 time zones away. The constraint forced unambiguous design—every token and component had to work for async, text-only handoffs. Result: 90% implementation accuracy and a system now scaling company-wide.",
-    "metrics": [
-      { "value": "70%", "label": "faster design iteration through reusable components" },
-      { "value": "90%", "label": "implementation accuracy" },
-      { "value": "CEO", "label": "buy-in & proof of concept." }
-    ],
-    "sections": [
-      {
-        "heading": "Project Overview",
-        "content": "When I joined as a mid-level designer, I got an unusual opportunity: build a greenfield product with no systems culture and a remote developer 8 time zones away who didn't speak fluent English. Most designers at that level inherit systems—I built one from scratch out of necessity. The constraint forced unambiguous design: every token, component, and interaction had to work for async, text-only handoffs. The result: 90% implementation accuracy, an automated Figma-to-Git pipeline for JavaFX, a system now scaling company-wide, and a role that evolved to senior-level systems ownership."
-      },
-            {
-        "heading": "The Setup",
-        "content": "As the solo product designer, I built a unified marketing platform from scratch—unifying fragmented data across 4 departments while pioneering the company's first design system. The project became the proof-of-concept for systematic design, now adopted company-wide."
-      },
-      {
-        "heading": "The Challenge",
-        "content": "My frontend developer was 8 time zones ahead, didn't speak fluent English, and communicated only via Figma comments and async messages. If I couldn't hop on a call to explain a design decision, the design itself had to be unambiguous."
-      },
-      {
-        "heading": "The Solution",
-        "content": "Developed a comprehensive design system with component libraries, detailed documentation, and code snippets that empowered front-end teams to work independently while maintaining design consistency."
-      }
-    ],
-    "technical": {
-      "Metrics": [
-        "4-layers architecture",
-        "400+ tokens",
-        "200+ components",
-        "Git Version Control"
-      ],
-      "Role & Timeline": [
-        "Design System Lead",
-        "Component Architecture",
-        "Solo Product Designer",
-        "2024 - 2025"
-      ],
-      "Scope": [
-        "UI/UX Design",
-        "Systems Architecture",
-        "Design-to-Code Automation",
-        "JavaFX CSS"
-      ],
-      "Tools Used": [
-        "Figma",
-        "Token Studio Plugin",
-        "Git Actions",
-        "JavaFX Documentation"
-      ]
-    },
-        "heroImage": "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+    "heroImage": "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+    "theme": "green",
     "images": [
       "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
       "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
       "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png"
     ],
-    "theme": "green"
+    "technical": {
+      "Role & Timeline": [
+        "Design System Lead",
+        "Component Architecture",
+        "Solo Product Designer",
+        "2024 - 2025"
+      ]
+    },
+    "metrics": [
+      { "value": "70%", "label": "faster design iteration through reusable components", "icon": "rocket" },
+      { "value": "90%", "label": "implementation accuracy", "icon": "check-circle" },
+      { "value": "CEO", "label": "buy-in & proof of concept.", "icon": "trophy" }
+    ],
+    "contentBlocks": [
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "Project Overview",
+            "text": "When I joined as a mid-level designer, I got an unusual opportunity: build a greenfield product with no systems culture and a remote developer 8 time zones away who didn't speak fluent English. Most designers at that level inherit systems—I built one from scratch out of necessity. The constraint forced unambiguous design: every token, component, and interaction had to work for async, text-only handoffs. The result: 90% implementation accuracy, an automated Figma-to-Git pipeline for JavaFX, a system now scaling company-wide, and a role that evolved to senior-level systems ownership."
+          },
+          {
+            "heading": "The Setup",
+            "text": "As the solo product designer, I built a unified marketing platform from scratch—unifying fragmented data across 4 departments while pioneering the company's first design system. The project became the proof-of-concept for systematic design, now adopted company-wide."
+          }
+        ],
+        "sidebar": {
+          "Metrics": [
+            "4-layers architecture",
+            "400+ tokens",
+            "200+ components",
+            "Git Version Control"
+          ],
+          "Role & Timeline": [
+            "Design System Lead",
+            "Component Architecture",
+            "Solo Product Designer",
+            "2024 - 2025"
+          ]
+        }
+      },
+      {
+        "type": "metrics-inline",
+        "metrics": [
+          { "value": "400+", "label": "design tokens", "icon": "swatches" },
+          { "value": "200+", "label": "components", "icon": "package" },
+          { "value": "4", "label": "layer architecture", "icon": "stack" }
+        ]
+      },
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "The Challenge",
+            "text": "My frontend developer was 8 time zones ahead, didn't speak fluent English, and communicated only via Figma comments and async messages. If I couldn't hop on a call to explain a design decision, the design itself had to be unambiguous."
+          },
+          {
+            "heading": "The Solution",
+            "text": "Developed a comprehensive design system with component libraries, detailed documentation, and code snippets that empowered front-end teams to work independently while maintaining design consistency."
+          }
+        ],
+        "sidebar": {
+          "Scope": [
+            "UI/UX Design",
+            "Systems Architecture",
+            "Design-to-Code Automation",
+            "JavaFX CSS"
+          ],
+          "Tools Used": [
+            "Figma",
+            "Token Studio Plugin",
+            "Git Actions",
+            "JavaFX Documentation"
+          ]
+        }
+      },
+      {
+        "type": "gallery",
+        "images": [
+          "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+          "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+          "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png"
+        ]
+      }
+    ]
   },
   "3": {
     "title": "Tomato Energy Microsite",
@@ -149,54 +202,74 @@
     "company": "",
     "tags": ["Product Design", "UI/UX", "Responsive Design", "B2C", "Data Visualization"],
     "cardOverview": "A customer-facing microsite designed to simplify the complex energy switching process and help users understand their energy consumption patterns.",
-    "metrics": [
-      { "value": "40%", "label": "front-end independence via design systems docs" },
-      { "value": "70%", "label": "faster design iteration through reusable components" },
-      { "value": "CEO", "label": "buy-in & proof of concept." }
-    ],
-    "sections": [
-      {
-        "heading": "Project Overview",
-        "content": "A customer-facing microsite designed to simplify the complex energy switching process and help users understand their energy consumption patterns."
-      },
-      {
-        "heading": "The Challenge",
-        "content": "Energy customers found the switching process confusing and were unclear about their consumption patterns and potential savings."
-      },
-      {
-        "heading": "The Solution",
-        "content": "Created an intuitive microsite with clear visualizations, step-by-step guidance, and personalized energy insights that demystified the switching process."
-      }
-    ],
-    "technical": {
-      "Technical Details": [
-        "Responsive Design",
-        "Data Visualization",
-        "Progressive Web App",
-        "Performance Optimized",
-        "Cross-browser Support"
-      ],
-      "Role & Timeline": [
-        "Product Designer",
-        "UX Research",
-        "UI Design",
-        "2024"
-      ],
-      "Tools Used": [
-        "Figma",
-        "HTML/CSS/JS",
-        "Chart.js",
-        "Lighthouse"
-      ]
-    },
-     "heroImage": "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
-
+    "heroImage": "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
+    "theme": "neutral",
     "images": [
       "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
       "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
       "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png"
     ],
-    "theme": "neutral"
+    "technical": {
+      "Role & Timeline": [
+        "Product Designer",
+        "UX Research",
+        "UI Design",
+        "2024"
+      ]
+    },
+    "metrics": [
+      { "value": "40%", "label": "front-end independence via design systems docs", "icon": "code" },
+      { "value": "70%", "label": "faster design iteration through reusable components", "icon": "rocket" },
+      { "value": "CEO", "label": "buy-in & proof of concept.", "icon": "trophy" }
+    ],
+    "contentBlocks": [
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "Project Overview",
+            "text": "A customer-facing microsite designed to simplify the complex energy switching process and help users understand their energy consumption patterns."
+          },
+          {
+            "heading": "The Challenge",
+            "text": "Energy customers found the switching process confusing and were unclear about their consumption patterns and potential savings."
+          },
+          {
+            "heading": "The Solution",
+            "text": "Created an intuitive microsite with clear visualizations, step-by-step guidance, and personalized energy insights that demystified the switching process."
+          }
+        ],
+        "sidebar": {
+          "Technical Details": [
+            "Responsive Design",
+            "Data Visualization",
+            "Progressive Web App",
+            "Performance Optimized",
+            "Cross-browser Support"
+          ],
+          "Role & Timeline": [
+            "Product Designer",
+            "UX Research",
+            "UI Design",
+            "2024"
+          ],
+          "Tools Used": [
+            "Figma",
+            "HTML/CSS/JS",
+            "Chart.js",
+            "Lighthouse"
+          ]
+        }
+      },
+      {
+        "type": "gallery",
+        "images": [
+          "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
+          "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
+          "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png"
+        ]
+      }
+    ]
   },
   "4": {
     "title": "Figma Design Distributor Plugin",
@@ -204,52 +277,8 @@
     "company": "",
     "tags": [ "Figma Plugin", "Design Systems", "Git Automation", "APIs", "AI-Assisted Dev"],
     "cardOverview": "Automating Design Token Extraction for Better Design-Dev Handoff",
-    "metrics": [
-      { "value": "100%", "label": "automation of design token extraction" },
-      { "value": "5min", "label": "from manual hours to automated minutes" },
-      { "value": "GitHub", "label": "integrated workflow support" }
-    ],
-    "sections": [
-      {
-        "heading": "Project Overview",
-        "content": "Automating Design Token Extraction for Better Design-Dev Handoff"
-      },
-      {
-        "heading": "The Problem",
-        "content": "Design teams manually extract and share design tokens from Figma, leading to inconsistencies, versioning issues, and time wasted on repetitive tasks. Teams needed an automated solution that respects existing GitHub workflows."
-      },
-      {
-        "heading": "The Solution",
-        "content": "A Figma plugin that automatically extracts design tokens (colours, typography, spacing, variables) and pushes them to GitHub repositories or downloads locally, with comprehensive error handling and security considerations."
-      },
-       {
-        "heading": "Process",
-        "content": "Research and Planning:\n- Identified core requirements from design systems workflows\n- Mapped technical constraints of Figma's plugin environment\n- Defined architecture supporting both GitHub and local distribution"
-      }
-    ],
-    "technical": {
-      "Technical Details": [
-        "Vibe Coding",
-        "Design Systems Ops",
-        "Cross-team Collaboration",
-        "Performance Optimization"
-      ],
-      "Role & Timeline": [
-        "Design Technologist",
-        "Product Designer",
-      "2025"
-      ],
-      "Tools Used": [
-        "Figma pluging API",
-        "API",
-        "Typescript",
-        "GitHub API",
-        "build-figma-plugin",
-        "Claude Code"
-      ]
-    },
     "heroImage": "/src/assets/plugin/plugin-1.png",
-
+    "theme": "blue",
     "images": [
       "/src/assets/plugin/plugin-1.png",
       "/src/assets/plugin/plugin-2.png",
@@ -257,6 +286,84 @@
       "/src/assets/plugin/plugin-4.png",
       "/src/assets/plugin/plugin-5.png"
     ],
-    "theme": "blue"
+    "technical": {
+      "Role & Timeline": [
+        "Design Technologist",
+        "Product Designer",
+        "2025"
+      ]
+    },
+    "metrics": [
+      { "value": "100%", "label": "automation of design token extraction", "icon": "robot" },
+      { "value": "5min", "label": "from manual hours to automated minutes", "icon": "timer" },
+      { "value": "GitHub", "label": "integrated workflow support", "icon": "git-branch" }
+    ],
+    "contentBlocks": [
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "Project Overview",
+            "text": "Automating Design Token Extraction for Better Design-Dev Handoff"
+          },
+          {
+            "heading": "The Problem",
+            "text": "Design teams manually extract and share design tokens from Figma, leading to inconsistencies, versioning issues, and time wasted on repetitive tasks. Teams needed an automated solution that respects existing GitHub workflows."
+          }
+        ],
+        "sidebar": {
+          "Technical Details": [
+            "Vibe Coding",
+            "Design Systems Ops",
+            "Cross-team Collaboration",
+            "Performance Optimization"
+          ],
+          "Role & Timeline": [
+            "Design Technologist",
+            "Product Designer",
+            "2025"
+          ]
+        }
+      },
+      {
+        "type": "image-grid",
+        "columns": 2,
+        "images": [
+          { "src": "/src/assets/plugin/plugin-2.png", "alt": "Plugin interface" },
+          { "src": "/src/assets/plugin/plugin-3.png", "alt": "Token extraction" }
+        ]
+      },
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "The Solution",
+            "text": "A Figma plugin that automatically extracts design tokens (colours, typography, spacing, variables) and pushes them to GitHub repositories or downloads locally, with comprehensive error handling and security considerations."
+          },
+          {
+            "heading": "Process",
+            "text": "Research and Planning:\n- Identified core requirements from design systems workflows\n- Mapped technical constraints of Figma's plugin environment\n- Defined architecture supporting both GitHub and local distribution"
+          }
+        ],
+        "sidebar": {
+          "Tools Used": [
+            "Figma plugin API",
+            "API",
+            "Typescript",
+            "GitHub API",
+            "build-figma-plugin",
+            "Claude Code"
+          ]
+        }
+      },
+      {
+        "type": "gallery",
+        "images": [
+          "/src/assets/plugin/plugin-1.png",
+          "/src/assets/plugin/plugin-4.png",
+          "/src/assets/plugin/plugin-5.png"
+        ]
+      }
+    ]
   }
 }

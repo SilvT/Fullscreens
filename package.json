@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@phosphor-icons/web": "^2.1.2",
     "gsap": "^3.13.0"
   },
   "devDependencies": {

@@ -7,6 +7,7 @@
 import gsap from 'gsap';
 import projectData from '../../data/projects.json';
 import { updateProjectMetaTags, clearProjectMetaTags } from './structuredData.js';
+import '@phosphor-icons/web/regular';
 
 /**
  * Initialize case study page functionality
@@ -213,7 +214,7 @@ function populateCaseStudy(project) {
       if (metric.icon) {
         iconHTML = `
           <div class="cs-metric-icon-wrapper">
-            <div class="cs-metric-icon">${metric.icon}</div>
+            <i class="cs-metric-icon ph ph-${metric.icon}"></i>
           </div>
         `;
       }
@@ -254,149 +255,437 @@ function populateCaseStudy(project) {
     });
   }
 
-  // Main content sections with blocks (text + images)
-  const mainContent = document.querySelector('.cs-main-content');
-  if (mainContent && project.sections) {
-    mainContent.innerHTML = '';
+  // Content Blocks - New flexible block system
+  const contentContainer = document.querySelector('.cs-content-container');
+  if (contentContainer && project.contentBlocks) {
+    contentContainer.innerHTML = '';
 
-    project.sections.forEach((section) => {
-      const sectionEl = document.createElement('section');
-      sectionEl.className = 'cs-content-section';
+    project.contentBlocks.forEach((block) => {
+      const blockElement = renderBlock(block, project);
+      if (blockElement) {
+        contentContainer.appendChild(blockElement);
+      }
+    });
+  }
+}
 
+/**
+ * Render a content block based on type
+ * @param {object} block - Block configuration
+ * @param {object} project - Project data for context
+ * @returns {HTMLElement|null} - Rendered block element
+ */
+function renderBlock(block, project) {
+  switch (block.type) {
+    case 'two-column-with-sidebar':
+      return renderTwoColumnWithSidebar(block);
+    case 'text-image-split':
+      return renderTextImageSplit(block);
+    case 'full-width-text':
+      return renderFullWidthText(block);
+    case 'full-width-image':
+      return renderFullWidthImage(block);
+    case 'image-grid':
+      return renderImageGrid(block);
+    case 'metrics-inline':
+      return renderMetricsInline(block);
+    case 'gallery':
+      return renderGallery(block, project);
+    default:
+      console.warn(`Unknown block type: ${block.type}`);
+      return null;
+  }
+}
+
+/**
+ * Render two-column layout with sidebar
+ */
+function renderTwoColumnWithSidebar(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-block-two-column';
+
+  const layoutGrid = document.createElement('div');
+  layoutGrid.className = 'cs-layout-grid';
+
+  // Left column - main content
+  const mainContent = document.createElement('div');
+  mainContent.className = 'cs-main-content';
+
+  block.left.forEach((section) => {
+    const sectionEl = document.createElement('section');
+    sectionEl.className = 'cs-content-section';
+
+    if (section.heading) {
       const heading = document.createElement('h2');
       heading.className = 'cs-section-heading';
       heading.textContent = section.heading;
       sectionEl.appendChild(heading);
+    }
 
-      // Handle blocks (supports both old 'content' format and new 'blocks' format)
-      const blocks = section.blocks || [{ type: 'text', content: section.content }];
-
-      blocks.forEach((block) => {
-        if (block.type === 'text') {
-          // Handle multi-paragraph text content
-          const paragraphs = block.content.split('\n\n');
-          paragraphs.forEach((para) => {
-            if (para.trim()) {
-              const p = document.createElement('p');
-              p.className = 'cs-section-text';
-              p.textContent = para.trim();
-              sectionEl.appendChild(p);
-            }
-          });
-        } else if (block.type === 'image') {
-          // Handle inline image/graph (within left column)
-          const figure = document.createElement('figure');
-          figure.className = 'cs-inline-image';
-
-          const img = document.createElement('img');
-          img.src = block.src;
-          img.alt = block.alt || '';
-          img.className = 'cs-inline-img';
-
-          figure.appendChild(img);
-
-          if (block.caption) {
-            const figcaption = document.createElement('figcaption');
-            figcaption.className = 'cs-image-caption';
-            figcaption.textContent = block.caption;
-            figure.appendChild(figcaption);
-          }
-
-          sectionEl.appendChild(figure);
-        } else if (block.type === 'image-full') {
-          // Handle full-width image (spans both columns)
-          const figure = document.createElement('figure');
-          figure.className = 'cs-inline-image-full';
-
-          const img = document.createElement('img');
-          img.src = block.src;
-          img.alt = block.alt || '';
-          img.className = 'cs-inline-img-full';
-
-          figure.appendChild(img);
-
-          if (block.caption) {
-            const figcaption = document.createElement('figcaption');
-            figcaption.className = 'cs-image-caption';
-            figcaption.textContent = block.caption;
-            figure.appendChild(figcaption);
-          }
-
-          sectionEl.appendChild(figure);
+    if (section.text) {
+      const paragraphs = section.text.split('\n\n');
+      paragraphs.forEach((para) => {
+        if (para.trim()) {
+          const p = document.createElement('p');
+          p.className = 'cs-section-text';
+          p.textContent = para.trim();
+          sectionEl.appendChild(p);
         }
       });
+    }
 
-      mainContent.appendChild(sectionEl);
-    });
-  }
-
-  // Technical sidebar with semantic markup (dl, dt, dd)
-  const sidebarContent = document.querySelector('.cs-sidebar-content');
-  if (sidebarContent && project.technical) {
-    sidebarContent.innerHTML = '';
-
-    Object.entries(project.technical).forEach(([title, items]) => {
-      const section = document.createElement('div');
-      section.className = 'cs-sidebar-section';
-
-      const h4 = document.createElement('h4');
-      h4.className = 'cs-sidebar-title';
-      h4.textContent = title;
-      h4.setAttribute('id', `sidebar-${title.toLowerCase().replace(/\s+/g, '-')}`);
-      section.appendChild(h4);
-
-      // Use definition list for structured data
-      const dl = document.createElement('dl');
-      dl.className = 'cs-sidebar-list';
-      dl.setAttribute('aria-labelledby', h4.id);
-
-      items.forEach((item) => {
-        // For items with key-value pairs (e.g., "Role: Designer")
-        if (item.includes(':')) {
-          const [key, value] = item.split(':').map(s => s.trim());
-
-          const dt = document.createElement('dt');
-          dt.textContent = key;
-          dt.className = 'cs-sidebar-term';
-
-          const dd = document.createElement('dd');
-          dd.textContent = value;
-          dd.className = 'cs-sidebar-definition';
-
-          dl.appendChild(dt);
-          dl.appendChild(dd);
-        } else {
-          // For simple list items, use dd only
-          const dd = document.createElement('dd');
-          dd.textContent = item;
-          dd.className = 'cs-sidebar-item';
-          dl.appendChild(dd);
-        }
-      });
-
-      section.appendChild(dl);
-      sidebarContent.appendChild(section);
-    });
-  }
-
-  // Image gallery
-  const gallery = document.querySelector('.cs-gallery-grid');
-  if (gallery && project.images) {
-    gallery.innerHTML = '';
-
-    project.images.forEach((imageSrc, index) => {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'cs-gallery-item';
+    // Inline image (column width)
+    if (section.image) {
+      const figure = document.createElement('figure');
+      figure.className = 'cs-inline-image';
 
       const img = document.createElement('img');
-      img.src = imageSrc;
-      img.alt = `${project.title} - Image ${index + 1}`;
-      img.className = 'cs-gallery-image';
+      img.src = section.image.src;
+      img.alt = section.image.alt || '';
+      img.className = 'cs-inline-img';
+      figure.appendChild(img);
 
-      wrapper.appendChild(img);
-      gallery.appendChild(wrapper);
+      if (section.image.caption) {
+        const figcaption = document.createElement('figcaption');
+        figcaption.className = 'cs-image-caption';
+        figcaption.textContent = section.image.caption;
+        figure.appendChild(figcaption);
+      }
+
+      sectionEl.appendChild(figure);
+    }
+
+    // Full-width image within section
+    if (section.imageFull) {
+      const figure = document.createElement('figure');
+      figure.className = 'cs-inline-image-full';
+
+      const img = document.createElement('img');
+      img.src = section.imageFull.src;
+      img.alt = section.imageFull.alt || '';
+      img.className = 'cs-inline-img-full';
+      figure.appendChild(img);
+
+      if (section.imageFull.caption) {
+        const figcaption = document.createElement('figcaption');
+        figcaption.className = 'cs-image-caption';
+        figcaption.textContent = section.imageFull.caption;
+        figure.appendChild(figcaption);
+      }
+
+      sectionEl.appendChild(figure);
+    }
+
+    mainContent.appendChild(sectionEl);
+  });
+
+  // Right column - sidebar
+  const sidebar = document.createElement('aside');
+  sidebar.className = 'cs-sidebar';
+
+  const sidebarContent = document.createElement('div');
+  sidebarContent.className = 'cs-sidebar-content';
+
+  Object.entries(block.sidebar).forEach(([title, items]) => {
+    const section = document.createElement('div');
+    section.className = 'cs-sidebar-section';
+
+    const h4 = document.createElement('h4');
+    h4.className = 'cs-sidebar-title';
+    h4.textContent = title;
+    h4.setAttribute('id', `sidebar-${title.toLowerCase().replace(/\s+/g, '-')}`);
+    section.appendChild(h4);
+
+    const dl = document.createElement('dl');
+    dl.className = 'cs-sidebar-list';
+    dl.setAttribute('aria-labelledby', h4.id);
+
+    items.forEach((item) => {
+      if (item.includes(':')) {
+        const [key, value] = item.split(':').map(s => s.trim());
+        const dt = document.createElement('dt');
+        dt.textContent = key;
+        dt.className = 'cs-sidebar-term';
+        const dd = document.createElement('dd');
+        dd.textContent = value;
+        dd.className = 'cs-sidebar-definition';
+        dl.appendChild(dt);
+        dl.appendChild(dd);
+      } else {
+        const dd = document.createElement('dd');
+        dd.textContent = item;
+        dd.className = 'cs-sidebar-item';
+        dl.appendChild(dd);
+      }
+    });
+
+    section.appendChild(dl);
+    sidebarContent.appendChild(section);
+  });
+
+  sidebar.appendChild(sidebarContent);
+
+  layoutGrid.appendChild(mainContent);
+  layoutGrid.appendChild(sidebar);
+  wrapper.appendChild(layoutGrid);
+
+  return wrapper;
+}
+
+/**
+ * Render full-width image block
+ */
+function renderFullWidthImage(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-block-full-image';
+
+  const figure = document.createElement('figure');
+  figure.className = 'cs-full-width-image';
+
+  const img = document.createElement('img');
+  img.src = block.src;
+  img.alt = block.alt || '';
+  img.className = 'cs-full-img';
+  figure.appendChild(img);
+
+  if (block.caption) {
+    const figcaption = document.createElement('figcaption');
+    figcaption.className = 'cs-image-caption';
+    figcaption.textContent = block.caption;
+    figure.appendChild(figcaption);
+  }
+
+  wrapper.appendChild(figure);
+  return wrapper;
+}
+
+/**
+ * Render image grid block
+ */
+function renderImageGrid(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-block-image-grid';
+
+  const grid = document.createElement('div');
+  grid.className = `cs-image-grid cs-image-grid-${block.columns || 2}`;
+
+  block.images.forEach((image) => {
+    const figure = document.createElement('figure');
+    figure.className = 'cs-image-grid-item';
+
+    const img = document.createElement('img');
+    img.src = image.src;
+    img.alt = image.alt || '';
+    img.className = 'cs-grid-img';
+    figure.appendChild(img);
+
+    if (image.caption) {
+      const figcaption = document.createElement('figcaption');
+      figcaption.className = 'cs-image-caption';
+      figcaption.textContent = image.caption;
+      figure.appendChild(figcaption);
+    }
+
+    grid.appendChild(figure);
+  });
+
+  wrapper.appendChild(grid);
+  return wrapper;
+}
+
+/**
+ * Render inline metrics block
+ */
+function renderMetricsInline(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-block-metrics-inline';
+
+  const metricsGrid = document.createElement('div');
+  metricsGrid.className = 'cs-metrics-inline-grid';
+
+  block.metrics.forEach((metric) => {
+    const card = document.createElement('div');
+    card.className = 'cs-metric-card';
+
+    let iconHTML = '';
+    if (metric.icon) {
+      iconHTML = `
+        <div class="cs-metric-icon-wrapper">
+          <i class="cs-metric-icon ph ph-${metric.icon}"></i>
+        </div>
+      `;
+    }
+
+    card.innerHTML = `
+      <div class="cs-metric-content">
+        <div class="cs-metric-header">
+          ${iconHTML}
+          <div class="cs-metric-value">${metric.value}</div>
+        </div>
+        <div class="cs-metric-label">${metric.label}</div>
+      </div>
+      <div class="cs-metric-border" aria-hidden="true"></div>
+      <div class="cs-metric-dot dot-bottom-right">
+        <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+          <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
+        </svg>
+      </div>
+      <div class="cs-metric-dot dot-top-right">
+        <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+          <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
+        </svg>
+      </div>
+      <div class="cs-metric-dot dot-bottom-left">
+        <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+          <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
+        </svg>
+      </div>
+      <div class="cs-metric-dot dot-top-left">
+        <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+          <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
+        </svg>
+      </div>
+    `;
+    metricsGrid.appendChild(card);
+  });
+
+  wrapper.appendChild(metricsGrid);
+  return wrapper;
+}
+
+/**
+ * Render gallery block
+ */
+function renderGallery(block, project) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-block-gallery';
+
+  const gallery = document.createElement('div');
+  gallery.className = 'cs-gallery';
+
+  const title = document.createElement('h3');
+  title.className = 'cs-section-title';
+  title.textContent = 'Gallery';
+  gallery.appendChild(title);
+
+  const grid = document.createElement('div');
+  grid.className = 'cs-gallery-grid';
+
+  block.images.forEach((imageSrc, index) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'cs-gallery-item';
+
+    const img = document.createElement('img');
+    img.src = imageSrc;
+    img.alt = `${project.title} - Image ${index + 1}`;
+    img.className = 'cs-gallery-image';
+
+    wrapper.appendChild(img);
+    grid.appendChild(wrapper);
+  });
+
+  gallery.appendChild(grid);
+  wrapper.appendChild(gallery);
+  return wrapper;
+}
+
+/**
+ * Render full-width text block
+ */
+function renderFullWidthText(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-block-full-text';
+
+  const section = document.createElement('section');
+  section.className = 'cs-full-text-section';
+
+  if (block.heading) {
+    const heading = document.createElement('h2');
+    heading.className = 'cs-section-heading';
+    heading.textContent = block.heading;
+    section.appendChild(heading);
+  }
+
+  if (block.text) {
+    const paragraphs = block.text.split('\n\n');
+    paragraphs.forEach((para) => {
+      if (para.trim()) {
+        const p = document.createElement('p');
+        p.className = 'cs-section-text';
+        p.textContent = para.trim();
+        section.appendChild(p);
+      }
     });
   }
+
+  wrapper.appendChild(section);
+  return wrapper;
+}
+
+/**
+ * Render text-image split block
+ */
+function renderTextImageSplit(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = `cs-block cs-block-text-image cs-layout-${block.layout || 'text-left'}`;
+
+  const grid = document.createElement('div');
+  grid.className = 'cs-text-image-grid';
+
+  // Text side
+  const textSide = document.createElement('div');
+  textSide.className = 'cs-text-side';
+
+  if (block.heading) {
+    const heading = document.createElement('h2');
+    heading.className = 'cs-section-heading';
+    heading.textContent = block.heading;
+    textSide.appendChild(heading);
+  }
+
+  if (block.text) {
+    const paragraphs = block.text.split('\n\n');
+    paragraphs.forEach((para) => {
+      if (para.trim()) {
+        const p = document.createElement('p');
+        p.className = 'cs-section-text';
+        p.textContent = para.trim();
+        textSide.appendChild(p);
+      }
+    });
+  }
+
+  // Image side
+  const imageSide = document.createElement('div');
+  imageSide.className = 'cs-image-side';
+
+  const figure = document.createElement('figure');
+  const img = document.createElement('img');
+  img.src = block.image;
+  img.alt = block.alt || '';
+  img.className = 'cs-split-img';
+  figure.appendChild(img);
+
+  if (block.caption) {
+    const figcaption = document.createElement('figcaption');
+    figcaption.className = 'cs-image-caption';
+    figcaption.textContent = block.caption;
+    figure.appendChild(figcaption);
+  }
+
+  imageSide.appendChild(figure);
+
+  // Append in order based on layout
+  if (block.layout === 'text-right') {
+    grid.appendChild(imageSide);
+    grid.appendChild(textSide);
+  } else {
+    grid.appendChild(textSide);
+    grid.appendChild(imageSide);
+  }
+
+  wrapper.appendChild(grid);
+  return wrapper;
 }
 
 /**

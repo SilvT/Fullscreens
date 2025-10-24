@@ -1,0 +1,174 @@
+@use 'variables' as *;
+
+/**
+ * Mixins
+ * Reusable style patterns
+ */
+
+/**
+ * Metric Card Mixin
+ * Creates a metric card with icon, value, label, and decorative corner dots
+ *
+ * @param {length} $min-width - Minimum card width (default: 270px)
+ * @param {length} $min-height - Minimum card height (default: 130px)
+ * @param {length} $content-min-height - Minimum content area height (default: 123px)
+ * @param {length} $padding - Content padding (default: 1.5rem)
+ * @param {color} $border-color - Border color (default: #3980aa)
+ * @param {length} $border-width - Border width (default: 0.5px)
+ * @param {color} $bg-color - Background color (default: white)
+ * @param {color} $value-color - Value text color (default: #3c5e70)
+ * @param {color} $label-color - Label text color (default: #5b7787)
+ * @param {length} $icon-size - Icon font size (default: 18px)
+ * @param {length} $value-font-size - Value font size (default: 18px)
+ * @param {length} $label-font-size - Label font size (default: 14px)
+ *
+ * Usage:
+ * // Default styling
+ * .my-metric-card {
+ *   @include metric-card();
+ * }
+ *
+ * // Custom styling
+ * .my-custom-card {
+ *   @include metric-card(
+ *     $min-width: 300px,
+ *     $border-color: $color-blue-primary,
+ *     $value-font-size: 20px
+ *   );
+ * }
+ */
+@mixin metric-card(
+  $min-width: 270px,
+  $min-height: 130px,
+  $content-min-height: 123px,
+  $padding: 1.5rem,
+  $border-color: #3980aa,
+  $border-width: 0.5px,
+  $bg-color: white,
+  $value-color: #3c5e70,
+  $label-color: #5b7787,
+  $icon-size: 18px,
+  $value-font-size: 18px,
+  $label-font-size: 14px
+) {
+  position: relative;
+  min-width: $min-width;
+  min-height: $min-height;
+
+  .cs-metric-content {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 100%;
+    min-height: $content-min-height;
+    padding: $padding;
+    background-color: $bg-color;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cs-metric-border {
+    position: absolute;
+    inset: 0;
+    border: $border-width solid $border-color;
+    pointer-events: none;
+    border-radius: 0;
+  }
+
+  &:hover .cs-metric-content {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .cs-metric-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  .cs-metric-icon-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cs-metric-icon {
+    font-size: $icon-size;
+    color: $value-color;
+    line-height: 1;
+  }
+
+  .cs-metric-value {
+    font-family: $font-bricolage;
+    font-weight: $font-weight-medium;
+    font-size: $value-font-size;
+    line-height: 1.21;
+    color: $value-color;
+    text-align: center;
+    white-space: nowrap;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+  }
+
+  .cs-metric-label {
+    font-family: $font-bricolage;
+    font-weight: $font-weight-light;
+    font-size: $label-font-size;
+    line-height: 1.1;
+    color: $label-color;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    flex-shrink: 0;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+  }
+
+  // Corner Dots
+  .cs-metric-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    &.dot-bottom-right {
+      bottom: -4px;
+      right: -4px;
+    }
+
+    &.dot-top-right {
+      top: -4px;
+      right: -4px;
+    }
+
+    &.dot-bottom-left {
+      bottom: -4px;
+      left: -4px;
+    }
+
+    &.dot-top-left {
+      top: -4px;
+      left: -4px;
+    }
+  }
+}
