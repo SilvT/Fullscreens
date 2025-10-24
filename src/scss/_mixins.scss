@@ -9,47 +9,20 @@
  * Metric Card Mixin
  * Creates a metric card with icon, value, label, and decorative corner dots
  *
- * @param {length} $min-width - Minimum card width (default: 270px)
- * @param {length} $min-height - Minimum card height (default: 130px)
- * @param {length} $content-min-height - Minimum content area height (default: 123px)
- * @param {length} $padding - Content padding (default: 1.5rem)
- * @param {color} $border-color - Border color (default: #3980aa)
- * @param {length} $border-width - Border width (default: 0.5px)
- * @param {color} $bg-color - Background color (default: white)
- * @param {color} $value-color - Value text color (default: #3c5e70)
- * @param {color} $label-color - Label text color (default: #5b7787)
- * @param {length} $icon-size - Icon font size (default: 18px)
- * @param {length} $value-font-size - Value font size (default: 18px)
- * @param {length} $label-font-size - Label font size (default: 14px)
- *
- * Usage:
- * // Default styling
- * .my-metric-card {
- *   @include metric-card();
- * }
- *
- * // Custom styling
- * .my-custom-card {
- *   @include metric-card(
- *     $min-width: 300px,
- *     $border-color: $color-blue-primary,
- *     $value-font-size: 20px
- *   );
- * }
  */
 @mixin metric-card(
   $min-width: 270px,
   $min-height: 130px,
   $content-min-height: 123px,
   $padding: 1.5rem,
-  $border-color: #3980aa,
-  $border-width: 0.5px,
-  $bg-color: white,
-  $value-color: #3c5e70,
-  $label-color: #5b7787,
-  $icon-size: 18px,
-  $value-font-size: 18px,
-  $label-font-size: 14px
+  $border-color: $color-blue-200,
+  $border-width: 0.12rem,
+  $bg-color: transparent,
+  $icon-size: 1.5rem,
+  $value-color: $color-blue-400,
+  $value-font-size: $type-size-base,
+  $label-color: $color-neutral-light,
+  $label-font-size: $type-size-xs
 ) {
   position: relative;
   min-width: $min-width;
@@ -60,8 +33,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    justify-content:flex-start ;
+    gap: 0.5rem;
     height: 100%;
     min-height: $content-min-height;
     padding: $padding;
@@ -69,6 +42,8 @@
     overflow: hidden;
     position: relative;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 4px 4px 4px $color-shadows;
+
   }
 
   .cs-metric-border {
@@ -80,8 +55,8 @@
   }
 
   &:hover .cs-metric-content {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+    box-shadow: 6px 6px 1px $color-blue-alpha;
   }
 
   .cs-metric-icon-wrapper {
@@ -133,33 +108,37 @@
   // Corner Dots
   .cs-metric-dot {
     position: absolute;
-    width: 8px;
-    height: 8px;
-
+    width: 10px;
+    height: 10px;
+    
     svg {
       display: block;
       width: 100%;
       height: 100%;
+      fill: $color-white;
+      stroke:$border-color;
+      stroke-width: $border-width;
+
     }
 
     &.dot-bottom-right {
-      bottom: -4px;
-      right: -4px;
+      bottom: -5px;
+      right: -5px;
     }
 
     &.dot-top-right {
-      top: -4px;
-      right: -4px;
+      top: -5px;
+      right: -5px;
     }
 
     &.dot-bottom-left {
-      bottom: -4px;
-      left: -4px;
+      bottom: -5px;
+      left: -5px;
     }
 
     &.dot-top-left {
-      top: -4px;
-      left: -4px;
+      top: -5px;
+      left: -5px;
     }
   }
 }

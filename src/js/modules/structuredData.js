@@ -36,7 +36,7 @@ function generatePersonSchema() {
       "@type": "Occupation",
       "name": "UI/UX Designer",
       "occupationalCategory": "15-1255.00",
-      "skills": "UI Design, UX Design, Product Design, Design Systems, Figma, Prototyping, User Research"
+      "skills": "UI Design, UX Design, Product Design, Design Systems, Figma, Prototyping"
     }
   };
 }
@@ -54,7 +54,7 @@ function generateProfilePageSchema() {
     "mainEntity": {
       "@type": "Person",
       "name": "Silvia Travieso",
-      "jobTitle": "UI/UX Designer",
+      "jobTitle": "Senior UI Designer",
       "description": "Senior UI/UX Designer specializing in product design, design systems, and B2B applications"
     }
   };
@@ -76,7 +76,7 @@ function generateProjectSchema(projectId, project) {
     "creator": {
       "@type": "Person",
       "name": "Silvia Travieso",
-      "jobTitle": "UI/UX Designer"
+      "jobTitle": "Senior UI Designer"
     },
     "dateCreated": project.year || "2024",
     "keywords": project.tags ? project.tags.join(", ") : "",

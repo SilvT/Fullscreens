@@ -1,13 +1,29 @@
 // Variables
+$color-white: #FFF;
 $color-cream: #f5f3f0;
-$color-blue-light: #edf1f3;
+$color-cream-alpha:rgba(227, 221, 211, 0.4);
+
+$color-blue-100:#edf1f3;
+$color-blue-200:#3980AA;
+$color-blue-300:#286F98;
+$color-blue-400:#3C5E70;
+$color-blue-400:#203A48;
+$color-blue-500:#203A48;
+$color-blue-alpha:rgba(0, 102, 255, 0.1);
+
+$color-blue-light: $color-blue-100;
+$color-blue-primary: $color-blue-200;
+$color-blue-dark: $color-blue-300;
+$color-blue-darker: $color-blue-400;
+
 $color-green-light: #e8ebe0;
-$color-blue-primary: #3980aa;
-$color-blue-dark: #286f98;
-$color-blue-darker: #3c5e70;
 $color-green-primary: #79854f;
 $color-green-dark: #525d2e;
+$color-green-alpha: rgba(199, 205, 169, 0.3);
 $color-neutral: #5c584f;
+$color-neutral-light: #6B7280;
+
+$color-shadows:rgba(136, 159, 194, 0.1);
 
 // Fonts
 $font-bricolage: 'Bricolage Grotesque', sans-serif;
@@ -71,3 +87,21 @@ p.caption{
 font-weight: $font-weight-regular;
 font-size: $type-size-xs;
 }
+
+//Spacings
+$space-4:0.25rem;
+$space-8:0.5rem;
+$space-12:0.75rem;
+$space-14:0.875rem;
+$space-16:1rem;
+$space-20:1.25rem;
+$space-22:1.37rem;
+$space-24:1.5rem;
+$space-30:1.875rem;
+$space-32:2rem;
+$space-36:2.25rem;
+$space-40:2.5rem;
+$space-60:3.75rem;
+$space-80:5rem;
+$space-120:7.5rem;
+

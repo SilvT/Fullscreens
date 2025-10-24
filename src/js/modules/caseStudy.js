@@ -7,12 +7,12 @@
 import gsap from 'gsap';
 import projectData from '../../data/projects.json';
 import { updateProjectMetaTags, clearProjectMetaTags } from './structuredData.js';
-import '@phosphor-icons/web/regular';
+import '@phosphor-icons/web/light';
 import 'iconoir/css/iconoir.css';
 
 /**
  * Render icon based on library prefix
- * @param {string} iconString - Icon string with optional prefix (e.g., "ph:rocket" or "iconoir:check" or "rocket")
+ * @param {string} iconString - Icon string with optional prefix (e.g., "iconoir:check" or "ph:rocket" or "check")
  * @returns {string} HTML string for icon
  */
 function renderIcon(iconString) {
@@ -25,12 +25,12 @@ function renderIcon(iconString) {
     if (library === 'iconoir') {
       return `<i class="iconoir-${iconName}"></i>`;
     } else if (library === 'ph' || library === 'phosphor') {
-      return `<i class="ph ph-${iconName}"></i>`;
+      return `<i class="ph-light ph-${iconName}"></i>`;
     }
   }
 
-  // Default to Phosphor if no prefix
-  return `<i class="ph ph-${iconString}"></i>`;
+  // Default to Iconoir if no prefix
+  return `<i class="iconoir-${iconString}"></i>`;
 }
 
 /**
@@ -255,22 +255,22 @@ function populateCaseStudy(project) {
         <!-- Corner Dots -->
         <div class="cs-metric-dot dot-bottom-right">
           <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-            <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
+            <circle cx="4" cy="4"  r="3.5" stroke-width="1" />
           </svg>
         </div>
         <div class="cs-metric-dot dot-top-right">
           <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-            <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
+            <circle cx="4" cy="4" r="3.5"  stroke-width="1" />
           </svg>
         </div>
         <div class="cs-metric-dot dot-bottom-left">
           <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-            <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
+            <circle cx="4" cy="4" r="3.5" stroke-width="1" />
           </svg>
         </div>
         <div class="cs-metric-dot dot-top-left">
           <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-            <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
+            <circle cx="4" cy="4" fill="#FCFDFD" r="3.5"  stroke-width="1" />
           </svg>
         </div>
       `;
@@ -321,6 +321,45 @@ function renderBlock(block, project) {
 }
 
 /**
+ * Render individual text blocks (heading, paragraph, list)
+ * @param {object} block - Block configuration
+ * @returns {HTMLElement|null} - Rendered block element
+ */
+function renderTextBlock(block) {
+  switch (block.type) {
+    case 'heading':
+      const heading = document.createElement(block.level || 'h3');
+      heading.className = 'cs-text-block-heading';
+      heading.textContent = block.text;
+      return heading;
+
+    case 'paragraph':
+      const p = document.createElement('p');
+      p.className = block.class || 'cs-section-text';
+      if (block.html) {
+        p.innerHTML = block.html;
+      } else {
+        p.textContent = block.text;
+      }
+      return p;
+
+    case 'list':
+      const list = document.createElement(block.style || 'ul');
+      list.className = 'cs-text-block-list';
+      block.items.forEach((item) => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        list.appendChild(li);
+      });
+      return list;
+
+    default:
+      console.warn(`Unknown text block type: ${block.type}`);
+      return null;
+  }
+}
+
+/**
  * Render two-column layout with sidebar
  */
 function renderTwoColumnWithSidebar(block) {
@@ -345,16 +384,21 @@ function renderTwoColumnWithSidebar(block) {
       sectionEl.appendChild(heading);
     }
 
-    if (section.text) {
-      const paragraphs = section.text.split('\n\n');
-      paragraphs.forEach((para) => {
-        if (para.trim()) {
-          const p = document.createElement('p');
-          p.className = 'cs-section-text';
-          p.textContent = para.trim();
-          sectionEl.appendChild(p);
+    // Support new blocks structure
+    if (section.blocks) {
+      section.blocks.forEach((block) => {
+        const blockEl = renderTextBlock(block);
+        if (blockEl) {
+          sectionEl.appendChild(blockEl);
         }
       });
+    }
+    // Fallback to old text structure for backwards compatibility
+    else if (section.text) {
+      const div = document.createElement('div');
+      div.className = 'cs-section-text';
+      div.innerHTML = section.text;
+      sectionEl.appendChild(div);
     }
 
     // Inline image (column width)

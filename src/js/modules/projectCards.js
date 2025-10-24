@@ -4,6 +4,8 @@
  */
 
 import projectData from '../../data/projects.json';
+import '@phosphor-icons/web/light';
+import 'iconoir/css/iconoir.css';
 
 /**
  * Initialize and render project cards
@@ -287,6 +289,29 @@ function createProjectDetails(project) {
 }
 
 /**
+ * Render icon based on library prefix
+ * @param {string} iconString - Icon string with optional prefix (e.g., "iconoir:check" or "ph:rocket" or "check")
+ * @returns {string} HTML string for icon
+ */
+function renderIcon(iconString) {
+  if (!iconString) return '';
+
+  // Check for prefix
+  if (iconString.includes(':')) {
+    const [library, iconName] = iconString.split(':');
+
+    if (library === 'iconoir') {
+      return `<i class="iconoir-${iconName}"></i>`;
+    } else if (library === 'ph' || library === 'phosphor') {
+      return `<i class="ph-light ph-${iconName}"></i>`;
+    }
+  }
+
+  // Default to Iconoir if no prefix
+  return `<i class="iconoir-${iconString}"></i>`;
+}
+
+/**
  * Create metrics section HTML
  * @param {object} project - Project data
  * @returns {string} HTML string
@@ -301,12 +326,46 @@ function createMetrics(project) {
 
   return `
     <div class="metrics ${themeClass}">
-      ${metrics.map(metric => `
-        <div class="metric-card">
-          <p class="metric-value">${metric.value}</p>
-          <p class="metric-label">${metric.label}</p>
-        </div>
-      `).join('')}
+      ${metrics.map(metric => {
+        const iconHTML = metric.icon ? `
+          <div class="cs-metric-icon-wrapper">
+            <span class="cs-metric-icon">${renderIcon(metric.icon)}</span>
+          </div>
+        ` : '';
+
+        return `
+          <div class="metric-card">
+            <div class="cs-metric-content">
+              ${iconHTML}
+              <div class="cs-metric-value">${metric.value}</div>
+              <div class="cs-metric-label">${metric.label}</div>
+            </div>
+            <div class="cs-metric-border" aria-hidden="true"></div>
+
+            <!-- Corner Dots -->
+            <div class="cs-metric-dot dot-bottom-right">
+              <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+                <circle cx="4" cy="4" r="3.5" stroke-width="1" />
+              </svg>
+            </div>
+            <div class="cs-metric-dot dot-top-right">
+              <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+                <circle cx="4" cy="4" r="3.5" stroke-width="1" />
+              </svg>
+            </div>
+            <div class="cs-metric-dot dot-bottom-left">
+              <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+                <circle cx="4" cy="4" r="3.5" stroke-width="1" />
+              </svg>
+            </div>
+            <div class="cs-metric-dot dot-top-left">
+              <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+                <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke-width="1" />
+              </svg>
+            </div>
+          </div>
+        `;
+      }).join('')}
     </div>
   `;
 }

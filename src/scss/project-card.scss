@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'mixins' as *;
 
 .section-project {
   &.project-blue {
@@ -187,53 +188,8 @@
   height: 15%;
 
   .metric-card {
+    @include metric-card();
     flex: 1;
-    background-color: rgba(0, 102, 255, 0.1);
-    border-radius: 2px;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-
-  .metric-value {
-    font-size: $type-size-l;
-    font-weight: $font-weight-medium;
-    font-variation-settings: 'opsz' 14, 'wdth' 100;
-    color: $color-blue-dark;
-  }
-
-  .metric-label {
-    font-family: $font-anonymous;
-    font-size: $type-size-xs;
-    line-height: 1.1;
-    color: $color-blue-dark;
-  }
-
-  &.green {
-    .metric-card {
-      background-color: rgba(199, 205, 169, 0.3);
-    }
-
-    .metric-value,
-    .metric-label {
-      color: $color-green-dark;
-    }
-  }
-
-  &.neutral {
-    .metric-card {
-      background-color: rgba(227, 221, 211, 0.4);
-    }
-
-    .metric-value,
-    .metric-label {
-      color: $color-blue-dark;
-    }
   }
 }
 

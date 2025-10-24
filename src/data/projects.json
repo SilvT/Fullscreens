@@ -4,8 +4,8 @@
     "subtitle": "A unified CRM to consolidate fragmented data across 4 departments",
     "company": "Senapt LTD",
     "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "0→1"],
-    "cardOverview": "With 14k customers this desktop app was key to integrate the spread-out data from all campaigns and leads, while providing useful manipulation of them and displaying it on multiple dashboards.\n\nThis project became the proof-of-concept for the company's first design system, now adopted company-wide.",
-    "heroImage": "/src/assets/mkm-hero.png",
+    "cardOverview": "Built from scratch to unify fragmented marketing operations across  4 departments, replacing manual Excel workflows with real-time data visibility.",
+    "heroImage": "/src/assets/mkm/mkm-hero.png",
     "theme": "blue",
     "images": [
       "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
@@ -21,7 +21,7 @@
       ]
     },
     "metrics": [
-      { "icon": "arrows-in", "value": "4 Departments unified", "label": "Single platform consolidating fragmented marketing data and workflows" },
+      { "icon": "iconoir:collapse", "value": "4 Departments unified", "label": "Single platform consolidating fragmented marketing data and workflows" },
       { "icon": "iconoir:file-not-found","value": "No Product team", "label": "faster complaint resolution (Facebook-CRM integration)" },
       { "icon": "iconoir:cloud-xmark", "value": "Async collaboration", "label": "8-hour time zone gap with remote developer via Figma comments only." }
     ],
@@ -31,16 +31,37 @@
         "left": [
           {
             "heading": "Project Overview",
-            "text": "With 14k customers this desktop app was key to integrate the spread-out data from all campaigns and leads, while providing useful manipulation of them and displaying it on multiple dashboards.\n\nThis project became the proof-of-concept for the company's first design system, now adopted company-wide."
-          },
-          {
-            "heading": "The Challenge",
-            "text": "Marketing data was scattered across 4 different departments with no centralized system. Customer complaints via Facebook were handled manually, leading to slow resolution times.",
-            "image": {
-              "src": "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
-              "alt": "Data fragmentation diagram",
-              "caption": "Marketing data scattered across 4 departments"
-            }
+            "blocks": [
+              {
+                "type": "heading",
+                "level": "h3",
+                "text": "The Setup"
+              },
+              {
+                "type": "paragraph",
+                "class": "subtit",
+                "text": "Greenfield product, limited team"
+              },
+              {
+                "type": "paragraph",
+                "text": "I was assigned to build this platform with:"
+              },
+              {
+                "type": "list",
+                "style": "ul",
+                "items": [
+                  "1 Backend developer (my primary partner)",
+                  "1 Frontend developer (8 time zones away, limited English)",
+                  "No Design System culture",
+                  "No Product Manager",
+                  "Starting from scratch (no patterns nor component library)"
+                ]
+              },
+              {
+                "type": "paragraph",
+                "html": "Between backend and myself, we became the <strong>de facto product owners</strong>: defining scope, prioritising features, and making strategic decisions typically handled by a PM."
+              }
+            ]
           }
         ],
         "sidebar": {
@@ -50,20 +71,24 @@
             "Facebook API",
             "Real-time Dashboards",
             "Multi-department Access"
-          ],
-          "Role & Timeline": [
-            "Solo Product Designer",
-            "UI/UX Design",
-            "Design Systems Lead",
-            "2024 - 2025"
-          ],
-          "Tools Used": [
-            "Figma",
-            "Adobe CC",
-            "HTML/CSS",
-            "JavaScript"
           ]
         }
+      },
+      {
+      "type": "image-grid",
+      "columns": 2,
+      "images": [
+        {
+          "src": "src/assets/mkm/0_create campaign steps.mov",
+          "alt": "Image 1 description",
+          "caption": "Campaign detail view and Create Campaign stepper flow."
+        },
+        {
+          "src": "/src/assets/mkm/may-24-Dashboard.png",
+          "alt": "Image 2 description",
+          "caption": "Dashboard overview showing multi-channel campaign  performance, lead tracking, and budget allocation"
+        }
+      ]
       },
       {
         "type": "full-width-image",
@@ -119,9 +144,9 @@
       ]
     },
     "metrics": [
-      {"icon": "rocket", "value": "70%", "label": "faster design iteration through reusable components" },
-      {"icon": "check-circle", "value": "90%", "label": "implementation accuracy" },
-      {"icon": "trophy", "value": "CEO", "label": "buy-in & proof of concept." }
+      {"icon": "iconoir:rocket", "value": "70%", "label": "faster design iteration through reusable components" },
+      {"icon": "iconoir:check-circle", "value": "90%", "label": "implementation accuracy" },
+      {"icon": "iconoir:trophy", "value": "CEO", "label": "buy-in & proof of concept." }
     ],
     "contentBlocks": [
       {
@@ -154,9 +179,9 @@
       {
         "type": "metrics-inline",
         "metrics": [
-          {"icon": "swatches", "value": "400+", "label": "design tokens" },
-          {"icon": "package", "value": "200+", "label": "components" },
-          { "icon": "stack","value": "4", "label": "layer architecture" }
+          {"icon": "iconoir:color-picker", "value": "400+", "label": "design tokens" },
+          {"icon": "iconoir:package", "value": "200+", "label": "components" },
+          { "icon": "iconoir:layers","value": "4", "label": "layer architecture" }
         ]
       },
       {
@@ -218,9 +243,9 @@
       ]
     },
     "metrics": [
-      {"icon": "code", "value": "40%", "label": "front-end independence via design systems docs" },
-      { "icon": "rocket","value": "70%", "label": "faster design iteration through reusable components" },
-      { "icon": "trophy","value": "CEO", "label": "buy-in & proof of concept."}
+      {"icon": "iconoir:code", "value": "40%", "label": "front-end independence via design systems docs" },
+      { "icon": "iconoir:rocket","value": "70%", "label": "faster design iteration through reusable components" },
+      { "icon": "iconoir:trophy","value": "CEO", "label": "buy-in & proof of concept."}
     ],
     "contentBlocks": [
       {
@@ -294,9 +319,9 @@
       ]
     },
     "metrics": [
-      { "icon": "robot", "value": "100%", "label": "automation of design token extraction" },
-      { "icon": "timer", "value": "5min", "label": "from manual hours to automated minutes" },
-      {  "icon": "git-branch", "value": "GitHub", "label": "integrated workflow support" }
+      { "icon": "iconoir:brain", "value": "100%", "label": "automation of design token extraction" },
+      { "icon": "iconoir:timer", "value": "5min", "label": "from manual hours to automated minutes" },
+      {  "icon": "iconoir:git-branch", "value": "GitHub", "label": "integrated workflow support" }
     ],
     "contentBlocks": [
       {
