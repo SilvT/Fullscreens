@@ -41,8 +41,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fascinate&family=Anonymous+Pro:wght@400;700&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/main-BTfTTGxE.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-B1hQS9gt.css">
+  <script type="module" crossorigin src="/assets/main-C8xndKGo.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-DPzP5Qk8.css">
 </head>
 
 <body>
@@ -60,25 +60,16 @@
     </svg>
   </div>
 
-  <!-- Scroll Hint SVG with animated arrow -->
-  <div class="scroll-hint">
-    <svg class="scroll-hint__svg" viewBox="-50 -50 364 1099" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin meet">
-      <!-- The curved path (blue - reveals as arrow moves) -->
-      <path id="scroll-path" d="M1.53711 1.79222C90.6027 75.695 160.526 169.993 205.375 276.683C250.223 383.374 268.673 499.309 259.158 614.651C249.644 729.993 212.446 841.338 150.721 939.237C138.027 959.369 124.374 978.81 109.823 997.5"
-            stroke="#3980AA" stroke-width="3" fill="none" opacity="0.3" stroke-linecap="butt"/>
-
-      <!-- Eraser path (cream color - grows from top to hide the blue path) -->
-      <path id="scroll-path-eraser" d="M1.53711 1.79222C90.6027 75.695 160.526 169.993 205.375 276.683C250.223 383.374 268.673 499.309 259.158 614.651C249.644 729.993 212.446 841.338 150.721 939.237C138.027 959.369 124.374 978.81 109.823 997.5"
-            stroke="#F5F3F0" stroke-width="4" fill="none" stroke-linecap="butt"/>
-
-      <!-- Animated arrow marker using arrow-tip.svg -->
-      <!-- Arrow scaled 3x, path is flipped 180deg, will rotate to follow path like plug through loop -->
-      <g id="scroll-arrow" transform="scale(5)">
-        <path transform="rotate(180, 3.136, 1.575)" d="M0.938461 0.364C0.611794 0.233333 0.299128 0.130667 0.000460622 0.056L0.000460557 1.554C0.607127 1.666 1.13913 1.85267 1.59646 2.114C2.06313 2.37533 2.43179 2.72067 2.70246 3.15L3.58446 3.15C3.76179 2.85133 3.99046 2.59467 4.27046 2.38C4.55046 2.17467 4.85846 2.002 5.19446 1.862C5.53979 1.73133 5.89913 1.62867 6.27246 1.554L6.27246 0C5.97379 0.084 5.66579 0.191333 5.34846 0.322C5.04046 0.452667 4.74646 0.625333 4.46646 0.84C4.19579 1.05467 3.95779 1.31133 3.75246 1.61L2.59046 1.61L2.53446 1.61C2.37579 1.32067 2.15179 1.07333 1.86246 0.868C1.58246 0.662666 1.27446 0.494666 0.938461 0.364Z" fill="#3980AA"/>
-      </g>
-    </svg>
-    <!-- Text that appears when arrow reaches the end -->
-    <span class="scroll-hint__text" id="scroll-text">scroll for work</span>
+  <!-- Scroll Hint with ripple animation -->
+  <div id="scroll-hint" class="scroll-hint">
+    <div class="scroll-hint-inner">
+      <div class="scroll-hint-text">
+        <p>scroll</p>
+      </div>
+      <div class="ripple-box"></div>
+      <div class="ripple-box"></div>
+      <div class="ripple-box"></div>
+    </div>
   </div>
 
   <!-- Sticky Navigation (outside sections) -->
