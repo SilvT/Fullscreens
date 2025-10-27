@@ -5,7 +5,7 @@
 
 // Configuration
 const CONFIG = {
-  titles: ['UI Designer', 'Design Systems', 'Product Thinking', 'Atomic Design', 'Variables Geek'],
+  titles: ['UI Designer', 'Design Systems', 'Product Thinking', 'Atomic Design', 'Variables Geek','Vibe Coder'],
   flipDuration: 200, // ms per character flip (even slower)
   cycleCount: 8, // Number of random characters to cycle through
   staggerDelay: 120, // ms between each character starting (much slower stagger)

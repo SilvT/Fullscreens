@@ -7,10 +7,6 @@
 }
 
 html {
-  // Remove smooth scroll-behavior to make snap instant (snappier)
-  // scroll-behavior: smooth;
-
-  // Native CSS scroll snap (like CodePen reference)
   scroll-snap-type: y mandatory;
 }
 
@@ -70,17 +66,17 @@ body {
 // About Section
 .about-sect {
   width: 100%;
-  height: 30vh;
+  height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
 
   .about-content {
-    width: 90%;
+    width: 100%;
     display: flex;
-    gap: 32px;
+    gap: $space-30;
     align-items: center;
-    padding-left: 10rem;  
+    padding-left: 10vw;  
     justify-content: space-evenly;
   }
 }
@@ -88,6 +84,8 @@ body {
 .name-wrapper {
   flex: 1;
   max-width: fit-content;
+  min-width: 20vw;
+  padding-right: $space-80;
 
   .name {
     font-size: $type-size-3xl;
@@ -113,16 +111,18 @@ body {
   gap: 32px;
   align-items: center;
   width: 60%;
+  max-width: 70vw;
 }
 
 .dynamic-job-title {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
+  align-items: center;
+  gap: $space-8;
   position: relative;
   font-size: $type-size-xl;
   width: 21vw;
+  min-width: 15vw;
   color: $color-blue-primary;
 
   .flip-char {
@@ -138,12 +138,15 @@ body {
 }
 
 .bio {
-  width: 100%;
+  width: 30vw;
   font-variation-settings: 'opsz' 14, 'wdth' 100;
   color: $color-blue-darker;
   padding-left: 8rem;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  & p{
+    white-space: preserve-breaks;
+  }
 }
 
 
@@ -274,8 +277,9 @@ body {
   align-self: flex-end;
   padding-right: 8rem;
   width: 35vw;
-  padding-left: 3rem;
+  // padding-left: 3rem;
   color: $color-blue-darker;
+  line-height: 150%;
 
   & h3{
     font-weight: $font-weight-light;
@@ -287,12 +291,16 @@ body {
   & .stack-list{
     font-family: $font-anonymous;
   }
+  & br {
+    margin-bottom: $space-8;
+  }
 
   & a{
-   color:$color-blue-primary;
+   color:$color-blue-200;
    text-decoration:none;
    &:hover{
      text-decoration:underline;
+     color: $color-blue-400;
   }
    }
 }

@@ -13,11 +13,11 @@
 @mixin metric-card(
   $min-width: 270px,
   $min-height: 130px,
-  $content-min-height: 123px,
-  $padding: 1.5rem,
+  $content-min-height: 9rem,
+  $padding: $space-12,
   $border-color: $color-blue-200,
   $border-width: 0.12rem,
-  $bg-color: transparent,
+  $bg-color: $color-white-alpha,
   $icon-size: 1.5rem,
   $value-color: $color-blue-400,
   $value-font-size: $type-size-base,
@@ -26,7 +26,8 @@
 ) {
   position: relative;
   min-width: $min-width;
-  min-height: $min-height;
+  // min-height: $min-height;
+  min-height: $content-min-height;
 
   .cs-metric-content {
     box-sizing: border-box;
@@ -52,6 +53,7 @@
     border: $border-width solid $border-color;
     pointer-events: none;
     border-radius: 0;
+    // min-height: 9rem;
   }
 
   &:hover .cs-metric-content {
