@@ -34,6 +34,59 @@ function renderIcon(iconString) {
 }
 
 /**
+ * Create a metric card element
+ * @param {object} metric - Metric data with value, label, and optional icon
+ * @returns {HTMLElement} - Metric card element
+ */
+function createMetricCard(metric) {
+  const card = document.createElement('div');
+  card.className = 'cs-metric-card';
+
+  let iconHTML = '';
+  if (metric.icon) {
+    const iconElement = renderIcon(metric.icon);
+    iconHTML = `
+      <div class="cs-metric-icon-wrapper">
+        <span class="cs-metric-icon">${iconElement}</span>
+      </div>
+    `;
+  }
+
+  card.innerHTML = `
+    <div class="cs-metric-content">
+      ${iconHTML}
+      <div class="cs-metric-value">${metric.value}</div>
+      <div class="cs-metric-label">${metric.label}</div>
+    </div>
+    <div class="cs-metric-border" aria-hidden="true"></div>
+
+    <!-- Corner Dots -->
+    <div class="cs-metric-dot dot-bottom-right">
+      <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+        <circle cx="4" cy="4"  r="3.5" stroke-width="1" />
+      </svg>
+    </div>
+    <div class="cs-metric-dot dot-top-right">
+      <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+        <circle cx="4" cy="4" r="3.5"  stroke-width="1" />
+      </svg>
+    </div>
+    <div class="cs-metric-dot dot-bottom-left">
+      <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+        <circle cx="4" cy="4" r="3.5" stroke-width="1" />
+      </svg>
+    </div>
+    <div class="cs-metric-dot dot-top-left">
+      <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+        <circle cx="4" cy="4" fill="#FCFDFD" r="3.5"  stroke-width="1" />
+      </svg>
+    </div>
+  `;
+
+  return card;
+}
+
+/**
  * Initialize case study page functionality
  */
 export function initCaseStudy() {
@@ -79,6 +132,9 @@ export function initCaseStudy() {
     }
   });
 
+  // Handle scroll to shrink/expand hero
+  setupHeroScrollAnimation();
+
   console.log('✓ Case study modal initialized');
 }
 
@@ -118,6 +174,12 @@ function openCaseStudy(projectId) {
         updateProjectMetaTags(projectId);
         caseStudyPage.scrollTop = 0;
 
+        // Reset sticky header to expanded state
+        const stickyHeader = document.querySelector('.cs-sticky-header');
+        if (stickyHeader) {
+          stickyHeader.classList.remove('scrolled');
+        }
+
         // Then fade in new content
         gsap.fromTo(
           '.cs-hero, .cs-metrics, .cs-layout-grid',
@@ -153,6 +215,13 @@ function openCaseStudy(projectId) {
 
     // Scroll to top
     caseStudyPage.scrollTop = 0;
+
+    // Reset sticky header to expanded state
+    const stickyHeader = document.querySelector('.cs-sticky-header');
+    if (stickyHeader) {
+      stickyHeader.classList.remove('scrolled');
+    }
+
     // First time opening - prevent body scroll and animate modal in
     body.style.overflow = 'hidden';
 
@@ -228,53 +297,23 @@ function populateCaseStudy(project) {
 
   // Metrics
   const metricsContainer = document.querySelector('.cs-metrics-grid');
+  const heroMetricsContainer = document.querySelector('.cs-hero-metrics');
+
   if (metricsContainer && project.metrics) {
     metricsContainer.innerHTML = '';
+    if (heroMetricsContainer) {
+      heroMetricsContainer.innerHTML = '';
+    }
+
     project.metrics.forEach((metric) => {
-      const card = document.createElement('div');
-      card.className = 'cs-metric-card';
-
-      let iconHTML = '';
-      if (metric.icon) {
-        const iconElement = renderIcon(metric.icon);
-        iconHTML = `
-          <div class="cs-metric-icon-wrapper">
-            <span class="cs-metric-icon">${iconElement}</span>
-          </div>
-        `;
-      }
-
-      card.innerHTML = `
-        <div class="cs-metric-content">
-          ${iconHTML}
-          <div class="cs-metric-value">${metric.value}</div>
-          <div class="cs-metric-label">${metric.label}</div>
-        </div>
-        <div class="cs-metric-border" aria-hidden="true"></div>
-
-        <!-- Corner Dots -->
-        <div class="cs-metric-dot dot-bottom-right">
-          <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-            <circle cx="4" cy="4"  r="3.5" stroke-width="1" />
-          </svg>
-        </div>
-        <div class="cs-metric-dot dot-top-right">
-          <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-            <circle cx="4" cy="4" r="3.5"  stroke-width="1" />
-          </svg>
-        </div>
-        <div class="cs-metric-dot dot-bottom-left">
-          <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-            <circle cx="4" cy="4" r="3.5" stroke-width="1" />
-          </svg>
-        </div>
-        <div class="cs-metric-dot dot-top-left">
-          <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-            <circle cx="4" cy="4" fill="#FCFDFD" r="3.5"  stroke-width="1" />
-          </svg>
-        </div>
-      `;
+      const card = createMetricCard(metric);
       metricsContainer.appendChild(card);
+
+      // Clone metric card for hero section
+      if (heroMetricsContainer) {
+        const heroCard = createMetricCard(metric);
+        heroMetricsContainer.appendChild(heroCard);
+      }
     });
   }
 
@@ -605,47 +644,7 @@ function renderMetricsInline(block) {
   metricsGrid.className = 'cs-metrics-inline-grid';
 
   block.metrics.forEach((metric) => {
-    const card = document.createElement('div');
-    card.className = 'cs-metric-card';
-
-    let iconHTML = '';
-    if (metric.icon) {
-      const iconElement = renderIcon(metric.icon);
-      iconHTML = `
-        <div class="cs-metric-icon-wrapper">
-          <span class="cs-metric-icon">${iconElement}</span>
-        </div>
-      `;
-    }
-
-    card.innerHTML = `
-      <div class="cs-metric-content">
-        ${iconHTML}
-        <div class="cs-metric-value">${metric.value}</div>
-        <div class="cs-metric-label">${metric.label}</div>
-      </div>
-      <div class="cs-metric-border" aria-hidden="true"></div>
-      <div class="cs-metric-dot dot-bottom-right">
-        <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-          <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
-        </svg>
-      </div>
-      <div class="cs-metric-dot dot-top-right">
-        <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-          <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
-        </svg>
-      </div>
-      <div class="cs-metric-dot dot-bottom-left">
-        <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-          <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
-        </svg>
-      </div>
-      <div class="cs-metric-dot dot-top-left">
-        <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-          <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke="#3980AA" stroke-width="1" />
-        </svg>
-      </div>
-    `;
+    const card = createMetricCard(metric);
     metricsGrid.appendChild(card);
   });
 
@@ -903,6 +902,47 @@ function setupKeyboardNavigation() {
 
   // Add listener
   document.addEventListener('keydown', keyboardHandler);
+}
+
+/**
+ * Setup hero scroll animation
+ * Shrinks sticky header (breadcrumbs + close button + hero) when scrolling down
+ */
+function setupHeroScrollAnimation() {
+  const caseStudyPage = document.querySelector('#case-study-page');
+  const stickyHeader = document.querySelector('.cs-sticky-header');
+  const metricsSection = document.querySelector('.cs-metrics');
+
+  if (!caseStudyPage || !stickyHeader) return;
+
+  let ticking = false;
+
+  caseStudyPage.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrollTop = caseStudyPage.scrollTop;
+
+        // Shrink sticky header after scrolling down 250px (increased from 100px)
+        if (scrollTop > 250) {
+          stickyHeader.classList.add('scrolled');
+          // Hide original metrics section when hero is scrolled
+          if (metricsSection) {
+            metricsSection.style.display = 'none';
+          }
+        } else {
+          stickyHeader.classList.remove('scrolled');
+          // Show original metrics section when back at top
+          if (metricsSection) {
+            metricsSection.style.display = 'block';
+          }
+        }
+
+        ticking = false;
+      });
+
+      ticking = true;
+    }
+  });
 }
 
 /**

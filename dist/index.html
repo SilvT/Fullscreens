@@ -41,8 +41,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fascinate&family=Anonymous+Pro:wght@400;700&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/main-D9iPV6SR.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-hujRijYZ.css">
+  <script type="module" crossorigin src="/assets/main-DfFYua8F.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-vNg_Vqj_.css">
 </head>
 
 <body>
@@ -190,13 +190,6 @@
 
   <!-- Case Study Page (Full Page like Project Detail) -->
   <div id="case-study-page" class="case-study-page" data-theme="blue">
-    <!-- Close Button -->
-    <button class="case-study-close" aria-label="Close case study">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </button>
-
     <!-- Navigation Hints -->
     <div class="cs-nav-hint cs-nav-hint--left" aria-hidden="true">
       <span class="cs-nav-hint__arrow">←</span>
@@ -207,24 +200,37 @@
       <span class="cs-nav-hint__arrow">→</span>
     </div>
 
-    <!-- Breadcrumbs (Same treatment as project-detail) -->
-    <nav class="cs-breadcrumbs" aria-label="Case study navigation"></nav>
+    <!-- Sticky Header: Breadcrumbs + Close Button + Hero -->
+    <div class="cs-sticky-header">
+      <!-- Close Button -->
+      <button class="case-study-close" aria-label="Close case study">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
 
-        <!-- Hero Section -->
-        <section class="cs-hero">
-          <div class="cs-hero-content">
-            <div class="cs-hero-header">
-              <p class="cs-hero-company"></p>
-              <h1 class="cs-hero-title"></h1>
-              <h2 class="cs-hero-subtitle"></h2>
-            </div>
-            <div class="cs-hero-tags"></div>
-            <p class="cs-hero-overview"></p>
+      <!-- Breadcrumbs (Same treatment as project-detail) -->
+      <nav class="cs-breadcrumbs" aria-label="Case study navigation"></nav>
+
+      <!-- Hero Section -->
+      <section class="cs-hero">
+        <div class="cs-hero-content">
+          <div class="cs-hero-header">
+            <p class="cs-hero-company"></p>
+            <h1 class="cs-hero-title"></h1>
+            <h2 class="cs-hero-subtitle"></h2>
           </div>
-          <div class="cs-hero-images">
-            <!-- Hero images will be dynamically added here -->
-          </div>
-        </section>
+          <div class="cs-hero-tags"></div>
+          <p class="cs-hero-overview"></p>
+        </div>
+        <div class="cs-hero-images">
+          <!-- Hero images will be dynamically added here -->
+        </div>
+        <div class="cs-hero-metrics">
+          <!-- Metric cards clone will be dynamically added here when scrolled -->
+        </div>
+      </section>
+    </div>
 
         <!-- Metrics Section -->
         <section class="cs-metrics">

@@ -18,7 +18,7 @@
   opacity: 0;
   pointer-events: none;
   overflow-y: auto;
-  padding: 2.5rem;
+  padding: 0 2.5rem 2.5rem;
 
   &.active {
     opacity: 1;
@@ -96,9 +96,22 @@
   }
 }
 
+// Sticky Header Container (breadcrumbs + close button + hero)
+.cs-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: transparent;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.scrolled {
+    background-color: inherit; // Inherits from parent theme
+  }
+}
+
 // Close Button (same style as project-detail)
 .case-study-close {
-  position: fixed;
+  position: absolute;
   top: 2rem;
   right: 2rem;
   width: 3rem;
@@ -111,8 +124,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 1001;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1002;
+
+  .cs-sticky-header.scrolled & {
+    top: 1rem;
+  }
 
   &:hover {
     background-color: $color-blue-darker;
@@ -192,19 +209,24 @@
   }
 }
 
-// Breadcrumbs 
+// Breadcrumbs
 .cs-breadcrumbs {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  margin-bottom: 3rem;
-  padding: 0.75rem 1.5rem;
+  margin-bottom: 0;
+  padding: 2rem 2.5rem 1rem;
   background-color: transparent;
   border-radius: 4px;
   font-family: $font-bricolage;
   font-size: $type-size-s; // 16px
   flex-wrap: wrap;
   width: fit-content;
+  transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .cs-sticky-header.scrolled & {
+    padding: 1rem 2.5rem 0.5rem;
+  }
 
   .cs-breadcrumb-link {
     // Reset button styles
@@ -243,17 +265,60 @@
 // Hero Section with Hero Images
 .cs-hero {
   position: relative;
-  padding: 2rem 4rem 3rem;
+  padding: 0 4rem 3rem;
   background-color: transparent;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: start;
   overflow: visible; // Allow image to bleed
-  z-index: 1; // Behind other content sections
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Scrolled state - shrink hero and make 50/50 split
+  .cs-sticky-header.scrolled & {
+    padding: 0 4rem 1rem;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr; // Equal 50/50 split
+    align-items: center; // Center align vertically
+
+    .cs-hero-content {
+      max-width: 100%; // Take full column width
+    }
+
+    .cs-hero-images {
+      opacity: 0;
+      pointer-events: none;
+      display: none;
+    }
+
+    .cs-hero-metrics {
+      opacity: 1;
+      pointer-events: all;
+      position: relative; // Change from absolute
+      right: auto; // Reset positioning
+      top: auto; // Reset positioning
+      width: 100%; // Full column width
+      max-width: 100%; // Remove max-width restriction
+    }
+
+    .cs-hero-title {
+      font-size: 36px; // Reduced from 40px
+      margin-top: 1rem;
+    }
+
+    .cs-hero-subtitle,
+    .cs-hero-overview {
+      opacity: 0;
+      max-height: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+  }
 
   .cs-hero-content {
     grid-column: 1;
+    transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .cs-hero-images {
@@ -265,6 +330,7 @@
     justify-content: flex-start;
     margin-right: -4rem; // Extend beyond section padding to bleed right
     overflow: visible;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     img {
       max-width: none;
@@ -274,11 +340,114 @@
       border-radius: 4px;
       transform: scale(1.3);
       transform-origin: top left; // Anchor at top-left corner
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  .cs-hero-metrics {
+    grid-column: 2;
+    position: absolute;
+    right: 4rem;
+    top: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 600px;
+    align-items: start; // Align cards to top instead of stretch
+
+    .cs-metric-card {
+      @include metric-card();
+      padding: $space-12;
+      min-height: 4rem;
+      height: 4.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+      .cs-metric-content {
+        padding: 0;
+        height: auto;
+        min-height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        gap: 0.5rem;
+        box-shadow: 0 0 0 transparent;
+        &:hover{
+          transform: translate(0);
+          box-shadow: 0 0 0 transparent;
+        }
+      }
+
+      .cs-metric-value {
+        font-size: $type-size-s;
+        margin-bottom: 0;
+        line-height: 1;
+        width: auto; // Override full width from mixin
+        text-align: left;
+        transition: opacity 0.5s ease-in-out, font-size 0.4s cubic-bezier(0.4, 0, 0.2, 1), margin-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .cs-metric-icon {
+        font-size: 1.25rem;
+        line-height: 1;
+        transition: font-size 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .cs-metric-icon-wrapper {
+        margin: 0; // Remove all margins from mixin
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto; // Override fixed 24px width from mixin
+        height: auto; // Override fixed 24px height from mixin
+        flex-shrink: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      .cs-metric-label {
+        display: none; // Hide label by default
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        font-size: $type-size-xs;
+        color: $color-blue-400;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      // Hover interaction: show label, hide icon + value
+      &:hover {
+        .cs-metric-icon-wrapper,
+        .cs-metric-value {
+          opacity: 0;
+          display: none;
+        }
+
+        .cs-metric-label {
+          position: relative;
+          display: block;
+          opacity: 1;
+          box-shadow: 0 0 0 transparent;
+        }
+
+        // Override mixin hover effects (no shadow/transform for hero cards)
+        .cs-metric-content {
+          transform: none !important;
+          box-shadow: none !important;
+        }
+      }
     }
   }
 
   .cs-hero-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: $space-8;
+    transition: margin-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .cs-hero-company {
@@ -288,6 +457,7 @@
     margin-bottom: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .cs-hero-title {
@@ -297,6 +467,7 @@
     color: $color-blue-darker;
     margin-bottom: 0.5rem;
     line-height: 1.2;
+    transition: font-size 0.4s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .cs-hero-subtitle {
@@ -305,6 +476,7 @@
     color: $color-blue-dark;
     line-height: 1.5;
     margin-bottom: 1rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .cs-hero-tags {
@@ -312,6 +484,7 @@
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .cs-tag {
@@ -321,6 +494,7 @@
     background-color: rgba(0, 102, 255, 0.1);
     color: $color-blue-dark;
     border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .cs-hero-overview {
@@ -328,6 +502,7 @@
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
     line-height: 1.6;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   @media (max-width: 768px) {
