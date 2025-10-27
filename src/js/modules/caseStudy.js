@@ -99,12 +99,23 @@ export function initCaseStudy() {
   }
 
   // Handle case study button clicks
-  // You can add buttons with class 'open-case-study' and data-project attribute
+  // Support both .open-case-study (with data-project) and .cta-button (with href)
   document.addEventListener('click', (e) => {
-    const caseStudyButton = e.target.closest('.open-case-study');
+    const caseStudyButton = e.target.closest('.open-case-study, .cta-button');
     if (caseStudyButton) {
       e.preventDefault();
-      const projectId = caseStudyButton.getAttribute('data-project');
+
+      // Check for data-project attribute first
+      let projectId = caseStudyButton.getAttribute('data-project');
+
+      // If not found, try to extract from href attribute
+      if (!projectId) {
+        const href = caseStudyButton.getAttribute('href');
+        if (href && href.includes('case-study')) {
+          projectId = href.replace('#case-study-', '');
+        }
+      }
+
       if (projectId) {
         openCaseStudy(projectId);
       }

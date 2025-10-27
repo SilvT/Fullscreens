@@ -18,21 +18,8 @@ export function initProjectDetail() {
     return;
   }
 
-  // Handle CTA button clicks (e.g., "read case study")
-  // Using event delegation since buttons are dynamically generated
-  document.addEventListener('click', (e) => {
-    const ctaButton = e.target.closest('.cta-button');
-    if (ctaButton) {
-      e.preventDefault();
-      const href = ctaButton.getAttribute('href');
-
-      // Extract project info from the href
-      if (href && href.includes('case-study')) {
-        const projectId = href.replace('#case-study-', '');
-        openProjectDetail(projectId);
-      }
-    }
-  });
+  // Note: CTA button clicks for case studies are now handled in caseStudy.js
+  // This handler is kept for other potential use cases
 
   // Handle close button
   if (closeButton) {
