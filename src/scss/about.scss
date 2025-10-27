@@ -196,22 +196,7 @@ body {
   }
 }
   }
-//   .large.bottom {
-//       /* La estela y el hueco */
-//     stroke-dasharray: 3000 1000;
-//     /* 3000 unidades visibles + 1000 invisibles */
-  
-//     animation: moveTrail 130s linear infinite;
-// }
-// @keyframes moveTrail {
-//   from {
-//     stroke-dashoffset: 0;
-//   }
-//   to {
-//     stroke-dashoffset: -4000;
-//     /* Debe ser -(suma de ambos valores del dasharray) */
-//   }
-// }
+
     .small {
       stroke-width: 0.4;
   }

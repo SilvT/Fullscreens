@@ -12,19 +12,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './scss/main.scss';
 
 // Import modules
-import { initScrollSnap, watchMotionPreference } from './js/modules/scrollSnap.js';
 import { initScrollTransitions, watchMotionPreference as watchTransitionMotion } from './js/modules/scrollTransitions.js';
 import { initNavigation, initKeyboardNav } from './js/modules/navigation.js';
 import {
-  initSectionAnimations,
-  initTextAnimations,
-  initImageAnimations,
-  initCTAAnimations,
-  initTagAnimations,
-} from './js/modules/sectionAnimations.js';
-import {
-  initMetricAnimations,
-  initMetricCounters,
   initMetricHoverEffects,
 } from './js/modules/metricAnimations.js';
 import { initAccessibility, verifyColorContrast } from './js/modules/accessibility.js';
@@ -67,20 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initKeyboardNav();
 
-  // TEMPORARY: Disable GSAP scroll snap, use native CSS instead (snappier like CodePen)
-  // initScrollSnap();
-  // watchMotionPreference();
-
-  // TEMPORARY: Disable individual element animations (conflicts with scroll transitions)
-  // initSectionAnimations();
-  // initTextAnimations();
-  // initImageAnimations();
-  // initCTAAnimations();
-  // initTagAnimations();
-
-  // Keep metric animations (not conflicting)
-  // initMetricAnimations();
-  // initMetricCounters(); // Moved to cardEnhancements
+  // Metric hover effects
   initMetricHoverEffects();
 
   // Initialize flip-board animation for job titles
