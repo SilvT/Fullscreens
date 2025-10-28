@@ -47,6 +47,22 @@
       }
     }
   }
+
+  // Active state on click - compress and fade out
+  &:active {
+    transform: translateX(-50%) scale(0.95);
+    opacity: 0.7;
+    transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+
+    .ripple-box {
+      animation-play-state: paused;
+      transform: scale(0.9);
+    }
+
+    .scroll-hint-text p {
+      animation-play-state: paused;
+    }
+  }
 }
 
 .scroll-hint-inner {

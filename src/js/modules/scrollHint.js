@@ -3,6 +3,12 @@
  * Ripple animation with "scroll" text
  */
 
+import gsap from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+// Register ScrollToPlugin
+gsap.registerPlugin(ScrollToPlugin);
+
 /**
  * Initialize scroll hint animation
  */
@@ -22,42 +28,37 @@ export function initScrollHint() {
     return;
   }
 
-  // Add click handler to scroll to first project
-  scrollHint.addEventListener('click', () => {
+  // Add hover cursor pointer
+  scrollHint.style.cursor = 'pointer';
+
+  // Add click handler to scroll to first project with GSAP smooth scroll
+  scrollHint.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     const firstProject = document.querySelector('#project-1');
+
     if (firstProject) {
-      // Use custom smooth scroll for more control
-      const targetPosition = firstProject.getBoundingClientRect().top + window.pageYOffset;
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition - (window.innerHeight / 2) + (firstProject.offsetHeight / 2);
-      const duration = 1500; // 1.5 seconds for a slower, smoother scroll
-      let start = null;
+      // Calculate the target scroll position (center in viewport)
+      const targetY = firstProject.offsetTop - (window.innerHeight / 2) + (firstProject.offsetHeight / 2);
 
-      function smoothScroll(currentTime) {
-        if (start === null) start = currentTime;
-        const timeElapsed = currentTime - start;
-        const progress = Math.min(timeElapsed / duration, 1);
-
-        // Easing function for smoother animation (ease-in-out cubic)
-        const easing = progress < 0.5
-          ? 4 * progress * progress * progress
-          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-        window.scrollTo(0, startPosition + distance * easing);
-
-        if (timeElapsed < duration) {
-          requestAnimationFrame(smoothScroll);
-        }
-      }
-
-      requestAnimationFrame(smoothScroll);
+      // Use GSAP to animate scrollTop with smooth easing that matches natural scroll
+      gsap.to(window, {
+        duration: 1.5, // Longer duration for smoother transition
+        scrollTo: {
+          y: targetY,
+          autoKill: false, // Don't kill on user interaction - let transition complete
+        },
+        ease: 'power2.inOut', // Smooth ease for natural scroll feel
+        overwrite: 'auto',
+      });
     }
   });
 
   // Show scroll hint when About section is in view
   showScrollHint();
 
-  console.log('✓ Scroll hint animation initialized');
+  console.log('✓ Scroll hint animation initialized with GSAP smooth scroll');
 }
 
 /**

@@ -66,26 +66,72 @@ body {
 // About Section
 .about-sect {
   width: 100%;
-  height: 70vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 5vw;
+}
 
-  .about-content {
-    width: 100%;
-    display: flex;
-    gap: $space-30;
-    align-items: center;
-    padding-left: 10vw;  
-    justify-content: space-evenly;
+// Grid Container
+.about-grid {
+  width: 100%;
+  display: grid;
+  gap: $space-30;
+  row-gap: $space-80;
+  align-items: center; // Center items vertically within their grid areas
+
+  // Default: 12 columns for larger desktops
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto auto; // 3 rows: main content, more-info, scroll hint
+
+  // Laptop screens: 6 columns (includes MacBook Pro 16" with Retina)
+  @media (max-width: 1728px) {
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 
+// Row 1: Name + Description elements
+.about-row--main {
+  // Span all 12 columns in the first row
+  grid-column: 1 / -1;
+  grid-row: 1;
+  // height: 60vh;
+  align-items: center;
+
+  display: grid;
+  grid-template-columns: subgrid;
+  gap: $space-30;
+
+  @media (max-width: 1728px) {
+    grid-template-columns: subgrid;
+  }
+}
+
+// Row 2: More Info
+.about-row--info {
+  // Span all 12 columns in the second row
+  grid-column: 1 / -1;
+  grid-row: 2;
+
+  display: grid;
+  grid-template-columns: subgrid;
+  gap: $space-30;
+
+  @media (max-width: 1728px) {
+    grid-template-columns: subgrid;
+  }
+}
+
+// Name Wrapper - Grid positioning
 .name-wrapper {
-  flex: 1;
-  max-width: fit-content;
-  min-width: 20vw;
-  padding-right: $space-80;
+  // Desktop: columns 1-4
+  grid-column: 1 / 5;
+
+  // Laptop: columns 1-2
+  @media (max-width: 1728px) {
+    grid-column: 1 / 3;
+  }
 
   .name {
     font-size: $type-size-3xl;
@@ -106,45 +152,78 @@ body {
   }
 }
 
-.description {
-  display: flex;
-  gap: 32px;
-  align-items: center;
-  width: 60%;
-  max-width: 70vw;
-}
-
+// Dynamic Job Title - Grid positioning
 .dynamic-job-title {
+  // Desktop: columns 5-6
+  grid-column: 5 / 7;
+
+  // Laptop: column 3
+  @media (max-width: 1728px) {
+    grid-column: 3 / 4;
+  }
+
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: $space-8;
-  position: relative;
   font-size: $type-size-xl;
-  width: 21vw;
-  min-width: 15vw;
   color: $color-blue-primary;
+  position: relative;
 
   .flip-char {
     display: inline-block;
-    color: $color-blue-primary; // Static state color
+    color: $color-blue-primary;
     transition: color 0.2s ease, opacity 0.2s ease;
 
     &.flipping {
-      color: $color-blue-darker; // Darker blue while flipping
-      opacity: 0.7; // 70% opacity
+      color: $color-blue-darker;
+      opacity: 0.7;
+    }
+  }
+
+  // Pulsating cursor
+  .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background-color: $color-blue-primary;
+    margin-left: 2px;
+    vertical-align: middle;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    &.visible {
+      opacity: 1;
+      animation: pulse 1s ease-in-out infinite;
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
     }
   }
 }
 
+// Bio - Grid positioning
 .bio {
-  width: 30vw;
+  // Desktop: columns 8-10
+  grid-column: 7 / 10;
+
+  // Laptop: columns 4-5
+  @media (max-width: 1728px) {
+    grid-column: 4 / 6;
+  }
+
   font-variation-settings: 'opsz' 14, 'wdth' 100;
   color: $color-blue-darker;
-  padding-left: 8rem;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  & p{
+
+  & p {
     white-space: preserve-breaks;
   }
 }
@@ -206,101 +285,63 @@ body {
 }
 }
 
-// Scroll Hint with animated arrow
-.scroll-hint {
-  position: fixed;
-  top: 0;
-  bottom: 10vh; 
-  right: 32vw;
-  width: auto;
-  height: 100vh; // Let it stretch between top and bottom
-  pointer-events: none;
-  z-index: 1500; // Above navbar but below modals (nav: 1000, modals: 2000)
-  opacity: 0;
-  transition: opacity 0.6s ease-in-out;
-  overflow: visible;
-
-  &.visible {
-    opacity: 1;
-  }
-
-  &__svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-    margin-top: -7vh;
-    transform: rotate(7deg); // Rotate the SVG 7 degrees
-    transform-origin: center center;
-
-    #scroll-path {
-      stroke: $color-blue-primary;
-      stroke-width: 2;
-      fill: none;
-      opacity: 0.3;
-    }
-
-    #scroll-arrow {
-      // Arrow SVG is 7x4 units, center it at 3.5, 2
-      transform-origin: 3.136px 1.575px;
-      transform-box: fill-box;
-    }
-  }
-
-  &__text {
-    position: fixed; // Fixed positioning relative to viewport
-    bottom: calc(10vh + 20px); // Position relative to arrow at bottom
-    right: 47vw; // 17vw from right edge of viewport
-    font-size: 14px;
-    font-weight: 500;
-    color: $color-blue-primary;
-    opacity: 0; // Hidden initially
-    white-space: nowrap;
-    pointer-events: none;
-    transform: rotate(0deg); // Keep text horizontal (no rotation needed since it's independently positioned)
-  }
-}
+// Note: Scroll Hint styles moved to scroll-hint.scss
 
 // Reduced motion support
 @media (prefers-reduced-motion: reduce) {
   .ellipse-decor {
     transition: none;
   }
-
-  .scroll-hint {
-    display: none; // Hide animated scroll hint for users who prefer reduced motion
-  }
+  // Note: scroll-hint reduced motion handling is in scroll-hint.scss
 }
 
-//Text stack and other projects
-.more-info{
-  position: relative;
-  align-self: flex-end;
-  padding-right: 8rem;
-  width: 35vw;
-  // padding-left: 3rem;
+//Text stack and other projects - Grid positioning
+// Shared styles for info sections
+.stack,
+.other-projects {
   color: $color-blue-darker;
   line-height: 150%;
 
-  & h3{
+  & h3 {
     font-weight: $font-weight-light;
     margin-bottom: 0.5rem;
   }
-  & .stack{
-    margin-bottom: 2rem;
+
+  & a {
+    color: $color-blue-200;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      color: $color-blue-400;
+    }
   }
-  & .stack-list{
-    font-family: $font-anonymous;
-  }
+
   & br {
     margin-bottom: $space-8;
   }
+}
 
-  & a{
-   color:$color-blue-200;
-   text-decoration:none;
-   &:hover{
-     text-decoration:underline;
-     color: $color-blue-400;
+.stack {
+  // Desktop: columns 11-12
+  grid-column: 10 / 13;
+
+  // Laptop: columns 5-6
+  @media (max-width: 1728px) {
+    grid-column: 5 / 7;
   }
-   }
+
+  & .stack-list {
+    font-family: $font-anonymous;
+  }
+}
+
+.other-projects {
+  // Desktop: columns 11-12
+  grid-column: 12 / 13;
+
+  // Laptop: columns 5-6
+  @media (max-width: 1728px) {
+    grid-column: 5 / 7;
+  }
 }

@@ -41,8 +41,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fascinate&family=Anonymous+Pro:wght@400;700&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/main-C8xndKGo.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-DPzP5Qk8.css">
+  <script type="module" crossorigin src="/assets/main-3dQoAQ3h.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-BQL8seDJ.css">
 </head>
 
 <body>
@@ -64,7 +64,7 @@
   <div id="scroll-hint" class="scroll-hint">
     <div class="scroll-hint-inner">
       <div class="scroll-hint-text">
-        <p>scroll</p>
+        <p>scroll for work</p>
       </div>
       <div class="ripple-box"></div>
       <div class="ripple-box"></div>
@@ -91,14 +91,15 @@
     <div class="contentbox">
       <!-- About Section -->
       <article class="about-sect">
-        <div class="about-content">
-          <div class="name-wrapper">
-            <h1 id="portfolio-heading" class="name">
-              <span class="first-letter" aria-hidden="true">S·</span><span class="rest-name">Silvia Travieso</span>
-            </h1>
-          </div>
+        <div class="about-grid">
+          <!-- Row 1: Name + Description elements -->
+          <div class="about-row about-row--main">
+            <div class="name-wrapper">
+              <h1 id="portfolio-heading" class="name">
+                <span class="first-letter" aria-hidden="true">S·</span><span class="rest-name">Silvia Travieso</span>
+              </h1>
+            </div>
 
-          <div class="description">
             <div class="dynamic-job-title" role="status" aria-live="polite" aria-label="Job titles">
               <!-- Flip-board animation will populate this dynamically -->
             </div>
@@ -107,41 +108,45 @@
               <p>UI + Product Designer specialising in scalable design systems, component libraries, and user-centred interfaces.<br> Currently dipping my toes into vibe coding.</p>
             </div>
           </div>
-        </div>
-        <div class="more-info">
-         <div class="stack">
-           <h3 class="info-title">Tech Stack</h3>
-           <div class="stack-list">
-             <span>> Figma</span>
-             <span>|</span>
-             <span>Adobe CC</span>
-             <span>|</span> <br>
-             <span>> Figjam</span>
-             <span>|</span>
-             <span>Miro</span>
-             <span>|</span>
-             <span>Atlassian</span>
-             <span>|</span><br>
-             <span>> HTML5</span>
-             <span>|</span>
-             <span>CSS3</span>
-             <span>|</span>
-             <span>Sass</span>
-             <span>|</span>
-             <span>JavaScript</span>
-             <span>|</span>
-             <span>Git</span>
-             <span>|</span>
-             <span>Claude Code</span>
-             <span>|</span>
+
+          <!-- Row 2: More Info -->
+          <div class="about-row about-row--info">
+            <div class="stack">
+              <h3 class="info-title">Tech Stack</h3>
+              <div class="stack-list">
+                <span>> Figma</span>
+                <span>|</span>
+                <span>Adobe CC</span>
+                <span>|</span> <br>
+                <span>> Figjam</span>
+                <span>|</span>
+                <span>Miro</span>
+                <span>|</span>
+                <span>Atlassian</span>
+                <span>|</span><br>
+                <span>> HTML5</span>
+                <span>|</span>
+                <span>CSS3</span>
+                <span>|</span>
+                <span>Sass</span>
+                <span>|</span>
+                <span>JavaScript</span>
+                <span>|</span>
+                <span>Git</span>
+                <span>|</span>
+                <span>Claude Code</span>
+                <span>|</span>
+              </div>
             </div>
+            <div class="other-projects">
+              <h3 class="info-title">Side projects</h3>
+              <a href="https://www.silvarium.es/" class="other-projects-link">→ Branding</a> <br>
+              <a href="https://talesofmelancholia.com/" class="other-projects-link">→ Fine Photography</a>
+            </div>
+          </div>
+
+          <!-- Row 3: Scroll Hint (handled by fixed positioning) -->
         </div>
-        <div class="other-projects">
-          <h3 class="info-title">Side projects</h3>
-          <a href="https://www.silvarium.es/" class="other-projects-link">→ Branding</a> <br>
-          <a href="https://talesofmelancholia.com/" class="other-projects-link">→ Fine Photography</a>
-        </div>
-      </div>
       </article>
   </section>
 

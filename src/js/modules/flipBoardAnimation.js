@@ -93,9 +93,14 @@ async function cycleCharacter(charElement, targetChar) {
 /**
  * Transition to new title with character cycling (two-line layout)
  */
-async function transitionToTitle(container, newTitle) {
+async function transitionToTitle(container, newTitle, cursorElement) {
   const upperTitle = newTitle.toUpperCase();
   const words = upperTitle.split(' ');
+
+  // Hide cursor during animation
+  if (cursorElement) {
+    cursorElement.classList.remove('visible');
+  }
 
   // Clear container and rebuild with two lines
   container.innerHTML = '';
@@ -127,8 +132,18 @@ async function transitionToTitle(container, newTitle) {
     }
   });
 
+  // Append cursor at the end
+  if (cursorElement) {
+    container.appendChild(cursorElement);
+  }
+
   // Wait for all characters to finish cycling
   await Promise.all(promises);
+
+  // Show cursor after animation completes
+  if (cursorElement) {
+    cursorElement.classList.add('visible');
+  }
 }
 
 /**
@@ -143,17 +158,28 @@ function swapTextInstantly(container, newTitle) {
 /**
  * Main animation loop
  */
-async function animationLoop(container, wrapperElement) {
+async function animationLoop(container, wrapperElement, cursorElement) {
   let currentIndex = 0;
 
   // Set initial title
   const initialTitle = CONFIG.titles[currentIndex].toUpperCase();
   const initialCharacters = createCharacterSpans(initialTitle);
   initialCharacters.forEach((char) => container.appendChild(char));
+
+  // Add cursor at the end initially
+  if (cursorElement) {
+    container.appendChild(cursorElement);
+  }
+
   wrapperElement.setAttribute('aria-label', CONFIG.titles[currentIndex]);
 
   // If reduced motion, just swap text every few seconds
   if (prefersReducedMotion()) {
+    // Hide cursor for reduced motion
+    if (cursorElement) {
+      cursorElement.classList.remove('visible');
+    }
+
     setInterval(() => {
       currentIndex = (currentIndex + 1) % CONFIG.titles.length;
       const nextTitle = CONFIG.titles[currentIndex];
@@ -162,6 +188,12 @@ async function animationLoop(container, wrapperElement) {
     }, CONFIG.pauseDuration);
     console.log('Flip-board animation disabled: user prefers reduced motion');
     return;
+  }
+
+  // Show cursor initially after a short delay
+  await sleep(500);
+  if (cursorElement) {
+    cursorElement.classList.add('visible');
   }
 
   // Wait before starting animation
@@ -174,7 +206,7 @@ async function animationLoop(container, wrapperElement) {
     const nextTitle = CONFIG.titles[currentIndex];
 
     // Transition to new title with character cycling
-    await transitionToTitle(container, nextTitle);
+    await transitionToTitle(container, nextTitle, cursorElement);
 
     // Update aria-label for accessibility
     wrapperElement.setAttribute('aria-label', nextTitle);
@@ -203,15 +235,20 @@ export function initFlipBoardAnimation() {
   container.className = 'flip-board-container';
   wrapper.appendChild(container);
 
+  // Create cursor element
+  const cursor = document.createElement('span');
+  cursor.className = 'typing-cursor';
+  cursor.setAttribute('aria-hidden', 'true');
+
   // Set initial aria-label
   wrapper.setAttribute('aria-label', CONFIG.titles[0]);
   wrapper.setAttribute('role', 'status');
   wrapper.setAttribute('aria-live', 'polite');
 
-  // Start animation loop
-  animationLoop(container, wrapper);
+  // Start animation loop with cursor
+  animationLoop(container, wrapper, cursor);
 
-  console.log('Flip-board animation initialized');
+  console.log('Flip-board animation initialized with pulsating cursor');
 }
 
 /**
