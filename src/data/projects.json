@@ -5,12 +5,12 @@
     "company": "Senapt LTD",
     "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "0→1"],
     "cardOverview": "Built from scratch to unify fragmented marketing operations across  4 departments, replacing manual Excel workflows with real-time data visibility.",
-    "heroImage": "/src/assets/mkm/mkm-hero.png",
+    "heroImage": "/mkm/mkm-hero.png",
     "theme": "blue",
     "images": [
-      "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
-      "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
-      "/src/assets/6720397c415946385e1e030ee7203c624878df15.png"
+      "/6720397c415946385e1e030ee7203c624878df15.png",
+      "/6720397c415946385e1e030ee7203c624878df15.png",
+      "/6720397c415946385e1e030ee7203c624878df15.png"
     ],
     "technical": {
       "Role & Timeline": [
@@ -79,12 +79,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/src/assets/mkm/0_create campaign steps.mov",
+          "src": "/mkm/0_create campaign steps.mov",
           "alt": "Image 1 description",
           "caption": "Campaign detail view and Create Campaign stepper flow."
         },
         {
-          "src": "/src/assets/mkm/may24-Dashboard.png",
+          "src": "/mkm/may24-Dashboard.png",
           "alt": "Image 2 description",
           "caption": "Dashboard overview showing multi-channel campaign  performance, lead tracking, and budget allocation"
         }
@@ -138,7 +138,7 @@
 },
       {
         "type": "full-width-image",
-        "src": "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
+        "src": "/6720397c415946385e1e030ee7203c624878df15.png",
         "alt": "Unified CRM dashboard",
         "caption": "Centralized dashboard bringing all data together"
       },
@@ -161,9 +161,9 @@
       {
         "type": "gallery",
         "images": [
-          "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
-          "/src/assets/6720397c415946385e1e030ee7203c624878df15.png",
-          "/src/assets/6720397c415946385e1e030ee7203c624878df15.png"
+          "/6720397c415946385e1e030ee7203c624878df15.png",
+          "/6720397c415946385e1e030ee7203c624878df15.png",
+          "/6720397c415946385e1e030ee7203c624878df15.png"
         ]
       }
     ]
@@ -174,12 +174,12 @@
     "company": "Senapt LTD",
     "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "Component Libraries"],
     "cardOverview": "Built a greenfield design system from scratch with a remote developer 8 time zones away. The constraint forced unambiguous design—every token and component had to work for async, text-only handoffs. Result: 90% implementation accuracy and a system now scaling company-wide.",
-    "heroImage": "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+    "heroImage": "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
     "theme": "green",
     "images": [
-      "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
-      "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
-      "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png"
+      "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+      "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+      "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png"
     ],
     "technical": {
       "Role & Timeline": [
@@ -260,9 +260,9 @@
       {
         "type": "gallery",
         "images": [
-          "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
-          "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
-          "/src/assets/dfd2d7fb334e18f2d321311e566d168767c9a99f.png"
+          "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+          "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+          "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png"
         ]
       }
     ]
@@ -273,12 +273,12 @@
     "company": "",
     "tags": ["Product Design", "UI/UX", "Responsive Design", "B2C", "Data Visualization"],
     "cardOverview": "A customer-facing microsite designed to simplify the complex energy switching process and help users understand their energy consumption patterns.",
-    "heroImage": "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
+    "heroImage": "/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
     "theme": "neutral",
     "images": [
-      "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
-      "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
-      "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png"
+      "/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
+      "/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
+      "/f59f4ddf940ad829cc7120841f66e52bffac10f1.png"
     ],
     "technical": {
       "Role & Timeline": [
@@ -335,9 +335,9 @@
       {
         "type": "gallery",
         "images": [
-          "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
-          "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
-          "/src/assets/f59f4ddf940ad829cc7120841f66e52bffac10f1.png"
+          "/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
+          "/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
+          "/f59f4ddf940ad829cc7120841f66e52bffac10f1.png"
         ]
       }
     ]
@@ -348,14 +348,14 @@
     "company": "",
     "tags": [ "Figma Plugin", "Design Systems", "Git Automation", "APIs", "AI-Assisted Dev"],
     "cardOverview": "Automating Design Token Extraction for Better Design-Dev Handoff",
-    "heroImage": "/src/assets/plugin/plugin-1.png",
+    "heroImage": "/plugin/plugin-1.png",
     "theme": "blue",
     "images": [
-      "/src/assets/plugin/plugin-1.png",
-      "/src/assets/plugin/plugin-2.png",
-      "/src/assets/plugin/plugin-3.png",
-      "/src/assets/plugin/plugin-4.png",
-      "/src/assets/plugin/plugin-5.png"
+      "/plugin/plugin-1.png",
+      "/plugin/plugin-2.png",
+      "/plugin/plugin-3.png",
+      "/plugin/plugin-4.png",
+      "/plugin/plugin-5.png"
     ],
     "technical": {
       "Role & Timeline": [
@@ -400,8 +400,8 @@
         "type": "image-grid",
         "columns": 2,
         "images": [
-          { "src": "/src/assets/plugin/plugin-2.png", "alt": "Plugin interface" },
-          { "src": "/src/assets/plugin/plugin-3.png", "alt": "Token extraction" }
+          { "src": "/plugin/plugin-2.png", "alt": "Plugin interface" },
+          { "src": "/plugin/plugin-3.png", "alt": "Token extraction" }
         ]
       },
       {
@@ -430,9 +430,9 @@
       {
         "type": "gallery",
         "images": [
-          "/src/assets/plugin/plugin-1.png",
-          "/src/assets/plugin/plugin-4.png",
-          "/src/assets/plugin/plugin-5.png"
+          "/plugin/plugin-1.png",
+          "/plugin/plugin-4.png",
+          "/plugin/plugin-5.png"
         ]
       }
     ]
