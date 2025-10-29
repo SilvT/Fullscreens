@@ -1,5 +1,5 @@
 // Variables
-$color-white: #FFF;
+$color-white: #FAFAFA;
 $color-white-alpha:rgba(255,255,255,0.4);
 $color-cream: #f5f3f0;
 $color-cream-alpha:rgba(227, 221, 211, 0.4);
@@ -9,7 +9,7 @@ $color-blue-200:#3980AA;
 $color-blue-300:#286F98;
 $color-blue-400:#3C5E70;
 $color-blue-400:#203A48;
-$color-blue-500:#203A48;
+$color-blue-500:#203a48;
 $color-blue-alpha:rgba(0, 102, 255, 0.1);
 
 
@@ -27,6 +27,7 @@ $color-neutral-light: #6B7280;
 
 $color-cards-background: radial-gradient(circle, rgba(0, 102, 255, 0.05) 0%, rgba(255, 255, 255, 0.50) 100%);
 $color-shadows:rgba(136, 159, 194, 0.1);
+$color-shadows-dark:rgba(32,58,72, 0.25);
 
 // Fonts
 $font-bricolage: 'Bricolage Grotesque', sans-serif;

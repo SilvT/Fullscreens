@@ -3,6 +3,8 @@
     "title": "Marketing Management",
     "subtitle": "A unified CRM to consolidate fragmented data across 4 departments",
     "company": "Senapt LTD",
+    "jobTitle": "Solo Product Designer",
+    "year": "2024 - 2025",
     "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "0→1"],
     "cardOverview": "Built from scratch to unify fragmented marketing operations across  4 departments, replacing manual Excel workflows with real-time data visibility.",
     "heroImage": "/mkm/mkm-hero.png",
@@ -20,7 +22,12 @@
         "2024 - 2025"
       ]
     },
-    "metrics": [
+    "cardMetrics": [
+      { "icon": "iconoir:community", "value": "50%", "label": "Customer growth" },
+      { "icon": "iconoir:map-pin","value": "4 → 1", "label": "Unified Platform" },
+      { "icon": "iconoir:gym", "value": "75%", "label": "Reduced Manual work" }
+    ],
+    "detailMetrics": [
       { "icon": "iconoir:collapse", "value": "4 Departments unified", "label": "Single platform consolidating fragmented marketing data and workflows" },
       { "icon": "iconoir:file-not-found","value": "No Product team", "label": "faster complaint resolution (Facebook-CRM integration)" },
       { "icon": "iconoir:cloud-xmark", "value": "Async collaboration", "label": "8-hour time zone gap with remote developer via Figma comments only." }
@@ -172,6 +179,8 @@
     "title": "Marketing Management Platform – Design System",
     "subtitle": "Pioneering design systems in engineering-first environments",
     "company": "Senapt LTD",
+    "jobTitle": "Design System Lead",
+    "year": "2024 - 2025",
     "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "Component Libraries"],
     "cardOverview": "Built a greenfield design system from scratch with a remote developer 8 time zones away. The constraint forced unambiguous design—every token and component had to work for async, text-only handoffs. Result: 90% implementation accuracy and a system now scaling company-wide.",
     "heroImage": "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
@@ -189,7 +198,12 @@
         "2024 - 2025"
       ]
     },
-    "metrics": [
+    "cardMetrics": [
+      {"icon": "iconoir:rocket", "value": "70%", "label": "Faster iteration" },
+      {"icon": "iconoir:check-circle", "value": "90%", "label": "Accuracy" },
+      {"icon": "iconoir:trophy", "value": "CEO", "label": "Buy-in" }
+    ],
+    "detailMetrics": [
       {"icon": "iconoir:rocket", "value": "70%", "label": "faster design iteration through reusable components" },
       {"icon": "iconoir:check-circle", "value": "90%", "label": "implementation accuracy" },
       {"icon": "iconoir:trophy", "value": "CEO", "label": "buy-in & proof of concept." }
@@ -270,7 +284,9 @@
   "3": {
     "title": "Tomato Energy Microsite",
     "subtitle": "Helping customers understand their energy journey",
-    "company": "",
+    "company": "Tomato Energy",
+    "jobTitle": "Product Designer",
+    "year": "2024",
     "tags": ["Product Design", "UI/UX", "Responsive Design", "B2C", "Data Visualization"],
     "cardOverview": "A customer-facing microsite designed to simplify the complex energy switching process and help users understand their energy consumption patterns.",
     "heroImage": "/f59f4ddf940ad829cc7120841f66e52bffac10f1.png",
@@ -288,7 +304,12 @@
         "2024"
       ]
     },
-    "metrics": [
+    "cardMetrics": [
+      {"icon": "iconoir:code", "value": "40%", "label": "FE independence" },
+      { "icon": "iconoir:rocket","value": "70%", "label": "Faster iteration" },
+      { "icon": "iconoir:trophy","value": "CEO", "label": "Buy-in"}
+    ],
+    "detailMetrics": [
       {"icon": "iconoir:code", "value": "40%", "label": "front-end independence via design systems docs" },
       { "icon": "iconoir:rocket","value": "70%", "label": "faster design iteration through reusable components" },
       { "icon": "iconoir:trophy","value": "CEO", "label": "buy-in & proof of concept."}
@@ -345,7 +366,9 @@
   "4": {
     "title": "Figma Design Distributor Plugin",
     "subtitle": "Design token automation for Figma Variables, Collections, and styles",
-    "company": "",
+    "company": "Personal Project",
+    "jobTitle": "Design Technologist",
+    "year": "2025",
     "tags": [ "Figma Plugin", "Design Systems", "Git Automation", "APIs", "AI-Assisted Dev"],
     "cardOverview": "Automating Design Token Extraction for Better Design-Dev Handoff",
     "heroImage": "/plugin/plugin-1.png",
@@ -364,7 +387,12 @@
         "2025"
       ]
     },
-    "metrics": [
+    "cardMetrics": [
+      { "icon": "iconoir:brain", "value": "100%", "label": "Automation" },
+      { "icon": "iconoir:timer", "value": "5min", "label": "Time saved" },
+      {  "icon": "iconoir:git-branch", "value": "GitHub", "label": "Integration" }
+    ],
+    "detailMetrics": [
       { "icon": "iconoir:brain", "value": "100%", "label": "automation of design token extraction" },
       { "icon": "iconoir:timer", "value": "5min", "label": "from manual hours to automated minutes" },
       {  "icon": "iconoir:git-branch", "value": "GitHub", "label": "integrated workflow support" }

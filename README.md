@@ -10,6 +10,9 @@ A modern portfolio website built with plain HTML, SCSS, and vanilla JavaScript w
 - **Vanilla JavaScript**: ES6+ modules
 - **GSAP ScrollTrigger**: Smooth scroll animations
 - **Vite**: Fast dev server and build tool
+- **Icon Libraries:**
+  - **Phosphor**: (https://phosphoricons.com/?q=async&weight=light)
+  - **Iconoir**: (https://iconoir.com/)
 
 ## Getting Started
 

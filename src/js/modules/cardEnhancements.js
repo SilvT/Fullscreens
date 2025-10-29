@@ -489,7 +489,8 @@ export function initAllCardEnhancements() {
   // initStaggeredReveal();
   initMetricCounters();
   initColorTransitions();
-  initCodeSnippetTags();
+  // Disabled: Tag typewriter animation
+  // initCodeSnippetTags();
 
   console.log('✨ All card enhancements initialized');
 }

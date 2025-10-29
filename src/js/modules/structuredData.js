@@ -91,9 +91,17 @@ function generateProjectSchema(projectId, project) {
     schema.creator.roleName = project.role;
   }
 
-  // Add metrics as additionalProperty
-  if (project.metrics && project.metrics.length > 0) {
-    schema.additionalProperty = project.metrics.map(metric => ({
+  // Add metrics as additionalProperty (use detailMetrics for structured data)
+  if (project.detailMetrics && project.detailMetrics.length > 0) {
+    schema.additionalProperty = project.detailMetrics.map(metric => ({
+      "@type": "PropertyValue",
+      "name": metric.label,
+      "value": metric.value,
+      "description": metric.description
+    }));
+  } else if (project.cardMetrics && project.cardMetrics.length > 0) {
+    // Fallback to cardMetrics if detailMetrics not available
+    schema.additionalProperty = project.cardMetrics.map(metric => ({
       "@type": "PropertyValue",
       "name": metric.label,
       "value": metric.value,
@@ -193,9 +201,10 @@ export function updateProjectMetaTags(projectId) {
     { property: 'project:skills', content: project.tags ? project.tags.join(', ') : '' }
   ];
 
-  // Add impact metrics if available
-  if (project.metrics && project.metrics.length > 0) {
-    const impactSummary = project.metrics.map(m => m.value).join(', ');
+  // Add impact metrics if available (prefer detailMetrics)
+  const metrics = project.detailMetrics || project.cardMetrics;
+  if (metrics && metrics.length > 0) {
+    const impactSummary = metrics.map(m => m.value).join(', ');
     metaTags.push({ property: 'project:impact', content: impactSummary });
   }
 

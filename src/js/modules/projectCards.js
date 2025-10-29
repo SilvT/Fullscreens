@@ -195,31 +195,39 @@ function createProjectCard(projectId, project, index) {
         ${createTopNavigation(prevProject)}
 
         <div class="project-content">
-          <!-- Content Min -->
-          <div class="content-min">
-            <h1 class="project-title">${project.title}</h1>
+          <!-- Left Column -->
+          <div class="left-column">
+            <!-- Group 1: Title + Subtitle -->
+            <div class="title-group">
+              <h1 class="project-title">${project.title}</h1>
+              <h2 class="project-description ${project.theme !== 'blue' ? project.theme : ''}">${project.subtitle}</h2>
+            </div>
 
-            <h2 class="project-description ${project.theme !== 'blue' ? project.theme : ''}">${project.subtitle}</h2>
-
-            ${createProjectDetails(project)}
-
+            <!-- Group 2: Metrics -->
             ${createMetrics(project)}
 
-            ${createProjectMeta(project)}
+            <!-- Group 3: Tags + Meta Info -->
+            <div class="meta-group">
+              ${createTags(project)}
+              ${createProjectMeta(project)}
+            </div>
           </div>
 
-          <!-- Left Content (Image + CTA) -->
-          <div class="left-content">
+          <!-- Right Column -->
+          <div class="right-column">
+            <!-- Group 1: Cover Image -->
             <div class="project-image-wrapper">
               ${project.theme !== 'neutral' ? `<div class="background-gradient ${project.theme}-gradient"></div>` : ''}
               <img src="${project.images[0]}" alt="${project.title}" class="project-image${project.theme === 'neutral' ? ' contain' : ''}" />
             </div>
 
-            <a href="#case-study-${projectId}" class="cta-button">
-              → read → case study
-            </a>
-
-            ${createTags(project)}
+            <!-- Group 2: Storytelling text + CTA -->
+            <div class="storytelling-group">
+              ${createProjectDetails(project)}
+              <a href="#case-study-${projectId}" class="cta-button">
+                → Read Case Study
+              </a>
+            </div>
           </div>
         </div>
 
@@ -317,8 +325,8 @@ function renderIcon(iconString) {
  * @returns {string} HTML string
  */
 function createMetrics(project) {
-  // Extract metrics from project data in JSON
-  const metrics = project.metrics || [];
+  // Extract cardMetrics from project data in JSON (for project cards)
+  const metrics = project.cardMetrics || [];
 
   if (!metrics || metrics.length === 0) return '';
 
@@ -326,46 +334,36 @@ function createMetrics(project) {
 
   return `
     <div class="metrics ${themeClass}">
-      ${metrics.map(metric => {
-        const iconHTML = metric.icon ? `
-          <div class="cs-metric-icon-wrapper">
-            <span class="cs-metric-icon">${renderIcon(metric.icon)}</span>
+      ${metrics.map(metric => `
+        <div class="metric-card">
+          <div class="cs-metric-content">
+            ${metric.icon ? `<div class="cs-metric-icon-wrapper"><span class="cs-metric-icon">${renderIcon(metric.icon)}</span></div>` : ''}
+            <div class="cs-metric-value">${metric.value}</div>
+            <div class="cs-metric-label">${metric.label}</div>
           </div>
-        ` : '';
-
-        return `
-          <div class="metric-card">
-            <div class="cs-metric-content">
-              ${iconHTML}
-              <div class="cs-metric-value">${metric.value}</div>
-              <div class="cs-metric-label">${metric.label}</div>
-            </div>
-            <div class="cs-metric-border" aria-hidden="true"></div>
-
-            <!-- Corner Dots -->
-            <div class="cs-metric-dot dot-bottom-right">
-              <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-                <circle cx="4" cy="4" r="3.5" stroke-width="1" />
-              </svg>
-            </div>
-            <div class="cs-metric-dot dot-top-right">
-              <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-                <circle cx="4" cy="4" r="3.5" stroke-width="1" />
-              </svg>
-            </div>
-            <div class="cs-metric-dot dot-bottom-left">
-              <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-                <circle cx="4" cy="4" r="3.5" stroke-width="1" />
-              </svg>
-            </div>
-            <div class="cs-metric-dot dot-top-left">
-              <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-                <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke-width="1" />
-              </svg>
-            </div>
+          <div class="cs-metric-border" aria-hidden="true"></div>
+          <div class="cs-metric-dot dot-bottom-right">
+            <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+              <circle cx="4" cy="4" r="3.5" stroke-width="1" />
+            </svg>
           </div>
-        `;
-      }).join('')}
+          <div class="cs-metric-dot dot-top-right">
+            <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+              <circle cx="4" cy="4" r="3.5" stroke-width="1" />
+            </svg>
+          </div>
+          <div class="cs-metric-dot dot-bottom-left">
+            <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+              <circle cx="4" cy="4" r="3.5" stroke-width="1" />
+            </svg>
+          </div>
+          <div class="cs-metric-dot dot-top-left">
+            <svg fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
+              <circle cx="4" cy="4" fill="#FCFDFD" r="3.5" stroke-width="1" />
+            </svg>
+          </div>
+        </div>
+      `).join('')}
     </div>
   `;
 }
@@ -376,18 +374,14 @@ function createMetrics(project) {
  * @returns {string} HTML string
  */
 function createProjectMeta(project) {
-  const roleTimeline = project.technical['Role & Timeline'];
-  if (!roleTimeline || roleTimeline.length === 0) return '';
-
-  // Extract company, role, and timeline from JSON and technical data
-  const role = roleTimeline.find(item => !item.includes('202') && !item.includes('Solo'));
-  const timeline = roleTimeline.find(item => item.includes('202'));
-  const company = project.company || ''; // Read from JSON
+  const jobTitle = project.jobTitle || 'Product Designer';
+  const year = project.year || '2024';
+  const company = project.company || '';
 
   const themeClass = project.theme !== 'blue' ? project.theme : '';
 
   return `
-    <p class="project-meta ${themeClass}">${company ? company + ' - ' : ''}${role || 'Product Designer'} · ${timeline || '2024'}</p>
+    <p class="project-meta ${themeClass}">${jobTitle} > ${year}${company ? ' > ' + company : ''}</p>
   `;
 }
 

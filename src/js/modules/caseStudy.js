@@ -306,17 +306,17 @@ function populateCaseStudy(project) {
     });
   }
 
-  // Metrics
+  // Metrics (use detailMetrics for case study)
   const metricsContainer = document.querySelector('.cs-metrics-grid');
   const heroMetricsContainer = document.querySelector('.cs-hero-metrics');
 
-  if (metricsContainer && project.metrics) {
+  if (metricsContainer && project.detailMetrics) {
     metricsContainer.innerHTML = '';
     if (heroMetricsContainer) {
       heroMetricsContainer.innerHTML = '';
     }
 
-    project.metrics.forEach((metric) => {
+    project.detailMetrics.forEach((metric) => {
       const card = createMetricCard(metric);
       metricsContainer.appendChild(card);
 
