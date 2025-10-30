@@ -328,17 +328,93 @@ function populateCaseStudy(project) {
     });
   }
 
-  // Content Blocks - New flexible block system
+  // Content Blocks - Support both inline and lazy-loaded content
   const contentContainer = document.querySelector('.cs-content-container');
-  if (contentContainer && project.contentBlocks) {
-    contentContainer.innerHTML = '';
+  if (contentContainer) {
+    // Check if content should be lazy-loaded
+    if (project.contentFile) {
+      // Show loading state
+      contentContainer.innerHTML = '<div class="cs-loading">Loading case study content...</div>';
 
-    project.contentBlocks.forEach((block) => {
-      const blockElement = renderBlock(block, project);
-      if (blockElement) {
-        contentContainer.appendChild(blockElement);
-      }
-    });
+      // Lazy load content from external file
+      loadCaseStudyContent(project.contentFile)
+        .then((contentData) => {
+          contentContainer.innerHTML = '';
+
+          // Merge lazy-loaded content with base project data
+          const mergedProject = { ...project, ...contentData };
+
+          // Update hero with full metadata if available
+          if (contentData.subtitle) {
+            const subtitleEl = document.querySelector('.cs-hero-subtitle');
+            if (subtitleEl) subtitleEl.textContent = contentData.subtitle;
+          }
+
+          // Update metrics with detailMetrics from contentFile if available
+          if (contentData.detailMetrics) {
+            const metricsContainer = document.querySelector('.cs-metrics-grid');
+            const heroMetricsContainer = document.querySelector('.cs-hero-metrics');
+
+            if (metricsContainer) {
+              metricsContainer.innerHTML = '';
+              if (heroMetricsContainer) {
+                heroMetricsContainer.innerHTML = '';
+              }
+
+              contentData.detailMetrics.forEach((metric) => {
+                const card = createMetricCard(metric);
+                metricsContainer.appendChild(card);
+
+                if (heroMetricsContainer) {
+                  const heroCard = createMetricCard(metric);
+                  heroMetricsContainer.appendChild(heroCard);
+                }
+              });
+            }
+          }
+
+          // Render content blocks
+          if (contentData.contentBlocks) {
+            contentData.contentBlocks.forEach((block) => {
+              const blockElement = renderBlock(block, mergedProject);
+              if (blockElement) {
+                contentContainer.appendChild(blockElement);
+              }
+            });
+          }
+        })
+        .catch((error) => {
+          console.error('Failed to load case study content:', error);
+          contentContainer.innerHTML = '<div class="cs-error">Failed to load case study content. Please try again.</div>';
+        });
+    } else if (project.contentBlocks) {
+      // Use inline content blocks
+      contentContainer.innerHTML = '';
+      project.contentBlocks.forEach((block) => {
+        const blockElement = renderBlock(block, project);
+        if (blockElement) {
+          contentContainer.appendChild(blockElement);
+        }
+      });
+    }
+  }
+}
+
+/**
+ * Lazy load case study content from external JSON file
+ * @param {string} contentFile - Path to content JSON file
+ * @returns {Promise<object>} - Promise resolving to content data
+ */
+async function loadCaseStudyContent(contentFile) {
+  try {
+    const response = await fetch(contentFile);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error loading case study content:', error);
+    throw error;
   }
 }
 
@@ -364,6 +440,14 @@ function renderBlock(block, project) {
       return renderMetricsInline(block);
     case 'gallery':
       return renderGallery(block, project);
+    case 'story-hook':
+      return renderStoryHook(block);
+    case 'timeline-process':
+      return renderTimelineProcess(block);
+    case 'before-after-comparison':
+      return renderBeforeAfterComparison(block);
+    case 'key-insight':
+      return renderKeyInsight(block);
     default:
       console.warn(`Unknown block type: ${block.type}`);
       return null;
@@ -799,6 +883,249 @@ function renderTextImageSplit(block) {
 }
 
 /**
+ * Render story-hook block - Opening engagement moment
+ */
+function renderStoryHook(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-story-hook';
+
+  const content = document.createElement('div');
+  content.className = 'cs-story-hook-content';
+
+  // Quote
+  const quote = document.createElement('blockquote');
+  quote.className = 'cs-story-hook-quote';
+  quote.textContent = block.quote;
+  content.appendChild(quote);
+
+  // Context
+  if (block.context) {
+    const context = document.createElement('p');
+    context.className = 'cs-story-hook-context';
+    context.textContent = block.context;
+    content.appendChild(context);
+  }
+
+  wrapper.appendChild(content);
+
+  // Optional image
+  if (block.image) {
+    const figure = document.createElement('figure');
+    figure.className = 'cs-story-hook-image';
+
+    const img = document.createElement('img');
+    img.src = block.image;
+    img.alt = block.imageAlt || '';
+    figure.appendChild(img);
+
+    wrapper.appendChild(figure);
+  }
+
+  return wrapper;
+}
+
+/**
+ * Render timeline-process block - Phase storytelling
+ */
+function renderTimelineProcess(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-timeline-process';
+
+  if (block.heading) {
+    const heading = document.createElement('h2');
+    heading.className = 'cs-timeline-heading';
+    heading.textContent = block.heading;
+    wrapper.appendChild(heading);
+  }
+
+  const timeline = document.createElement('div');
+  timeline.className = 'cs-timeline';
+
+  block.phases.forEach((phase) => {
+    const phaseEl = document.createElement('div');
+    phaseEl.className = 'cs-timeline-phase';
+
+    // Icon
+    if (phase.icon) {
+      const iconSpan = document.createElement('span');
+      iconSpan.className = `cs-timeline-icon iconoir-${phase.icon.replace('iconoir:', '')}`;
+      iconSpan.innerHTML = `<i class="${phase.icon}"></i>`;
+      phaseEl.appendChild(iconSpan);
+    }
+
+    // Phase header
+    const header = document.createElement('div');
+    header.className = 'cs-timeline-phase-header';
+
+    const title = document.createElement('h3');
+    title.className = 'cs-timeline-phase-title';
+    title.textContent = phase.title;
+    header.appendChild(title);
+
+    const period = document.createElement('span');
+    period.className = 'cs-timeline-phase-period';
+    period.textContent = phase.period;
+    header.appendChild(period);
+
+    phaseEl.appendChild(header);
+
+    // Highlights
+    if (phase.highlights && phase.highlights.length > 0) {
+      const highlightsList = document.createElement('ul');
+      highlightsList.className = 'cs-timeline-highlights';
+
+      phase.highlights.forEach((highlight) => {
+        const li = document.createElement('li');
+        li.textContent = highlight;
+        highlightsList.appendChild(li);
+      });
+
+      phaseEl.appendChild(highlightsList);
+    }
+
+    timeline.appendChild(phaseEl);
+  });
+
+  wrapper.appendChild(timeline);
+  return wrapper;
+}
+
+/**
+ * Render before-after-comparison block - Impact visualization
+ */
+function renderBeforeAfterComparison(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-before-after';
+
+  if (block.heading) {
+    const heading = document.createElement('h2');
+    heading.className = 'cs-before-after-heading';
+    heading.textContent = block.heading;
+    wrapper.appendChild(heading);
+  }
+
+  const grid = document.createElement('div');
+  grid.className = 'cs-before-after-grid';
+
+  // Before column
+  const beforeCol = document.createElement('div');
+  beforeCol.className = 'cs-before-after-col cs-before-col';
+
+  const beforeLabel = document.createElement('h3');
+  beforeLabel.className = 'cs-before-after-label';
+  beforeLabel.textContent = block.before.label || 'Before';
+  beforeCol.appendChild(beforeLabel);
+
+  if (block.before.items && block.before.items.length > 0) {
+    const beforeList = document.createElement('ul');
+    beforeList.className = 'cs-before-after-list';
+
+    block.before.items.forEach((item) => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      beforeList.appendChild(li);
+    });
+
+    beforeCol.appendChild(beforeList);
+  }
+
+  if (block.before.image) {
+    const img = document.createElement('img');
+    img.src = block.before.image;
+    img.alt = block.before.imageAlt || 'Before state';
+    img.className = 'cs-before-after-image';
+    beforeCol.appendChild(img);
+  }
+
+  grid.appendChild(beforeCol);
+
+  // After column
+  const afterCol = document.createElement('div');
+  afterCol.className = 'cs-before-after-col cs-after-col';
+
+  const afterLabel = document.createElement('h3');
+  afterLabel.className = 'cs-before-after-label';
+  afterLabel.textContent = block.after.label || 'After';
+  afterCol.appendChild(afterLabel);
+
+  if (block.after.items && block.after.items.length > 0) {
+    const afterList = document.createElement('ul');
+    afterList.className = 'cs-before-after-list';
+
+    block.after.items.forEach((item) => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      afterList.appendChild(li);
+    });
+
+    afterCol.appendChild(afterList);
+  }
+
+  if (block.after.image) {
+    const img = document.createElement('img');
+    img.src = block.after.image;
+    img.alt = block.after.imageAlt || 'After state';
+    img.className = 'cs-before-after-image';
+    afterCol.appendChild(img);
+  }
+
+  grid.appendChild(afterCol);
+  wrapper.appendChild(grid);
+
+  return wrapper;
+}
+
+/**
+ * Render key-insight block - Callout/highlight moment
+ */
+function renderKeyInsight(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-key-insight';
+
+  const content = document.createElement('div');
+  content.className = 'cs-key-insight-content';
+
+  // Icon and title in header
+  const header = document.createElement('div');
+  header.className = 'cs-key-insight-header';
+
+  if (block.icon) {
+    const icon = document.createElement('span');
+    icon.className = `cs-key-insight-icon ${block.icon}`;
+    icon.innerHTML = `<i class="${block.icon}"></i>`;
+    header.appendChild(icon);
+  }
+
+  if (block.title) {
+    const title = document.createElement('h3');
+    title.className = 'cs-key-insight-title';
+    title.textContent = block.title;
+    header.appendChild(title);
+  }
+
+  content.appendChild(header);
+
+  // Insight text
+  if (block.insight) {
+    const insight = document.createElement('p');
+    insight.className = 'cs-key-insight-text';
+    insight.textContent = block.insight;
+    content.appendChild(insight);
+  }
+
+  // Result
+  if (block.result) {
+    const result = document.createElement('p');
+    result.className = 'cs-key-insight-result';
+    result.innerHTML = `<strong>→ Result:</strong> ${block.result}`;
+    content.appendChild(result);
+  }
+
+  wrapper.appendChild(content);
+  return wrapper;
+}
+
+/**
  * Close case study page
  */
 function closeCaseStudy() {
@@ -840,39 +1167,39 @@ function updateBreadcrumbs(currentProjectId) {
 
   // Get all project IDs
   const projectIds = Object.keys(projectData);
+  const currentIndex = projectIds.indexOf(currentProjectId);
 
-  projectIds.forEach((projectId) => {
-    const project = projectData[projectId];
+  // Get previous and next projects
+  const prevIndex = currentIndex > 0 ? currentIndex - 1 : projectIds.length - 1;
+  const nextIndex = currentIndex < projectIds.length - 1 ? currentIndex + 1 : 0;
 
-    // Create breadcrumb link
-    const link = document.createElement('button');
-    link.className = 'cs-breadcrumb-link';
-    link.setAttribute('data-project', projectId);
-    link.textContent = project.title;
+  const prevProjectId = projectIds[prevIndex];
+  const nextProjectId = projectIds[nextIndex];
 
-    if (projectId === currentProjectId) {
-      link.classList.add('active');
-      link.setAttribute('aria-current', 'page');
-    }
+  const prevProject = projectData[prevProjectId];
+  const nextProject = projectData[nextProjectId];
 
-    // Click handler
-    link.addEventListener('click', () => {
-      if (projectId !== currentProjectId) {
-        openCaseStudy(projectId);
-      }
-    });
+  // Create previous button
+  const prevButton = document.createElement('button');
+  prevButton.className = 'cs-breadcrumb-nav cs-breadcrumb-prev';
+  prevButton.setAttribute('data-project', prevProjectId);
+  prevButton.innerHTML = `
+    <span class="cs-nav-label">← Previous</span>
+    <span class="cs-nav-title">${prevProject.title}</span>
+  `;
+  prevButton.addEventListener('click', () => openCaseStudy(prevProjectId));
+  breadcrumbs.appendChild(prevButton);
 
-    breadcrumbs.appendChild(link);
-
-    // Add separator (except for last item)
-    if (projectId !== projectIds[projectIds.length - 1]) {
-      const separator = document.createElement('span');
-      separator.className = 'cs-breadcrumb-separator';
-      separator.textContent = '→';
-      separator.setAttribute('aria-hidden', 'true');
-      breadcrumbs.appendChild(separator);
-    }
-  });
+  // Create next button
+  const nextButton = document.createElement('button');
+  nextButton.className = 'cs-breadcrumb-nav cs-breadcrumb-next';
+  nextButton.setAttribute('data-project', nextProjectId);
+  nextButton.innerHTML = `
+    <span class="cs-nav-label">Next →</span>
+    <span class="cs-nav-title">${nextProject.title}</span>
+  `;
+  nextButton.addEventListener('click', () => openCaseStudy(nextProjectId));
+  breadcrumbs.appendChild(nextButton);
 }
 
 /**

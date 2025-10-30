@@ -1,0 +1,96 @@
+{
+  "Example usage for MKM project - Add these blocks to the caseStudyContent array": "",
+
+  "story-hook-example": {
+    "type": "story-hook",
+    "quote": "How did I get here? This definitely wasn't in the job description for Mid UI Designer.",
+    "context": "Seven months in, presenting a design system I'd built from scratch to a room full of engineers.",
+    "image": "/mkm/presenting-moment.jpg",
+    "imageAlt": "Presenting to engineering team"
+  },
+
+  "timeline-process-example": {
+    "type": "timeline-process",
+    "heading": "Three Phases of Transformation",
+    "phases": [
+      {
+        "title": "Foundation",
+        "period": "Months 1-3",
+        "highlights": [
+          "Learning marketing domain from scratch",
+          "Built first design system foundations",
+          "Got pushback from CEO 2-3 times"
+        ],
+        "icon": "iconoir:learning"
+      },
+      {
+        "title": "Survival Mode",
+        "period": "Months 3-5",
+        "highlights": [
+          "Frontend dev waiting while I was still figuring IA",
+          "Co-owning product with Backend Lead",
+          "Building component library in parallel"
+        ],
+        "icon": "iconoir:warning-triangle"
+      },
+      {
+        "title": "Strategic Influence",
+        "period": "Months 6-12",
+        "highlights": [
+          "Facebook API approved first try",
+          "Invented FB-to-CRM complaint pipeline",
+          "CEO buy-in for design system expansion"
+        ],
+        "icon": "iconoir:trophy"
+      }
+    ]
+  },
+
+  "before-after-comparison-example": {
+    "type": "before-after-comparison",
+    "heading": "From Manual Chaos to Unified Platform",
+    "before": {
+      "label": "The Reality I Walked Into",
+      "items": [
+        "Marketing tracking everything via Excel",
+        "6+ fragmented lead entry points",
+        "No file naming, no Figma libraries",
+        "No systematic handoffs or QA",
+        "Multiple dev stacks, no standardisation"
+      ],
+      "image": "/mkm/chaos-diagram.png",
+      "imageAlt": "Diagram showing fragmented systems"
+    },
+    "after": {
+      "label": "What We Built",
+      "items": [
+        "Unified CRM across 4 departments",
+        "Automated Facebook-to-CRM pipeline",
+        "400+ tokens, 200+ components",
+        "90% fewer QA cycles",
+        "Design Ops team created"
+      ],
+      "image": "/mkm/unified-platform.png",
+      "imageAlt": "Diagram showing unified platform"
+    }
+  },
+
+  "key-insight-example": {
+    "type": "key-insight",
+    "icon": "iconoir:bulb",
+    "title": "Strategic Decision: Design System First",
+    "insight": "CEO denied it. VP tentatively approved. My response? Do it anyway and prove the value.",
+    "result": "By month 15, CEO approved design system expansion company-wide."
+  },
+
+  "usage-instructions": {
+    "": "Add these blocks to your projects.json MKM caseStudyContent array",
+    "example-placement": "Insert after hero, before or between existing two-column blocks",
+    "notes": [
+      "story-hook: Best at the very beginning after hero",
+      "timeline-process: Use to show project phases chronologically",
+      "before-after-comparison: Great for showing impact/transformation",
+      "key-insight: Use to highlight pivotal moments or decisions"
+    ]
+  }
+}

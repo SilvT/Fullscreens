@@ -43,17 +43,16 @@
     background-color: $color-green-light;
 
     .cs-breadcrumbs {
-      .cs-breadcrumb-link {
+      .cs-breadcrumb-nav {
         color: $color-green-dark;
 
-        &:hover,
-        &.active {
+        .cs-nav-title {
+          color: rgba($color-green-primary, 0.6);
+        }
+
+        &:hover .cs-nav-title {
           color: $color-green-primary;
         }
-      }
-
-      .cs-breadcrumb-separator {
-        color: $color-green-dark;
       }
     }
 
@@ -71,17 +70,16 @@
     background-color: $color-cream;
 
     .cs-breadcrumbs {
-      .cs-breadcrumb-link {
+      .cs-breadcrumb-nav {
         color: $color-neutral;
 
-        &:hover,
-        &.active {
+        .cs-nav-title {
+          color: rgba($color-blue-darker, 0.5);
+        }
+
+        &:hover .cs-nav-title {
           color: $color-blue-darker;
         }
-      }
-
-      .cs-breadcrumb-separator {
-        color: $color-neutral;
       }
     }
 
@@ -147,88 +145,28 @@
   }
 }
 
-// Navigation Hints
-.cs-nav-hint {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  opacity: 0.3;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 5;
-  font-family: $font-anonymous;
-
-  &:hover {
-    opacity: 0.6;
-  }
-
-  &--left {
-    left: 1rem;
-    flex-direction: row;
-  }
-
-  &--right {
-    right: 1rem;
-    flex-direction: row-reverse;
-  }
-
-  &__arrow {
-    font-size: 2rem;
-    color: $color-blue-darker;
-    animation: pulse-hint 2s ease-in-out infinite;
-  }
-
-  &__text {
-    font-size: $type-size-xs;
-    color: $color-blue-darker;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-  }
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-}
-
-// Pulse animation for navigation hints
-@keyframes pulse-hint {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.1);
-  }
-}
-
-// Breadcrumbs
+// Breadcrumbs Navigation
 .cs-breadcrumbs {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  justify-content: space-between;
+  gap: 2rem;
   margin-bottom: 0;
   padding: 2rem 2.5rem 1rem;
+  padding-right: 6rem; // Extra space to avoid close button (2.5rem base + 3rem button + 0.5rem margin)
   background-color: transparent;
   border-radius: 4px;
   font-family: $font-bricolage;
   font-size: $type-size-s; // 16px
-  flex-wrap: wrap;
-  width: fit-content;
+  width: 100%;
   transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   .cs-sticky-header.scrolled & {
     padding: 1rem 2.5rem 0.5rem;
+    padding-right: 5.5rem; // Adjusted for scrolled state (2.5rem base + 3rem button)
   }
 
-  .cs-breadcrumb-link {
+  .cs-breadcrumb-nav {
     // Reset button styles
     background: none;
     border: none;
@@ -236,29 +174,83 @@
     margin: 0;
     font-family: inherit;
     font-size: inherit;
-    line-height: inherit;
-
-    // Breadcrumb link styles
-    color: $color-blue-darker;
-    text-decoration: none;
-    font-weight: $font-weight-medium; // 500
-    transition: color 0.2s ease;
+    line-height: 1;
     cursor: pointer;
+    position: relative;
+    text-transform: capitalize;
+    min-height: $type-size-base * 1.2; // Reserve space for one line
 
-    &:hover {
-      color: $color-blue-primary;
-      text-decoration: underline;
-    }
-
-    &.active {
-      color: $color-blue-primary;
-      font-weight: $font-weight-semibold;
-    }
-  }
-
-  .cs-breadcrumb-separator {
+    // Navigation styles
     color: $color-blue-darker;
-    opacity: 0.5;
+    font-weight: $font-weight-medium;
+    transition: color 0.2s ease;
+
+    .cs-nav-label,
+    .cs-nav-title {
+      position: absolute;
+      top: 0;
+      text-align: left;
+      display: block;
+      width: max-content;
+    }
+
+    .cs-nav-label {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .cs-nav-title {
+      color: $color-blue-200; // Start with lighter accent color
+      opacity: 0;
+      transform: translateX(20px);
+      font-weight: $font-weight-medium;
+      transition: opacity 0.4s ease, transform 0.4s ease, color 0.4s ease;
+    }
+
+    &:hover .cs-nav-label {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    &:hover .cs-nav-title {
+      color: $color-blue-500; // Transition to darker color
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    // Previous button (left-aligned)
+    &.cs-breadcrumb-prev {
+      text-align: left;
+
+      .cs-nav-label,
+      .cs-nav-title {
+        left: 0;
+      }
+    }
+
+    // Next button (right-aligned)
+    &.cs-breadcrumb-next {
+      text-align: right;
+
+      .cs-nav-label,
+      .cs-nav-title {
+        right: 0;
+        text-align: right;
+      }
+
+      .cs-nav-title {
+        transform: translateX(-20px);
+      }
+
+      &:hover .cs-nav-label {
+        transform: translateX(20px);
+      }
+
+      &:hover .cs-nav-title {
+        transform: translateX(0);
+      }
+    }
   }
 }
 
@@ -1095,4 +1087,409 @@
   .cs-block-gallery {
     padding: 2rem;
   }
+
+  // New blocks responsive
+  .cs-story-hook,
+  .cs-timeline-process,
+  .cs-before-after,
+  .cs-key-insight {
+    padding: 2rem;
+  }
+
+  .cs-before-after-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .cs-timeline {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================
+// NEW CONTENT BLOCKS
+// ============================================
+
+// Block: Story Hook - Opening engagement moment
+.cs-story-hook {
+  padding: 4rem;
+  background: linear-gradient(135deg, rgba(57, 128, 170, 0.05) 0%, rgba(255, 255, 255, 0.8) 100%);
+  border-radius: 0.5rem;
+  margin-bottom: 3rem;
+
+  .cs-story-hook-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cs-story-hook-quote {
+    font-size: $type-size-xl;
+    font-weight: $font-weight-medium;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    color: $color-blue-darker;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    position: relative;
+
+    &::before {
+      content: '"';
+      font-size: 4rem;
+      position: absolute;
+      top: -1rem;
+      left: -2rem;
+      color: $color-blue-primary;
+      opacity: 0.3;
+    }
+  }
+
+  .cs-story-hook-context {
+    font-size: $type-size-base;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    color: $color-blue-dark;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .cs-story-hook-image {
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+}
+
+// Block: Timeline Process - Phase storytelling
+.cs-timeline-process {
+  padding: 4rem;
+  margin-bottom: 3rem;
+
+  .cs-timeline-heading {
+    font-size: $type-size-2xl;
+    font-weight: $font-weight-semibold;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    color: $color-blue-darker;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .cs-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    position: relative;
+
+    // Connecting line
+    &::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, $color-blue-primary 0%, $color-blue-light 100%);
+      z-index: 0;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+
+  .cs-timeline-phase {
+    position: relative;
+    z-index: 1;
+    background: $color-white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(57, 128, 170, 0.15);
+    }
+  }
+
+  .cs-timeline-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background: $color-blue-light;
+    border-radius: 50%;
+    font-size: 2rem;
+    color: $color-blue-primary;
+  }
+
+  .cs-timeline-phase-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-timeline-phase-title {
+    font-size: $type-size-l;
+    font-weight: $font-weight-semibold;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    color: $color-blue-darker;
+    margin-bottom: 0.5rem;
+  }
+
+  .cs-timeline-phase-period {
+    font-size: $type-size-s;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    color: $color-blue-primary;
+    font-weight: $font-weight-medium;
+  }
+
+  .cs-timeline-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      font-size: $type-size-s;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      color: $color-blue-darker;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+      padding-left: 1.5rem;
+      position: relative;
+
+      &::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: $color-blue-primary;
+        font-weight: bold;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Block: Before/After Comparison - Impact visualization
+.cs-before-after {
+  padding: 4rem;
+  margin-bottom: 3rem;
+
+  .cs-before-after-heading {
+    font-size: $type-size-2xl;
+    font-weight: $font-weight-semibold;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    color: $color-blue-darker;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .cs-before-after-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .cs-before-after-col {
+    padding: 2rem;
+    border-radius: 0.5rem;
+    position: relative;
+  }
+
+  .cs-before-col {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.08) 0%, rgba(255, 255, 255, 0.6) 100%);
+    border: 2px solid rgba(255, 107, 107, 0.2);
+  }
+
+  .cs-after-col {
+    background: linear-gradient(135deg, rgba(121, 133, 79, 0.08) 0%, rgba(255, 255, 255, 0.6) 100%);
+    border: 2px solid rgba(121, 133, 79, 0.2);
+  }
+
+  .cs-before-after-label {
+    font-size: $type-size-l;
+    font-weight: $font-weight-semibold;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before {
+      font-size: 1.5rem;
+    }
+  }
+
+  .cs-before-col .cs-before-after-label {
+    color: #d32f2f;
+
+    &::before {
+      content: '❌';
+    }
+  }
+
+  .cs-after-col .cs-before-after-label {
+    color: $color-green-primary;
+
+    &::before {
+      content: '✅';
+    }
+  }
+
+  .cs-before-after-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+
+    li {
+      font-size: $type-size-base;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      color: $color-blue-darker;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      position: relative;
+
+      &::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .cs-before-col .cs-before-after-list li::before {
+    color: #d32f2f;
+  }
+
+  .cs-after-col .cs-before-after-list li::before {
+    color: $color-green-primary;
+  }
+
+  .cs-before-after-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.25rem;
+    margin-top: 1.5rem;
+  }
+}
+
+// Block: Key Insight - Callout/highlight moment
+.cs-key-insight {
+  padding: 3rem 4rem;
+  margin-bottom: 3rem;
+  background: $color-white;
+  border: 2px solid $color-blue-primary;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(57, 128, 170, 0.1);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, $color-blue-primary, $color-blue-light);
+    border-radius: 0.5rem;
+    z-index: -1;
+    opacity: 0.1;
+  }
+
+  .cs-key-insight-content {
+    max-width: 700px;
+  }
+
+  .cs-key-insight-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-key-insight-icon {
+    font-size: 2rem;
+    color: $color-blue-primary;
+    flex-shrink: 0;
+  }
+
+  .cs-key-insight-title {
+    font-size: $type-size-l;
+    font-weight: $font-weight-semibold;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    color: $color-blue-darker;
+    margin: 0;
+  }
+
+  .cs-key-insight-text {
+    font-size: $type-size-base;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    color: $color-blue-darker;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .cs-key-insight-result {
+    font-size: $type-size-base;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    color: $color-blue-dark;
+    line-height: 1.7;
+    margin: 0;
+    padding-left: 1.5rem;
+    border-left: 3px solid $color-green-primary;
+
+    strong {
+      color: $color-green-primary;
+      font-weight: $font-weight-semibold;
+    }
+  }
+}
+
+// ============================================
+// LOADING & ERROR STATES
+// ============================================
+
+.cs-loading,
+.cs-error {
+  padding: 4rem 2rem;
+  text-align: center;
+  font-size: $type-size-base;
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
+  color: $color-blue-dark;
+}
+
+.cs-loading {
+  animation: pulse-opacity 1.5s ease-in-out infinite;
+}
+
+.cs-error {
+  color: #d32f2f;
+  background: rgba(255, 107, 107, 0.05);
+  border-radius: 0.5rem;
+  margin: 2rem;
+}
+
+@keyframes pulse-opacity {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }

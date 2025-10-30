@@ -1,6 +1,26 @@
 {
   "1": {
     "title": "Marketing Management",
+    "shortSubtitle": "A unified CRM to consolidate fragmented data across 4 departments",
+    "company": "Senapt LTD",
+    "year": "2024 - 2025",
+    "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "0→1", "Co-ownership"],
+    "cardOverview": "Built from scratch to unify fragmented marketing operations across 4 departments, replacing manual Excel workflows with real-time data visibility. Grew from Mid UI Designer to co-owning product strategy and creating the company's first Design Ops team.",
+    "storyTeaser": {
+      "text": "Seven months in, I found myself presenting a design system to a room full of engineers. This wasn't in the job description for Mid UI Designer.",
+      "cta": "Read how I went from UI executor to co-owning product strategy"
+    },
+    "heroImage": "/mkm/mkm-hero.png",
+    "theme": "blue",
+    "cardMetrics": [
+      { "icon": "iconoir:community", "value": "50%", "label": "Customer growth" },
+      { "icon": "iconoir:map-pin", "value": "4 → 1", "label": "Unified Platform" },
+      { "icon": "iconoir:gym", "value": "75%", "label": "Reduced Manual work" }
+    ],
+    "contentFile": "/data/mkm-content.json"
+  },
+  "5": {
+    "title": "Marketing Management (OLD - DO NOT USE)",
     "subtitle": "A unified CRM to consolidate fragmented data across 4 departments",
     "company": "Senapt LTD",
     "jobTitle": "Solo Product Designer",

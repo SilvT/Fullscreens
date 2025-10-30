@@ -218,7 +218,7 @@ function createProjectCard(projectId, project, index) {
             <!-- Group 1: Cover Image -->
             <div class="project-image-wrapper">
               ${project.theme !== 'neutral' ? `<div class="background-gradient ${project.theme}-gradient"></div>` : ''}
-              <img src="${project.images[0]}" alt="${project.title}" class="project-image${project.theme === 'neutral' ? ' contain' : ''}" />
+              <img src="${project.heroImage || (project.images && project.images[0])}" alt="${project.title}" class="project-image${project.theme === 'neutral' ? ' contain' : ''}" />
             </div>
 
             <!-- Group 2: Storytelling text + CTA -->
