@@ -4,6 +4,14 @@
  * WCAG AA accessible with prefers-reduced-motion support
  */
 
+// Prevent browser scroll restoration (fixes reload starting at bottom)
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+// Scroll to top immediately on page load
+window.scrollTo(0, 0);
+
 // Import GSAP and ScrollTrigger
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';

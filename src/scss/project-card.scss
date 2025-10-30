@@ -80,6 +80,8 @@
   text-transform: capitalize;
   line-height: 1;
   color: $color-blue-darker;
+  position: relative;
+  min-height: $type-size-base * 1.2; // Reserve space for one line
 
   // Button-specific styles
   &.project-nav-button {
@@ -110,17 +112,41 @@
     margin-bottom:$space-12;
   }
 
-  .nav-title {
-     font-size: $type-size-base;
+  .nav-title,
+  .nav-subtitle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: $type-size-base;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
+    letter-spacing: 0;
+    width: 100%;
+  }
+
+  .nav-title {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
   }
 
   .nav-subtitle {
-    font-size: $type-size-xs;
-    color: $color-neutral-light;
-    letter-spacing: 0.8px;
-    font-variation-settings: 'opsz' 14, 'wdth' 100;
-    opacity: 0.8;
+    color: $color-blue-200; // Start with lighter accent color
+    opacity: 0;
+    transform: translateX(20px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease, color 0.4s ease;
+  }
+
+  &:hover .nav-title {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  &:hover .nav-subtitle {
+    color: $color-blue-500; // Transition to darker color
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
   }
 }
 
@@ -307,6 +333,57 @@
       font-size: $type-size-base;
       line-height: 115%;
       font-style: italic;
+      position: relative;
+    }
+
+    // Typing dots indicator
+    .typing-dots {
+      display: inline-flex;
+      gap: 3px;
+      margin-left: 8px;
+      align-items: center;
+      opacity: 0;
+
+      .dot {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background-color: $color-blue-primary;
+        animation: typing-dot 2.8s infinite ease-in-out;
+
+        &:nth-child(1) {
+          animation-delay: 0s;
+        }
+        &:nth-child(2) {
+          animation-delay: 0.4s;
+        }
+        &:nth-child(3) {
+          animation-delay: 0.8s;
+        }
+      }
+    }
+  }
+
+  // Typing dots animation (2x slower)
+  @keyframes typing-dot {
+    0%, 60%, 100% {
+      opacity: 0.2;
+      transform: scale(0.8);
+    }
+    30% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  // Very slow pulsing shadow
+  @keyframes pulse-shadow-slow {
+    0%, 100% {
+      box-shadow: -4px 4px 4px $color-shadows-dark;
+    }
+    50% {
+      box-shadow: -4px 4px 20px rgba(57, 128, 170, 0.3),
+                  -2px 2px 8px rgba(57, 128, 170, 0.2);
     }
   }
     @media (min-width: 1750px) {

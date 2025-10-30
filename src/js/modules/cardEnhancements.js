@@ -480,6 +480,118 @@ export function initCodeSnippetTags() {
 }
 
 /**
+ * 7. Chatbot-style storytelling group animation
+ * Message bubble pops in, then content slides from right with stagger,
+ * typing dots appear, then very slow pulsing shadow loop
+ */
+export function initStorytellingAnimation() {
+  if (prefersReducedMotion()) return;
+
+  const storytellingGroups = document.querySelectorAll('.storytelling-group');
+
+  storytellingGroups.forEach((group) => {
+    const section = group.closest('.section-project');
+    if (!section) return;
+
+    const projectDetails = group.querySelector('.project-details');
+    const ctaButton = group.querySelector('.cta-button');
+
+    // Create typing dots indicator
+    const typingDots = document.createElement('span');
+    typingDots.className = 'typing-dots';
+    typingDots.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+
+    // Add typing dots after project details
+    if (projectDetails) {
+      projectDetails.appendChild(typingDots);
+    }
+
+    // Set initial state
+    gsap.set(group, {
+      scale: 0.8,
+      y: 10,
+      opacity: 0,
+    });
+
+    if (projectDetails) {
+      gsap.set(projectDetails, {
+        x: 30,
+        opacity: 0,
+      });
+    }
+
+    if (ctaButton) {
+      gsap.set(ctaButton, {
+        x: 30,
+        opacity: 0,
+      });
+    }
+
+    gsap.set(typingDots, {
+      opacity: 0,
+    });
+
+    // Create timeline with ScrollTrigger and 1 second delay
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 60%',
+        toggleActions: 'play none none reverse',
+        markers: false,
+      },
+      delay: 1, // 1 second delay before animation starts
+    });
+
+    // 1. Bubble pops in (slower)
+    timeline.to(group, {
+      scale: 1,
+      y: 0,
+      opacity: 1,
+      duration: 0.9,
+      ease: 'back.out(1.7)',
+    });
+
+    // 2. Project details slide in from right (slower)
+    if (projectDetails) {
+      timeline.to(projectDetails, {
+        x: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: 'power2.out',
+      }, '-=0.4');
+    }
+
+    // 3. CTA button slides in from right (slower)
+    if (ctaButton) {
+      timeline.to(ctaButton, {
+        x: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: 'power2.out',
+      }, '-=0.8');
+    }
+
+    // 4. Typing dots fade in slowly (slower)
+    timeline.to(typingDots, {
+      opacity: 1,
+      duration: 1.8,
+      ease: 'power1.inOut',
+    }, '+=0.5');
+
+    // 5. Start very slow pulsing shadow loop (12 seconds per cycle - 2x longer)
+    timeline.to(group, {
+      boxShadow: '-4px 4px 20px rgba(57, 128, 170, 0.3), -2px 2px 8px rgba(57, 128, 170, 0.2)',
+      duration: 6, // 6 seconds each way = 12 second full cycle
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1, // Infinite loop
+    }, '+=0.5');
+  });
+
+  console.log('✓ Chatbot storytelling animations initialized');
+}
+
+/**
  * Initialize all card enhancements
  */
 export function initAllCardEnhancements() {
@@ -489,6 +601,7 @@ export function initAllCardEnhancements() {
   // initStaggeredReveal();
   initMetricCounters();
   initColorTransitions();
+  initStorytellingAnimation();
   // Disabled: Tag typewriter animation
   // initCodeSnippetTags();
 

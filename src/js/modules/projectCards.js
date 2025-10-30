@@ -250,10 +250,10 @@ function createTopNavigation(prevProject) {
   }
 
   return `
-    <div class="project-nav top">
-      <h3 class="nav-title">↑ ${prevProject.title}</h3>
-      <p class="nav-subtitle">${prevProject.subtitle}</p>
-    </div>
+    <button class="project-nav top project-nav-button">
+      <h3 class="nav-title">↑ Previous</h3>
+      <p class="nav-subtitle">${prevProject.title}</p>
+    </button>
   `;
 }
 
@@ -269,8 +269,8 @@ function createBottomNavigation(nextProject) {
 
   return `
     <button class="project-nav bottom project-nav-button">
-      <h3 class="nav-title">↓ ${nextProject.title}</h3>
-      <p class="nav-subtitle">${nextProject.subtitle}</p>
+      <h3 class="nav-title">↓ Next</h3>
+      <p class="nav-subtitle">${nextProject.title}</p>
     </button>
   `;
 }
