@@ -1,4 +1,6 @@
 @use 'variables' as *;
+@use 'breakpoints' as *;
+
 
 // Scroll Hint with ripple animation
 .scroll-hint {
@@ -63,6 +65,11 @@
       animation-play-state: paused;
     }
   }
+  
+  @include breakpoint(mobile) {
+  bottom: -5vh;
+  transform: scale(0.75) translateX(-50%);
+}
 }
 
 .scroll-hint-inner {
@@ -172,3 +179,4 @@
     transform: scale(1);
   }
 }
+

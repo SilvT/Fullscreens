@@ -37,7 +37,7 @@ body {
   position: relative;
   height: 100vh; // Full viewport height for scroll snapping
 
-  // Native CSS scroll snap (like CodePen)
+  // Native CSS scroll snap 
   scroll-snap-align: start;
   scroll-snap-stop: always;
 
@@ -210,6 +210,7 @@ body {
 
     .rest-name {
       font-weight: $font-weight-regular;
+      font-size: $font-size-xl;
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       letter-spacing: 0.05rem;
     }
@@ -366,6 +367,11 @@ body {
       stroke-width: 0.4;
   }
 }
+
+    @include breakpoint(mobile) {
+      top: 20vh;
+    }
+
 }
 
 // Note: Scroll Hint styles moved to scroll-hint.scss
@@ -427,7 +433,7 @@ body {
 
     @include breakpoint(mobile) {
       font-size: 0.9rem;
-      line-height: 120%;
+      line-height: 130%;
     }
   }
 }
