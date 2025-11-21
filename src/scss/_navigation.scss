@@ -3,6 +3,7 @@
 // ============================================
 
 @use 'variables' as *;
+@use 'breakpoints' as *;
 
 // Sticky Navigation
 .top-nav {
@@ -127,10 +128,10 @@
 // Responsive Navigation
 // ============================================
 
-@media (max-width: 1200px) {
+@include breakpoint(desktop) {
   .top-nav {
     .nav-wrapper {
-      padding: 8px 40px 20px;
+      padding: 8px 40px 24px;
     }
 
     .nav-item {
@@ -149,17 +150,16 @@
   }
 }
 
-@media (max-width: 768px) {
+@include breakpoint(mobile) {
   .top-nav {
     .nav-wrapper {
-      padding: 8px 24px 16px;
-      flex-direction: row;
-      align-items: center;
+      padding: 8px 20px 16px;
     }
 
     .navigation {
       width: auto;
-      gap: 8px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .nav-item {
@@ -182,7 +182,7 @@
 // Reduced Motion (Accessibility)
 // ============================================
 
-@media (prefers-reduced-motion: reduce) {
+@include reduced-motion {
   .top-nav {
     transition: none;
   }

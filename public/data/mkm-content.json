@@ -1,497 +1,451 @@
 {
   "subtitle": "From Mid UI to Product Design Lead: Building Enterprise Software in a Startup",
-  "company": "Senapt LTD",
   "jobTitle": "Solo Product Designer → Product Lead",
-  "year": "2024 - 2025",
   "duration": "18 months",
-  "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "0→1", "Co-ownership"],
-  "storyTeaser": {
-    "text": "Seven months in, I found myself presenting a design system to a room full of engineers. This wasn't in the job description for Mid UI Designer.",
-    "cta": "Read how I went from UI executor to co-owning product strategy"
-  },
   "detailMetrics": [
-    { "icon": "iconoir:collapse", "value": "4 → 1", "label": "Departments unified into single platform" },
-    { "icon": "iconoir:frame-select", "value": "400+", "label": "Design tokens created from scratch" },
-    { "icon": "iconoir:component", "value": "200+", "label": "Components built systematically" },
-    { "icon": "iconoir:clock", "value": "90%", "label": "QA cycles reduced through design systems" },
-    { "icon": "iconoir:community", "value": "5", "label": "Designers trained in systems thinking" },
-    { "icon": "iconoir:trophy", "value": "Design Ops", "label": "New team created (first in company)" }
-  ],
-  "contentBlocks": [
-    {
-      "type": "story-hook",
-      "quote": "How did I get here? This definitely wasn't in the job description for Mid UI Designer.",
-      "context": "Seven months into my first corporate design role, I found myself standing in front of a room full of engineers, presenting a design system architecture I'd built from scratch.",
-      "image": "/mkm/presenting-moment.jpg"
-    },
-    {
-      "type": "before-after-comparison",
-      "heading": "From Manual Chaos to Unified Platform",
-      "before": {
-        "label": "The Reality I Walked Into",
-        "items": [
-          "Marketing tracking everything via manual Excel sheets",
-          "6+ fragmented lead entry points (events, social, website, telesales)",
-          "Social media complaints not reaching Customer Care",
-          "No file naming systems, no Figma libraries",
-          "No systematic handoffs or QA system",
-          "Multiple dev languages with no standardisation"
-        ],
-        "image": "/mkm/chaos-state.png"
+      { "icon": "iconoir:collapse", "value": "4 → 1", "label": "Departments unified into single platform" },
+      { "icon": "iconoir:frame-select", "value": "400+", "label": "Design tokens created from scratch" },
+      { "icon": "iconoir:component", "value": "200+", "label": "Components built systematically" },
+      { "icon": "iconoir:clock", "value": "90%", "label": "QA cycles reduced through design systems" },
+      { "icon": "iconoir:community", "value": "5", "label": "Designers trained in systems thinking" },
+      { "icon": "iconoir:trophy", "value": "Design Ops", "label": "New team created (first in company)" }
+    ],
+    
+    "contentBlocks": [
+      {
+        "type": "story-hook",
+        "quote": "How did I get here? This definitely wasn't in the job description for Mid UI Designer.",
+        "context": "Seven months in, I found myself presenting, not just a complex UI dashboard app, but a design system to a room full of engineers. This wasn't in the job description for Mid UI Designer.",
+        "image": "/mkm/presenting-moment.jpg"
       },
-      "after": {
-        "label": "What We Built in 18 Months",
-        "items": [
-          "Unified CRM across 4 departments",
-          "Automated Facebook-to-CRM complaint pipeline",
-          "400+ design tokens, 200+ components",
-          "Real-time data visibility replacing manual workflows",
-          "90% fewer QA cycles through design systems",
-          "Design Ops team created, 5 designers trained"
-        ],
-        "image": "/mkm/unified-platform.png"
-      }
-    },
-    {
-      "type": "two-column-with-sidebar",
-      "left": [
-        {
-          "heading": "The Brief (20-minute meeting + 2 CEO sketches)",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "class": "callout",
-              "text": "Create a unified platform for all marketing data so we could understand spending effectiveness and support 50% projected customer growth."
-            },
-            {
-              "type": "paragraph",
-              "text": "That was it. No product manager. No established patterns. No component library to work from. Just me, a backend developer, and a two-week deadline for the first prototype."
-            }
-          ]
-        },
-        {
-          "heading": "The Constraints",
-          "blocks": [
-            {
-              "type": "list",
-              "style": "ul",
-              "items": [
-                "Timeline: MVP in 18 months",
-                "Tech stack: JavaFX (zero prior experience)",
-                "No communication with Marketing dept initially",
-                "No clear MVP definition",
-                "No product manager, no UX department",
-                "Frontend developer +8 hours timezone away",
-                "Complex multi-source data integration"
-              ]
-            }
+      {
+        "type": "before-after-comparison",
+        "heading": "From Manual Chaos to Unified Platform",
+        "before": {
+          "label": "The Reality I Walked Into",
+          "items": [
+            "Marketing tracking everything via manual Excel sheets",
+            "6+ fragmented lead entry points (events, social, website, telesales)",
+            "Social media complaints not reaching Customer Care",
+            "No file naming systems, no Figma libraries",
+            "No systematic handoffs or QA system",
+            "Multiple dev languages with no standardisation"
           ],
-          "image": {
-            "src": "/mkm/team-structure-diagram.png",
-            "alt": "Small team structure",
-            "caption": "The team: 1 Backend Lead, 1 Frontend (remote), 1 Mid UI Designer (me)"
+          "image": "/mkm/chaos-state.png"
+        },
+        "after": {
+          "label": "What We Built in 18 Months",
+          "items": [
+            "Unified CRM across 4 departments",
+            "Automated Facebook-to-CRM complaint pipeline",
+            "400+ design tokens, 200+ components",
+            "Real-time data visibility replacing manual workflows",
+            "90% fewer QA cycles through design systems",
+            "Design Ops team created, 5 designers trained"
+          ],
+          "image": "/mkm/unified-platform.png"
+        }
+      },
+      
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "The Brief (20-minute meeting + 2 CEO sketches)",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "class": "callout",
+                "text": "Create a unified platform for all marketing data so we could understand spending effectiveness and support 50% projected customer growth."
+              },
+              {
+                "type": "paragraph",
+                "text": "That was it. No product manager. No established patterns. No component library to work from. Just me, a backend developer, and a two-week deadline for the first prototype."
+              }
+            ]
+          },
+          {
+            "heading": "The Constraints",
+            "blocks": [
+              {
+                "type": "list",
+                "style": "ul",
+                "items": [
+                  "Timeline: MVP in 18 months",
+                  "Tech stack: JavaFX (zero prior experience)",
+                  "No communication with Marketing dept initially",
+                  "No clear MVP definition",
+                  "No product manager, no UX department",
+                  "Frontend developer +8 hours timezone away",
+                  "Complex multi-source data integration"
+                ]
+              }
+            ],
+            "image": {
+              "src": "/mkm/team-structure-diagram.png",
+              "alt": "Small team structure",
+              "caption": "The team: 1 Backend Lead, 1 Frontend (remote), 1 Mid UI Designer (me)"
+            }
           }
-        }
-      ],
-      "sidebar": {
-        "Technical Stack": [
-          "JavaFX Desktop App",
-          "CRM Integration",
-          "Facebook API",
-          "Google Ads API",
-          "Real-time Dashboards"
         ],
-        "Team Evolution": [
-          "Month 1: 3 people",
-          "Month 4: + Backend specialist",
-          "Month 12: + Design Ops forming",
-          "Month 18: 5 designers trained"
-        ]
-      }
-    },
-    {
-      "type": "two-column-with-sidebar",
-      "left": [
-        {
-          "heading": "My Role: Co-Ownership Through Partnership",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "From day one, it was clear this wasn't a typical 'design the screens' project. The Backend Lead and I became de facto co-owners of the product, making strategic decisions together."
-            },
-            {
-              "type": "heading",
-              "level": "h4",
-              "text": "Our Collaboration Model"
-            },
-            {
-              "type": "paragraph",
-              "html": "Product Strategy & MVP Scoping: Jointly evaluated technical feasibility vs user needs. Backend assessed data availability and API constraints. I validated user value with Marketing Lead. Consensus-based decision making on what went in/out of scope."
-            },
-            {
-              "type": "paragraph",
-              "html": "Why This Worked: Backend Lead had a direct line to the CEO. Rather than compete for access, I leveraged this relationship—ensuring our co-owned decisions had clear technical backing when presented upward."
-            }
+        "sidebar": {
+          "Technical Stack": [
+            "JavaFX Desktop App",
+            "CRM Integration",
+            "Facebook API",
+            "Google Ads API",
+            "Real-time Dashboards"
           ],
-          "image": {
-            "src": "/mkm/collaboration-model.png",
-            "alt": "Collaboration framework",
-            "caption": "Decision framework: User needs → Marketing Lead | Feasibility → Backend Lead | Design approach → Me | Strategic buy-in → Backend + Me together"
+          "Team Evolution": [
+            "Month 1: 3 people",
+            "Month 4: + Backend specialist",
+            "Month 12: + Design Ops forming",
+            "Month 18: 5 designers trained"
+          ]
+        }
+      },
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "My Role: Co-Ownership Through Partnership",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "From day one, it was clear this wasn't a typical 'design the screens' project. The Backend Lead and I became de facto co-owners of the product, making strategic decisions together."
+              },
+              {
+                "type": "heading",
+                "level": "h4",
+                "text": "Our Collaboration Model"
+              },
+              {
+                "type": "paragraph",
+                "html": "Product Strategy & MVP Scoping: Jointly evaluated technical feasibility vs user needs. Backend assessed data availability and API constraints. I validated user value with Marketing Lead. Consensus-based decision making on what went in/out of scope."
+              },
+              {
+                "type": "paragraph",
+                "html": "Why This Worked: Backend Lead had a direct line to the CEO. Rather than compete for access, I leveraged this relationship—ensuring our co-owned decisions had clear technical backing when presented upward."
+              }
+            ],
+            "image": {
+              "src": "/mkm/collaboration-model.png",
+              "alt": "Collaboration framework",
+              "caption": "Decision framework: User needs → Marketing Lead | Feasibility → Backend Lead | Design approach → Me | Strategic buy-in → Backend + Me together"
+            }
+          },
+          {
+            "heading": "My Validation Network",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Given the CEO's limited availability (he cared about results, not journey), I built validation through peer relationships:"
+              },
+              {
+                "type": "list",
+                "style": "ul",
+                "items": [
+                  "Marketing Lead: Domain expert and primary user—validated workflows, terminology, feature value",
+                  "Backend Lead: Technical feasibility, data architecture alignment, strategic partnership",
+                  "Frontend Developer: Async handoff validation, implementation feasibility",
+                  "CEO: Results-based check-ins, strategic buy-in moments"
+                ]
+              }
+            ]
           }
-        },
-        {
-          "heading": "My Validation Network",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Given the CEO's limited availability (he cared about results, not journey), I built validation through peer relationships:"
-            },
-            {
-              "type": "list",
-              "style": "ul",
-              "items": [
-                "Marketing Lead: Domain expert and primary user—validated workflows, terminology, feature value",
-                "Backend Lead: Technical feasibility, data architecture alignment, strategic partnership",
-                "Frontend Developer: Async handoff validation, implementation feasibility",
-                "CEO: Results-based check-ins, strategic buy-in moments"
-              ]
-            }
+        ],
+        "sidebar": {
+          "Decision Framework": [
+            "User needs → Marketing Lead",
+            "Feasibility → Backend Lead",
+            "Design approach → Me",
+            "Strategic buy-in → Backend + Me",
+            "Results showcase → CEO"
+          ],
+          "Role Evolution": [
+            "Month 1-3: Mid UI Designer",
+            "Month 4-6: De facto PM",
+            "Month 7: Presenting to engineers",
+            "Month 12: Mentoring team",
+            "Month 18: Design Ops member"
           ]
         }
-      ],
-      "sidebar": {
-        "Decision Framework": [
-          "User needs → Marketing Lead",
-          "Feasibility → Backend Lead",
-          "Design approach → Me",
-          "Strategic buy-in → Backend + Me",
-          "Results showcase → CEO"
-        ],
-        "Role Evolution": [
-          "Month 1-3: Mid UI Designer",
-          "Month 4-6: De facto PM",
-          "Month 7: Presenting to engineers",
-          "Month 12: Mentoring team",
-          "Month 18: Design Ops member"
-        ]
-      }
-    },
-    {
-      "type": "timeline-process",
-      "heading": "The Journey: Building the Plane While Flying It",
-      "phases": [
-        {
-          "title": "Foundation",
-          "period": "Months 1-3",
-          "highlights": [
-            "Market competitor research (self-driven + Marketing Lead input)",
-            "Learning marketing terminology via AI and conversations",
-            "Building information architecture with Backend Lead",
-            "Got pushback from CEO 2-3 times on visual direction",
-            "Started Confluence documentation (first in company history)"
-          ],
-          "icon": "iconoir:learning",
-          "outcome": "Learned: CEO doesn't want process involvement, just results approval"
-        },
-        {
-          "title": "Survival Mode",
-          "period": "Months 3-5",
-          "highlights": [
-            "Frontend dev brought in and asked to start immediately",
-            "Still figuring out IA with Backend while Frontend waited",
-            "Building component library from scratch in parallel",
-            "Creating user flows with incomplete requirements",
-            "Invented async collaboration system (+8 hour timezone gap)"
-          ],
-          "icon": "iconoir:warning-triangle",
-          "outcome": "This was sink or swim. Partnered deeply with Backend, validated with Marketing Lead continuously"
-        },
-        {
-          "title": "Strategic Influence",
-          "period": "Months 6-12",
-          "highlights": [
-            "Facebook API approval first try (design met their requirements from the start)",
-            "Invented FB-to-CRM complaint pipeline (30% inbox reduction)",
-            "Design system proving value through 90% fewer QA cycles",
-            "Presenting at company developer conference",
-            "CEO buy-in for design system expansion (month 15)"
-          ],
-          "icon": "iconoir:trophy",
-          "outcome": "Transitioned from executor to strategic partner influencing roadmap"
-        }
-      ]
-    },
-    {
-      "type": "key-insight",
-      "icon": "iconoir:light-bulb",
-      "title": "Strategic Decision: Design System First",
-      "insight": "Observed chaos across company projects and pitched a design system approach. CEO initially denied it. VP of Frontend tentatively approved. My response? Do it anyway and prove the value.",
-      "result": "By month 15, CEO approved design system expansion company-wide. Now serving multiple products with 400+ tokens and 200+ components."
-    },
-    {
-      "type": "two-column-with-sidebar",
-      "left": [
-        {
-          "heading": "Key Win: Facebook API Approval (First Try)",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "When tackling social media integration, Backend researched API limitations while I designed ideal user flows. We'd meet to reconcile: 'Facebook requires X for approval, which means we need Y in the design.'"
-            },
-            {
-              "type": "paragraph",
-              "html": "This back-and-forth happened before engineering started, saving weeks of rework."
-            },
-            {
-              "type": "paragraph",
-              "class": "callout",
-              "text": "Result: We got Facebook API approval first try—the design met their requirements because we'd built them in collaboratively from the start."
-            }
-          ],
-          "image": {
-            "src": "/mkm/facebook-integration-flow.png",
-            "alt": "Facebook integration flow",
-            "caption": "Facebook integration flow designed with API constraints from day one"
+      },
+      {
+        "type": "timeline-process",
+        "heading": "The Journey: Building the Plane While Flying It",
+        "phases": [
+          {
+            "title": "Foundation",
+            "period": "Months 1-3",
+            "highlights": [
+              "Market competitor research (self-driven + Marketing Lead input)",
+              "Learning marketing terminology via AI and conversations",
+              "Building information architecture with Backend Lead",
+              "Got pushback from CEO 2-3 times on visual direction",
+              "Started Confluence documentation (first in company history)"
+            ],
+            "icon": "iconoir:learning",
+            "outcome": "Learned: CEO doesn't want process involvement, just results approval"
+          },
+          {
+            "title": "Survival Mode",
+            "period": "Months 3-5",
+            "highlights": [
+              "Frontend dev brought in and asked to start immediately",
+              "Still figuring out IA with Backend while Frontend waited",
+              "Building component library from scratch in parallel",
+              "Creating user flows with incomplete requirements",
+              "Invented async collaboration system (+8 hour timezone gap)"
+            ],
+            "icon": "iconoir:warning-triangle",
+            "outcome": "This was sink or swim. Partnered deeply with Backend, validated with Marketing Lead continuously"
+          },
+          {
+            "title": "Strategic Influence",
+            "period": "Months 6-12",
+            "highlights": [
+              "Facebook API approval first try (design met their requirements from the start)",
+              "Invented FB-to-CRM complaint pipeline (30% inbox reduction)",
+              "Design system proving value through 90% fewer QA cycles",
+              "Presenting at company developer conference",
+              "CEO buy-in for design system expansion (month 15)"
+            ],
+            "icon": "iconoir:trophy",
+            "outcome": "Transitioned from executor to strategic partner influencing roadmap"
           }
-        }
-      ],
-      "sidebar": {
-        "Collaboration Approach": [
-          "Backend researched API limits",
-          "I designed ideal flows",
-          "Reconciled before build",
-          "Avoided post-dev rework"
         ]
-      }
-    },
-    {
-      "type": "text-image-split",
-      "layout": "text-left",
-      "heading": "Key Win: The Feature I Invented",
-      "text": "Through validation sessions with Marketing Lead, I uncovered a recurring pain point: Social Media Manager spent huge amounts of time dealing with customer complaints via Facebook messages, playing telephone between customers and Customer Care department.\n\nMy Proposal: FB-to-CRM Complaint Pipeline\n\n1. Social Media Manager flags a conversation as 'Assistance Required'\n2. Chatbot scans messages for keywords and account numbers\n3. System automatically matches account to customer profile in CRM\n4. Flagged conversation appears in Customer Care's dashboard\n5. Customer Care handles complaint with full context\n\nCross-Team Impact:\n• Social Media Manager: 30% inbox reduction, focus on actual social media work\n• Customer Care: Centralised complaint tracking, automatic customer profile matching\n• Business: Clear visibility into customer pain points, improved care perception",
-      "image": "/mkm/complaint-routing-diagram.png",
-      "alt": "FB-to-CRM complaint routing system",
-      "caption": "Automated complaint routing saving 30% of Social Media Manager's time"
-    },
-    {
-      "type": "key-insight",
-      "icon": "iconoir:trophy",
-      "title": "Design System Adoption: Proving Value",
-      "insight": "I wanted to pitch design systems properly with presentations and buy-in meetings. CEO didn't care about process. So I built it, proved it worked through 90% QA reduction, and then got approval to scale it.",
-      "result": "Design system now serves multiple products. Design Ops team created. 5 designers trained in systems approach. Product showcased at developer conferences."
-    },
-    {
-      "type": "metrics-inline",
-      "heading": "The Results",
-      "metrics": [
-        {
-          "icon": "iconoir:group",
-          "value": "50%",
-          "label": "Customer growth support"
-        },
-        {
-          "icon": "iconoir:union",
-          "value": "4 → 1",
-          "label": "Departments unified"
-        },
-        {
-          "icon": "iconoir:clock",
-          "value": "90%",
-          "label": "QA time reduction"
-        },
-        {
-          "icon": "iconoir:frame-select",
-          "value": "400+",
-          "label": "Design tokens"
-        },
-        {
-          "icon": "iconoir:component",
-          "value": "200+",
-          "label": "Components built"
-        },
-        {
-          "icon": "iconoir:community",
-          "value": "5",
-          "label": "Designers trained"
-        },
-        {
-          "icon": "iconoir:mail-opened",
-          "value": "30%",
-          "label": "Social inbox reduction"
-        },
-        {
-          "icon": "iconoir:timer",
-          "value": "50%",
-          "label": "Data collection time saved"
-        }
-      ]
-    },
-    {
-      "type": "two-column-with-sidebar",
-      "left": [
-        {
-          "heading": "Product Status & Impact",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "html": "Product Status: Ready for production user testing (not yet live)"
-            },
-            {
-              "type": "paragraph",
-              "html": "Projected Impact:"
-            },
-            {
-              "type": "list",
-              "style": "ul",
-              "items": [
-                "30% Social Media Manager inbox reduction (via complaint routing automation)",
-                "~50% time savings on data collection (Facebook and Google Ads auto-feed vs manual Excel)",
-                "Unified visibility across previously siloed digital and traditional marketing",
-                "Foundation for 50% customer growth support"
-              ]
-            },
-            {
-              "type": "paragraph",
-              "html": "CEO Feedback:"
-            },
-            {
-              "type": "list",
-              "style": "ul",
-              "items": [
-                "Congratulated on design-to-dev effectiveness despite async deliveries",
-                "Product featured in investor conversations",
-                "Approved design system expansion to other products",
-                "Showcased product at company booth during developer events"
-              ]
+      },
+      {
+        "type": "key-insight",
+        "icon": "iconoir:light-bulb",
+        "title": "Strategic Decision: Design System First",
+        "insight": "Observed chaos across company projects and pitched a design system approach. CEO initially denied it. VP of Frontend tentatively approved. My response? Do it anyway and prove the value.",
+        "result": "By month 15, CEO approved design system expansion company-wide. Now serving multiple products with 400+ tokens and 200+ components."
+      },
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "Key Win: Facebook API Approval (First Try)",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "When tackling social media integration, Backend researched API limitations while I designed ideal user flows. We'd meet to reconcile: 'Facebook requires X for approval, which means we need Y in the design.'"
+              },
+              {
+                "type": "paragraph",
+                "html": "This back-and-forth happened before engineering started, saving weeks of rework."
+              },
+              {
+                "type": "paragraph",
+                "class": "callout",
+                "text": "Result: We got Facebook API approval first try—the design met their requirements because we'd built them in collaboratively from the start."
+              }
+            ],
+            "image": {
+              "src": "/mkm/facebook-integration-flow.png",
+              "alt": "Facebook integration flow",
+              "caption": "Facebook integration flow designed with API constraints from day one"
             }
-          ]
-        }
-      ],
-      "sidebar": {
-        "Organisational Metrics": [
-          "Design System: None → 400+ tokens",
-          "Documentation: None → Confluence standard",
-          "Design Team: Isolated → Collaborative",
-          "QA Efficiency: Baseline → 90% improvement",
-          "Design Ops: None → Team created",
-          "Strategic Influence: Executor → Roadmap partner"
-        ]
-      }
-    },
-    {
-      "type": "two-column-with-sidebar",
-      "left": [
-        {
-          "heading": "What I Learned: Growing Into the Role",
-          "blocks": [
-            {
-              "type": "heading",
-              "level": "h4",
-              "text": "1. Partnership Over Hierarchy"
-            },
-            {
-              "type": "paragraph",
-              "text": "The strongest validation doesn't come from executives—it comes from the people you work with daily. Building deep collaboration with Backend made us both more effective. Learning to leverage his relationship with CEO rather than competing for access was strategic."
-            },
-            {
-              "type": "heading",
-              "level": "h4",
-              "text": "2. Results Speak Louder Than Process"
-            },
-            {
-              "type": "paragraph",
-              "text": "I wanted to pitch design systems properly, with presentations and buy-in meetings. CEO didn't care. So I built it, proved it worked, and then got approval to scale it. Sometimes you have to show, not tell."
-            },
-            {
-              "type": "heading",
-              "level": "h4",
-              "text": "3. Constraints Breed Innovation"
-            },
-            {
-              "type": "paragraph",
-              "text": "+8 hour timezone difference and language barriers could have killed the project. Instead, we invented an annotation and prototype system that worked so well it reduced QA by 90%. The constraint forced us to communicate better than we would have otherwise."
-            },
-            {
-              "type": "heading",
-              "level": "h4",
-              "text": "4. Domain Knowledge is Power"
-            },
-            {
-              "type": "paragraph",
-              "text": "Learning marketing terminology, workflows, and pain points made me a strategic partner, not just a service provider. I could propose features (like the FB-to-CRM pipeline) because I understood the problem space deeply."
-            },
-            {
-              "type": "heading",
-              "level": "h4",
-              "text": "5. Systems Thinking Scales"
-            },
-            {
-              "type": "paragraph",
-              "text": "Every component I built systematically saved hours later. Every token properly structured meant consistency without rework. The upfront investment in design systems paid off exponentially—and became the foundation for the entire company's design practice."
-            },
-            {
-              "type": "heading",
-              "level": "h4",
-              "text": "6. You Don't Need a Title to Lead"
-            },
-            {
-              "type": "paragraph",
-              "text": "I was hired as Mid UI. I ended up co-owning product strategy, creating design infrastructure, presenting to engineers, and mentoring the team. Leadership isn't about job title—it's about stepping up when there's a gap and proving you can fill it."
-            }
-          ]
-        },
-        {
-          "heading": "What I'd Do Differently",
-          "blocks": [
-            {
-              "type": "list",
-              "style": "ul",
-              "items": [
-                "More structured user validation earlier: Push harder for at least lightweight usability testing with 2-3 actual users per major feature release",
-                "Set clearer MVP boundaries upfront: The 'we'll figure it out' approach worked but caused stress. Next time I'd push for a written feature matrix in month 1",
-                "Document design decisions in real-time: Track more 'why' behind design choices for future me and future designers"
-              ]
-            }
-          ]
-        }
-      ],
-      "sidebar": {
-        "Skills Demonstrated": [
-          "Product: User research, IA, MVP scoping, strategic thinking",
-          "Design Systems: Token architecture, component dev, automation",
-          "Collaboration: Engineering partnership, async remote work, stakeholder management",
-          "Leadership: Leading without authority, culture change, mentorship, scaling practice"
+          }
         ],
-        "Technical Deliverables": [
-          "400+ tokens (Core/Semantic/Post-semantic/Component)",
-          "200+ components with variants and states",
-          "40+ production screens across 5 sections",
-          "Confluence project hub (first in company)",
-          "Validated async collaboration system",
-          "Design-to-dev pipeline (90% QA reduction)"
+        "sidebar": {
+          "Collaboration Approach": [
+            "Backend researched API limits",
+            "I designed ideal flows",
+            "Reconciled before build",
+            "Avoided post-dev rework"
+          ]
+        }
+      },
+      
+      {
+        "type": "text-image-split",
+        "layout": "text-left",
+        "heading": "Key Win: The Feature I Invented",
+        "text": "Through validation sessions with Marketing Lead, I uncovered a recurring pain point: Social Media Manager spent huge amounts of time dealing with customer complaints via Facebook messages, playing telephone between customers and Customer Care department.\n\nMy Proposal: FB-to-CRM Complaint Pipeline\n\n1. Social Media Manager flags a conversation as 'Assistance Required'\n2. Chatbot scans messages for keywords and account numbers\n3. System automatically matches account to customer profile in CRM\n4. Flagged conversation appears in Customer Care's dashboard\n5. Customer Care handles complaint with full context\n\nCross-Team Impact:\n• Social Media Manager: 30% inbox reduction, focus on actual social media work\n• Customer Care: Centralised complaint tracking, automatic customer profile matching\n• Business: Clear visibility into customer pain points, improved care perception",
+        "image": "/mkm/complaint-routing-diagram.png",
+        "alt": "FB-to-CRM complaint routing system",
+        "caption": "Automated complaint routing saving 30% of Social Media Manager's time"
+      },
+      
+      {
+        "type": "key-insight",
+        "icon": "iconoir:trophy",
+        "title": "Design System Adoption: Proving Value",
+        "insight": "I wanted to pitch design systems properly with presentations and buy-in meetings. CEO didn't care about process. So I built it, proved it worked through 90% QA reduction, and then got approval to scale it.",
+        "result": "Design system now serves multiple products. Design Ops team created. 5 designers trained in systems approach. Product showcased at developer conferences."
+      },
+      {
+        "type": "metrics-inline",
+        "heading": "The Results",
+        "metrics": [
+          { "icon": "iconoir:group", "value": "50%", "label": "Customer growth support" },
+          { "icon": "iconoir:union", "value": "4 → 1", "label": "Departments unified" },
+          { "icon": "iconoir:clock", "value": "90%", "label": "QA time reduction" },
+          { "icon": "iconoir:frame-select", "value": "400+", "label": "Design tokens" },
+          { "icon": "iconoir:component", "value": "200+", "label": "Components built" },
+          { "icon": "iconoir:community", "value": "5", "label": "Designers trained" },
+          { "icon": "iconoir:mail-opened", "value": "30%", "label": "Social inbox reduction" },
+          { "icon": "iconoir:timer", "value": "50%", "label": "Data collection time saved" }
+        ]
+      },
+      
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "Product Status & Impact",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "html": "Product Status: Ready for production user testing (not yet live)"
+              },
+              {
+                "type": "paragraph",
+                "html": "Projected Impact:"
+              },
+              {
+                "type": "list",
+                "style": "ul",
+                "items": [
+                  "30% Social Media Manager inbox reduction (via complaint routing automation)",
+                  "~50% time savings on data collection (Facebook and Google Ads auto-feed vs manual Excel)",
+                  "Unified visibility across previously siloed digital and traditional marketing",
+                  "Foundation for 50% customer growth support"
+                ]
+              },
+              {
+                "type": "paragraph",
+                "html": "CEO Feedback:"
+              },
+              {
+                "type": "list",
+                "style": "ul",
+                "items": [
+                  "Congratulated on design-to-dev effectiveness despite async deliveries",
+                  "Product featured in investor conversations",
+                  "Approved design system expansion to other products",
+                  "Showcased product at company booth during developer events"
+                ]
+              }
+            ]
+          }
+        ],
+        "sidebar": {
+          "Organisational Metrics": [
+            "Design System: None → 400+ tokens",
+            "Documentation: None → Confluence standard",
+            "Design Team: Isolated → Collaborative",
+            "QA Efficiency: Baseline → 90% improvement",
+            "Design Ops: None → Team created",
+            "Strategic Influence: Executor → Roadmap partner"
+          ]
+        }
+      },
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "What I Learned: Growing Into the Role",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": "h4",
+                "text": "1. Partnership Over Hierarchy"
+              },
+              {
+                "type": "paragraph",
+                "text": "The strongest validation doesn't come from executives—it comes from the people you work with daily. Building deep collaboration with Backend made us both more effective. Learning to leverage his relationship with CEO rather than competing for access was strategic."
+              },
+              {
+                "type": "heading",
+                "level": "h4",
+                "text": "2. Results Speak Louder Than Process"
+              },
+              {
+                "type": "paragraph",
+                "text": "I wanted to pitch design systems properly, with presentations and buy-in meetings. CEO didn't care. So I built it, proved it worked, and then got approval to scale it. Sometimes you have to show, not tell."
+              },
+              {
+                "type": "heading",
+                "level": "h4",
+                "text": "3. Constraints Breed Innovation"
+              },
+              {
+                "type": "paragraph",
+                "text": "+8 hour timezone difference and language barriers could have killed the project. Instead, we invented an annotation and prototype system that worked so well it reduced QA by 90%. The constraint forced us to communicate better than we would have otherwise."
+              },
+              {
+                "type": "heading",
+                "level": "h4",
+                "text": "4. Domain Knowledge is Power"
+              },
+              {
+                "type": "paragraph",
+                "text": "Learning marketing terminology, workflows, and pain points made me a strategic partner, not just a service provider. I could propose features (like the FB-to-CRM pipeline) because I understood the problem space deeply."
+              },
+              {
+                "type": "heading",
+                "level": "h4",
+                "text": "5. Systems Thinking Scales"
+              },
+              {
+                "type": "paragraph",
+                "text": "Every component I built systematically saved hours later. Every token properly structured meant consistency without rework. The upfront investment in design systems paid off exponentially—and became the foundation for the entire company's design practice."
+              },
+              {
+                "type": "heading",
+                "level": "h4",
+                "text": "6. You Don't Need a Title to Lead"
+              },
+              {
+                "type": "paragraph",
+                "text": "I was hired as Mid UI. I ended up co-owning product strategy, creating design infrastructure, presenting to engineers, and mentoring the team. Leadership isn't about job title—it's about stepping up when there's a gap and proving you can fill it."
+              }
+            ]
+          },
+          {
+            "heading": "What I'd Do Differently",
+            "blocks": [
+              {
+                "type": "list",
+                "style": "ul",
+                "items": [
+                  "More structured user validation earlier: Push harder for at least lightweight usability testing with 2-3 actual users per major feature release",
+                  "Set clearer MVP boundaries upfront: The 'we'll figure it out' approach worked but caused stress. Next time I'd push for a written feature matrix in month 1",
+                  "Document design decisions in real-time: Track more 'why' behind design choices for future me and future designers"
+                ]
+              }
+            ]
+          }
+        ],
+        "sidebar": {
+          "Skills Demonstrated": [
+            "Product: User research, IA, MVP scoping, strategic thinking",
+            "Design Systems: Token architecture, component dev, automation",
+            "Collaboration: Engineering partnership, async remote work, stakeholder management",
+            "Leadership: Leading without authority, culture change, mentorship, scaling practice"
+          ],
+          "Technical Deliverables": [
+            "400+ tokens (Core/Semantic/Post-semantic/Component)",
+            "200+ components with variants and states",
+            "40+ production screens across 5 sections",
+            "Confluence project hub (first in company)",
+            "Validated async collaboration system",
+            "Design-to-dev pipeline (90% QA reduction)"
+          ]
+        }
+      },
+      {
+        "type": "image-grid",
+        "columns": 3,
+        "images": [
+          { "src": "/mkm/dashboard-final.png", "alt": "Main dashboard", "caption": "Unified dashboard bringing all marketing data together" },
+          { "src": "/mkm/design-system-tokens.png", "alt": "Design system tokens", "caption": "400+ tokens structured systematically" },
+          { "src": "/mkm/component-library.png", "alt": "Component library", "caption": "200+ components serving multiple products" }
         ]
       }
-    },
-    {
-      "type": "image-grid",
-      "columns": 3,
-      "images": [
-        {
-          "src": "/mkm/dashboard-final.png",
-          "alt": "Main dashboard",
-          "caption": "Unified dashboard bringing all marketing data together"
-        },
-        {
-          "src": "/mkm/design-system-tokens.png",
-          "alt": "Design system tokens",
-          "caption": "400+ tokens structured systematically"
-        },
-        {
-          "src": "/mkm/component-library.png",
-          "alt": "Component library",
-          "caption": "200+ components serving multiple products"
-        }
-      ]
-    }
-  ]
+    ]
 }

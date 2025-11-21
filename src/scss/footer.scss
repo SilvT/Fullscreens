@@ -1,4 +1,6 @@
 @use 'variables' as *;
+@use 'breakpoints' as *;
+
 .contact-sect {
   position: relative;
   width: 100%;
@@ -79,7 +81,7 @@
 }
 
 // Responsive adjustments
-@media (max-width: 1200px) {
+@include breakpoint(desktop) {
   .contact-sect__content {
     padding: 80px;
   }
@@ -90,7 +92,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@include breakpoint(mobile) {
   .contact-sect__content {
     padding: 40px;
     justify-content: flex-start;
@@ -111,7 +113,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@include breakpoint(small-mobile) {
   .contact-sect__content {
     padding: 20px;
   }

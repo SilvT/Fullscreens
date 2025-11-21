@@ -1,0 +1,85 @@
+// ============================================================================
+// BREAKPOINTS MIXIN
+// ============================================================================
+// Consistent breakpoint management for responsive design
+// Usage: @include breakpoint(tablet) { ... }
+
+@use 'sass:map';
+
+// Breakpoint values
+$breakpoints: (
+  'small-mobile': 480px,
+  'mobile': 768px,
+  'tablet': 1024px,
+  'desktop': 1200px,
+  'laptop': 1728px,
+  'large-desktop': 1750px
+);
+
+// Breakpoint mixin - mobile-first (min-width) or desktop-first (max-width)
+@mixin breakpoint($size, $direction: 'max') {
+  @if map.has-key($breakpoints, $size) {
+    $breakpoint: map.get($breakpoints, $size);
+
+    @if $direction == 'max' {
+      @media (max-width: $breakpoint) {
+        @content;
+      }
+    } @else if $direction == 'min' {
+      @media (min-width: $breakpoint) {
+        @content;
+      }
+    }
+  } @else {
+    @warn "Breakpoint '#{$size}' not found in $breakpoints map.";
+  }
+}
+
+// Specialized media query mixins
+@mixin touch-device {
+  @media (pointer: coarse) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+@mixin high-contrast {
+  @media (prefers-contrast: high) {
+    @content;
+  }
+}
+
+@mixin print {
+  @media print {
+    @content;
+  }
+}
+
+// ============================================================================
+// USAGE EXAMPLES
+// ============================================================================
+//
+// Desktop-first (max-width - default):
+// @include breakpoint(mobile) {
+//   font-size: 16px;
+// }
+//
+// Mobile-first (min-width):
+// @include breakpoint(large-desktop, min) {
+//   font-size: 24px;
+// }
+//
+// Touch devices:
+// @include touch-device {
+//   min-height: 44px;
+// }
+//
+// Reduced motion:
+// @include reduced-motion {
+//   animation: none;
+// }

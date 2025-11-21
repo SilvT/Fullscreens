@@ -7,7 +7,7 @@
     "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "0→1", "Co-ownership"],
     "cardOverview": "Built from scratch to unify fragmented marketing operations across 4 departments, replacing manual Excel workflows with real-time data visibility. Grew from Mid UI Designer to co-owning product strategy and creating the company's first Design Ops team.",
     "storyTeaser": {
-      "text": "Seven months in, I found myself presenting a design system to a room full of engineers. This wasn't in the job description for Mid UI Designer.",
+    "text": "Seven months in, I found myself presenting, not just a complex UI dashboard app, but a design system to a room full of engineers. This wasn't in the job description for Mid UI Designer.",
       "cta": "Read how I went from UI executor to co-owning product strategy"
     },
     "heroImage": "/mkm/mkm-hero.png",
@@ -18,6 +18,32 @@
       { "icon": "iconoir:gym", "value": "75%", "label": "Reduced Manual work" }
     ],
     "contentFile": "/data/mkm-content.json"
+  },
+  "2": {
+    "title": "Design System from Scratch",
+    "shortSubtitle": "Building design infrastructure in an engineer-first startup with zero precedent",
+    "company": "Senapt LTD",
+    "year": "2024 - 2025",
+    "duration": "18 months",
+    "tags": ["Design Systems", "Token Architecture", "JavaFX", "GitHub Actions", "Async Collaboration"],
+    
+    "cardOverview": "Built a production-ready design system from scratch as a solo mid-level designer in an engineer-first startup. Solved JavaFX (zero references), 8-hour timezone gaps, and CEO resistance. Result: 90% QA reduction, company-wide adoption, and 1,920 hours saved through systematic reuse.",
+    
+    "storyTeaser": {
+      "text": "CEO rejected my design system pitch. So I built it anyway, proved it worked, and got him to mandate it company-wide 15 months later.",
+      "cta": "Read how I turned organisational resistance into strategic infrastructure"
+    },
+    
+    "heroImage": "/design-system/hero-token-architecture.png",
+    "theme": "green",
+    
+    "cardMetrics": [
+      { "icon": "iconoir:clock", "value": "90%", "label": "QA reduction" },
+      { "icon": "iconoir:frame-select", "value": "864", "label": "Production tokens" },
+      { "icon": "iconoir:component", "value": "40+", "label": "Components" },
+      { "icon": "ph:users-three", "value": "7", "label": "Projects adopted" }
+    ],
+    "contentFile": "/data/mkm-ds.json"
   },
   "5": {
     "title": "Marketing Management (OLD - DO NOT USE)",
@@ -195,7 +221,7 @@
       }
     ]
   },
-  "2": {
+  "6": {
     "title": "Marketing Management Platform – Design System",
     "subtitle": "Pioneering design systems in engineering-first environments",
     "company": "Senapt LTD",

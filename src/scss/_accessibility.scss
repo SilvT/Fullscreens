@@ -3,6 +3,7 @@
 // ============================================
 
 @use 'variables' as *;
+@use 'breakpoints' as *;
 
 // ============================================
 // Keyboard Focus States
@@ -54,7 +55,7 @@ select:focus-visible {
 // Reduced Motion (Accessibility)
 // ============================================
 
-@media (prefers-reduced-motion: reduce) {
+@include reduced-motion {
   *,
   *::before,
   *::after {
@@ -77,7 +78,7 @@ select:focus-visible {
 // High Contrast Mode Support
 // ============================================
 
-@media (prefers-contrast: high) {
+@include high-contrast {
   .nav-item:not(.active) {
     opacity: 0.6; // Slightly higher opacity for better contrast
   }
@@ -179,7 +180,7 @@ select:focus-visible {
 // Print Styles (Accessibility for print)
 // ============================================
 
-@media print {
+@include print {
   // Hide navigation and non-essential content
   .top-nav,
   .project-nav {

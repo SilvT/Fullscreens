@@ -1,0 +1,339 @@
+{    "contentBlocks": [
+      {
+  "type": "story-hook",
+  "quote": "The VP of Front-End just rejected my design system proposal. The CEO said 'products are working, this isn't a priority.' So I built it anyway.",
+  "context": "Fifteen months later, the CEO mandated implementation across all 7 company projects. Here's how I turned organisational resistance into strategic infrastructure.",
+  "image": "/design-system/github-action-moment.png"
+},
+{
+  "type": "before-after-comparison",
+  "heading": "From Design Chaos to Systematic Infrastructure",
+  "before": {
+    "label": "What I Walked Into",
+    "items": [
+      "4-5 QA cycles per design hand-off",
+      "No file organisation, naming conventions, or libraries",
+      "Zero design systems culture",
+      "JavaFX (zero design system references exist)",
+      "8-hour timezone gap with remote developer",
+      "CEO actively resistant to design systems"
+    ],
+    "image": "/design-system/before-chaos.png"
+  },
+  "after": {
+    "label": "What I Built in 18 Months",
+    "items": [
+      "864 production-ready tokens across 4 layers",
+      "40+ components with complete state coverage",
+      "GitHub Action automating Figma-to-JavaFX pipeline",
+      "90% QA reduction, 70% clean hand-offs",
+      "1,920 hours saved through component reuse",
+      "Company-wide adoption across 7 projects"
+    ],
+    "image": "/design-system/after-system.png"
+  }
+},
+{
+  "type": "two-column-with-sidebar",
+  "left": [
+    {
+      "heading": "The Constraints That Made This Hard",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": "h4",
+          "text": "1. JavaFX: The Nightmare Tech Stack"
+        },
+        {
+          "type": "paragraph",
+          "text": "Zero design system references exist for JavaFX. None of the standard tools work (Supernova, Storybook, Zeroheight—all web-only). Required custom CSS transformations. And it's the company's main product, so failure wasn't an option."
+        },
+        {
+          "type": "heading",
+          "level": "h4",
+          "text": "2. Timezone + Language Barrier"
+        },
+        {
+          "type": "paragraph",
+          "text": "Front-end developer in Japan: +8 hours ahead, limited English, no video calls, unfamiliar with Figma. Every hand-off had to be crystal clear and self-explanatory. No 'quick call to clarify' option."
+        },
+        {
+          "type": "heading",
+          "level": "h4",
+          "text": "3. Active CEO Resistance"
+        },
+        {
+          "type": "paragraph",
+          "html": "<em>\"Products are working. Nobody's complained. This isn't a priority.\"</em><br><br>I had conditional support from the Design Lead and strategic interest from VP of FE (who wanted templates to bypass designers). But leadership? Actively resistant."
+        },
+        {
+          "type": "heading",
+          "level": "h4",
+          "text": "4. Building While Shipping"
+        },
+        {
+          "type": "paragraph",
+          "text": "Oh, and I was the sole designer on the project. Whilst building a design system from scratch, I was also designing features, doing UX research, managing stakeholders, and learning to work with developers for the first time."
+        }
+      ]
+    }
+  ],
+  "sidebar": {
+    "Technical Stack": [
+      "JavaFX (main product)",
+      "React, Flutter, Vue, Nuxt",
+      "GitHub Actions",
+      "Token Studio",
+      "Figma Dev Mode"
+    ],
+    "Timeline": [
+      "Phase 1: Foundation (Months 1-2)",
+      "Phase 2: Systematisation (Month 3)",
+      "Phase 3: Automation (Months 4-5)",
+      "Phase 4: Company-wide (Months 6-18)"
+    ]
+  }
+},
+{
+  "type": "key-insight",
+  "icon": "iconoir:light-bulb",
+  "title": "Strategic Pivot: Solve Their Problems, Not Just Mine",
+  "insight": "I realised early: if I built a design system that only helped designers, it would fail. In an engineer-first culture, I needed to make the engineering team's life better. That's how I'd earn buy-in.",
+  "result": "Built a GitHub Action that automated Figma-to-JavaFX CSS transformation. FE got autonomy, I got adoption. VP of FE became my biggest advocate."
+},
+{
+  "type": "two-column-with-sidebar",
+  "left": [
+    {
+      "heading": "Technical Architecture",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "class": "callout",
+          "text": "4-layer token system: Core → Semantic → Post-Semantic → Component. 864 production tokens. 6 mode sets for state management. DTCG specification-compliant."
+        },
+        {
+          "type": "paragraph",
+          "text": "This isn't a basic colour palette. This is enterprise-level design infrastructure with proper layering, referencing (DRY principle), and transformation pipelines."
+        }
+      ],
+      "imageFull": {
+        "src": "/design-system/token-architecture-diagram.png",
+        "alt": "4-layer token architecture",
+        "caption": "Token architecture: Core primitives → Semantic meaning → Post-semantic edge cases → Component-specific tokens"
+      }
+    },
+    {
+      "heading": "The GitHub Action Pipeline",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Manual token delivery was killing me. VP of FE rejected my JSON proposal ('not useful for us'). So I built a custom GitHub Action:"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Figma Token Studio → Git commit",
+            "Action triggers on commit",
+            "Transforms JSON → JavaFX CSS",
+            "Outputs organised by sections with comment headers",
+            "FE pulls directly from repo",
+            "Zero manual intervention"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "html": "<strong>Result:</strong> FE went from waiting days for token updates to pulling instantly from Git. I went from manual token delivery hell to automated pipeline. Everyone won."
+        }
+      ]
+    }
+  ],
+  "sidebar": {
+    "Current System Stats": [
+      "Tokens: 864 production",
+      "Components: 40+",
+      "Mode Sets: 6",
+      "Projects: 7 company-wide",
+      "Designers Trained: 7",
+      "Tech Stacks: 6 platforms"
+    ],
+    "Key Technical Wins": [
+      "DTCG specification compliant",
+      "Multi-platform support",
+      "Automated transformation",
+      "Proper token referencing",
+      "Non-destructive testing",
+      "Deprecation management"
+    ]
+  }
+},
+{
+  "type": "timeline-process",
+  "heading": "Evolution: From Messy CSS to Enterprise Infrastructure",
+  "phases": [
+    {
+      "title": "Phase 1: Foundation",
+      "period": "Months 1-2 (May 2024)",
+      "icon": "iconoir:learning",
+      "highlights": [
+        "Basic 2-layer token system (Core → Semantic)",
+        "~150 tokens, initial component library",
+        "CSS variables as output",
+        "Naming conventions still messy"
+      ],
+      "outcome": "Established blue primary palette and neutral scale (950→0) that stuck throughout"
+    },
+    {
+      "title": "Phase 2: Systematisation",
+      "period": "Month 3 (June 2024)",
+      "icon": "iconoir:frame-select",
+      "highlights": [
+        "Moved from CSS to JSON as source of truth",
+        "3-layer architecture (Core → Semantic → Component)",
+        "Comprehensive button token set",
+        "First hand-off via Figma Dev Mode"
+      ],
+      "outcome": "Realised manual token delivery was unsustainable"
+    },
+    {
+      "title": "Phase 3: Automation Breakthrough",
+      "period": "Months 4-5 (July-Aug 2024)",
+      "icon": "iconoir:git-branch",
+      "highlights": [
+        "Built GitHub Action for Figma-to-JavaFX transformation",
+        "VP of FE became biggest advocate",
+        "Zero manual token intervention",
+        "FE autonomy increased dramatically"
+      ],
+      "outcome": "Automation proved value to stakeholders"
+    },
+    {
+      "title": "Phase 4: Company-Wide Adoption",
+      "period": "Months 6-18 (Sept 2024-Oct 2025)",
+      "icon": "iconoir:trophy",
+      "highlights": [
+        "7 projects adopted the system",
+        "Trained 7 designers in systems thinking",
+        "4-layer architecture with 864 tokens",
+        "CEO mandate: implement everywhere"
+      ],
+      "outcome": "From solo execution to collaborative governance"
+    }
+  ]
+},
+{
+  "type": "metrics-inline",
+  "heading": "Measurable Business Impact",
+  "metrics": [
+    { "icon": "iconoir:clock", "value": "90%", "label": "QA cycles reduced" },
+    { "icon": "iconoir:check-circle", "value": "70%", "label": "Clean hand-offs" },
+    { "icon": "iconoir:timer", "value": "1,920h", "label": "Saved through reuse" },
+    { "icon": "iconoir:frame-select", "value": "864", "label": "Production tokens" },
+    { "icon": "iconoir:component", "value": "40+", "label": "Components built" },
+    { "icon": "ph:users-three", "value": "7", "label": "Projects adopted" },
+    { "icon": "iconoir:community", "value": "7", "label": "Designers trained" },
+    { "icon": "iconoir:trophy", "value": "CEO", "label": "Mandate achieved" }
+  ]
+},
+{
+  "type": "image-grid",
+  "columns": 2,
+  "images": [
+    {
+      "src": "/design-system/token-layers.png",
+      "alt": "4-layer token architecture",
+      "caption": "Token architecture showing Core → Semantic → Post-Semantic → Component layers"
+    },
+    {
+      "src": "/design-system/component-states.png",
+      "alt": "Component state coverage",
+      "caption": "Complete state coverage: default, hover, focus, active, disabled, error"
+    },
+    {
+      "src": "/design-system/github-action.png",
+      "alt": "GitHub Action pipeline",
+      "caption": "Automated Figma-to-JavaFX transformation pipeline"
+    },
+    {
+      "src": "/design-system/mode-sets.png",
+      "alt": "Mode sets for state management",
+      "caption": "6 mode sets managing component states systematically"
+    }
+  ]
+},
+{
+  "type": "two-column-with-sidebar",
+  "left": [
+    {
+      "heading": "Why This Case Study Matters",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": "h4",
+          "text": "For Senior UI Designer Roles:"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Deep craft: 40+ components with complete state coverage",
+            "Technical execution: Multi-platform, atomic nesting, scalable architecture",
+            "Production experience: 15 months shipping whilst building infrastructure"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": "h4",
+          "text": "For Design Systems Specialist Roles:"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Technical depth: GitHub Actions, token transformation, DTCG spec",
+            "Platform innovation: Solved JavaFX with zero precedent",
+            "Infrastructure thinking: Proper layering, referencing, documentation"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": "h4",
+          "text": "For Leadership/Strategic Roles:"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Stakeholder management: Turned CEO rejection into company-wide mandate",
+            "Organisational change: Shifted engineer-first culture to value design infrastructure",
+            "Team building: Scaled from solo to collaborative governance with 7 designers"
+          ]
+        }
+      ]
+    }
+  ],
+  "sidebar": {
+    "Rare Achievements": [
+      "Built design system from scratch as mid-level designer",
+      "Solved technical stack with zero precedent (JavaFX)",
+      "Automated design-to-dev pipeline",
+      "Earned CEO buy-in through results",
+      "Company-wide adoption across 7 projects"
+    ],
+    "Skills Demonstrated": [
+      "Token architecture",
+      "Component systems",
+      "GitHub automation",
+      "Async collaboration",
+      "Strategic influence",
+      "Systems thinking"
+    ]
+  }
+},
+{
+  "type": "full-width-text",
+  "text": "I built design infrastructure under impossible technical constraints, turned organisational resistance into company-wide mandate, and scaled solo execution into collaborative governance—delivering measurable business impact through strategic systems thinking."
+}
+]
+}

@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'breakpoints' as *;
 
 // Project Detail Page
 .project-detail-page {
@@ -326,7 +327,7 @@
 }
 
 // Responsive adjustments
-@media (max-width: 1200px) {
+@include breakpoint(desktop) {
   .project-detail-grid {
     grid-template-columns: 1fr 1fr;
     gap: 24px;
@@ -347,7 +348,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@include breakpoint(mobile) {
   .project-detail-page {
     padding: 24px;
   }

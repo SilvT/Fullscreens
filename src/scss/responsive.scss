@@ -1,96 +1,38 @@
 @use 'variables' as *;
+@use 'breakpoints' as *;
 
+// ============================================================================
+// GLOBAL RESPONSIVE STYLES
+// ============================================================================
+// This file contains ONLY global typography and spacing rules that affect
+// multiple components. Component-specific responsive rules should live in
+// their respective component files.
+// ============================================================================
 
-// Responsive Design
-@media (max-width: 1200px) {
-  .top-nav .nav-wrapper {
-    padding: 8px 40px 24px;
+// Global Typography Adjustments
+@include breakpoint(mobile) {
+  h3 {
+    font-size: $type-size-base;
+    line-height: 130%;
   }
 
-  .about-sect .about-content {
-    padding: 100px 40px;
-  }
-
-  .project-content {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .content-min,
-  .left-content {
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .section-landing,
-  .section-project {
-    height: auto;
-    min-height: 100vh;
-  }
-
-  .top-nav {
-    .nav-wrapper {
-      padding: 8px 20px 16px;
-    }
-
-    .navigation {
-      width: auto;
-      flex-wrap: wrap;
-    }
-
-    .nav-item {
-      &.active {
-        font-size: 32px;
-      }
-
-      &:not(.active) {
-        font-size: 28px;
-      }
-    }
-  }
-
-  .about-sect {
-    height: auto;
-    padding: 40px 0;
-
-    .about-content {
-      flex-direction: column;
-      padding: 40px 20px;
-      gap: 24px;
-    }
-  }
-
-  .description {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .bio {
-    width: 100%;
-  }
-
-  .project-screen {
-    padding: 20px;
-  }
-
-  .project-content {
-    padding: 30px 0;
-  }
-
-  .content-min {
-    height: auto;
-    gap: 20px;
-  }
-
-  .project-image-wrapper {
-    height: 300px;
-
-    .project-image {
-      width: 100%;
-      height: auto;
-      max-height: 250px;
-    }
+  p {
+    font-size: $type-size-s;
   }
 }
 
+// Case Study Responsive Adjustments (Global across case study pages)
+@include breakpoint(tablet) {
+  .cs-hero {
+    padding: 0 3rem 2.5rem;
+
+    .cs-hero-metrics {
+      max-width: 500px;
+    }
+  }
+
+  .cs-layout-grid {
+    padding: 2.5rem 3rem;
+    gap: 3rem;
+  }
+}
