@@ -54,8 +54,10 @@ function createMetricCard(metric) {
 
   card.innerHTML = `
     <div class="cs-metric-content">
-      ${iconHTML}
-      <div class="cs-metric-value">${metric.value}</div>
+      <div class="cs-metric-top">
+        ${iconHTML}
+        <div class="cs-metric-value">${metric.value}</div>
+      </div>
       <div class="cs-metric-label">${metric.label}</div>
     </div>
     <div class="cs-metric-border" aria-hidden="true"></div>

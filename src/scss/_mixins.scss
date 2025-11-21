@@ -72,7 +72,6 @@
     position: relative;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 4px 4px 4px $color-shadows;
-
   }
 
   .cs-metric-border {
@@ -170,5 +169,40 @@
       top: -5px;
       left: -5px;
     }
+  }
+
+
+  @include breakpoint(mobile) {
+    .cs-metric-top{
+      display: flex;
+      flex-direction: row;
+      gap: $space-8;
+    }
+  }
+
+  .cs-metric-dot{
+    width: 6px;
+    height: 6px;
+
+     &.dot-bottom-right {
+      bottom: -3px;
+      right: -3px;
+    }
+
+    &.dot-top-right {
+      top: -3px;
+      right: -3px;
+    }
+
+    &.dot-bottom-left {
+      bottom: -3px;
+      left: -3px;
+    }
+
+    &.dot-top-left {
+      top: -3px;
+      left: -3px;
+    }
+
   }
 }

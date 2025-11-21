@@ -337,8 +337,10 @@ function createMetrics(project) {
       ${metrics.map(metric => `
         <div class="metric-card">
           <div class="cs-metric-content">
-            ${metric.icon ? `<div class="cs-metric-icon-wrapper"><span class="cs-metric-icon">${renderIcon(metric.icon)}</span></div>` : ''}
-            <div class="cs-metric-value">${metric.value}</div>
+            <div class="cs-metric-top">
+              ${metric.icon ? `<div class="cs-metric-icon-wrapper"><span class="cs-metric-icon">${renderIcon(metric.icon)}</span></div>` : ''}
+              <div class="cs-metric-value">${metric.value}</div>
+            </div>
             <div class="cs-metric-label">${metric.label}</div>
           </div>
           <div class="cs-metric-border" aria-hidden="true"></div>

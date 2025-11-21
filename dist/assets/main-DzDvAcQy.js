@@ -37,8 +37,10 @@
       </div>
     `),e.innerHTML=`
     <div class="cs-metric-content">
-      ${t}
-      <div class="cs-metric-value">${s.value}</div>
+      <div class="cs-metric-top">
+        ${t}
+        <div class="cs-metric-value">${s.value}</div>
+      </div>
       <div class="cs-metric-label">${s.label}</div>
     </div>
     <div class="cs-metric-border" aria-hidden="true"></div>
@@ -148,8 +150,10 @@
       ${e.map(i=>`
         <div class="metric-card">
           <div class="cs-metric-content">
-            ${i.icon?`<div class="cs-metric-icon-wrapper"><span class="cs-metric-icon">${$d(i.icon)}</span></div>`:""}
-            <div class="cs-metric-value">${i.value}</div>
+            <div class="cs-metric-top">
+              ${i.icon?`<div class="cs-metric-icon-wrapper"><span class="cs-metric-icon">${$d(i.icon)}</span></div>`:""}
+              <div class="cs-metric-value">${i.value}</div>
+            </div>
             <div class="cs-metric-label">${i.label}</div>
           </div>
           <div class="cs-metric-border" aria-hidden="true"></div>

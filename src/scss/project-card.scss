@@ -202,7 +202,8 @@
   }
 
   @include breakpoint(mobile) {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 32px;
     padding: 20px 0;
   }
@@ -222,8 +223,7 @@
   }
 
   @include breakpoint(mobile) {
-    gap: 24px;
-    order: 1;
+    display: contents; // Remove the column wrapper on mobile
   }
 
   .title-group {
@@ -233,6 +233,7 @@
 
     @include breakpoint(mobile) {
       gap: 12px;
+      order: 1;
     }
 
     .project-title {
@@ -278,6 +279,7 @@
 
     @include breakpoint(mobile) {
       gap: 12px;
+      order: 5;
     }
 
     .project-meta {
@@ -314,6 +316,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 8px;
+    order: 4;
   }
 
   .metric-card {
@@ -325,7 +328,7 @@
     max-height: 8rem;
 
     @include breakpoint(mobile) {
-      flex: 1 1 calc(50% - 4px);
+      // flex: 1 1 calc(50% - 4px);
       width: auto;
       min-width: 0;
       min-height: 4rem;
@@ -444,9 +447,7 @@
   }
 
   @include breakpoint(mobile) {
-    width: 100%;
-    gap: 16px;
-    order: 2;
+    display: contents; // Remove the column wrapper on mobile
   }
 
   .storytelling-group {
@@ -472,6 +473,7 @@
       padding-right: 16px;
       gap: 16px;
       box-shadow: 0 2px 8px rgba(32, 58, 72, 0.15);
+      order: 2;
     }
 
     .project-details {
