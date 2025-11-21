@@ -316,7 +316,7 @@ body {
 // Decorative Ellipses
 .ellipse-decor {
   position: fixed; // Changed from absolute to fixed to cover entire viewport
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
@@ -369,7 +369,7 @@ body {
 }
 
     @include breakpoint(mobile) {
-      top: 20vh;
+      bottom: -25vh;
     }
 
 }
