@@ -145,8 +145,9 @@ body {
   @include breakpoint(mobile) {
     grid-column: 1;
     grid-template-columns: 1fr;
-    gap: 24px;
-    justify-items: center;
+    gap: $space-24;
+    // justify-items: center;
+    justify-items: baseline;
   }
 }
 
@@ -171,7 +172,9 @@ body {
   @include breakpoint(mobile) {
     grid-column: 1;
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: $space-24;
+    text-align: end;
+
   }
 }
 
@@ -300,6 +303,7 @@ body {
   @include breakpoint(mobile) {
     grid-column: 1;
     width: 100%;
+    margin-top: $space-4;
   }
 
   font-variation-settings: 'opsz' 14, 'wdth' 100;
