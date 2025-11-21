@@ -81,12 +81,12 @@
     cursor: pointer;
 
     &.active {
-      font-size: $type-size-3xl;
+      font-size: $font-size-3xl;
       opacity: 1;
     }
 
     &:not(.active) {
-      font-size: $type-size-3xl;
+      font-size: $font-size-3xl;
       opacity: 0.3;
 
       &:hover {
@@ -136,11 +136,11 @@
 
     .nav-item {
       &.active {
-        font-size: $type-size-xl;
+        font-size: $font-size-xl;
       }
 
       &:not(.active) {
-        font-size: $type-size-xl;
+        font-size: $font-size-xl;
       }
     }
 
@@ -164,11 +164,11 @@
 
     .nav-item {
       &.active {
-        font-size: $type-size-l;
+        font-size: $font-size-l;
       }
 
       &:not(.active) {
-        font-size: $type-size-l;
+        font-size: $font-size-l;
       }
     }
 

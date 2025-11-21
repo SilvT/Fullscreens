@@ -86,7 +86,7 @@
   line-height: 1;
   color: $color-blue-darker;
   position: relative;
-  min-height: $type-size-base * 1.2; // Reserve space for one line
+  min-height: $font-size-base * 1.2; // Reserve space for one line
 
   // Button-specific styles
   &.project-nav-button {
@@ -143,7 +143,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    font-size: $type-size-base;
+    font-size: $font-size-base;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     letter-spacing: 0;
     width: 100%;
@@ -369,7 +369,7 @@
 
     .cs-metric-value {
       color: $color-blue-300;
-      font-size: $type-size-l;
+      font-size: $font-size-l;
       width: auto;
 
       @include breakpoint(mobile) {
@@ -379,7 +379,7 @@
     }
 
     .cs-metric-label {
-      font-size: $type-size-base;
+      font-size: $font-size-base;
       color: $color-blue-400;
       width: auto;
 
@@ -413,7 +413,7 @@
       }
 
       .cs-metric-value {
-        font-size: $type-size-2xl;
+        font-size: $font-size-2xl;
       }
     }
   }
@@ -478,7 +478,7 @@
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       color: $color-blue-300;
       letter-spacing: 1;
-      font-size: $type-size-base;
+      font-size: $font-size-base;
       line-height: 115%;
       font-style: italic;
       position: relative;
@@ -551,7 +551,7 @@
       gap: $space-30;
 
       .project-details {
-        font-size: $type-size-s;
+        font-size: $font-size-s;
         line-height: 150%;
       }
     }
@@ -650,7 +650,7 @@
   border-radius: 2px;
   background-color: $color-blue-300;
   font-weight: 500;
-  font-size: $type-size-base;
+  font-size: $font-size-base;
   font-variation-settings: 'opsz' 14, 'wdth' 100;
   color: $color-white;
   text-decoration: none;
@@ -702,7 +702,7 @@
 
     span {
       font-family: $font-anonymous;
-      font-size: $type-size-xs;
+      font-size: $font-size-xs;
       // Ensure tags are visible (no animation)
       opacity: 1 !important;
       visibility: visible !important;

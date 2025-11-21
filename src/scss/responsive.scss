@@ -12,12 +12,12 @@
 // Global Typography Adjustments
 @include breakpoint(mobile) {
   h3 {
-    font-size: $type-size-base;
+    font-size: $font-size-base;
     line-height: 130%;
   }
 
   p {
-    font-size: $type-size-s;
+    font-size: $font-size-s;
   }
 }
 

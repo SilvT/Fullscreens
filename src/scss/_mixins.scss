@@ -48,9 +48,9 @@
   $bg-color: $color-white-alpha,
   $icon-size: 1.5rem,
   $value-color: $color-blue-400,
-  $value-font-size: $type-size-base,
+  $value-font-size: $font-size-base,
   $label-color: $color-neutral-light,
-  $label-font-size: $type-size-xs
+  $label-font-size: $font-size-xs
 ) {
   position: relative;
   min-width: $min-width;

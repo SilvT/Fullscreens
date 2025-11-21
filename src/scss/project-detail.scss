@@ -76,7 +76,7 @@
   gap: 0.8rem;
   margin-bottom: 7rem;
   font-family: $font-bricolage;
-  font-size: $type-size-s;
+  font-size: $font-size-s;
   flex-wrap: wrap;
 
   .breadcrumb-link {
@@ -120,7 +120,7 @@
   gap: 24px;
 
   .detail-title {
-    font-size: $type-size-2xl;
+    font-size: $font-size-2xl;
     font-weight: $font-weight-bold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
@@ -129,14 +129,14 @@
   }
 
   .detail-subtitle {
-    font-size: $type-size-l;
+    font-size: $font-size-l;
     font-weight: $font-weight-medium;
     color: $color-blue-dark;
     margin-bottom: 16px;
   }
 
   .detail-section-title {
-    font-size: $type-size-l;
+    font-size: $font-size-l;
     font-weight: $font-weight-semibold;
     color: $color-blue-darker;
     margin-top: 32px;
@@ -144,7 +144,7 @@
   }
 
   .detail-text {
-    font-size: $type-size-base;
+    font-size: $font-size-base;
     font-weight: $font-weight-light;
     color: $color-blue-darker;
     line-height: 1.6;
@@ -160,7 +160,7 @@
   margin-top: 35vh;
 
   .technical-title {
-    font-size: $type-size-s;
+    font-size: $font-size-s;
     font-weight: $font-weight-semibold;
     font-family: $font-anonymous;
     color: $color-blue-darker;
@@ -178,7 +178,7 @@
     gap: 8px;
 
     li {
-      font-size: $type-size-s;
+      font-size: $font-size-s;
       font-family: $font-anonymous;
       color: $color-blue-darker;
       position: relative;
@@ -362,7 +362,7 @@
 
   .breadcrumbs {
     margin-bottom: 24px;
-    font-size: $type-size-xs;
+    font-size: $font-size-xs;
   }
 
   .project-detail-grid {

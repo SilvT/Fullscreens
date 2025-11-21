@@ -34,7 +34,7 @@
     & .icon {
     text-transform: capitalize;
     font-family: $font-fascinate;
-    font-size: $type-size-2xl;
+    font-size: $font-size-2xl;
     white-space: pre;
   }
 }
@@ -70,7 +70,7 @@
     font-family: $font-bricolage;
     font-weight: $font-weight-regular;
     justify-content: center;
-    font-size: $type-size-base;
+    font-size: $font-size-base;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
 
   }
@@ -104,11 +104,11 @@
     gap: 16px;
 
     &__icon {
-      font-size: $type-size-xl;
+      font-size: $font-size-xl;
     }
 
     &__text {
-      font-size: $type-size-s;
+      font-size: $font-size-s;
     }
   }
 }
@@ -126,11 +126,11 @@
     gap: 12px;
 
     &__icon {
-      font-size: $type-size-l;
+      font-size: $font-size-l;
     }
 
     &__text {
-      font-size: $type-size-xs;
+      font-size: $font-size-xs;
     }
   }
 }

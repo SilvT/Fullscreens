@@ -171,7 +171,7 @@
   background-color: transparent;
   border-radius: 4px;
   font-family: $font-bricolage;
-  font-size: $type-size-s; // 16px
+  font-size: $font-size-s; // 16px
   width: 100%;
   transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -192,7 +192,7 @@
     cursor: pointer;
     position: relative;
     text-transform: capitalize;
-    min-height: $type-size-base * 1.2; // Reserve space for one line
+    min-height: $font-size-base * 1.2; // Reserve space for one line
 
     // Navigation styles
     color: $color-blue-darker;
@@ -403,7 +403,7 @@
       }
 
       .cs-metric-value {
-        font-size: $type-size-s;
+        font-size: $font-size-s;
         margin-bottom: 0;
         line-height: 1;
         width: auto; // Override full width from mixin
@@ -433,7 +433,7 @@
         position: absolute;
         width: 100%;
         text-align: center;
-        font-size: $type-size-xs;
+        font-size: $font-size-xs;
         color: $color-blue-400;
         opacity: 0;
         transition: opacity 0.5s ease-in-out;
@@ -470,7 +470,7 @@
 
   .cs-hero-company {
     font-family: $font-anonymous;
-    font-size: $type-size-xs;
+    font-size: $font-size-xs;
     color: $color-blue-dark;
     margin-bottom: 0.5rem;
     text-transform: uppercase;
@@ -479,7 +479,7 @@
   }
 
   .cs-hero-title {
-    font-size: $type-size-3xl;
+    font-size: $font-size-3xl;
     font-weight: $font-weight-semibold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
@@ -489,7 +489,7 @@
   }
 
   .cs-hero-subtitle {
-    font-size: $type-size-base;
+    font-size: $font-size-base;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-dark;
     line-height: 1.5;
@@ -507,7 +507,7 @@
 
   .cs-tag {
     font-family: $font-anonymous;
-    font-size: $type-size-xs;
+    font-size: $font-size-xs;
     padding: 0.25rem 0.75rem;
     background-color: rgba(0, 102, 255, 0.1);
     color: $color-blue-dark;
@@ -516,7 +516,7 @@
   }
 
   .cs-hero-overview {
-    font-size: $type-size-s;
+    font-size: $font-size-s;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
     line-height: 1.6;
@@ -545,7 +545,7 @@
   z-index: 10; // Above hero image
 
   .cs-section-title {
-    font-size: $type-size-xs;
+    font-size: $font-size-xs;
     font-weight: $font-weight-semibold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-primary;
@@ -607,7 +607,7 @@
   }
 
   .cs-section-heading {
-    font-size: $type-size-xl;
+    font-size: $font-size-xl;
     font-weight: $font-weight-medium;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-primary;
@@ -619,20 +619,20 @@
     max-width: 45vw;
 
     & .cs-text-block-heading{
-      font-size: $type-size-l;
+      font-size: $font-size-l;
       color: $color-blue-500;
       margin-bottom: $space-12;
       line-height: 130%;
     }
     & .subtit{
       color:$color-blue-200;
-      font-size: $type-size-base;
+      font-size: $font-size-base;
       font-weight: $font-weight-light;
       line-height: 130%;
       margin-bottom: $space-12;
     }
     & .cs-section-text{
-      font-size: $type-size-base;
+      font-size: $font-size-base;
       font-weight: $font-weight-light;
       line-height: 130%;
       color:$color-neutral-light;
@@ -663,7 +663,7 @@
         position: relative;
         padding-left: 1.5rem;
         margin-bottom: $space-8;
-        font-size: $type-size-base;
+        font-size: $font-size-base;
         font-weight: $font-weight-light;
         line-height: 130%;
         color:$color-neutral-light;
@@ -700,7 +700,7 @@
 
     .cs-image-caption {
       font-family: $font-anonymous;
-      font-size: $type-size-xs;
+      font-size: $font-size-xs;
       color: $color-neutral-light;
       line-height: 121%;
       margin-top: 1rem;
@@ -725,7 +725,7 @@
 
     // .cs-image-caption {
     //   font-family: $font-anonymous;
-    //   font-size: $type-size-xs;
+    //   font-size: $font-size-xs;
     //   color: $color-blue-dark;
     //   margin-top: 1rem;
     //   text-align: center;
@@ -765,7 +765,7 @@
 
   .cs-sidebar-title {
     font-family: $font-anonymous;
-    font-size: $type-size-s;
+    font-size: $font-size-s;
     font-weight: $font-weight-bold;
     color: $color-blue-400;
     margin-bottom: $space-20;
@@ -781,7 +781,7 @@
     // Semantic definition list styles
     dt {
       font-family: $font-anonymous;
-      font-size: $type-size-xs;
+      font-size: $font-size-xs;
       margin-bottom: 0.25rem;
       margin-top: 0.75rem;
 
@@ -792,7 +792,7 @@
 
     dd {
       font-family: $font-anonymous;
-      font-size: $type-size-s;
+      font-size: $font-size-s;
       color: $color-blue-400;
       margin-left: 0;
       margin-bottom: $space-12;
@@ -819,7 +819,7 @@
     // Legacy list item support
     li {
       font-family: $font-anonymous;
-      font-size: $type-size-xs;
+      font-size: $font-size-xs;
       color: $color-blue-dark;
       margin-bottom: 0.5rem;
       padding-left: 1rem;
@@ -857,7 +857,7 @@
 
   // .cs-image-caption {
   //   font-family: $font-anonymous;
-  //   font-size: $type-size-xs;
+  //   font-size: $font-size-xs;
   //   color: $color-blue-dark;
   //   margin-top: 1rem;
   //   text-align: center;
@@ -917,7 +917,7 @@
 
  .cs-image-caption {
    font-family: $font-anonymous;
-     font-size: $type-size-xs;
+     font-size: $font-size-xs;
      color: $color-neutral-light;
      margin-top: $space-8;
      text-align: left;
@@ -955,7 +955,7 @@
   }
 
   .cs-section-heading {
-    font-size: $type-size-xl;
+    font-size: $font-size-xl;
     font-weight: $font-weight-semibold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
@@ -965,7 +965,7 @@
   }
 
   .cs-section-text {
-    font-size: $type-size-base;
+    font-size: $font-size-base;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
     line-height: 1.7;
@@ -994,7 +994,7 @@
 
   .cs-text-side {
     .cs-section-heading {
-      font-size: $type-size-xl;
+      font-size: $font-size-xl;
       font-weight: $font-weight-semibold;
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       color: $color-blue-darker;
@@ -1002,7 +1002,7 @@
     }
 
     .cs-section-text {
-      font-size: $type-size-base;
+      font-size: $font-size-base;
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       color: $color-blue-darker;
       line-height: 1.7;
@@ -1028,7 +1028,7 @@
 
     //  .cs-image-caption {
     //    font-family: $font-anonymous;
-    //    font-size: $type-size-xs;
+    //    font-size: $font-size-xs;
     //    color: $color-blue-dark;
     //    margin-top: 1rem;
     //    text-align: center;
@@ -1043,7 +1043,7 @@
 
   .cs-gallery {
     .cs-section-title {
-      font-size: $type-size-l;
+      font-size: $font-size-l;
       font-weight: $font-weight-semibold;
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       color: $color-blue-darker;
@@ -1107,7 +1107,7 @@
     padding: 1rem 0 0.5rem;
     padding-right: 3.5rem; // Space for close button
     gap: 1rem;
-    font-size: $type-size-xs;
+    font-size: $font-size-xs;
 
     .cs-sticky-header.scrolled & {
       padding: 0.5rem 0 0.25rem;
@@ -1115,12 +1115,12 @@
     }
 
     .cs-breadcrumb-nav {
-      min-height: $type-size-s * 1.2;
-      font-size: $type-size-xs;
+      min-height: $font-size-s * 1.2;
+      font-size: $font-size-xs;
 
       .cs-nav-label,
       .cs-nav-title {
-        font-size: $type-size-xs;
+        font-size: $font-size-xs;
       }
     }
   }
@@ -1181,7 +1181,7 @@
     }
 
     .cs-hero-subtitle {
-      font-size: $type-size-s;
+      font-size: $font-size-s;
       margin-bottom: 0.75rem;
     }
 
@@ -1196,7 +1196,7 @@
     }
 
     .cs-hero-overview {
-      font-size: $type-size-s;
+      font-size: $font-size-s;
       line-height: 1.5;
     }
   }
@@ -1231,30 +1231,30 @@
     }
 
     .cs-section-heading {
-      font-size: $type-size-l;
+      font-size: $font-size-l;
       margin-bottom: 0.75rem;
     }
 
     .cs-content-section {
       .cs-text-block-heading {
-        font-size: $type-size-base;
+        font-size: $font-size-base;
         margin-bottom: $space-8;
       }
 
       .subtit {
-        font-size: $type-size-s;
+        font-size: $font-size-s;
         margin-bottom: $space-8;
       }
 
       .cs-section-text {
-        font-size: $type-size-s;
+        font-size: $font-size-s;
         margin-bottom: $space-8;
       }
 
       .callout {
         padding: $space-12 $space-16;
         margin: $space-12 0;
-        font-size: $type-size-s;
+        font-size: $font-size-s;
         min-height: auto;
       }
 
@@ -1262,7 +1262,7 @@
         margin: $space-8 0;
 
         li {
-          font-size: $type-size-s;
+          font-size: $font-size-s;
           margin-bottom: $space-4;
           padding-left: 1rem;
 
@@ -1298,13 +1298,13 @@
     }
 
     .cs-sidebar-title {
-      font-size: $type-size-xs;
+      font-size: $font-size-xs;
       margin-bottom: $space-12;
     }
 
     .cs-sidebar-list {
       dd {
-        font-size: $type-size-xs;
+        font-size: $font-size-xs;
         margin-bottom: $space-8;
       }
 
@@ -1353,11 +1353,11 @@
 
     .cs-text-side {
       .cs-section-heading {
-        font-size: $type-size-l;
+        font-size: $font-size-l;
       }
 
       .cs-section-text {
-        font-size: $type-size-s;
+        font-size: $font-size-s;
       }
     }
   }
@@ -1372,7 +1372,7 @@
     }
 
     .cs-story-hook-quote {
-      font-size: $type-size-l;
+      font-size: $font-size-l;
       line-height: 1.3;
       margin-bottom: 1rem;
 
@@ -1384,7 +1384,7 @@
     }
 
     .cs-story-hook-context {
-      font-size: $type-size-s;
+      font-size: $font-size-s;
     }
 
     .cs-story-hook-image {
@@ -1397,7 +1397,7 @@
     margin-bottom: 2rem;
 
     .cs-timeline-heading {
-      font-size: $type-size-xl;
+      font-size: $font-size-xl;
       margin-bottom: 2rem;
     }
 
@@ -1417,15 +1417,15 @@
     }
 
     .cs-timeline-phase-title {
-      font-size: $type-size-base;
+      font-size: $font-size-base;
     }
 
     .cs-timeline-phase-period {
-      font-size: $type-size-xs;
+      font-size: $font-size-xs;
     }
 
     .cs-timeline-highlights li {
-      font-size: $type-size-xs;
+      font-size: $font-size-xs;
       margin-bottom: 0.5rem;
     }
   }
@@ -1435,7 +1435,7 @@
     margin-bottom: 2rem;
 
     .cs-before-after-heading {
-      font-size: $type-size-xl;
+      font-size: $font-size-xl;
       margin-bottom: 2rem;
     }
 
@@ -1449,12 +1449,12 @@
     }
 
     .cs-before-after-label {
-      font-size: $type-size-base;
+      font-size: $font-size-base;
       margin-bottom: 1rem;
     }
 
     .cs-before-after-list li {
-      font-size: $type-size-s;
+      font-size: $font-size-s;
       margin-bottom: 0.75rem;
     }
   }
@@ -1477,16 +1477,16 @@
     }
 
     .cs-key-insight-title {
-      font-size: $type-size-base;
+      font-size: $font-size-base;
     }
 
     .cs-key-insight-text {
-      font-size: $type-size-s;
+      font-size: $font-size-s;
       margin-bottom: 0.75rem;
     }
 
     .cs-key-insight-result {
-      font-size: $type-size-s;
+      font-size: $font-size-s;
       padding-left: 1rem;
     }
   }
@@ -1497,7 +1497,7 @@
 
     .cs-gallery {
       .cs-section-title {
-        font-size: $type-size-base;
+        font-size: $font-size-base;
         margin-bottom: 1rem;
       }
 
@@ -1527,7 +1527,7 @@
   }
 
   .cs-story-hook-quote {
-    font-size: $type-size-xl;
+    font-size: $font-size-xl;
     font-weight: $font-weight-medium;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
@@ -1548,7 +1548,7 @@
   }
 
   .cs-story-hook-context {
-    font-size: $type-size-base;
+    font-size: $font-size-base;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-dark;
     line-height: 1.6;
@@ -1574,7 +1574,7 @@
   margin-bottom: 3rem;
 
   .cs-timeline-heading {
-    font-size: $type-size-2xl;
+    font-size: $font-size-2xl;
     font-weight: $font-weight-semibold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
@@ -1639,7 +1639,7 @@
   }
 
   .cs-timeline-phase-title {
-    font-size: $type-size-l;
+    font-size: $font-size-l;
     font-weight: $font-weight-semibold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
@@ -1647,7 +1647,7 @@
   }
 
   .cs-timeline-phase-period {
-    font-size: $type-size-s;
+    font-size: $font-size-s;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-primary;
     font-weight: $font-weight-medium;
@@ -1659,7 +1659,7 @@
     margin: 0;
 
     li {
-      font-size: $type-size-s;
+      font-size: $font-size-s;
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       color: $color-blue-darker;
       line-height: 1.6;
@@ -1688,7 +1688,7 @@
   margin-bottom: 3rem;
 
   .cs-before-after-heading {
-    font-size: $type-size-2xl;
+    font-size: $font-size-2xl;
     font-weight: $font-weight-semibold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
@@ -1723,7 +1723,7 @@
   }
 
   .cs-before-after-label {
-    font-size: $type-size-l;
+    font-size: $font-size-l;
     font-weight: $font-weight-semibold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     margin-bottom: 1.5rem;
@@ -1758,7 +1758,7 @@
     margin: 0 0 1.5rem 0;
 
     li {
-      font-size: $type-size-base;
+      font-size: $font-size-base;
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       color: $color-blue-darker;
       line-height: 1.6;
@@ -1837,7 +1837,7 @@
   }
 
   .cs-key-insight-title {
-    font-size: $type-size-l;
+    font-size: $font-size-l;
     font-weight: $font-weight-semibold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
@@ -1845,7 +1845,7 @@
   }
 
   .cs-key-insight-text {
-    font-size: $type-size-base;
+    font-size: $font-size-base;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
     line-height: 1.7;
@@ -1853,7 +1853,7 @@
   }
 
   .cs-key-insight-result {
-    font-size: $type-size-base;
+    font-size: $font-size-base;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-dark;
     line-height: 1.7;
@@ -1876,7 +1876,7 @@
 .cs-error {
   padding: 4rem 2rem;
   text-align: center;
-  font-size: $type-size-base;
+  font-size: $font-size-base;
   font-variation-settings: 'opsz' 14, 'wdth' 100;
   color: $color-blue-dark;
 }
