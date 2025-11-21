@@ -153,22 +153,22 @@
 @include breakpoint(mobile) {
   .top-nav {
     .nav-wrapper {
-      padding: 8px 20px 16px;
+      padding: $space-8 $space-20 $space-16;
     }
 
     .navigation {
       width: auto;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: $space-8;
     }
 
     .nav-item {
       &.active {
-        font-size: 28px;
+        font-size: $type-size-l;
       }
 
       &:not(.active) {
-        font-size: 24px;
+        font-size: $type-size-l;
       }
     }
 
