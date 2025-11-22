@@ -14,7 +14,9 @@
   pointer-events: none;
   transition: opacity 0.3s ease;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 2.5rem;
+  width: 100%;
 
   &.active {
     opacity: 1;
@@ -110,6 +112,8 @@
   gap: 32px;
   max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 // Written Content (2 columns)
@@ -118,6 +122,9 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 
   .detail-title {
     font-size: $font-size-2xl;
@@ -126,6 +133,8 @@
     color: $color-blue-darker;
     line-height: 1.1;
     margin-bottom: 8px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   .detail-subtitle {
@@ -133,6 +142,8 @@
     font-weight: $font-weight-medium;
     color: $color-blue-dark;
     margin-bottom: 16px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   .detail-section-title {
@@ -141,6 +152,8 @@
     color: $color-blue-darker;
     margin-top: 32px;
     margin-bottom: 12px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   .detail-text {
@@ -148,6 +161,8 @@
     font-weight: $font-weight-light;
     color: $color-blue-darker;
     line-height: 1.6;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 }
 
@@ -158,6 +173,7 @@
   flex-direction: column;
   gap: 2rem;
   margin-top: 35vh;
+  min-width: 0;
 
   .technical-title {
     font-size: $font-size-s;
@@ -167,6 +183,8 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 12px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   .technical-list {
@@ -183,6 +201,8 @@
       color: $color-blue-darker;
       position: relative;
       padding-left: 16px;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
 
       &::before {
         content: '•';
@@ -201,6 +221,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-width: 0;
 
   .detail-image-wrapper {
     width: 100%;
@@ -211,6 +232,7 @@
 
     .detail-image {
       width: 100%;
+      max-width: 100%;
       height: auto;
       display: block;
       object-fit: cover;
@@ -388,6 +410,7 @@
 @include breakpoint(mobile) {
   .project-detail-page {
     padding: $space-16;
+    overflow-x: hidden;
   }
 
   .project-detail-close {
@@ -407,17 +430,24 @@
     margin-bottom: $space-20;
     font-size: 12px;
     gap: 0.5rem;
+    max-width: 100%;
+    overflow-wrap: break-word;
   }
 
   .project-detail-grid {
     grid-template-columns: 1fr;
     gap: $space-24;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .detail-written-content,
   .detail-technical,
   .detail-images {
     grid-column: 1 / 2;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .detail-written-content {
@@ -472,6 +502,11 @@
     .detail-image-wrapper {
       border-radius: 2px;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+      max-width: 100%;
+    }
+
+    .detail-image {
+      max-width: 100%;
     }
   }
 }
