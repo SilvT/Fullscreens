@@ -57,12 +57,9 @@ function attachProjectNavListeners() {
   projectNavButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
       e.preventDefault();
-      const navTitle = button.querySelector('.nav-title')?.textContent;
 
-      if (!navTitle) return;
-
-      // Extract project ID from the title by matching against project data
-      const projectId = findProjectIdByTitle(navTitle);
+      // Get project ID from data attribute
+      const projectId = button.getAttribute('data-project-id');
 
       if (projectId) {
         // Always scroll to the project card when clicking nav buttons on main view
@@ -185,14 +182,14 @@ function createProjectCard(projectId, project, index) {
   section.setAttribute('data-section', 'project');
 
   // Determine navigation titles (previous and next projects)
-  const prevProject = getPreviousProject(projectId);
-  const nextProject = getNextProject(projectId);
+  const prevProjectData = getPreviousProject(projectId);
+  const nextProjectData = getNextProject(projectId);
 
   section.innerHTML = `
     <div class="contentbox">
       <!-- Project Screen -->
       <div class="project-screen">
-        ${createTopNavigation(prevProject)}
+        ${createTopNavigation(prevProjectData)}
 
         <div class="project-content">
           <!-- Left Column -->
@@ -231,7 +228,7 @@ function createProjectCard(projectId, project, index) {
           </div>
         </div>
 
-        ${createBottomNavigation(nextProject)}
+        ${createBottomNavigation(nextProjectData)}
       </div>
     </div>
   `;
@@ -241,36 +238,36 @@ function createProjectCard(projectId, project, index) {
 
 /**
  * Create top navigation HTML
- * @param {object|null} prevProject - Previous project data
+ * @param {object|null} prevProjectData - Previous project data with id
  * @returns {string} HTML string
  */
-function createTopNavigation(prevProject) {
-  if (!prevProject) {
+function createTopNavigation(prevProjectData) {
+  if (!prevProjectData) {
     return '<div class="project-nav top"></div>';
   }
 
   return `
-    <button class="project-nav top project-nav-button">
+    <button class="project-nav top project-nav-button" data-project-id="${prevProjectData.id}">
       <h3 class="nav-title">↑ Previous</h3>
-      <p class="nav-subtitle">${prevProject.title}</p>
+      <p class="nav-subtitle">${prevProjectData.project.title}</p>
     </button>
   `;
 }
 
 /**
  * Create bottom navigation HTML
- * @param {object|null} nextProject - Next project data
+ * @param {object|null} nextProjectData - Next project data with id
  * @returns {string} HTML string
  */
-function createBottomNavigation(nextProject) {
-  if (!nextProject) {
+function createBottomNavigation(nextProjectData) {
+  if (!nextProjectData) {
     return '<button class="project-nav bottom project-nav-button"></button>';
   }
 
   return `
-    <button class="project-nav bottom project-nav-button">
+    <button class="project-nav bottom project-nav-button" data-project-id="${nextProjectData.id}">
       <h3 class="nav-title">↓ Next</h3>
-      <p class="nav-subtitle">${nextProject.title}</p>
+      <p class="nav-subtitle">${nextProjectData.project.title}</p>
     </button>
   `;
 }
@@ -414,7 +411,7 @@ function createTags(project) {
 /**
  * Get previous project in the list
  * @param {string} currentId - Current project ID
- * @returns {object|null} Previous project data
+ * @returns {object|null} Previous project data with id
  */
 function getPreviousProject(currentId) {
   const projectIds = Object.keys(projectData);
@@ -423,13 +420,13 @@ function getPreviousProject(currentId) {
   if (currentIndex <= 0) return null;
 
   const prevId = projectIds[currentIndex - 1];
-  return projectData[prevId];
+  return { id: prevId, project: projectData[prevId] };
 }
 
 /**
  * Get next project in the list
  * @param {string} currentId - Current project ID
- * @returns {object|null} Next project data
+ * @returns {object|null} Next project data with id
  */
 function getNextProject(currentId) {
   const projectIds = Object.keys(projectData);
@@ -438,6 +435,6 @@ function getNextProject(currentId) {
   if (currentIndex === -1 || currentIndex === projectIds.length - 1) return null;
 
   const nextId = projectIds[currentIndex + 1];
-  return projectData[nextId];
+  return { id: nextId, project: projectData[nextId] };
 }
 
