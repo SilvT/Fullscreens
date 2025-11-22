@@ -488,6 +488,7 @@ export function initStorytellingAnimation() {
   if (prefersReducedMotion()) return;
 
   const storytellingGroups = document.querySelectorAll('.storytelling-group');
+  const isMobile = window.innerWidth <= 768;
 
   storytellingGroups.forEach((group) => {
     const section = group.closest('.section-project');
@@ -562,13 +563,14 @@ export function initStorytellingAnimation() {
     }
 
     // 3. CTA button slides in from right (slower)
+    // Mobile: no animation | Desktop: staggered after project details
     if (ctaButton) {
       timeline.to(ctaButton, {
         x: 0,
         opacity: 1,
-        duration: 1.2,
+        duration: isMobile ? 0 : 1.2,
         ease: 'power2.out',
-      }, '-=0.8');
+      }, isMobile ? 0 : '-=0.8'); // Mobile: instant (duration 0) | Desktop: -=0.8 (staggered)
     }
 
     // 4. Typing dots fade in slowly (slower)
@@ -579,12 +581,14 @@ export function initStorytellingAnimation() {
     }, '+=0.5');
 
     // 5. Start very slow pulsing shadow loop (12 seconds per cycle - 2x longer)
+    // On mobile: add 1 second delay before shadow animation starts
     timeline.to(group, {
       boxShadow: '-4px 4px 20px rgba(57, 128, 170, 0.3), -2px 2px 8px rgba(57, 128, 170, 0.2)',
       duration: 6, // 6 seconds each way = 12 second full cycle
       ease: 'sine.inOut',
       yoyo: true,
       repeat: -1, // Infinite loop
+      delay: isMobile ? 1 : 0, // 1 second delay on mobile
     }, '+=0.5');
   });
 

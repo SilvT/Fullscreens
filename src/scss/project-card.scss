@@ -76,7 +76,7 @@
   flex-direction: column;
 
   @include breakpoint(mobile) {
-    padding: 80px 20px 20px;
+    padding: $space-60 20px 20px;
   }
 }
 
@@ -88,6 +88,10 @@
   position: relative;
   min-height: $font-size-base * 1.2; // Reserve space for one line
 
+  @include breakpoint(mobile) {
+    min-height: auto; // Remove reserved space on mobile
+  }
+
   // Button-specific styles
   &.project-nav-button {
     width: 100%;
@@ -98,9 +102,19 @@
     transition: opacity 0.2s ease, transform 0.2s ease;
     min-height: 44px; // Touch target
 
+    @include breakpoint(mobile) {
+      padding: 4px 0; // Tighter padding on mobile
+      min-height: auto; // Remove fixed height on mobile
+    }
+
     &:hover {
       opacity: 0.7;
       transform: translateX(-4px);
+
+      @include breakpoint(mobile) {
+        opacity: 1; // Disable hover opacity on mobile
+        transform: none; // Disable hover transform on mobile
+      }
     }
 
     &:focus {
@@ -124,7 +138,7 @@
     margin-bottom: $space-24;
 
     @include breakpoint(mobile) {
-      margin-bottom: 16px;
+      margin-bottom: 8px; // Tighter spacing on mobile
     }
   }
 
@@ -133,8 +147,8 @@
     margin-bottom:$space-12;
 
     @include breakpoint(mobile) {
-      margin-top: 16px;
-      margin-bottom: 8px;
+      margin-top: 8px; // Tighter spacing on mobile
+      margin-bottom: 4px;
     }
   }
 
@@ -157,6 +171,11 @@
     opacity: 1;
     transform: translateX(0);
     transition: opacity 0.4s ease, transform 0.4s ease;
+
+    @include breakpoint(mobile) {
+      position: static; // Make it flow naturally on mobile
+      transition: none; // Disable transitions on mobile
+    }
   }
 
   .nav-subtitle {
@@ -165,11 +184,20 @@
     transform: translateX(20px);
     pointer-events: none;
     transition: opacity 0.4s ease, transform 0.4s ease, color 0.4s ease;
+
+    @include breakpoint(mobile) {
+      display: none; // Completely hide subtitle on mobile
+    }
   }
 
   &:hover .nav-title {
     opacity: 0;
     transform: translateX(-20px);
+
+    @include breakpoint(mobile) {
+      opacity: 1; // Keep visible on mobile
+      transform: none; // No transform on mobile
+    }
   }
 
   &:hover .nav-subtitle {
@@ -177,6 +205,11 @@
     opacity: 1;
     transform: translateX(0);
     pointer-events: auto;
+
+    @include breakpoint(mobile) {
+      display: none; // Keep hidden on mobile
+      opacity: 0;
+    }
   }
 }
 
@@ -315,8 +348,9 @@
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: $space-8;
     order: 4;
+    height: fit-content
   }
 
   .metric-card {
@@ -467,13 +501,14 @@
     box-shadow: -4px 4px 4px $color-shadows-dark;
 
     @include breakpoint(mobile) {
+      background-color: transparent;
       position: static;
       max-width: 100%;
-      padding: 16px;
-      padding-right: 16px;
-      gap: 16px;
+      padding: 0; 
+      gap: 0;
       box-shadow: 0 2px 8px rgba(32, 58, 72, 0.15);
       order: 2;
+      margin-top: 0;
     }
 
     .project-details {
@@ -486,8 +521,9 @@
       position: relative;
 
       @include breakpoint(mobile) {
-        font-size: 14px;
+        font-size: $font-size-xs;
         line-height: 130%;
+        display: none;
       }
     }
 
