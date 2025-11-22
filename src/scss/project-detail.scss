@@ -340,6 +340,7 @@
   .detail-technical {
     grid-column: 1 / 2;
     grid-row: 2;
+    margin-top: 0;
   }
 
   .detail-images {
@@ -348,31 +349,129 @@
   }
 }
 
-@include breakpoint(mobile) {
+@include breakpoint(tablet) {
   .project-detail-page {
-    padding: 24px;
-  }
-
-  .project-detail-close {
-    top: 16px;
-    right: 16px;
-    width: 40px;
-    height: 40px;
-  }
-
-  .breadcrumbs {
-    margin-bottom: 24px;
-    font-size: $font-size-xs;
+    padding: 2rem;
   }
 
   .project-detail-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 40px;
   }
 
   .detail-written-content,
   .detail-technical,
   .detail-images {
     grid-column: 1 / 2;
+  }
+
+  .detail-technical {
+    margin-top: 0;
+  }
+
+  .detail-written-content {
+    .detail-title {
+      font-size: 32px;
+    }
+
+    .detail-subtitle {
+      font-size: $font-size-base;
+    }
+
+    .detail-section-title {
+      font-size: $font-size-base;
+      margin-top: 24px;
+    }
+  }
+}
+
+@include breakpoint(mobile) {
+  .project-detail-page {
+    padding: $space-16;
+  }
+
+  .project-detail-close {
+    top: $space-12;
+    right: $space-12;
+    width: 44px;
+    height: 44px;
+    border-width: 1.5px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .breadcrumbs {
+    margin-bottom: $space-20;
+    font-size: 12px;
+    gap: 0.5rem;
+  }
+
+  .project-detail-grid {
+    grid-template-columns: 1fr;
+    gap: $space-24;
+  }
+
+  .detail-written-content,
+  .detail-technical,
+  .detail-images {
+    grid-column: 1 / 2;
+  }
+
+  .detail-written-content {
+    gap: $space-16;
+
+    .detail-title {
+      font-size: 24px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .detail-subtitle {
+      font-size: 16px;
+      margin-bottom: $space-12;
+      line-height: 1.4;
+    }
+
+    .detail-section-title {
+      font-size: 18px;
+      margin-top: $space-20;
+      margin-bottom: 8px;
+    }
+
+    .detail-text {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  }
+
+  .detail-technical {
+    margin-top: 0;
+    gap: $space-20;
+
+    .technical-title {
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .technical-list {
+      gap: 6px;
+
+      li {
+        font-size: 13px;
+        padding-left: 12px;
+      }
+    }
+  }
+
+  .detail-images {
+    gap: $space-16;
+
+    .detail-image-wrapper {
+      border-radius: 2px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    }
   }
 }
