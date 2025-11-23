@@ -8,6 +8,13 @@ import '@phosphor-icons/web/light';
 import 'iconoir/css/iconoir.css';
 
 /**
+ * Explicit project order to preserve intended display sequence
+ * JavaScript sorts numeric object keys numerically (1,2,3,4,5,6)
+ * regardless of JSON file order, so we define the order explicitly
+ */
+const PROJECT_ORDER = ['1', '2', '3', '4'];
+
+/**
  * Initialize and render project cards
  * @returns {Promise} Promise that resolves when cards are rendered
  */
@@ -24,10 +31,22 @@ export function initProjectCards() {
     // Clear any existing content
     projectsContainer.innerHTML = '';
 
-    // Generate cards for each project in the JSON
-    Object.entries(projectData).forEach(([projectId, project], index) => {
+    // Generate cards for each project in the specified order
+    PROJECT_ORDER.forEach((projectId, index) => {
+      const project = projectData[projectId];
+      if (!project) {
+        console.warn(`Project ${projectId} not found in projectData`);
+        return;
+      }
+      console.log(`Creating card ${index} for project ID: ${projectId}, title: ${project.title}`);
       const projectCard = createProjectCard(projectId, project, index);
       projectsContainer.appendChild(projectCard);
+
+      // VERIFY: Check the href in the DOM immediately after appending
+      const ctaButton = projectCard.querySelector('.cta-button');
+      if (ctaButton) {
+        console.log(`[VERIFY] After append, CTA button for "${project.title}" has href="${ctaButton.getAttribute('href')}" data-project-id="${ctaButton.getAttribute('data-project-id')}"`);
+      }
     });
 
     // Update breadcrumbs dynamically
@@ -36,11 +55,20 @@ export function initProjectCards() {
     // Attach event listeners to project navigation buttons
     attachProjectNavListeners();
 
-    console.log(`✓ Generated ${Object.keys(projectData).length} project cards from JSON`);
+    console.log(`✓ Generated ${PROJECT_ORDER.length} project cards from JSON in order: ${PROJECT_ORDER.join(', ')}`);
 
     // Wait for next frame to ensure DOM has been painted
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
+        // FINAL VERIFICATION: Check all CTA buttons in the DOM
+        console.log('[FINAL CHECK] Verifying all CTA buttons in DOM:');
+        const allCtaButtons = document.querySelectorAll('.cta-button');
+        allCtaButtons.forEach((btn, idx) => {
+          const section = btn.closest('section[data-section="project"]');
+          const sectionId = section ? section.id : 'unknown';
+          console.log(`  Button ${idx}: section=${sectionId}, href="${btn.getAttribute('href')}", data-project-id="${btn.getAttribute('data-project-id')}"`);
+        });
+
         console.log('✓ Project cards rendered and ready for ScrollTrigger');
         resolve();
       });
@@ -100,10 +128,10 @@ function updateBreadcrumbs() {
   // Clear existing breadcrumbs
   breadcrumbsNav.innerHTML = '';
 
-  // Generate breadcrumbs from project data
-  const projectIds = Object.keys(projectData);
-  projectIds.forEach((projectId, index) => {
+  // Use the same explicit project order as card generation
+  PROJECT_ORDER.forEach((projectId, index) => {
     const project = projectData[projectId];
+    if (!project) return;
 
     // Create breadcrumb link
     const link = document.createElement('a');
@@ -121,7 +149,7 @@ function updateBreadcrumbs() {
     breadcrumbsNav.appendChild(link);
 
     // Add separator (except for last item)
-    if (index < projectIds.length - 1) {
+    if (index < PROJECT_ORDER.length - 1) {
       const separator = document.createElement('span');
       separator.className = 'breadcrumb-separator';
       separator.textContent = '→';
@@ -176,14 +204,24 @@ function scrollToProjectCard(projectId) {
  * @returns {HTMLElement} The project section element
  */
 function createProjectCard(projectId, project, index) {
+  console.log(`[createProjectCard] Creating card for projectId="${projectId}", index=${index}, title="${project.title}"`);
+
+  // CRITICAL: Store projectId in a const to prevent any scoping issues
+  const currentProjectId = String(projectId);
+
   const section = document.createElement('section');
-  section.id = `project-${projectId}`;
+  section.id = `project-${currentProjectId}`;
   section.className = `section-project project-${project.theme}`;
   section.setAttribute('data-section', 'project');
+  // Store projectId directly on the section element for debugging
+  section.setAttribute('data-project-id', currentProjectId);
 
   // Determine navigation titles (previous and next projects)
-  const prevProjectData = getPreviousProject(projectId);
-  const nextProjectData = getNextProject(projectId);
+  const prevProjectData = getPreviousProject(currentProjectId);
+  const nextProjectData = getNextProject(currentProjectId);
+
+  const ctaHref = `#case-study-${currentProjectId}`;
+  console.log(`[createProjectCard] CTA href will be: "${ctaHref}" for project "${project.title}"`);
 
   section.innerHTML = `
     <div class="contentbox">
@@ -221,7 +259,7 @@ function createProjectCard(projectId, project, index) {
             <!-- Group 2: Storytelling text + CTA -->
             <div class="storytelling-group">
               ${createProjectDetails(project)}
-              <a href="#case-study-${projectId}" class="cta-button">
+              <a href="${ctaHref}" class="cta-button" data-project-id="${currentProjectId}">
                 → Read Case Study
               </a>
             </div>
@@ -414,12 +452,11 @@ function createTags(project) {
  * @returns {object|null} Previous project data with id
  */
 function getPreviousProject(currentId) {
-  const projectIds = Object.keys(projectData);
-  const currentIndex = projectIds.indexOf(currentId);
+  const currentIndex = PROJECT_ORDER.indexOf(currentId);
 
   if (currentIndex <= 0) return null;
 
-  const prevId = projectIds[currentIndex - 1];
+  const prevId = PROJECT_ORDER[currentIndex - 1];
   return { id: prevId, project: projectData[prevId] };
 }
 
@@ -429,12 +466,11 @@ function getPreviousProject(currentId) {
  * @returns {object|null} Next project data with id
  */
 function getNextProject(currentId) {
-  const projectIds = Object.keys(projectData);
-  const currentIndex = projectIds.indexOf(currentId);
+  const currentIndex = PROJECT_ORDER.indexOf(currentId);
 
-  if (currentIndex === -1 || currentIndex === projectIds.length - 1) return null;
+  if (currentIndex === -1 || currentIndex === PROJECT_ORDER.length - 1) return null;
 
-  const nextId = projectIds[currentIndex + 1];
+  const nextId = PROJECT_ORDER[currentIndex + 1];
   return { id: nextId, project: projectData[nextId] };
 }
 

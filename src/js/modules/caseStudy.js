@@ -7,8 +7,17 @@
 import gsap from 'gsap';
 import projectData from '../../data/projects.json';
 import { updateProjectMetaTags, clearProjectMetaTags } from './structuredData.js';
+import { initLightbox, refreshLightbox } from './lightbox.js';
 import '@phosphor-icons/web/light';
 import 'iconoir/css/iconoir.css';
+
+/**
+ * Explicit project order to preserve intended display sequence
+ * Must match the order in projectCards.js
+ * JavaScript sorts numeric object keys numerically (1,2,3,4,5,6)
+ * regardless of JSON file order, so we define the order explicitly
+ */
+const PROJECT_ORDER = ['1', '2', '3', '4'];
 
 /**
  * Render icon based on library prefix
@@ -104,22 +113,45 @@ export function initCaseStudy() {
   // Support both .open-case-study (with data-project) and .cta-button (with href)
   document.addEventListener('click', (e) => {
     const caseStudyButton = e.target.closest('.open-case-study, .cta-button');
+
     if (caseStudyButton) {
+      console.log('[caseStudy] CTA Button clicked! Target:', e.target, 'Button:', caseStudyButton);
       e.preventDefault();
 
-      // Check for data-project attribute first
-      let projectId = caseStudyButton.getAttribute('data-project');
+      // DIAGNOSTIC: Find which section this button belongs to
+      const parentSection = caseStudyButton.closest('section[data-section="project"]');
+      const sectionId = parentSection ? parentSection.id : 'unknown';
+      const projectTitle = parentSection ? parentSection.querySelector('.project-title')?.textContent : 'unknown';
+
+      console.log(`[caseStudy] ⚠️ Button is inside section: ${sectionId}, Project: "${projectTitle}"`);
+
+      const href = caseStudyButton.getAttribute('href');
+      const dataProjectId = caseStudyButton.getAttribute('data-project-id');
+      const dataProject = caseStudyButton.getAttribute('data-project');
+
+      console.log('[caseStudy] Button attributes:', {
+        href,
+        'data-project-id': dataProjectId,
+        'data-project': dataProject
+      });
+
+      // Priority order: data-project-id > data-project > href extraction
+      let projectId = dataProjectId || dataProject;
 
       // If not found, try to extract from href attribute
-      if (!projectId) {
-        const href = caseStudyButton.getAttribute('href');
-        if (href && href.includes('case-study')) {
+      if (!projectId && href) {
+        console.log('[caseStudy] Extracting projectId from href:', href);
+        if (href.includes('case-study')) {
           projectId = href.replace('#case-study-', '');
+          console.log('[caseStudy] Extracted projectId:', projectId);
         }
       }
 
       if (projectId) {
+        console.log('[caseStudy] Opening case study for projectId:', projectId);
         openCaseStudy(projectId);
+      } else {
+        console.warn('[caseStudy] No projectId found! Button:', caseStudyButton);
       }
     }
   });
@@ -147,6 +179,9 @@ export function initCaseStudy() {
 
   // Handle scroll to shrink/expand hero
   setupHeroScrollAnimation();
+
+  // Initialize lightbox
+  initLightbox('.glightbox');
 
   console.log('✓ Case study modal initialized');
 }
@@ -244,12 +279,13 @@ function openCaseStudy(projectId) {
     // Show page
     caseStudyPage.classList.add('active');
 
-    // Animate in with GSAP (slide up without full opacity change)
+    // Animate in with GSAP - CRITICAL: Reset opacity to 1 (it might be 0 from previous close)
     gsap.fromTo(
       caseStudyPage,
-      { y: 30 },
+      { y: 30, opacity: 0 },
       {
         y: 0,
+        opacity: 1,
         duration: 0.4,
         ease: 'power2.out',
       }
@@ -301,10 +337,19 @@ function populateCaseStudy(project) {
     }
 
     imagesToDisplay.forEach((imageSrc) => {
+      // Wrap image in anchor for lightbox
+      const link = document.createElement('a');
+      link.href = imageSrc;
+      link.className = 'glightbox';
+      link.setAttribute('data-gallery', 'case-study-gallery');
+      link.setAttribute('data-title', `${project.title}`);
+
       const img = document.createElement('img');
       img.src = imageSrc;
       img.alt = `${project.title} preview`;
-      heroImagesContainer.appendChild(img);
+
+      link.appendChild(img);
+      heroImagesContainer.appendChild(link);
     });
   }
 
@@ -384,6 +429,9 @@ function populateCaseStudy(project) {
               }
             });
           }
+
+          // Initialize lightbox after content is loaded
+          refreshLightbox();
         })
         .catch((error) => {
           console.error('Failed to load case study content:', error);
@@ -398,6 +446,9 @@ function populateCaseStudy(project) {
           contentContainer.appendChild(blockElement);
         }
       });
+
+      // Initialize lightbox after inline content is rendered
+      refreshLightbox();
     }
   }
 }
@@ -409,7 +460,11 @@ function populateCaseStudy(project) {
  */
 async function loadCaseStudyContent(contentFile) {
   try {
-    const response = await fetch(contentFile);
+    // Add cache-buster in development mode only
+    // This forces the browser to fetch fresh content on each modal open
+    // In production, files are cached normally for performance
+    const cacheBuster = import.meta.env.DEV ? `?t=${Date.now()}` : '';
+    const response = await fetch(`${contentFile}${cacheBuster}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -654,11 +709,22 @@ function renderFullWidthImage(block) {
   const figure = document.createElement('figure');
   figure.className = 'cs-full-width-image';
 
+  // Wrap image in anchor for lightbox
+  const link = document.createElement('a');
+  link.href = block.src;
+  link.className = 'glightbox';
+  link.setAttribute('data-gallery', 'case-study-gallery');
+  if (block.alt) {
+    link.setAttribute('data-title', block.alt);
+  }
+
   const img = document.createElement('img');
   img.src = block.src;
   img.alt = block.alt || '';
   img.className = 'cs-full-img';
-  figure.appendChild(img);
+
+  link.appendChild(img);
+  figure.appendChild(link);
 
   if (block.caption) {
     const figcaption = document.createElement('figcaption');
@@ -709,11 +775,22 @@ function renderImageGrid(block) {
       }
       figure.appendChild(video);
     } else {
+      // Wrap image in anchor for lightbox
+      const link = document.createElement('a');
+      link.href = image.src;
+      link.className = 'glightbox';
+      link.setAttribute('data-gallery', 'case-study-gallery');
+      if (image.alt) {
+        link.setAttribute('data-title', image.alt);
+      }
+
       const img = document.createElement('img');
       img.src = image.src;
       img.alt = image.alt || '';
       img.className = 'cs-grid-img';
-      figure.appendChild(img);
+
+      link.appendChild(img);
+      figure.appendChild(link);
     }
 
     if (image.caption) {
@@ -771,12 +848,20 @@ function renderGallery(block, project) {
     const wrapper = document.createElement('div');
     wrapper.className = 'cs-gallery-item';
 
+    // Wrap image in anchor for lightbox
+    const link = document.createElement('a');
+    link.href = imageSrc;
+    link.className = 'glightbox';
+    link.setAttribute('data-gallery', 'case-study-gallery');
+    link.setAttribute('data-title', `${project.title} - Image ${index + 1}`);
+
     const img = document.createElement('img');
     img.src = imageSrc;
     img.alt = `${project.title} - Image ${index + 1}`;
     img.className = 'cs-gallery-image';
 
-    wrapper.appendChild(img);
+    link.appendChild(img);
+    wrapper.appendChild(link);
     grid.appendChild(wrapper);
   });
 
@@ -1167,16 +1252,15 @@ function updateBreadcrumbs(currentProjectId) {
 
   breadcrumbs.innerHTML = '';
 
-  // Get all project IDs
-  const projectIds = Object.keys(projectData);
-  const currentIndex = projectIds.indexOf(currentProjectId);
+  // Use explicit project order to match card display order
+  const currentIndex = PROJECT_ORDER.indexOf(currentProjectId);
 
   // Get previous and next projects
-  const prevIndex = currentIndex > 0 ? currentIndex - 1 : projectIds.length - 1;
-  const nextIndex = currentIndex < projectIds.length - 1 ? currentIndex + 1 : 0;
+  const prevIndex = currentIndex > 0 ? currentIndex - 1 : PROJECT_ORDER.length - 1;
+  const nextIndex = currentIndex < PROJECT_ORDER.length - 1 ? currentIndex + 1 : 0;
 
-  const prevProjectId = projectIds[prevIndex];
-  const nextProjectId = projectIds[nextIndex];
+  const prevProjectId = PROJECT_ORDER[prevIndex];
+  const nextProjectId = PROJECT_ORDER[nextIndex];
 
   const prevProject = projectData[prevProjectId];
   const nextProject = projectData[nextProjectId];
@@ -1221,19 +1305,19 @@ function setupKeyboardNavigation() {
     if (!caseStudyPage.classList.contains('active')) return;
 
     const currentProjectId = caseStudyPage.getAttribute('data-current-project');
-    const projectIds = Object.keys(projectData);
-    const currentIndex = projectIds.indexOf(currentProjectId);
+    // Use explicit project order to match card display order
+    const currentIndex = PROJECT_ORDER.indexOf(currentProjectId);
 
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       // Next project
       e.preventDefault();
-      const nextIndex = (currentIndex + 1) % projectIds.length;
-      openCaseStudy(projectIds[nextIndex]);
+      const nextIndex = (currentIndex + 1) % PROJECT_ORDER.length;
+      openCaseStudy(PROJECT_ORDER[nextIndex]);
     } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
       // Previous project
       e.preventDefault();
-      const prevIndex = (currentIndex - 1 + projectIds.length) % projectIds.length;
-      openCaseStudy(projectIds[prevIndex]);
+      const prevIndex = (currentIndex - 1 + PROJECT_ORDER.length) % PROJECT_ORDER.length;
+      openCaseStudy(PROJECT_ORDER[prevIndex]);
     }
   };
 

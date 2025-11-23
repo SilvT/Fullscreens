@@ -17,10 +17,12 @@ const ANIMATION_PRESETS = {
     from: {
       opacity: 0,
       visibility: 'hidden',
+      pointerEvents: 'none', // CRITICAL: Disable pointer events when hidden
     },
     to: {
       opacity: 1,
       visibility: 'visible',
+      pointerEvents: 'auto', // CRITICAL: Enable pointer events when visible
     },
   },
 
@@ -30,11 +32,13 @@ const ANIMATION_PRESETS = {
       opacity: 0,
       visibility: 'hidden',
       filter: 'blur(0.5rem) contrast(4)',
+      pointerEvents: 'none', // CRITICAL: Disable pointer events when hidden
     },
     to: {
       opacity: 1,
       visibility: 'visible',
       filter: 'blur(0) contrast(1)',
+      pointerEvents: 'auto', // CRITICAL: Enable pointer events when visible
     },
   },
 
@@ -110,8 +114,8 @@ export function initScrollTransitions(animationType = 'blink') {
   currentAnimation = animationType;
   const preset = ANIMATION_PRESETS[animationType] || ANIMATION_PRESETS.blink;
 
-  // Get all sections (both landing and project sections)
-  const sections = gsap.utils.toArray('section');
+  // Get all sections with data-section attribute (excludes case study sections)
+  const sections = gsap.utils.toArray('section[data-section]');
 
   console.log(`Found ${sections.length} sections to animate`);
 
@@ -120,8 +124,12 @@ export function initScrollTransitions(animationType = 'blink') {
   if (firstSection) {
     const firstContentbox = firstSection.querySelector('.contentbox');
     if (firstContentbox) {
-      gsap.set(firstContentbox, { opacity: 1, visibility: 'visible' });
-      console.log('First section set to visible');
+      gsap.set(firstContentbox, {
+        opacity: 1,
+        visibility: 'visible',
+        pointerEvents: 'auto' // CRITICAL: Enable clicks on first section
+      });
+      console.log('First section set to visible with pointer events enabled');
     }
   }
 
@@ -135,6 +143,16 @@ export function initScrollTransitions(animationType = 'blink') {
 
     console.log('Setting up scroll transition for:', section.id);
 
+    // DEBUG: Add click listener to detect which section is being clicked
+    section.addEventListener('click', (e) => {
+      const sectionId = section.id;
+      const projectTitle = section.querySelector('.project-title')?.textContent || 'Unknown';
+      const computedZ = window.getComputedStyle(contentbox).zIndex;
+      const computedPointer = window.getComputedStyle(contentbox).pointerEvents;
+      console.log(`🖱️ [CLICK DETECTED] You clicked inside section: ${sectionId} (${projectTitle})`);
+      console.log(`   Current z-index: ${computedZ}, pointer-events: ${computedPointer}`);
+    });
+
     // Create timeline for this section
     // Content fades in as section enters, visible at center, fades out as section leaves
     const tl = gsap.timeline({
@@ -145,10 +163,20 @@ export function initScrollTransitions(animationType = 'blink') {
         scrub: true, // Instant scrubbing (no delay)
         markers: false, // Disable debug markers
         id: `section-${index}`,
-        // Ensure content is visible when section is snapped at top
+        // CRITICAL FIX: Control z-index and pointer-events based on visibility
         onUpdate: (self) => {
-          // When section is at snap position (top: 0), progress should be ~0.5 (visible)
-          // This helps with the scroll-up issue
+          const progress = self.progress;
+          // Section is visible when progress is between 0.3 and 0.7 (the middle 40%)
+          const isVisible = progress >= 0.3 && progress <= 0.7;
+
+          if (isVisible) {
+            // Bring to front and enable clicks
+            gsap.set(contentbox, { zIndex: 20, pointerEvents: 'auto' });
+            console.log(`[ScrollTrigger] Section ${section.id} is VISIBLE - z-index: 20, pointer-events: auto`);
+          } else {
+            // Send to back and disable clicks
+            gsap.set(contentbox, { zIndex: 5, pointerEvents: 'none' });
+          }
         },
       },
     });
@@ -186,6 +214,18 @@ export function initScrollTransitions(animationType = 'blink') {
       0.7
     );
   });
+
+  // DEBUG: Verify pointer events after a short delay
+  setTimeout(() => {
+    console.log('[DEBUG] Checking pointer-events on all contentboxes:');
+    sections.forEach((section, idx) => {
+      const contentbox = section.querySelector('.contentbox');
+      if (contentbox) {
+        const computedStyle = window.getComputedStyle(contentbox);
+        console.log(`  Section ${idx} (${section.id}): pointer-events = "${computedStyle.pointerEvents}", opacity = ${computedStyle.opacity}`);
+      }
+    });
+  }, 500);
 
   console.log(`✓ Scroll transitions initialized with "${animationType}" animation for ${sections.length} sections`);
 }
