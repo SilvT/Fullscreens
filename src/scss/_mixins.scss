@@ -171,11 +171,16 @@
     }
   }
 
+    .cs-metric-top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
 
   @include breakpoint(mobile) {
     .cs-metric-top{
-      display: flex;
       flex-direction: row;
+      align-items: center;
       gap: $space-8;
     }
   }

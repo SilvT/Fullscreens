@@ -6,7 +6,7 @@
     "company": "Senapt LTD",
     "year": "2024 - 2025",
     "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "0→1", "Co-ownership"],
-    "cardOverview": "Built from scratch to unify fragmented marketing operations across 4 departments, replacing manual Excel workflows with real-time data visibility. Grew from Mid UI Designer to co-owning product strategy and creating the company's first Design Ops team.",
+    "cardOverview": "Built from scratch to unify fragmented marketing operations across 4 departments, replacing manual Excel workflows with real-time data visibility. Grew from Mid UI Designer to co-owning product strategy",
     "storyTeaser": {
     "text": "Seven months in, I found myself presenting, not just a complex UI dashboard app, but a design system to a room full of engineers. This wasn't in the job description for Mid UI Designer.",
       "cta": "Read how I went from UI executor to co-owning product strategy"
@@ -49,17 +49,17 @@
   },
     "3": {
    "title": "Energy Switching Tracker",
-   "subtitle": "From Mid UI to Product Design Lead: Building Enterprise Software in a Startup",
+   "subtitle": "Helping customers understand their energy journey",
     "shortSubtitle": "A unified CRM to consolidate fragmented data across 4 departments",
     "company": "Senapt Limited (Tomato Energy)",
     "year": "2025",
     "tags": ["Product Design", "UI/UX", "B2C", "Mobile-First", "Data Visualization"],
-    "cardOverview": "After hunting down backend engineers to map a process no one fully understood, I built a customer-facing tracker that replaced reactive 'we'll email you' communication with proactive, brand-aligned self-service—and probably saved customer support from a lot of anxious phone calls.",
+    "cardOverview": "After hunting down backend engineers to map a process no one fully understood, I built a customer-facing tracker that replaced reactive 'we'll email you' communication with proactive self-service, saving CS from a lot of anxious phone calls.",
     "storyTeaser": {
       "text": "No one—not customer service, not backend devs—could explain how the UK energy switching process worked. So I became an amateur backend archaeologist.",
       "cta": "Read how I translated chaos into a customer-facing tracker"
     },
-    "heroImage": "/microsite/hero.png",
+    "heroImage": "/microsite/tomato microsite screens.png",
     "theme": "neutral",
   "cardMetrics": [
       { "icon": "iconoir:eye", "value": "Real time", "label": "Transparent journey" },
