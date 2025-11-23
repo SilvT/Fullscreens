@@ -1,0 +1,456 @@
+{
+  "1": {
+   "title": "Marketing Management",
+   "subtitle": "From Mid UI to Product Design Lead: Building Enterprise Software in a Startup",
+    "shortSubtitle": "A unified CRM to consolidate fragmented data across 4 departments",
+    "company": "Senapt LTD",
+    "year": "2024 - 2025",
+    "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "0→1", "Co-ownership"],
+    "cardOverview": "Built from scratch to unify fragmented marketing operations across 4 departments, replacing manual Excel workflows with real-time data visibility. Grew from Mid UI Designer to co-owning product strategy and creating the company's first Design Ops team.",
+    "storyTeaser": {
+    "text": "Seven months in, I found myself presenting, not just a complex UI dashboard app, but a design system to a room full of engineers. This wasn't in the job description for Mid UI Designer.",
+      "cta": "Read how I went from UI executor to co-owning product strategy"
+    },
+    "heroImage": "/mkm/mkm-hero.png",
+    "theme": "blue",
+    "cardMetrics": [
+      { "icon": "iconoir:community", "value": "50%", "label": "Customer growth" },
+      { "icon": "iconoir:map-pin", "value": "4 → 1", "label": "Unified Platform" },
+      { "icon": "iconoir:gym", "value": "75%", "label": "Reduced Manual work" }
+    ],
+    "contentFile": "/data/mkm-content.json"
+  },
+  "2": {
+    "title": "Design System from Scratch",
+    "subtitle": "Building design infrastructure in an engineer-first startup with zero precedent",
+    "shortSubtitle": "Building design infrastructure in an engineer-first startup with zero precedent",
+    "company": "Senapt LTD",
+    "year": "2024 - 2025",
+    "duration": "18 months",
+    "tags": ["Design Systems", "Token Architecture", "JavaFX", "GitHub Actions", "Async Collaboration"],
+    
+    "cardOverview": "Built a production-ready design system from scratch as a solo mid-level designer in an engineer-first startup. Solved JavaFX (zero references), 8-hour timezone gaps, and CEO resistance. Result: 90% QA reduction, company-wide adoption, and 1,920 hours saved through systematic reuse.",
+    
+    "storyTeaser": {
+      "text": "CEO rejected my design system pitch. So I built it anyway, proved it worked, and got him to mandate it company-wide 15 months later.",
+      "cta": "Read how I turned organisational resistance into strategic infrastructure"
+    },
+    
+    "heroImage": "/design-system/hero-token-architecture.png",
+    "theme": "green",
+    
+    "cardMetrics": [
+      { "icon": "iconoir:clock", "value": "90%", "label": "QA reduction" },
+      { "icon": "iconoir:frame-select", "value": "864", "label": "Production tokens" },
+      { "icon": "iconoir:component", "value": "40+", "label": "Components" },
+      { "icon": "ph:users-three", "value": "7", "label": "Projects adopted" }
+    ],
+    "contentFile": "/data/mkm-ds.json"
+  },
+  "5": {
+    "title": "Marketing Management (OLD - DO NOT USE)",
+    "subtitle": "A unified CRM to consolidate fragmented data across 4 departments",
+    "company": "Senapt LTD",
+    "jobTitle": "Solo Product Designer",
+    "year": "2024 - 2025",
+    "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "0→1"],
+    "cardOverview": "Built from scratch to unify fragmented marketing operations across  4 departments, replacing manual Excel workflows with real-time data visibility.",
+    "heroImage": "/mkm/mkm-hero.png",
+    "theme": "blue",
+    "images": [
+      "/6720397c415946385e1e030ee7203c624878df15.png",
+      "/6720397c415946385e1e030ee7203c624878df15.png",
+      "/6720397c415946385e1e030ee7203c624878df15.png"
+    ],
+    "technical": {
+      "Role & Timeline": [
+        "Solo Product Designer",
+        "UI/UX Design",
+        "Design Systems Lead",
+        "2024 - 2025"
+      ]
+    },
+    "cardMetrics": [
+      { "icon": "iconoir:community", "value": "50%", "label": "Customer growth" },
+      { "icon": "iconoir:map-pin","value": "4 → 1", "label": "Unified Platform" },
+      { "icon": "iconoir:gym", "value": "75%", "label": "Reduced Manual work" }
+    ],
+    "detailMetrics": [
+      { "icon": "iconoir:collapse", "value": "4 Departments unified", "label": "Single platform consolidating fragmented marketing data and workflows" },
+      { "icon": "iconoir:file-not-found","value": "No Product team", "label": "faster complaint resolution (Facebook-CRM integration)" },
+      { "icon": "iconoir:cloud-xmark", "value": "Async collaboration", "label": "8-hour time zone gap with remote developer via Figma comments only." }
+    ],
+    "contentBlocks": [
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "Project Overview",
+            "blocks": [
+              {
+                "type": "heading",
+                "level": "h3",
+                "text": "The Setup"
+              },
+              {
+                "type": "paragraph",
+                "class": "subtit",
+                "text": "Greenfield product, limited team"
+              },
+              {
+                "type": "paragraph",
+                "text": "I was assigned to build this platform with:"
+              },
+              {
+                "type": "list",
+                "style": "ul",
+                "items": [
+                  "1 Backend developer (my primary partner)",
+                  "1 Frontend developer (8 time zones away, limited English)",
+                  "No Design System culture",
+                  "No Product Manager",
+                  "Starting from scratch (no patterns nor component library)"
+                ]
+              },
+              {
+                "type": "paragraph",
+                "html": "Between backend and myself, we became the <strong>de facto product owners</strong>: defining scope, prioritising features, and making strategic decisions typically handled by a PM."
+              }
+            ]
+          }
+        ],
+        "sidebar": {
+          "Technical Details": [
+            "Desktop Application",
+            "CRM Integration",
+            "Facebook API",
+            "Real-time Dashboards",
+            "Multi-department Access"
+          ]
+        }
+      },
+      {
+      "type": "image-grid",
+      "columns": 2,
+      "images": [
+        {
+          "src": "/mkm/0_create campaign steps.mov",
+          "alt": "Image 1 description",
+          "caption": "Campaign detail view and Create Campaign stepper flow."
+        },
+        {
+          "src": "/mkm/may24-Dashboard.png",
+          "alt": "Image 2 description",
+          "caption": "Dashboard overview showing multi-channel campaign  performance, lead tracking, and budget allocation"
+        }
+      ]
+      },
+      {
+  "type": "two-column-with-sidebar",
+  "left": [
+    {
+      "heading": "Section Heading",
+      "text": "Plain text content (legacy)",
+      "blocks": [ 
+          {
+                "type": "heading",
+                "level": "h3",
+                "text": "The Brief"
+              },
+        {
+                "type": "paragraph",
+                "text": "The brief was simple but broad:"
+              },        
+        {
+                "type": "paragraph",
+                "class": "callout",
+                "text": "Create a unified platform to consolidate marketing data across 4 departments."
+              },
+                 {
+                "type": "paragraph",
+                "text": "That was it. No product manager. No established patterns. No component library to work from."
+              },
+               {
+                "type": "paragraph",
+                "text": "This project became my transition from graphic design to product and systems design—learning both disciplines while building."
+              }
+    ],
+      "image": {
+        "src": "/path/to/image.png",
+        "alt": "Image description",
+        "caption": "Optional caption"
+      },
+      "imageFull": {
+        "src": "/path/to/full-width-image.png",
+        "alt": "Full width image",
+        "caption": "Optional caption"
+      }
+    }
+  ],
+  "sidebar": {
+
+  }
+},
+      {
+        "type": "full-width-image",
+        "src": "/6720397c415946385e1e030ee7203c624878df15.png",
+        "alt": "Unified CRM dashboard",
+        "caption": "Centralized dashboard bringing all data together"
+      },
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "The Solution",
+            "text": "Created a unified CRM platform that integrated all marketing touchpoints, automated Facebook complaint tracking, and established the foundation for a scalable design system."
+          }
+        ],
+        "sidebar": {
+          "Impact": [
+            "14k customers managed",
+            "4 departments unified",
+            "Real-time data sync"
+          ]
+        }
+      },
+      {
+        "type": "gallery",
+        "images": [
+          "/6720397c415946385e1e030ee7203c624878df15.png",
+          "/6720397c415946385e1e030ee7203c624878df15.png",
+          "/6720397c415946385e1e030ee7203c624878df15.png"
+        ]
+      }
+    ]
+  },
+  "6": {
+    "title": "Marketing Management Platform – Design System",
+    "subtitle": "Pioneering design systems in engineering-first environments",
+    "company": "Senapt LTD",
+    "jobTitle": "Design System Lead",
+    "year": "2024 - 2025",
+    "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "Component Libraries"],
+    "cardOverview": "Built a greenfield design system from scratch with a remote developer 8 time zones away. The constraint forced unambiguous design—every token and component had to work for async, text-only handoffs. Result: 90% implementation accuracy and a system now scaling company-wide.",
+    "heroImage": "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+    "theme": "green",
+    "images": [
+      "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+      "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+      "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png"
+    ],
+    "technical": {
+      "Role & Timeline": [
+        "Design System Lead",
+        "Component Architecture",
+        "Solo Product Designer",
+        "2024 - 2025"
+      ]
+    },
+    "cardMetrics": [
+      {"icon": "iconoir:rocket", "value": "70%", "label": "Faster iteration" },
+      {"icon": "iconoir:check-circle", "value": "90%", "label": "Accuracy" },
+      {"icon": "iconoir:trophy", "value": "CEO", "label": "Buy-in" }
+    ],
+    "detailMetrics": [
+      {"icon": "iconoir:rocket", "value": "70%", "label": "faster design iteration through reusable components" },
+      {"icon": "iconoir:check-circle", "value": "90%", "label": "implementation accuracy" },
+      {"icon": "iconoir:trophy", "value": "CEO", "label": "buy-in & proof of concept." }
+    ],
+    "contentBlocks": [
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "Project Overview",
+            "text": "When I joined as a mid-level designer, I got an unusual opportunity: build a greenfield product with no systems culture and a remote developer 8 time zones away who didn't speak fluent English. Most designers at that level inherit systems—I built one from scratch out of necessity. The constraint forced unambiguous design: every token, component, and interaction had to work for async, text-only handoffs. The result: 90% implementation accuracy, an automated Figma-to-Git pipeline for JavaFX, a system now scaling company-wide, and a role that evolved to senior-level systems ownership."
+          },
+          {
+            "heading": "The Setup",
+            "text": "As the solo product designer, I built a unified marketing platform from scratch—unifying fragmented data across 4 departments while pioneering the company's first design system. The project became the proof-of-concept for systematic design, now adopted company-wide."
+          }
+        ],
+        "sidebar": {
+          "Metrics": [
+            "4-layers architecture",
+            "400+ tokens",
+            "200+ components",
+            "Git Version Control"
+          ],
+          "Role & Timeline": [
+            "Design System Lead",
+            "Component Architecture",
+            "Solo Product Designer",
+            "2024 - 2025"
+          ]
+        }
+      },
+      {
+        "type": "metrics-inline",
+        "metrics": [
+          {"icon": "iconoir:color-picker", "value": "400+", "label": "design tokens" },
+          {"icon": "iconoir:package", "value": "200+", "label": "components" },
+          { "icon": "iconoir:layers","value": "4", "label": "layer architecture" }
+        ]
+      },
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "The Challenge",
+            "text": "My frontend developer was 8 time zones ahead, didn't speak fluent English, and communicated only via Figma comments and async messages. If I couldn't hop on a call to explain a design decision, the design itself had to be unambiguous."
+          },
+          {
+            "heading": "The Solution",
+            "text": "Developed a comprehensive design system with component libraries, detailed documentation, and code snippets that empowered front-end teams to work independently while maintaining design consistency."
+          }
+        ],
+        "sidebar": {
+          "Scope": [
+            "UI/UX Design",
+            "Systems Architecture",
+            "Design-to-Code Automation",
+            "JavaFX CSS"
+          ],
+          "Tools Used": [
+            "Figma",
+            "Token Studio Plugin",
+            "Git Actions",
+            "JavaFX Documentation"
+          ]
+        }
+      },
+      {
+        "type": "gallery",
+        "images": [
+          "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+          "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png",
+          "/dfd2d7fb334e18f2d321311e566d168767c9a99f.png"
+        ]
+      }
+    ]
+  },
+    "3": {
+   "title": "Energy Switching Tracker",
+   "subtitle": "From Mid UI to Product Design Lead: Building Enterprise Software in a Startup",
+    "shortSubtitle": "A unified CRM to consolidate fragmented data across 4 departments",
+    "company": "Senapt Limited (Tomato Energy)",
+    "year": "2025",
+    "tags": ["Product Design", "UI/UX", "B2C", "Mobile-First", "Data Visualization"],
+    "cardOverview": "After hunting down backend engineers to map a process no one fully understood, I built a customer-facing tracker that replaced reactive 'we'll email you' communication with proactive, brand-aligned self-service—and probably saved customer support from a lot of anxious phone calls.",
+    "storyTeaser": {
+      "text": "No one—not customer service, not backend devs—could explain how the UK energy switching process worked. So I became an amateur backend archaeologist.",
+      "cta": "Read how I translated chaos into a customer-facing tracker"
+    },
+    "heroImage": "/microsite/mock-6.png",
+    "theme": "neutral",
+  "cardMetrics": [
+      { "icon": "iconoir:filter-list", "value": "2", "label": "Journey types" },
+      { "icon": "iconoir:message-alert", "value": "8+", "label": "Error scenarios" },
+      { "icon": "iconoir:phone", "value": "↓", "label": "Support queries" }
+    ],
+    "contentFile": "/data/microsite.json"
+  },
+  "4": {
+    "title": "Figma Design Distributor Plugin",
+    "subtitle": "Design token automation for Figma Variables, Collections, and styles",
+    "company": "Personal Project",
+    "jobTitle": "Design Technologist",
+    "year": "2025",
+    "tags": [ "Figma Plugin", "Design Systems", "Git Automation", "APIs", "AI-Assisted Dev"],
+    "cardOverview": "Automating Design Token Extraction for Better Design-Dev Handoff",
+    "heroImage": "/plugin/plugin-1.png",
+    "theme": "blue",
+    "images": [
+      "/plugin/plugin-1.png",
+      "/plugin/plugin-2.png",
+      "/plugin/plugin-3.png",
+      "/plugin/plugin-4.png",
+      "/plugin/plugin-5.png"
+    ],
+    "technical": {
+      "Role & Timeline": [
+        "Design Technologist",
+        "Product Designer",
+        "2025"
+      ]
+    },
+    "cardMetrics": [
+      { "icon": "iconoir:brain", "value": "100%", "label": "Automation" },
+      { "icon": "iconoir:timer", "value": "5min", "label": "Time saved" },
+      {  "icon": "iconoir:git-branch", "value": "GitHub", "label": "Integration" }
+    ],
+    "detailMetrics": [
+      { "icon": "iconoir:brain", "value": "100%", "label": "automation of design token extraction" },
+      { "icon": "iconoir:timer", "value": "5min", "label": "from manual hours to automated minutes" },
+      {  "icon": "iconoir:git-branch", "value": "GitHub", "label": "integrated workflow support" }
+    ],
+    "contentBlocks": [
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "Project Overview",
+            "text": "Automating Design Token Extraction for Better Design-Dev Handoff"
+          },
+          {
+            "heading": "The Problem",
+            "text": "Design teams manually extract and share design tokens from Figma, leading to inconsistencies, versioning issues, and time wasted on repetitive tasks. Teams needed an automated solution that respects existing GitHub workflows."
+          }
+        ],
+        "sidebar": {
+          "Technical Details": [
+            "Vibe Coding",
+            "Design Systems Ops",
+            "Cross-team Collaboration",
+            "Performance Optimization"
+          ],
+          "Role & Timeline": [
+            "Design Technologist",
+            "Product Designer",
+            "2025"
+          ]
+        }
+      },
+      {
+        "type": "image-grid",
+        "columns": 2,
+        "images": [
+          { "src": "/plugin/plugin-2.png", "alt": "Plugin interface" },
+          { "src": "/plugin/plugin-3.png", "alt": "Token extraction" }
+        ]
+      },
+      {
+        "type": "two-column-with-sidebar",
+        "left": [
+          {
+            "heading": "The Solution",
+            "text": "A Figma plugin that automatically extracts design tokens (colours, typography, spacing, variables) and pushes them to GitHub repositories or downloads locally, with comprehensive error handling and security considerations."
+          },
+          {
+            "heading": "Process",
+            "text": "Research and Planning:\n- Identified core requirements from design systems workflows\n- Mapped technical constraints of Figma's plugin environment\n- Defined architecture supporting both GitHub and local distribution"
+          }
+        ],
+        "sidebar": {
+          "Tools Used": [
+            "Figma plugin API",
+            "API",
+            "Typescript",
+            "GitHub API",
+            "build-figma-plugin",
+            "Claude Code"
+          ]
+        }
+      },
+      {
+        "type": "gallery",
+        "images": [
+          "/plugin/plugin-1.png",
+          "/plugin/plugin-4.png",
+          "/plugin/plugin-5.png"
+        ]
+      }
+    ]
+  }
+}
+

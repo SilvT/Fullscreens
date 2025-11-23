@@ -1,31 +1,7 @@
 {
-  "1": {
-    "title": "Marketing Management",
-    "subtitle": "From Mid UI to Product Design Lead: Building Enterprise Software in a Startup",
-    "shortSubtitle": "A unified CRM to consolidate fragmented data across 4 departments",
-    "company": "Senapt LTD",
-    "jobTitle": "Solo Product Designer → Product Lead",
-    "year": "2024 - 2025",
-    "duration": "18 months",
-    "tags": ["Product Design", "UI/UX", "Design Systems", "B2B", "0→1", "Co-ownership"],
-    
-    "cardOverview": "Built from scratch to unify fragmented marketing operations across 4 departments, replacing manual Excel workflows with real-time data visibility. Grew from Mid UI Designer to co-owning product strategy and creating the company's first Design Ops team.",
-    
-    "storyTeaser": {
-      "text": "Seven months in, I found myself presenting a design system to a room full of engineers. This wasn't in the job description for Mid UI Designer.",
-      "cta": "Read how I went from UI executor to co-owning product strategy"
-    },
-    
-    "heroImage": "/mkm/mkm-hero.png",
-    "theme": "blue",
-    
-    "cardMetrics": [
-      { "icon": "iconoir:community", "value": "50%", "label": "Customer growth" },
-      { "icon": "iconoir:map-pin", "value": "4 → 1", "label": "Unified Platform" },
-      { "icon": "iconoir:gym", "value": "75%", "label": "Reduced Manual work" }
-    ],
-    
-    "detailMetrics": [
+  "jobTitle": "Solo Product Designer → Product Lead",
+  "duration": "18 months",
+  "detailMetrics": [
       { "icon": "iconoir:collapse", "value": "4 → 1", "label": "Departments unified into single platform" },
       { "icon": "iconoir:frame-select", "value": "400+", "label": "Design tokens created from scratch" },
       { "icon": "iconoir:component", "value": "200+", "label": "Components built systematically" },
@@ -38,7 +14,7 @@
       {
         "type": "story-hook",
         "quote": "How did I get here? This definitely wasn't in the job description for Mid UI Designer.",
-        "context": "Seven months into my first corporate design role, I found myself standing in front of a room full of engineers, presenting a design system architecture I'd built from scratch.",
+        "context": "Seven months in, I found myself presenting, not just a complex UI dashboard app, but a design system to a room full of engineers. This wasn't in the job description for Mid UI Designer.",
         "image": "/mkm/presenting-moment.jpg"
       },
       {
@@ -471,5 +447,4 @@
         ]
       }
     ]
-  }
 }
