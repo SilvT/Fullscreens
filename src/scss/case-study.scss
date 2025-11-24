@@ -356,7 +356,7 @@
       max-width: none;
       width: auto;
       height: auto;
-      max-height: 450px;
+      max-height: 350px;
       border-radius: 4px;
       transform: scale(1.3);
       transform-origin: top left; // Anchor at top-left corner
@@ -523,6 +523,38 @@
     color: $color-blue-darker;
     line-height: 1.6;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    // When populated with story-hook content
+    &.cs-story-hook-style {
+      .cs-story-hook-quote {
+        font-size: $font-size-l;
+        font-weight: $font-weight-medium;
+        font-style: italic;
+        color: $color-blue-darker;
+        margin: 0 0 1rem 0;
+        line-height: 1.4;
+        position: relative;
+        padding-left: 1.5rem;
+
+        &::before {
+          content: '"';
+          position: absolute;
+          left: 0;
+          top: -0.5rem;
+          font-size: 3rem;
+          color: $color-blue-primary;
+          opacity: 0.3;
+          line-height: 1;
+        }
+      }
+
+      .cs-story-hook-context {
+        font-size: $font-size-s;
+        color: $color-blue-dark;
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
   }
 
   @include breakpoint(mobile) {

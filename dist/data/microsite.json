@@ -3,18 +3,15 @@
     "jobTitle": "Product Designer",
     "duration": "1 month",
       "detailMetrics": [
-      { "icon": "iconoir:filter-list", "value": "2", "label": "Journey types" },
-      { "icon": "iconoir:mail", "value": "1 Email ", "label": "From unreliable email system to magic link" },
-      { "icon": "iconoir:message-alert", "value": "Self-error diagnosis", "label": "Proactive communication" },
-      { "icon": "iconoir:network-right", "value": "+15 System States", "label": "Translated backend states like into human language"},
-      { "icon": "iconoir:phone-minus", "value": "Support Relief", "label": "Self-diagnosis eliminated 'where's my switch?' queries"},
-      { "icon": "iconoir:eye", "value": "Real-time", "label": "Bottleneck visibility" }
+      {"icon": "iconoir:network-right", "value": "+15 System States", "label": "Translated backend states like into human language"},
+      { "icon": "iconoir:user-scan", "value": "Self-error diagnosis", "label": "Customer has autonomy to understand their journey" },
+      { "icon": "iconoir:link", "value": "1 Magic Link ", "label": "From unreliable email system to just one click" }
     ],
     "contentBlocks": [
       {
         "type": "story-hook",
-        "quote": "This is really complicated and no one knows the full picture.",
-        "context": "That's what the backend team told me when I asked them to explain the UK energy switching process. As a non-UK resident with zero knowledge of the British energy market, I had to piece together a system that even the engineers couldn't fully explain—then make it friendly enough for anxious customers waiting weeks for their switch."
+        "quote": "Wait, switching suppliers has how many steps?",
+        "context": "As a freelance & foreigner with zero knowledge of the British energy market, I had to piece together a system that even the engineers couldn't fully explain; then make it friendly enough for anxious customers waiting weeks for their switch."
       },
       {
         "type": "two-column-with-sidebar",

@@ -27,7 +27,7 @@ import {
 } from './js/modules/metricAnimations.js';
 import { initAccessibility, verifyColorContrast } from './js/modules/accessibility.js';
 import { initFlipBoardAnimation } from './js/modules/flipBoardAnimation.js';
-import { initProjectDetail } from './js/modules/projectDetail.js';
+// import { initProjectDetail } from './js/modules/projectDetail.js'; // ARCHIVED: Not currently in use
 import { initCaseStudy } from './js/modules/caseStudy.js';
 import { initScrollHint } from './js/modules/scrollHint.js';
 import { initProjectCards } from './js/modules/projectCards.js';
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFlipBoardAnimation();
 
   // Initialize project detail page
-  initProjectDetail();
+  // initProjectDetail(); // ARCHIVED: Not currently in use
 
   // Initialize case study modal (traditional case study format)
   initCaseStudy();

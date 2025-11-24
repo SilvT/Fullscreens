@@ -11,7 +11,7 @@
     "text": "Seven months in, I found myself presenting, not just a complex UI dashboard app, but a design system to a room full of engineers. This wasn't in the job description for Mid UI Designer.",
       "cta": "Read how I went from UI executor to co-owning product strategy"
     },
-    "heroImage": "/mkm/mkm-hero.png",
+    "heroImage": "/mkm/mkm-large hero.png",
     "theme": "blue",
     "cardMetrics": [
       { "icon": "iconoir:community", "value": "50%", "label": "Customer growth" },

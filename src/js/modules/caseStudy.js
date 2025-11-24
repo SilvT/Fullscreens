@@ -397,6 +397,28 @@ function populateCaseStudy(project) {
             if (subtitleEl) subtitleEl.textContent = contentData.subtitle;
           }
 
+          // Update hero overview with story-hook content if available
+          if (contentData.contentBlocks) {
+            const storyHook = contentData.contentBlocks.find(block => block.type === 'story-hook');
+            if (storyHook && heroOverview) {
+              // Create story-hook styled content in hero
+              heroOverview.innerHTML = '';
+              heroOverview.className = 'cs-hero-overview cs-story-hook-style';
+
+              const quote = document.createElement('blockquote');
+              quote.className = 'cs-story-hook-quote';
+              quote.textContent = storyHook.quote;
+              heroOverview.appendChild(quote);
+
+              if (storyHook.context) {
+                const context = document.createElement('p');
+                context.className = 'cs-story-hook-context';
+                context.textContent = storyHook.context;
+                heroOverview.appendChild(context);
+              }
+            }
+          }
+
           // Update metrics with detailMetrics from contentFile if available
           if (contentData.detailMetrics) {
             const metricsContainer = document.querySelector('.cs-metrics-grid');
@@ -420,9 +442,12 @@ function populateCaseStudy(project) {
             }
           }
 
-          // Render content blocks
+          // Render content blocks (skip story-hook as it's already in hero)
           if (contentData.contentBlocks) {
             contentData.contentBlocks.forEach((block) => {
+              // Skip story-hook block since it's displayed in hero
+              if (block.type === 'story-hook') return;
+
               const blockElement = renderBlock(block, mergedProject);
               if (blockElement) {
                 contentContainer.appendChild(blockElement);
@@ -438,9 +463,12 @@ function populateCaseStudy(project) {
           contentContainer.innerHTML = '<div class="cs-error">Failed to load case study content. Please try again.</div>';
         });
     } else if (project.contentBlocks) {
-      // Use inline content blocks
+      // Use inline content blocks (skip story-hook as it's already in hero)
       contentContainer.innerHTML = '';
       project.contentBlocks.forEach((block) => {
+        // Skip story-hook block since it's displayed in hero
+        if (block.type === 'story-hook') return;
+
         const blockElement = renderBlock(block, project);
         if (blockElement) {
           contentContainer.appendChild(blockElement);

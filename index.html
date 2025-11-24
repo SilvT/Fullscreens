@@ -154,40 +154,26 @@
   <!-- Projects Container (Dynamically populated from projects.json) -->
   <div id="projects-container"></div>
 
-  <!-- Project Detail Page (Hidden by default) -->
+  <!-- ARCHIVED: Project Detail Page - Not currently in use, replaced by Case Study Page
   <div id="project-detail-page" class="project-detail-page" data-theme="blue">
-    <!-- Close Button -->
     <button class="project-detail-close" aria-label="Close project detail">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       </svg>
     </button>
-
-    <!-- Breadcrumbs (Dynamically populated from projects.json) -->
     <nav class="breadcrumbs" aria-label="Breadcrumb navigation"></nav>
-
-    <!-- Content Grid (5 columns) -->
     <div class="project-detail-grid">
-      <!-- Written Content (2 columns) - Dynamically populated by JavaScript -->
       <div class="detail-written-content">
         <h1 class="detail-title"></h1>
         <h2 class="detail-subtitle"></h2>
-        <!-- Sections will be dynamically added here -->
       </div>
-
-      <!-- Technical Aspects (1 column) - Dynamically populated by JavaScript -->
-      <div class="detail-technical">
-        <!-- Technical sections will be dynamically added here -->
-      </div>
-
-      <!-- Image Content (2 columns) - Dynamically populated by JavaScript -->
-      <div class="detail-images">
-        <!-- Images will be dynamically added here -->
-      </div>
+      <div class="detail-technical"></div>
+      <div class="detail-images"></div>
     </div>
   </div>
+  -->
 
-  <!-- Case Study Page (Full Page like Project Detail) -->
+  <!-- Case Study Page (Full Page, replaces Project Detail) -->
   <div id="case-study-page" class="case-study-page" data-theme="blue">
     <!-- Sticky Header: Breadcrumbs + Close Button + Hero -->
     <div class="cs-sticky-header">
@@ -209,8 +195,8 @@
             <h1 class="cs-hero-title"></h1>
             <h2 class="cs-hero-subtitle"></h2>
           </div>
-          <div class="cs-hero-tags"></div>
           <p class="cs-hero-overview"></p>
+          <div class="cs-hero-tags"></div>
         </div>
         <div class="cs-hero-images">
           <!-- Hero images will be dynamically added here -->
