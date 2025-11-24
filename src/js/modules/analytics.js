@@ -102,32 +102,26 @@ function initExternalLinkTracking() {
   }
 
   // Track LinkedIn
-  const linkedinElement = socialsSection.querySelector('.description[data-name="description"]:nth-child(1)');
-  if (linkedinElement) {
-    linkedinElement.style.cursor = 'pointer';
-    linkedinElement.addEventListener('click', () => {
-      trackExternalLinkClick('linkedin', 'https://linkedin.com/in/silviatravieso');
-      window.open('https://linkedin.com/in/silviatravieso', '_blank');
+  const linkedinLink = socialsSection.querySelector('a[data-name="linkedin"]');
+  if (linkedinLink) {
+    linkedinLink.addEventListener('click', () => {
+      trackExternalLinkClick('linkedin', linkedinLink.href);
     });
   }
 
   // Track Behance
-  const behanceElement = socialsSection.querySelector('.description[data-name="description"]:nth-child(2)');
-  if (behanceElement) {
-    behanceElement.style.cursor = 'pointer';
-    behanceElement.addEventListener('click', () => {
-      trackExternalLinkClick('behance', 'https://behance.net/silviatravieso');
-      window.open('https://behance.net/silviatravieso', '_blank');
+  const behanceLink = socialsSection.querySelector('a[data-name="behance"]');
+  if (behanceLink) {
+    behanceLink.addEventListener('click', () => {
+      trackExternalLinkClick('behance', behanceLink.href);
     });
   }
 
   // Track Email
-  const emailElement = socialsSection.querySelector('.description[data-name="description"]:nth-child(3)');
-  if (emailElement) {
-    emailElement.style.cursor = 'pointer';
-    emailElement.addEventListener('click', () => {
-      trackExternalLinkClick('email', 'mailto:silvia.travieso.g@gmail.com');
-      window.location.href = 'mailto:silvia.travieso.g@gmail.com';
+  const emailLink = socialsSection.querySelector('a[data-name="email"]');
+  if (emailLink) {
+    emailLink.addEventListener('click', () => {
+      trackExternalLinkClick('email', emailLink.href);
     });
   }
 

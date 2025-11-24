@@ -12,6 +12,7 @@
       "cta": "Read how I went from UI executor to co-owning product strategy"
     },
     "heroImage": "/mkm/mkm-large hero.png",
+    "cardHoverImage":"/mkm/card-hover.mov",
     "theme": "blue",
     "cardMetrics": [
       { "icon": "iconoir:community", "value": "50%", "label": "Customer growth" },
@@ -37,6 +38,7 @@
     },
     
     "heroImage": "/design-system/hero-token-architecture.png",
+    "cardHoverImage":"",
     "theme": "green",
     
     "cardMetrics": [
@@ -60,6 +62,7 @@
       "cta": "Read how I translated chaos into a customer-facing tracker"
     },
     "heroImage": "/microsite/tomato microsite screens.png",
+    "cardHoverImage":"/microsite/card-hover.mov",
     "theme": "neutral",
   "cardMetrics": [
       { "icon": "iconoir:eye", "value": "Real time", "label": "Transparent journey" },
@@ -78,6 +81,7 @@
     "tags": [ "Figma Plugin", "Design Systems", "Git Automation", "APIs", "AI-Assisted Dev"],
     "cardOverview": "Automating Design Token Extraction for Better Design-Dev Handoff",
     "heroImage": "/plugin/plugin-1.png",
+        "cardHoverImage":"",
     "theme": "blue",
     "images": [
       "/plugin/plugin-1.png",

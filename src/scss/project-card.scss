@@ -651,8 +651,16 @@
     &.green-gradient {
       background: radial-gradient(
         circle at 0% 0%,
-        rgba(170, 206, 228, 1) 0%,
-        rgba(211, 230, 241, 1) 42.5%,
+        $color-green-primary 0%,
+        $color-green-alpha 42.5%,
+        rgba(252, 253, 253, 1) 85%
+      );
+    }
+     &.neutral-gradient {
+      background: radial-gradient(
+        circle at 0% 0%,
+        rgba(227, 221, 211, 0.4) 0%,
+        rgba(245, 243, 240, 1) 42.5%,
         rgba(252, 253, 253, 1) 85%
       );
     }
@@ -661,10 +669,12 @@
   .project-image {
     position: absolute;
     width: 650px;
-    height: 299px;
+    // height: 299px;
+    height: auto;
     object-fit: cover;
     object-position: 50% 50%;
     z-index: 2;
+    transition: opacity 0.4s ease;
 
     @include breakpoint(tablet) {
       width: 550px;
@@ -692,6 +702,33 @@
       height: 400px;
       object-fit: contain;
     }
+
+    // Default image (visible by default)
+    &.project-image-default {
+      opacity: 1;
+    }
+
+    // Hover image (hidden by default)
+    &.project-image-hover {
+      opacity: 0;
+    }
+  }
+
+  // Hover state - show hover image, hide default image
+  &:hover {
+    .project-image-default {
+      opacity: 0;
+    }
+
+    .project-image-hover {
+      opacity: 1;
+    }
+  }
+
+  // Ensure videos inherit image styling
+  video.project-image {
+    display: block;
+    pointer-events: none; // Prevent video controls from interfering
   }
 }
 

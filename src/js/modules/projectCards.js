@@ -15,6 +15,18 @@ import 'iconoir/css/iconoir.css';
 const PROJECT_ORDER = ['1', '2', '3', '4'];
 
 /**
+ * Check if a file is a video based on extension
+ * @param {string} filePath - The file path to check
+ * @returns {boolean} True if the file is a video
+ */
+function isVideoFile(filePath) {
+  if (!filePath) return false;
+  const videoExtensions = ['.mp4', '.webm', '.mov', '.ogg'];
+  const extension = filePath.toLowerCase().substring(filePath.lastIndexOf('.'));
+  return videoExtensions.includes(extension);
+}
+
+/**
  * Initialize and render project cards
  * @returns {Promise} Promise that resolves when cards are rendered
  */
@@ -252,8 +264,13 @@ function createProjectCard(projectId, project, index) {
           <div class="right-column">
             <!-- Group 1: Cover Image -->
             <div class="project-image-wrapper">
-              ${project.theme !== 'neutral' ? `<div class="background-gradient ${project.theme}-gradient"></div>` : ''}
-              <img src="${project.heroImage || (project.images && project.images[0])}" alt="${project.title}" class="project-image${project.theme === 'neutral' ? ' contain' : ''}" />
+              <div class="background-gradient ${project.theme}-gradient"></div>
+              <img src="${project.heroImage || (project.images && project.images[0])}" alt="${project.title}" class="project-image project-image-default${project.theme === 'neutral' ? ' contain' : ''}" />
+              ${project.cardHoverImage ? (
+                isVideoFile(project.cardHoverImage)
+                  ? `<video src="${project.cardHoverImage}" class="project-image project-image-hover${project.theme === 'neutral' ? ' contain' : ''}" muted loop playsinline></video>`
+                  : `<img src="${project.cardHoverImage}" alt="${project.title} hover" class="project-image project-image-hover${project.theme === 'neutral' ? ' contain' : ''}" />`
+              ) : ''}
             </div>
 
             <!-- Group 2: Storytelling text + CTA -->
@@ -270,6 +287,26 @@ function createProjectCard(projectId, project, index) {
       </div>
     </div>
   `;
+
+  // Add hover event listeners for video playback if cardHoverImage is a video
+  if (project.cardHoverImage && isVideoFile(project.cardHoverImage)) {
+    // Need to attach listeners after the element is in the DOM
+    setTimeout(() => {
+      const wrapper = section.querySelector('.project-image-wrapper');
+      const video = section.querySelector('.project-image-hover');
+
+      if (wrapper && video) {
+        wrapper.addEventListener('mouseenter', () => {
+          video.play().catch(err => console.log('Video play failed:', err));
+        });
+
+        wrapper.addEventListener('mouseleave', () => {
+          video.pause();
+          video.currentTime = 0; // Reset to start
+        });
+      }
+    }, 0);
+  }
 
   return section;
 }
