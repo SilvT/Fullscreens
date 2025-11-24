@@ -1,0 +1,141 @@
+Se ha encontrado un elemento h1 seccionado sin propiedades de font-size o margin especificadas. Más información: https://developer.mozilla.org/docs/Web/HTML/Element/Heading_Elements#specifying_a_uniform_font_size_for_h1 2 localhost:3006
+[vite] connecting... client:789:9
+[vite] connected. client:912:15
+🎨 Silvia Travieso Portfolio Loading... main.js:23:11
+Skip to main link added accessibility.js:80:11
+Keyboard navigation enhanced accessibility.js:102:11
+ARIA labels added accessibility.js:144:11
+Accessibility features initialized accessibility.js:24:11
+✓ Structured data (JSON-LD) injected for SEO and AI scrapers structuredData.js:182:11
+📊 Initializing portfolio analytics... analytics.js:80:11
+✓ External link tracking initialized analytics.js:128:11
+✓ CV download tracking initialized analytics.js:154:11
+✓ Navigation tracking initialized analytics.js:170:11
+✓ Portfolio analytics initialized analytics.js:91:11
+Creating card 0 for project ID: 1, title: Marketing Management projectCards.js:53:15
+[createProjectCard] Creating card for projectId="1", index=0, title="Marketing Management" projectCards.js:219:11
+[createProjectCard] CTA href will be: "#case-study-1" for project "Marketing Management" projectCards.js:236:11
+[VERIFY] After append, CTA button for "Marketing Management" has href="#case-study-1" data-project-id="1" projectCards.js:60:17
+Creating card 1 for project ID: 2, title: Design System from Scratch projectCards.js:53:15
+[createProjectCard] Creating card for projectId="2", index=1, title="Design System from Scratch" projectCards.js:219:11
+[createProjectCard] CTA href will be: "#case-study-2" for project "Design System from Scratch" projectCards.js:236:11
+[VERIFY] After append, CTA button for "Design System from Scratch" has href="#case-study-2" data-project-id="2" projectCards.js:60:17
+Creating card 2 for project ID: 3, title: Energy Switching Tracker projectCards.js:53:15
+[createProjectCard] Creating card for projectId="3", index=2, title="Energy Switching Tracker" projectCards.js:219:11
+[createProjectCard] CTA href will be: "#case-study-3" for project "Energy Switching Tracker" projectCards.js:236:11
+[VERIFY] After append, CTA button for "Energy Switching Tracker" has href="#case-study-3" data-project-id="3" projectCards.js:60:17
+Creating card 3 for project ID: 4, title: Figma Design Distributor Plugin projectCards.js:53:15
+[createProjectCard] Creating card for projectId="4", index=3, title="Figma Design Distributor Plugin" projectCards.js:219:11
+[createProjectCard] CTA href will be: "#case-study-4" for project "Figma Design Distributor Plugin" projectCards.js:236:11
+[VERIFY] After append, CTA button for "Figma Design Distributor Plugin" has href="#case-study-4" data-project-id="4" projectCards.js:60:17
+✓ Project navigation listeners attached projectCards.js:111:11
+✓ Generated 4 project cards from JSON in order: 1, 2, 3, 4 projectCards.js:70:13
+📋 [NAV] Found sections: 5 navigation.js:49:11
+  0: #about-landing (about) navigation.js:51:13
+  1: #project-1 (project) navigation.js:51:13
+  2: #project-2 (project) navigation.js:51:13
+  3: #project-3 (project) navigation.js:51:13
+  4: #project-4 (project) navigation.js:51:13
+📍 [SCROLL] onEnter triggered for: about-landing navigation.js:61:17
+🔍 [NAV] updateNavStyles called navigation.js:121:11
+  - Section ID: about-landing navigation.js:122:11
+  - Section Type: about navigation.js:123:11
+  - Section classes: section-landing navigation.js:124:11
+  - Current nav classes BEFORE: top-nav navigation.js:125:11
+  ⚠️ No matching section theme detected navigation.js:146:13
+  - Current nav classes AFTER: top-nav navigation.js:149:11
+  - Computed background color: rgba(0, 0, 0, 0) navigation.js:150:11
+📜 [SCROLL] Adding scrolled class at position: 92 navigation.js:79:19
+Navigation initialized navigation.js:91:11
+Keyboard navigation enabled navigation.js:179:11
+Metric hover effects initialized metricAnimations.js:45:11
+Flip-board animation initialized with pulsating cursor flipBoardAnimation.js:251:11
+✓ Case study modal initialized caseStudy.js:187:11
+✓ Scroll hint animation initialized with GSAP smooth scroll scrollHint.js:61:11
+✓ Ellipse visibility control initialized main.js:114:11
+Color Contrast Verification: accessibility.js:154:11
+- Blue primary (#3980aa): 4.52:1 on light backgrounds ✓ accessibility.js:155:11
+- Green primary (#79854f): 4.51:1 on light backgrounds ✓ accessibility.js:156:11
+- Neutral (#5c584f): 7.21:1 on light backgrounds ✓ accessibility.js:157:11
+All colors meet WCAG AA standards (4.5:1 minimum) accessibility.js:158:11
+✓ Lazy loading initialized main.js:65:11
+✓ Portfolio loaded successfully main.js:44:11
+✓ Sections found: 5 main.js:45:11
+[Vercel Web Analytics] Debug mode is enabled by default in development. No requests will be sent to the server. script.debug.js:1:462
+[Vercel Web Analytics] [pageview] http://localhost:3006/ 
+Object { o: "http://localhost:3006/", sv: "0.1.3", sdkn: "@vercel/analytics", sdkv: "1.5.0", ts: 1763999092976, r: "", f: undefined }
+script.debug.js:1:462
+[Vercel Speed Insights] Debug mode is enabled by default in development. No requests will be sent to the server. script.debug.js:1:11258
+El consumo de memoria will-change es demasiado alto. El límite previsto es el área de la superficie del documento multiplicada por 3 (1544832 px). Las apariciones de will-change por encima de la previsión serán ignoradas. localhost:3006
+[FINAL CHECK] Verifying all CTA buttons in DOM: projectCards.js:76:17
+  Button 0: section=project-1, href="#case-study-1", data-project-id="1" projectCards.js:81:19
+  Button 1: section=project-2, href="#case-study-2", data-project-id="2" projectCards.js:81:19
+  Button 2: section=project-3, href="#case-study-3", data-project-id="3" projectCards.js:81:19
+  Button 3: section=project-4, href="#case-study-4", data-project-id="4" projectCards.js:81:19
+✓ Project cards rendered and ready for ScrollTrigger projectCards.js:84:17
+Project cards ready, initializing enhancements... main.js:28:13
+✓ Parallax images initialized cardEnhancements.js:45:11
+✓ Magnetic buttons initialized cardEnhancements.js:90:11
+Found 4 metrics containers cardEnhancements.js:184:11
+✓ Enhanced metric counters initialized (triggers immediately on scroll settle) cardEnhancements.js:271:11
+✓ Color transitions initialized cardEnhancements.js:315:11
+✓ Chatbot storytelling animations initialized cardEnhancements.js:595:11
+✨ All card enhancements initialized cardEnhancements.js:612:11
+Found 5 sections to animate scrollTransitions.js:120:11
+First section set to visible with pointer events enabled scrollTransitions.js:132:15
+Setting up scroll transition for: about-landing scrollTransitions.js:144:13
+Setting up scroll transition for: project-1 scrollTransitions.js:144:13
+Setting up scroll transition for: project-2 scrollTransitions.js:144:13
+Setting up scroll transition for: project-3 scrollTransitions.js:144:13
+Setting up scroll transition for: project-4 scrollTransitions.js:144:13
+✓ Scroll transitions initialized with "fade" animation for 5 sections scrollTransitions.js:230:11
+[ScrollTrigger] Section about-landing is VISIBLE - z-index: 20, pointer-events: auto 2 scrollTransitions.js:175:21
+[DEBUG] Checking pointer-events on all contentboxes: scrollTransitions.js:220:13
+  Section 0 (about-landing): pointer-events = "auto", opacity = 1 scrollTransitions.js:225:17
+  Section 1 (project-1): pointer-events = "none", opacity = 0 scrollTransitions.js:225:17
+  Section 2 (project-2): pointer-events = "none", opacity = 0 scrollTransitions.js:225:17
+  Section 3 (project-3): pointer-events = "none", opacity = 0 scrollTransitions.js:225:17
+  Section 4 (project-4): pointer-events = "none", opacity = 0 scrollTransitions.js:225:17
+[ScrollTrigger] Section about-landing is VISIBLE - z-index: 20, pointer-events: auto scrollTransitions.js:175:21
+Este sitio parece usar un efecto de posicionamiento "scroll-linked". Puede que no funcione bien con desplazamiento asíncrono; vea https://firefox-source-docs.mozilla.org/performance/scroll-linked_effects.html para más detalles y únase a la discusión sobre herramientas y funcionalidades relacionadas. localhost:3006
+[ScrollTrigger] Section about-landing is VISIBLE - z-index: 20, pointer-events: auto scrollTransitions.js:175:21
+📍 [SCROLL] onEnter triggered for: project-1 navigation.js:61:17
+🔍 [NAV] updateNavStyles called navigation.js:121:11
+  - Section ID: project-1 navigation.js:122:11
+  - Section Type: project navigation.js:123:11
+  - Section classes: section-project project-blue navigation.js:124:11
+  - Current nav classes BEFORE: top-nav scrolled navigation.js:125:11
+  ✅ Detected BLUE project - adding section-blue class navigation.js:137:13
+  - Current nav classes AFTER: top-nav scrolled section-blue navigation.js:149:11
+  - Computed background color: rgb(237, 241, 243) navigation.js:150:11
+[ScrollTrigger] Section project-1 is VISIBLE - z-index: 20, pointer-events: auto 27 scrollTransitions.js:175:21
+📍 [SCROLL] onEnter triggered for: project-2 navigation.js:61:17
+🔍 [NAV] updateNavStyles called navigation.js:121:11
+  - Section ID: project-2 navigation.js:122:11
+  - Section Type: project navigation.js:123:11
+  - Section classes: section-project project-green navigation.js:124:11
+  - Current nav classes BEFORE: top-nav scrolled section-blue navigation.js:125:11
+  ✅ Detected GREEN project - adding section-green class navigation.js:140:13
+  - Current nav classes AFTER: top-nav scrolled section-green navigation.js:149:11
+  - Computed background color: rgb(232, 235, 224) navigation.js:150:11
+[ScrollTrigger] Section project-2 is VISIBLE - z-index: 20, pointer-events: auto 31 scrollTransitions.js:175:21
+📍 [SCROLL] onEnter triggered for: project-3 navigation.js:61:17
+🔍 [NAV] updateNavStyles called navigation.js:121:11
+  - Section ID: project-3 navigation.js:122:11
+  - Section Type: project navigation.js:123:11
+  - Section classes: section-project project-neutral navigation.js:124:11
+  - Current nav classes BEFORE: top-nav scrolled section-green navigation.js:125:11
+  ✅ Detected NEUTRAL project - adding section-neutral class navigation.js:143:13
+  - Current nav classes AFTER: top-nav scrolled section-neutral navigation.js:149:11
+  - Computed background color: rgb(245, 243, 240) navigation.js:150:11
+[ScrollTrigger] Section project-3 is VISIBLE - z-index: 20, pointer-events: auto 28 scrollTransitions.js:175:21
+📍 [SCROLL] onEnter triggered for: project-4 navigation.js:61:17
+🔍 [NAV] updateNavStyles called navigation.js:121:11
+  - Section ID: project-4 navigation.js:122:11
+  - Section Type: project navigation.js:123:11
+  - Section classes: section-project project-blue navigation.js:124:11
+  - Current nav classes BEFORE: top-nav scrolled section-neutral navigation.js:125:11
+  ✅ Detected BLUE project - adding section-blue class navigation.js:137:13
+  - Current nav classes AFTER: top-nav scrolled section-blue navigation.js:149:11
+  - Computed background color: rgb(237, 241, 243) navigation.js:150:11
+[ScrollTrigger] Section project-4 is VISIBLE - z-index: 20, pointer-events: auto 31 scrollTransitions.js:175:21

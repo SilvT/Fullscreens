@@ -44,8 +44,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fascinate&family=Anonymous+Pro:wght@400;700&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/main-CFze7vzk.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-k8sCrWL_.css">
+  <script type="module" crossorigin src="/assets/main-BLKXpKLy.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-DcYUrX2a.css">
 </head>
 
 <body>
@@ -117,16 +117,23 @@
             <div class="stack">
               <h3 class="info-title">Tech Stack</h3>
               <div class="stack-list">
+              <span>  Design & Systems</span><br>
                 <span>> Figma</span>
                 <span>|</span>
-                <span>Adobe CC</span>
-                <span>|</span> <br>
-                <span>> Figjam</span>
+                <span>Token Studio</span>
                 <span>|</span>
-                <span>Miro</span>
-                <span>|</span>
-                <span>Atlassian</span>
+                <span>Github Actions</span>
                 <span>|</span><br>
+
+                <span>> Photoshop</span>
+                <span>|</span>
+                <span>Illustrator</span>
+                <span>|</span>
+                <span>Confluence</span>
+                <span>|</span><br><br>
+
+                <span>Development</span><br>
+              
                 <span>> HTML5</span>
                 <span>|</span>
                 <span>CSS3</span>
@@ -141,11 +148,10 @@
                 <span>|</span>
               </div>
             </div>
-            <div class="other-projects">
-              <h3 class="info-title">Side projects</h3>
-              <a href="https://www.silvarium.es/" class="other-projects-link">→ Branding</a> <br>
-              <a href="https://talesofmelancholia.com/" class="other-projects-link">→ Fine Photography</a>
-            </div>
+            <!-- <div class="other-projects">
+              <h3 class="info-title">Beyond product work</h3>
+              <a href="https://www.silvarium.es/" class="other-projects-link">→ Silvarium Branding - from concept to code </a> <br>
+            </div> -->
           </div>
 
           <!-- Row 3: Scroll Hint (handled by fixed positioning) -->
@@ -167,7 +173,7 @@
         </svg>
       </button>
 
-      <!-- Breadcrumbs (Same treatment as project-detail) -->
+      <!-- Breadcrumbs -->
       <nav class="cs-breadcrumbs" aria-label="Case study navigation"></nav>
 
       <!-- Hero Section -->
@@ -182,10 +188,8 @@
           <div class="cs-hero-tags"></div>
         </div>
         <div class="cs-hero-images">
-          <!-- Hero images will be dynamically added here -->
         </div>
         <div class="cs-hero-metrics">
-          <!-- Metric cards clone will be dynamically added here when scrolled -->
         </div>
       </section>
     </div>
@@ -196,9 +200,8 @@
           <div class="cs-metrics-grid"></div>
         </section>
 
-        <!-- Content Blocks Container (flexible block system) -->
+        <!-- Content Blocks Section  -->
         <div class="cs-content-container">
-          <!-- Blocks will be dynamically added here -->
         </div>
   </div>
 
@@ -207,39 +210,39 @@
     <div class="contact-sect__inner">
       <div class="contact-sect__content">
         <div class="socials">
+
+          <!-- LinkedIn Link -->
+          <a href="https://www.linkedin.com/in/silvia-travieso-gonzalez" target="_blank" rel="noopener noreferrer" class="social-link" data-name="linkedin">
+            <p class="icon">ln·</p>
+            <div class="social-link__text">
+              <p>Linkedin</p>
+            </div>
+          </a>
+
+          <!-- Behance Link -->
+          <a href="https://www.behance.net/silviatravieso" target="_blank" rel="noopener noreferrer" class="social-link" data-name="behance">
+            <p class="icon">be·</p>
+            <div class="social-link__text">
+              <p>Behance</p>
+            </div>
+          </a>
+
+          <!-- Email Link -->
+          <a href="mailto:silvia.travieso.g@gmail.com" class="social-link" data-name="email">
+            <p class="icon">@·</p>
+            <div class="social-link__text">
+              <p>silvia.travieso.g@gmail.com</p>
+            </div>
+          </a>
           <!-- CV Download Button -->
-          <button id="cv-download-btn" class="description" data-name="description">
+          <button id="cv-download-btn" class="social-link" data-name="cv">
             <p class="icon">cv·</p>
-            <div class="description__text">
+            <div class="social-link__text">
               <p>Download CV</p>
             </div>
           </button>
-
-          <!-- LinkedIn Description -->
-          <div class="description" data-name="description">
-            <p class="icon">ln·</p>
-            <div class="description__text">
-              <p>Linkedin</p>
-            </div>
-          </div>
-
-          <!-- Behance Description -->
-          <div class="description" data-name="description">
-            <p class="icon">be·</p>
-            <div class="description__text description__text--behance">
-              <p>Behance</p>
-            </div>
-          </div>
-
-          <!-- Email Description -->
-          <div class="description" data-name="description">
-            <p class="icon">@·</p>
-            <div class="description__text">
-              <p>silvia.travieso.g@gmail.com</p>
-            </div>
-          </div>
         </div>
-        <div class="web">
+        <div class="web" data-tooltip="Hand-coded using HTML, SCSS, JS, GSAP & Claude Code as my dev partner ✨">
             <span class="icon">&lt; / &gt;</span>
             <span>
               <p> Designed and Built by</p>
@@ -254,6 +257,6 @@
   <!-- Scripts -->
   <!-- GSAP loaded via npm/Vite, not CDN -->
 
-  <!-- Vercel Analytics -->
+  <!-- Vercel Analytics & Speed Insights -->
 </body>
 </html>

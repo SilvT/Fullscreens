@@ -11,6 +11,7 @@
   "dependencies": {
     "@phosphor-icons/web": "^2.1.2",
     "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "glightbox": "^3.3.1",
     "gsap": "^3.13.0",
     "iconoir": "^7.11.0"

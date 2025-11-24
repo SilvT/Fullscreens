@@ -115,16 +115,23 @@
             <div class="stack">
               <h3 class="info-title">Tech Stack</h3>
               <div class="stack-list">
+              <span>  Design & Systems</span><br>
                 <span>> Figma</span>
                 <span>|</span>
-                <span>Adobe CC</span>
-                <span>|</span> <br>
-                <span>> Figjam</span>
+                <span>Token Studio</span>
                 <span>|</span>
-                <span>Miro</span>
-                <span>|</span>
-                <span>Atlassian</span>
+                <span>Github Actions</span>
                 <span>|</span><br>
+
+                <span>> Photoshop</span>
+                <span>|</span>
+                <span>Illustrator</span>
+                <span>|</span>
+                <span>Confluence</span>
+                <span>|</span><br><br>
+
+                <span>Development</span><br>
+              
                 <span>> HTML5</span>
                 <span>|</span>
                 <span>CSS3</span>
@@ -139,11 +146,10 @@
                 <span>|</span>
               </div>
             </div>
-            <div class="other-projects">
-              <h3 class="info-title">Side projects</h3>
-              <a href="https://www.silvarium.es/" class="other-projects-link">→ Branding</a> <br>
-              <a href="https://talesofmelancholia.com/" class="other-projects-link">→ Fine Photography</a>
-            </div>
+            <!-- <div class="other-projects">
+              <h3 class="info-title">Beyond product work</h3>
+              <a href="https://www.silvarium.es/" class="other-projects-link">→ Silvarium Branding - from concept to code </a> <br>
+            </div> -->
           </div>
 
           <!-- Row 3: Scroll Hint (handled by fixed positioning) -->
@@ -198,43 +204,43 @@
   </div>
 
 <footer>
-   <div class="contact-sect" data-name="contact sect" id="contact">
+   <div class="contact-sect" data-name="contact sect" data-section="contact" id="contact">
     <div class="contact-sect__inner">
       <div class="contact-sect__content">
         <div class="socials">
-          <!-- CV Download Button -->
-          <button id="cv-download-btn" class="description" data-name="cv">
-            <p class="icon">cv·</p>
-            <div class="description__text">
-              <p>Download CV</p>
-            </div>
-          </button>
 
           <!-- LinkedIn Link -->
-          <a href="https://www.linkedin.com/in/silvia-travieso-gonzalez" target="_blank" rel="noopener noreferrer" class="description" data-name="linkedin">
+          <a href="https://www.linkedin.com/in/silvia-travieso-gonzalez" target="_blank" rel="noopener noreferrer" class="social-link" data-name="linkedin">
             <p class="icon">ln·</p>
-            <div class="description__text">
+            <div class="social-link__text">
               <p>Linkedin</p>
             </div>
           </a>
 
           <!-- Behance Link -->
-          <a href="https://www.behance.net/silviatravieso" target="_blank" rel="noopener noreferrer" class="description" data-name="behance">
+          <a href="https://www.behance.net/silviatravieso" target="_blank" rel="noopener noreferrer" class="social-link" data-name="behance">
             <p class="icon">be·</p>
-            <div class="description__text description__text--behance">
+            <div class="social-link__text">
               <p>Behance</p>
             </div>
           </a>
 
           <!-- Email Link -->
-          <a href="mailto:silvia.travieso.g@gmail.com" class="description" data-name="email">
+          <a href="mailto:silvia.travieso.g@gmail.com" class="social-link" data-name="email">
             <p class="icon">@·</p>
-            <div class="description__text">
+            <div class="social-link__text">
               <p>silvia.travieso.g@gmail.com</p>
             </div>
           </a>
+          <!-- CV Download Button -->
+          <button id="cv-download-btn" class="social-link" data-name="cv">
+            <p class="icon">cv·</p>
+            <div class="social-link__text">
+              <p>Download CV</p>
+            </div>
+          </button>
         </div>
-        <div class="web">
+        <div class="web" data-tooltip="Hand-coded using HTML, SCSS, JS, GSAP & Claude Code as my dev partner ✨">
             <span class="icon">&lt; / &gt;</span>
             <span>
               <p> Designed and Built by</p>
@@ -250,10 +256,13 @@
   <!-- GSAP loaded via npm/Vite, not CDN -->
   <script type="module" src="/src/main.js"></script>
 
-  <!-- Vercel Analytics -->
+  <!-- Vercel Analytics & Speed Insights -->
   <script type="module">
     import { inject } from '@vercel/analytics';
+    import { injectSpeedInsights } from '@vercel/speed-insights';
+
     inject();
+    injectSpeedInsights();
   </script>
 </body>
 </html>

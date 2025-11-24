@@ -49,20 +49,31 @@
   position: relative;
   flex-shrink: 0;
   width: fit-content;
+  width: 100%;
+  justify-content: space-between;
 }
 
-// Description blocks
-.description {
+// Social link blocks
+.social-link {
   display: flex;
   align-content: center;
   width: auto;
-  min-width: 34%;
+  min-width: 22%;
   gap: 1rem;
   align-items: center;
   position: relative;
   flex-shrink: 0;
-  color: #3c5e70;
+  color: $color-blue-darker;
   white-space: nowrap;
+  text-decoration: none;
+  border-left: 4px dotted transparent;
+  padding: 0 0.5rem 0 1rem;
+  transition: color 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    color: $color-blue-primary;
+    border-left-color: $color-blue-primary;
+  }
 
   &__text {
     display: flex;
@@ -82,19 +93,80 @@
   border: none;
   padding: 0;
   cursor: pointer;
+  border-left: 4px dotted transparent;
+  padding-left: 1rem;
   transition: opacity 0.2s ease;
 
   &:hover {
-    opacity: 0.7;
+    color: $color-blue-primary;
+    border-left-color: $color-blue-primary;
   }
 
   &:active {
     opacity: 0.5;
   }
 }
-.web{
+.web {
   display: flex;
   gap: 0.5rem;
+  position: relative;
+  cursor: pointer;
+
+  // Tooltip
+  &[data-tooltip] {
+    &::before {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateX(8px) translateY(-50%);
+      background-color: $color-blue-primary;
+      color: $color-white;
+      padding: $space-12;
+      border-radius: 4px;
+      font-family: $font-anonymous;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-bold;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      white-space: normal;
+      min-width: 17rem;
+      line-height: 1.4;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    // Tooltip arrow
+    &::after {
+      content: '';
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateX(2px) translateY(-50%);
+      border: 12px solid transparent;
+      border-right-color: $color-blue-primary;
+      opacity: 0;
+      visibility: hidden;
+      border-radius: 8px;
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    &:hover::before {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX($space-32) translateY(-50%);
+    }
+
+    &:hover::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(6px) translateY(-50%);
+    }
+  }
 }
 
 // Responsive adjustments
@@ -115,7 +187,7 @@
     justify-content: flex-start;
   }
 
-  .description {
+  .social-link {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
@@ -139,7 +211,7 @@
     gap: 24px;
   }
 
-  .description {
+  .social-link {
     gap: 12px;
 
     &__icon {

@@ -155,24 +155,36 @@ document.addEventListener('visibilitychange', () => {
 
 /**
  * Initialize ellipse visibility control
- * Shows decorative ellipses when About section is in view
+ * Shows decorative ellipses when About section or Footer is in view
  */
 function initEllipseVisibility() {
   const ellipseDecor = document.querySelector('.ellipse-decor');
   const landingSection = document.querySelector('#about-landing');
+  const footerSection = document.querySelector('#contact');
 
-  if (!ellipseDecor || !landingSection) {
-    console.warn('Ellipse decoration or landing section not found');
+  if (!ellipseDecor) {
+    console.warn('Ellipse decoration not found');
     return;
   }
 
-  // Show ellipses when About section is in viewport
+  // Show ellipses when About section or Footer is in viewport
   const checkVisibility = () => {
-    const rect = landingSection.getBoundingClientRect();
     const windowHeight = window.innerHeight;
+    let isVisible = false;
 
-    // Check if About section is visible in viewport (centered or near center)
-    const isVisible = rect.top < windowHeight / 2 && rect.bottom > windowHeight / 2;
+    // Check About section
+    if (landingSection) {
+      const aboutRect = landingSection.getBoundingClientRect();
+      const aboutVisible = aboutRect.top < windowHeight / 2 && aboutRect.bottom > windowHeight / 2;
+      if (aboutVisible) isVisible = true;
+    }
+
+    // Check Footer section
+    if (footerSection) {
+      const footerRect = footerSection.getBoundingClientRect();
+      const footerVisible = footerRect.top < windowHeight && footerRect.bottom > 0;
+      if (footerVisible) isVisible = true;
+    }
 
     if (isVisible) {
       ellipseDecor.classList.add('visible');
