@@ -8,6 +8,7 @@ import gsap from 'gsap';
 import projectData from '../../data/projects.json';
 import { updateProjectMetaTags, clearProjectMetaTags } from './structuredData.js';
 import { initLightbox, refreshLightbox } from './lightbox.js';
+import { trackProjectView, trackCaseStudyInteraction } from './analytics.js';
 import '@phosphor-icons/web/light';
 import 'iconoir/css/iconoir.css';
 
@@ -216,6 +217,11 @@ function openCaseStudy(projectId) {
         // After fade out, update content
         caseStudyPage.setAttribute('data-current-project', projectId);
         caseStudyPage.setAttribute('data-theme', project.theme);
+
+        // Track project navigation
+        trackProjectView(project.title, projectId);
+        trackCaseStudyInteraction('navigate', project.title);
+
         populateCaseStudy(project, projectId);
         updateBreadcrumbs(projectId);
         setupKeyboardNavigation();
@@ -248,6 +254,10 @@ function openCaseStudy(projectId) {
 
     // Set theme
     caseStudyPage.setAttribute('data-theme', project.theme);
+
+    // Track project view
+    trackProjectView(project.title, projectId);
+    trackCaseStudyInteraction('open', project.title);
 
     // Populate content
     populateCaseStudy(project, projectId);
@@ -1248,6 +1258,15 @@ function closeCaseStudy() {
   const body = document.body;
 
   if (!caseStudyPage) return;
+
+  // Track case study close
+  const currentProjectId = caseStudyPage.getAttribute('data-current-project');
+  if (currentProjectId) {
+    const project = projectData[currentProjectId];
+    if (project) {
+      trackCaseStudyInteraction('close', project.title);
+    }
+  }
 
   // Animate out (like project-detail)
   gsap.to(caseStudyPage, {

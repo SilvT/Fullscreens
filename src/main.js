@@ -33,6 +33,7 @@ import { initScrollHint } from './js/modules/scrollHint.js';
 import { initProjectCards } from './js/modules/projectCards.js';
 import { initAllCardEnhancements } from './js/modules/cardEnhancements.js';
 import { initStructuredData } from './js/modules/structuredData.js';
+import { initAnalytics } from './js/modules/analytics.js';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -48,6 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize structured data (JSON-LD) for SEO and AI scrapers
   initStructuredData();
+
+  // Initialize analytics tracking
+  initAnalytics();
 
   // Generate project cards from JSON first, THEN initialize enhancements
   initProjectCards().then(() => {

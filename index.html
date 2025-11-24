@@ -224,6 +224,14 @@
     <div class="contact-sect__inner">
       <div class="contact-sect__content">
         <div class="socials">
+          <!-- CV Download Button -->
+          <button id="cv-download-btn" class="description" data-name="description">
+            <p class="icon">cv·</p>
+            <div class="description__text">
+              <p>Download CV</p>
+            </div>
+          </button>
+
           <!-- LinkedIn Description -->
           <div class="description" data-name="description">
             <p class="icon">ln·</p>
@@ -263,5 +271,11 @@
   <!-- Scripts -->
   <!-- GSAP loaded via npm/Vite, not CDN -->
   <script type="module" src="/src/main.js"></script>
+
+  <!-- Vercel Analytics -->
+  <script type="module">
+    import { inject } from '@vercel/analytics';
+    inject();
+  </script>
 </body>
 </html>
