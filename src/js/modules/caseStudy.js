@@ -1267,6 +1267,7 @@ function renderKeyInsight(block) {
 function closeCaseStudy() {
   const caseStudyPage = document.querySelector('#case-study-page');
   const body = document.body;
+  const sideNav = document.querySelector('.cs-side-nav');
 
   if (!caseStudyPage) return;
 
@@ -1277,6 +1278,11 @@ function closeCaseStudy() {
     if (project) {
       trackCaseStudyInteraction('close', project.title);
     }
+  }
+
+  // Hide side navigation
+  if (sideNav) {
+    sideNav.classList.remove('active');
   }
 
   // Animate out (like project-detail)
@@ -1481,24 +1487,17 @@ function setupSideNavigation() {
   const sideNav = document.querySelector('.cs-side-nav');
   const navList = document.querySelector('.cs-side-nav-list');
   const indicator = document.querySelector('.cs-side-nav-indicator');
-  const metricsSection = caseStudyPage.querySelector('.cs-metrics');
   const contentContainer = caseStudyPage.querySelector('.cs-content-container');
 
   if (!sideNav || !navList || !indicator) return;
 
-  // Find all navigable sections - start with metrics, then blocks with sectionTitle
+  // Find all navigable sections - only blocks with sectionTitle
   const sections = [];
   const sectionTitles = [];
 
-  // Add metrics section as first item (01)
-  if (metricsSection) {
-    sections.push(metricsSection);
-    sectionTitles.push('Impact Metrics');
-  }
-
   // Add content blocks that have sectionTitle attribute
   if (contentContainer) {
-    const allBlocks = contentContainer.querySelectorAll('.cs-block, .cs-content-section');
+    const allBlocks = contentContainer.querySelectorAll('.cs-block');
     allBlocks.forEach((block) => {
       const sectionTitle = block.getAttribute('data-section-title');
       if (sectionTitle) {
@@ -1524,15 +1523,22 @@ function setupSideNavigation() {
 
     const link = document.createElement('a');
     link.className = 'cs-side-nav-link';
-    link.textContent = String(index + 1).padStart(2, '0');
     link.href = `#cs-section-${index + 1}`;
     link.dataset.sectionIndex = index;
 
-    // Add title attribute for tooltip
+    // Create label element for section title
     if (sectionTitles[index]) {
-      link.setAttribute('title', sectionTitles[index]);
-      link.dataset.sectionName = sectionTitles[index];
+      const label = document.createElement('span');
+      label.className = 'cs-side-nav-label';
+      label.textContent = sectionTitles[index];
+      link.appendChild(label);
     }
+
+    // Create number element
+    const number = document.createElement('span');
+    number.className = 'cs-side-nav-number';
+    number.textContent = String(index + 1).padStart(2, '0');
+    link.appendChild(number);
 
     // Smooth scroll on click
     link.addEventListener('click', (e) => {

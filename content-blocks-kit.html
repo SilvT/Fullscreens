@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Study Content Blocks UI Kit</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fascinate&family=Anonymous+Pro:wght@400;700&family=Noto+Sans:wght@100..900&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/iconoir@7.8.0/css/iconoir.min.css">
+  <style>
+    body {
+      background-color: #f5f5f5;
+      padding: 2rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .kit-header {
+      max-width: 1400px;
+      margin: 0 auto 3rem;
+      padding: 2rem;
+      background: white;
+      border-radius: 8px;
+    }
+
+    .kit-header h1 {
+      margin: 0 0 1rem 0;
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .kit-header p {
+      margin: 0;
+      color: #666;
+      font-size: 1rem;
+    }
+
+    .block-showcase {
+      max-width: 1400px;
+      margin: 0 auto 2rem;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .block-header {
+      background: #333;
+      color: white;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .block-header h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .block-header code {
+      background: rgba(255,255,255,0.1);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+    }
+
+    .block-preview {
+      padding: 2rem;
+    }
+
+    /* Ensure case study styles apply in preview */
+    .block-preview .cs-section-text {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    .block-preview .cs-section-text.callout {
+      background: #E8F4F8;
+      border-radius: 20px;
+      padding: 24px 32px;
+      color: #2C3E50;
+      font-family: 'Anonymous Pro', monospace;
+      font-style: italic;
+      font-size: 1.125rem;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 32px 40px;
+    }
+
+    .block-preview .cs-text-block-heading {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 600;
+      color: #2C3E50;
+      margin: 2rem 0 1rem;
+    }
+
+    .block-preview h3.cs-text-block-heading {
+      font-size: 1.5rem;
+    }
+
+    .block-preview h4.cs-text-block-heading {
+      font-size: 1.25rem;
+    }
+
+    .block-preview .cs-text-block-list {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333;
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .block-preview .cs-text-block-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    .block-code {
+      background: #f8f9fa;
+      border-top: 1px solid #e0e0e0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .block-code.expanded {
+      max-height: 2000px;
+    }
+
+    .code-toggle {
+      width: 100%;
+      padding: 0.75rem 1.5rem;
+      background: #f8f9fa;
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #666;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.2s;
+    }
+
+    .code-toggle:hover {
+      background: #e9ecef;
+    }
+
+    .code-toggle-icon {
+      transition: transform 0.3s;
+    }
+
+    .code-toggle.active .code-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .code-tabs {
+      display: flex;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem 0;
+      background: #f8f9fa;
+    }
+
+    .code-tab {
+      padding: 0.5rem 1rem;
+      background: #e0e0e0;
+      border: none;
+      border-radius: 4px 4px 0 0;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #666;
+      transition: all 0.2s;
+    }
+
+    .code-tab:hover {
+      background: #d0d0d0;
+    }
+
+    .code-tab.active {
+      background: #1e1e1e;
+      color: #d4d4d4;
+    }
+
+    .code-content {
+      padding: 0 1.5rem 1.5rem;
+      background: #f8f9fa;
+    }
+
+    .code-panel {
+      display: none;
+    }
+
+    .code-panel.active {
+      display: block;
+    }
+
+    .code-panel pre {
+      margin: 0;
+      padding: 1rem;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    /* Mock case study container for proper styling context */
+    .mock-case-study {
+      background-color: var(--color-blue-light, #E8F4F8);
+      min-height: 100vh;
+    }
+
+    .theme-green .mock-case-study {
+      background-color: var(--color-green-light, #E8F5E9);
+    }
+
+    .theme-neutral .mock-case-study {
+      background-color: var(--color-cream, #FAF9F6);
+    }
+
+    /* Main Tabs */
+    .main-tabs {
+      max-width: 1400px;
+      margin: 0 auto 2rem;
+      display: flex;
+      gap: 1rem;
+      background: white;
+      padding: 1rem 1.5rem 0;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .main-tab {
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #666;
+      transition: all 0.2s;
+    }
+
+    .main-tab:hover {
+      color: #333;
+    }
+
+    .main-tab.active {
+      color: #3980AA;
+      border-bottom-color: #3980AA;
+    }
+
+    .main-panel {
+      display: none;
+    }
+
+    .main-panel.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="kit-header">
+    <h1>📦 Case Study Content Blocks UI Kit</h1>
+    <p>Visual reference for all available content block types in your case study JSON files</p>
+  </div>
+
+  <!-- Main Navigation Tabs -->
+  <div class="main-tabs">
+    <button class="main-tab active" data-main-tab="blocks">Content Blocks</button>
+    <button class="main-tab" data-main-tab="design">Design System</button>
+  </div>
+
+  <!-- PANEL 1: CONTENT BLOCKS -->
+  <div class="main-panel active" data-main-panel="blocks">
+
+  <!-- Two Column with Sidebar -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Two Column with Sidebar</h2>
+      <code>type: "two-column-with-sidebar"</code>
+    </div>
+    <div class="block-preview">
+      <div class="cs-block cs-block-two-column">
+        <div class="cs-layout-grid">
+          <div class="cs-main-content">
+            <section class="cs-content-section">
+              <h2 class="cs-section-heading">Section Heading</h2>
+              <p class="cs-section-text">This is the main content area. It can contain paragraphs, headings, lists, and images.</p>
+              <h4 class="cs-text-block-heading">Subheading (h4)</h4>
+              <p class="cs-section-text">You can add multiple paragraphs and nest content here.</p>
+              <ul class="cs-text-block-list">
+                <li>List item one</li>
+                <li>List item two</li>
+                <li>List item three</li>
+              </ul>
+            </section>
+          </div>
+          <aside class="cs-sidebar">
+            <div class="cs-sidebar-content">
+              <div class="cs-sidebar-section">
+                <h4 class="cs-sidebar-title">Sidebar Section</h4>
+                <dl class="cs-sidebar-list">
+                  <dd class="cs-sidebar-item">Item one</dd>
+                  <dd class="cs-sidebar-item">Item two</dd>
+                  <dd class="cs-sidebar-item">Item three</dd>
+                </dl>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+    <button class="code-toggle">
+      <span>Show Code</span>
+      <span class="code-toggle-icon">▼</span>
+    </button>
+    <div class="block-code">
+      <div class="code-tabs">
+        <button class="code-tab active" data-tab="json">JSON</button>
+        <button class="code-tab" data-tab="scss">SCSS Classes</button>
+      </div>
+      <div class="code-content">
+        <div class="code-panel active" data-panel="json">
+          <pre>{
+  "type": "two-column-with-sidebar",
+  "sectionTitle": "Optional - appears in side nav",
+  "left": [
+    {
+      "heading": "Section Heading",
+      "blocks": [
+        { "type": "paragraph", "text": "Your text here" },
+        { "type": "heading", "level": "h4", "text": "Subheading" },
+        { "type": "list", "style": "ul", "items": ["Item 1", "Item 2"] }
+      ],
+      "imageFull": {
+        "src": "/path/to/image.jpg",
+        "alt": "Description",
+        "caption": "Optional caption"
+      }
+    }
+  ],
+  "sidebar": {
+    "Section Title": ["Item 1", "Item 2", "Item 3"]
+  }
+}</pre>
+        </div>
+        <div class="code-panel" data-panel="scss">
+          <pre>// Main classes
+.cs-block-two-column        // Wrapper
+.cs-layout-grid             // Grid container
+.cs-main-content            // Left column
+.cs-content-section         // Content section
+.cs-section-heading         // Section heading (h2)
+.cs-section-text            // Paragraph text
+.cs-text-block-heading      // Subheading (h3, h4, etc)
+.cs-text-block-list         // List (ul/ol)
+.cs-sidebar                 // Right sidebar
+.cs-sidebar-content         // Sidebar wrapper
+.cs-sidebar-section         // Sidebar section
+.cs-sidebar-title           // Sidebar heading
+.cs-sidebar-list            // Sidebar list (dl)
+.cs-sidebar-item            // Sidebar list item (dd)
+.cs-inline-image-full       // Full-width image in section</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Story Hook -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Story Hook</h2>
+      <code>type: "story-hook"</code>
+    </div>
+    <div class="block-preview">
+      <div class="cs-block cs-story-hook">
+        <div class="cs-story-hook-content">
+          <blockquote class="cs-story-hook-quote">"This is a compelling quote that hooks the reader"</blockquote>
+          <p class="cs-story-hook-context">This is the context that provides background and sets up the story. It should be engaging and draw the reader into the case study.</p>
+        </div>
+      </div>
+    </div>
+    <div class="block-code">
+      <pre>{
+  "type": "story-hook",
+  "quote": "Your compelling quote here",
+  "context": "Context paragraph that sets up the story"
+}</pre>
+    </div>
+  </div>
+
+  <!-- Timeline Process -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Timeline Process</h2>
+      <code>type: "timeline-process"</code>
+    </div>
+    <div class="block-preview">
+      <div class="cs-block cs-timeline-process">
+        <h2 class="cs-timeline-heading">How I Got There</h2>
+        <div class="cs-timeline">
+          <div class="cs-timeline-phase">
+            <div class="cs-timeline-phase-header">
+              <h3 class="cs-timeline-phase-title">Phase 1: Discovery</h3>
+              <span class="cs-timeline-phase-period">Week 1-2</span>
+            </div>
+            <ul class="cs-timeline-highlights">
+              <li>Conducted user research</li>
+              <li>Analyzed existing workflows</li>
+              <li>Identified pain points</li>
+            </ul>
+          </div>
+          <div class="cs-timeline-phase">
+            <div class="cs-timeline-phase-header">
+              <h3 class="cs-timeline-phase-title">Phase 2: Design</h3>
+              <span class="cs-timeline-phase-period">Week 3-4</span>
+            </div>
+            <ul class="cs-timeline-highlights">
+              <li>Created wireframes</li>
+              <li>Developed prototypes</li>
+              <li>User testing sessions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block-code">
+      <pre>{
+  "type": "timeline-process",
+  "sectionTitle": "Optional - appears in side nav",
+  "heading": "How I Got There",
+  "phases": [
+    {
+      "title": "Phase 1: Discovery",
+      "period": "Week 1-2",
+      "icon": "iconoir:search",
+      "highlights": ["Item 1", "Item 2", "Item 3"]
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+
+  <!-- Before After Comparison -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Before/After Comparison</h2>
+      <code>type: "before-after-comparison"</code>
+    </div>
+    <div class="block-preview">
+      <div class="cs-block cs-before-after">
+        <h2 class="cs-before-after-heading">Impact & Results</h2>
+        <div class="cs-before-after-grid">
+          <div class="cs-before-after-col cs-before-col">
+            <h3 class="cs-before-after-label">Before</h3>
+            <ul class="cs-before-after-list cs-before-list">
+              <li><i class="iconoir-xmark"></i><span>Problem one</span></li>
+              <li><i class="iconoir-xmark"></i><span>Problem two</span></li>
+              <li><i class="iconoir-xmark"></i><span>Problem three</span></li>
+            </ul>
+          </div>
+          <div class="cs-before-after-col cs-after-col">
+            <h3 class="cs-before-after-label">After</h3>
+            <ul class="cs-before-after-list cs-after-list">
+              <li><i class="iconoir-check"></i><span>Solution one</span></li>
+              <li><i class="iconoir-check"></i><span>Solution two</span></li>
+              <li><i class="iconoir-check"></i><span>Solution three</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block-code">
+      <pre>{
+  "type": "before-after-comparison",
+  "sectionTitle": "Optional - appears in side nav",
+  "heading": "Impact & Results",
+  "before": {
+    "label": "Before",
+    "items": ["Problem 1", "Problem 2", "Problem 3"]
+  },
+  "after": {
+    "label": "After",
+    "items": ["Solution 1", "Solution 2", "Solution 3"]
+  }
+}</pre>
+    </div>
+  </div>
+
+  <!-- Key Insight -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Key Insight / Callout</h2>
+      <code>type: "key-insight"</code>
+    </div>
+    <div class="block-preview">
+      <div class="cs-block cs-key-insight">
+        <div class="cs-key-insight-content">
+          <div class="cs-key-insight-header">
+            <span class="cs-key-insight-icon iconoir-light-bulb"><i class="iconoir-light-bulb"></i></span>
+            <h3 class="cs-key-insight-title">Key Learning</h3>
+          </div>
+          <p class="cs-key-insight-text">This is the main insight or learning that you want to highlight. It should be concise and impactful.</p>
+          <p class="cs-key-insight-result"><strong>→ Result:</strong> The outcome or impact of this insight.</p>
+        </div>
+      </div>
+    </div>
+    <div class="block-code">
+      <pre>{
+  "type": "key-insight",
+  "sectionTitle": "Optional - appears in side nav",
+  "icon": "iconoir:light-bulb",
+  "title": "Key Learning",
+  "insight": "Your main insight text here",
+  "result": "The outcome or impact"
+}</pre>
+    </div>
+  </div>
+
+  <!-- Text Image Split -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Text & Image Split</h2>
+      <code>type: "text-image-split"</code>
+    </div>
+    <div class="block-preview">
+      <div class="cs-block cs-block-text-image cs-layout-text-left">
+        <div class="cs-text-image-grid">
+          <div class="cs-text-side">
+            <h2 class="cs-section-heading">Section Heading</h2>
+            <p class="cs-section-text">Your text content goes here. This layout places text on one side and an image on the other.</p>
+          </div>
+          <div class="cs-image-side">
+            <figure>
+              <img src="https://via.placeholder.com/600x400/E8F4F8/333333?text=Image+Placeholder" alt="Placeholder" class="cs-split-img">
+              <figcaption class="cs-image-caption">Image caption here</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block-code">
+      <pre>{
+  "type": "text-image-split",
+  "layout": "text-left",  // or "text-right"
+  "heading": "Section Heading",
+  "text": "Your text content here",
+  "image": "/path/to/image.jpg",
+  "alt": "Image description",
+  "caption": "Optional image caption"
+}</pre>
+    </div>
+  </div>
+
+  <!-- Full Width Image -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Full Width Image</h2>
+      <code>type: "full-width-image"</code>
+    </div>
+    <div class="block-preview">
+      <div class="cs-block cs-block-full-image">
+        <figure class="cs-full-width-image">
+          <a href="#" class="glightbox">
+            <img src="https://via.placeholder.com/1200x400/E8F4F8/333333?text=Full+Width+Image" alt="Placeholder" class="cs-full-img">
+          </a>
+          <figcaption class="cs-image-caption">Full width image caption</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="block-code">
+      <pre>{
+  "type": "full-width-image",
+  "src": "/path/to/image.jpg",
+  "alt": "Image description",
+  "caption": "Optional caption"
+}</pre>
+    </div>
+  </div>
+
+  <!-- Image Grid -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Image Grid</h2>
+      <code>type: "image-grid"</code>
+    </div>
+    <div class="block-preview">
+      <div class="cs-block cs-block-image-grid">
+        <div class="cs-image-grid cs-image-grid-3">
+          <figure class="cs-image-grid-item">
+            <a href="#" class="glightbox">
+              <img src="https://via.placeholder.com/400x300/E8F4F8/333333?text=Image+1" alt="Image 1" class="cs-grid-img">
+            </a>
+            <figcaption class="cs-image-caption">Image 1 caption</figcaption>
+          </figure>
+          <figure class="cs-image-grid-item">
+            <a href="#" class="glightbox">
+              <img src="https://via.placeholder.com/400x300/E8F4F8/333333?text=Image+2" alt="Image 2" class="cs-grid-img">
+            </a>
+            <figcaption class="cs-image-caption">Image 2 caption</figcaption>
+          </figure>
+          <figure class="cs-image-grid-item">
+            <a href="#" class="glightbox">
+              <img src="https://via.placeholder.com/400x300/E8F4F8/333333?text=Image+3" alt="Image 3" class="cs-grid-img">
+            </a>
+            <figcaption class="cs-image-caption">Image 3 caption</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    <div class="block-code">
+      <pre>{
+  "type": "image-grid",
+  "sectionTitle": "Optional - appears in side nav",
+  "columns": 3,  // 2 or 3
+  "images": [
+    {
+      "src": "/path/to/image1.jpg",
+      "alt": "Image description",
+      "caption": "Optional caption"
+    },
+    {
+      "src": "/path/to/video.mov",  // Videos supported!
+      "alt": "Video description",
+      "caption": "Video caption"
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+
+  <!-- Full Width Text -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Full Width Text</h2>
+      <code>type: "full-width-text"</code>
+    </div>
+    <div class="block-preview">
+      <div class="cs-block cs-block-full-text">
+        <section class="cs-full-text-section">
+          <h2 class="cs-section-heading">Section Heading</h2>
+          <p class="cs-section-text">This is a full-width text block. It spans the entire content area without sidebars or columns.</p>
+          <p class="cs-section-text">You can have multiple paragraphs here.</p>
+        </section>
+      </div>
+    </div>
+    <div class="block-code">
+      <pre>{
+  "type": "full-width-text",
+  "heading": "Section Heading",
+  "text": "Your text content here.\n\nUse double line breaks for new paragraphs."
+}</pre>
+    </div>
+  </div>
+
+  <!-- Text Block Types -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Text Block Types (for use inside "blocks" arrays)</h2>
+      <code>types: "paragraph", "heading", "list"</code>
+    </div>
+    <div class="block-preview">
+      <div style="max-width: 800px;">
+        <p class="cs-section-text">Regular paragraph text</p>
+
+        <p class="cs-section-text callout">This is a callout text block with special styling—it appears as a speech bubble with blue background, rounded corners, italic font, and extra padding. Perfect for highlighting important quotes or key statements.</p>
+
+        <h3 class="cs-text-block-heading">Heading Level 3</h3>
+        <h4 class="cs-text-block-heading">Heading Level 4</h4>
+        <ul class="cs-text-block-list">
+          <li>Unordered list item</li>
+          <li>Another item</li>
+          <li>Third item</li>
+        </ul>
+        <ol class="cs-text-block-list">
+          <li>Ordered list item</li>
+          <li>Another item</li>
+          <li>Third item</li>
+        </ol>
+      </div>
+    </div>
+    <div class="block-code">
+      <pre>// Regular paragraph
+{ "type": "paragraph", "text": "Your text here" }
+
+// Paragraph with HTML (for bold, breaks, etc)
+{ "type": "paragraph", "html": "&lt;strong&gt;Bold text&lt;/strong&gt;&lt;br&gt;Next line" }
+
+// Callout paragraph
+{ "type": "paragraph", "class": "callout", "html": "&lt;strong&gt;Callout&lt;/strong&gt;" }
+
+// Heading
+{ "type": "heading", "level": "h3", "text": "Heading text" }
+
+// Unordered list
+{ "type": "list", "style": "ul", "items": ["Item 1", "Item 2"] }
+
+// Ordered list
+{ "type": "list", "style": "ol", "items": ["Item 1", "Item 2"] }</pre>
+    </div>
+  </div>
+
+  <!-- Sidebar Navigation -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Sidebar Navigation (Auto-generated)</h2>
+      <code>Appears when hero is scrolled</code>
+    </div>
+    <div class="block-preview">
+      <div style="position: relative; height: 300px; background: #E8F4F8; padding: 2rem;">
+        <p style="margin-bottom: 2rem; color: #666;">This navigation is automatically generated from blocks with <code>sectionTitle</code> property. It appears fixed on the right side when scrolling.</p>
+        <div class="cs-side-nav" style="position: absolute; right: 2rem; top: 50%; transform: translateY(-50%); opacity: 1; pointer-events: all;">
+          <ul class="cs-side-nav-list">
+            <li class="cs-side-nav-item">
+              <a class="cs-side-nav-link active" href="#section-1">
+                <span class="cs-side-nav-label">Context / The Problem</span>
+                <span class="cs-side-nav-number">01</span>
+              </a>
+            </li>
+            <li class="cs-side-nav-item">
+              <a class="cs-side-nav-link" href="#section-2">
+                <span class="cs-side-nav-label">The Journey</span>
+                <span class="cs-side-nav-number">02</span>
+              </a>
+            </li>
+            <li class="cs-side-nav-item">
+              <a class="cs-side-nav-link" href="#section-3">
+                <span class="cs-side-nav-label">The Outcome</span>
+                <span class="cs-side-nav-number">03</span>
+              </a>
+            </li>
+          </ul>
+          <div class="cs-side-nav-indicator" style="position: absolute; right: 0; width: 3px; height: 40px; background-color: #4A90E2;"></div>
+        </div>
+      </div>
+    </div>
+    <button class="code-toggle">
+      <span>Show Code</span>
+      <span class="code-toggle-icon">▼</span>
+    </button>
+    <div class="block-code">
+      <div class="code-tabs">
+        <button class="code-tab active" data-tab="json">Usage</button>
+        <button class="code-tab" data-tab="scss">SCSS Classes</button>
+      </div>
+      <div class="code-content">
+        <div class="code-panel active" data-panel="json">
+          <pre>// Navigation is auto-generated from blocks with sectionTitle
+{
+  "type": "two-column-with-sidebar",
+  "sectionTitle": "Context / The Problem",  // ← This creates nav item
+  ...
+}
+
+// Features:
+// - Auto-numbered (01, 02, 03...)
+// - Label appears on hover
+// - Active state follows scroll position
+// - Only appears when hero is scrolled
+// - Hidden on mobile</pre>
+        </div>
+        <div class="code-panel" data-panel="scss">
+          <pre>// Sidebar nav classes
+.cs-side-nav                // Container (fixed position)
+.cs-side-nav-list          // Nav list
+.cs-side-nav-item          // List item
+.cs-side-nav-link          // Link (clickable)
+.cs-side-nav-link.active   // Active state
+.cs-side-nav-label         // Section title (shows on hover)
+.cs-side-nav-number        // Number (01, 02, 03)
+.cs-side-nav-indicator     // Animated indicator bar</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Collapsible Hero -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Collapsible Sticky Hero (Auto-behavior)</h2>
+      <code>Shrinks when scrolling</code>
+    </div>
+    <div class="block-preview">
+      <div style="background: #f8f9fa; padding: 1rem; border-radius: 4px;">
+        <p style="margin: 0; color: #666;"><strong>Auto-behavior:</strong> The hero section (breadcrumbs + close button + title + tags) is sticky at the top. When you scroll down, it automatically shrinks to show a compact version with just breadcrumbs and close button. The metrics section moves up into the hero area when collapsed.</p>
+      </div>
+    </div>
+    <button class="code-toggle">
+      <span>Show Code</span>
+      <span class="code-toggle-icon">▼</span>
+    </button>
+    <div class="block-code">
+      <div class="code-tabs">
+        <button class="code-tab active" data-tab="json">Behavior</button>
+        <button class="code-tab" data-tab="scss">SCSS Classes</button>
+      </div>
+      <div class="code-content">
+        <div class="code-panel active" data-panel="json">
+          <pre>// Automatic behavior - no config needed!
+
+When scrollTop > 0:
+  .cs-sticky-header gets class "scrolled"
+  Hero shrinks (smaller padding, hidden title/tags)
+  Metrics move into sticky header
+  Side navigation appears
+
+When scrollTop === 0:
+  .cs-sticky-header removes "scrolled" class
+  Hero expands (full title, tags, metrics below)
+  Side navigation hides</pre>
+        </div>
+        <div class="code-panel" data-panel="scss">
+          <pre>// Hero & sticky header classes
+.cs-sticky-header              // Sticky container
+.cs-sticky-header.scrolled     // Collapsed state
+.cs-breadcrumbs                // Prev/Next navigation
+.cs-breadcrumb-nav            // Individual nav button
+.case-study-close             // Close button
+.cs-hero                       // Hero section
+.cs-hero-title                 // Project title
+.cs-hero-subtitle              // Subtitle
+.cs-hero-tags                  // Tags container
+.cs-tag                        // Individual tag
+.cs-hero-metrics              // Metrics in collapsed hero
+.cs-metrics                    // Full metrics section</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metric Cards -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Metric Cards</h2>
+      <code>Used in case study metrics section</code>
+    </div>
+    <div class="block-preview">
+      <p style="margin: 0 0 1.5rem; color: #666;">Displays key project metrics with icon, value, and label. Features decorative corner dots and hover effect with transform and shadow.</p>
+
+      <!-- Visual Examples -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 2rem; margin-bottom: 2rem; background: #edf1f3; padding: 2rem; border-radius: 8px;">
+        <!-- Metric Card 1 -->
+        <div class="cs-metric-card" style="position: relative; min-width: 270px; min-height: 6rem;">
+          <div class="cs-metric-content" style="box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 0.5rem; height: 100%; min-height: 6rem; padding: 0.75rem; background-color: rgba(250, 250, 250, 0.9); position: relative; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);">
+            <div class="cs-metric-top" style="display: flex; flex-direction: column; align-items: center;">
+              <div class="cs-metric-icon-wrapper" style="position: relative; overflow: hidden; width: 24px; height: 24px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem;">
+                <i class="iconoir-network-right cs-metric-icon" style="font-size: 1.5rem; color: #3980AA; line-height: 1;"></i>
+              </div>
+            </div>
+            <div class="cs-metric-value" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500; font-size: 1.125rem; line-height: 1.21; color: #3980AA; text-align: center; white-space: nowrap; position: relative; flex-shrink: 0; width: 100%; margin-bottom: 0.5rem;">+15 System States</div>
+            <div class="cs-metric-label" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 0.875rem; line-height: 1.1; color: #5c584f; text-align: center; width: 100%; position: relative; flex-shrink: 0;">Translated into human language</div>
+          </div>
+          <div class="cs-metric-border" style="position: absolute; inset: 0; border: 0.12rem solid #3980AA; pointer-events: none; border-radius: 0;"></div>
+          <div class="cs-metric-dot dot-top-left" style="position: absolute; width: 6px; height: 6px; top: -3px; left: -3px;">
+            <svg viewBox="0 0 10 10" style="display: block; width: 100%; height: 100%; fill: #FAFAFA; stroke: #3980AA; stroke-width: 0.12rem;"><circle cx="5" cy="5" r="4.5"/></svg>
+          </div>
+          <div class="cs-metric-dot dot-top-right" style="position: absolute; width: 6px; height: 6px; top: -3px; right: -3px;">
+            <svg viewBox="0 0 10 10" style="display: block; width: 100%; height: 100%; fill: #FAFAFA; stroke: #3980AA; stroke-width: 0.12rem;"><circle cx="5" cy="5" r="4.5"/></svg>
+          </div>
+          <div class="cs-metric-dot dot-bottom-left" style="position: absolute; width: 6px; height: 6px; bottom: -3px; left: -3px;">
+            <svg viewBox="0 0 10 10" style="display: block; width: 100%; height: 100%; fill: #FAFAFA; stroke: #3980AA; stroke-width: 0.12rem;"><circle cx="5" cy="5" r="4.5"/></svg>
+          </div>
+          <div class="cs-metric-dot dot-bottom-right" style="position: absolute; width: 6px; height: 6px; bottom: -3px; right: -3px;">
+            <svg viewBox="0 0 10 10" style="display: block; width: 100%; height: 100%; fill: #FAFAFA; stroke: #3980AA; stroke-width: 0.12rem;"><circle cx="5" cy="5" r="4.5"/></svg>
+          </div>
+        </div>
+
+        <!-- Metric Card 2 -->
+        <div class="cs-metric-card" style="position: relative; min-width: 270px; min-height: 6rem;">
+          <div class="cs-metric-content" style="box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 0.5rem; height: 100%; min-height: 6rem; padding: 0.75rem; background-color: rgba(250, 250, 250, 0.9); position: relative; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);">
+            <div class="cs-metric-top" style="display: flex; flex-direction: column; align-items: center;">
+              <div class="cs-metric-icon-wrapper" style="position: relative; overflow: hidden; width: 24px; height: 24px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem;">
+                <i class="iconoir-user-scan cs-metric-icon" style="font-size: 1.5rem; color: #3980AA; line-height: 1;"></i>
+              </div>
+            </div>
+            <div class="cs-metric-value" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500; font-size: 1.125rem; line-height: 1.21; color: #3980AA; text-align: center; white-space: nowrap; position: relative; flex-shrink: 0; width: 100%; margin-bottom: 0.5rem;">Self-diagnosis</div>
+            <div class="cs-metric-label" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 0.875rem; line-height: 1.1; color: #5c584f; text-align: center; width: 100%; position: relative; flex-shrink: 0;">Customer autonomy to understand journey</div>
+          </div>
+          <div class="cs-metric-border" style="position: absolute; inset: 0; border: 0.12rem solid #3980AA; pointer-events: none; border-radius: 0;"></div>
+          <div class="cs-metric-dot dot-top-left" style="position: absolute; width: 6px; height: 6px; top: -3px; left: -3px;">
+            <svg viewBox="0 0 10 10" style="display: block; width: 100%; height: 100%; fill: #FAFAFA; stroke: #3980AA; stroke-width: 0.12rem;"><circle cx="5" cy="5" r="4.5"/></svg>
+          </div>
+          <div class="cs-metric-dot dot-top-right" style="position: absolute; width: 6px; height: 6px; top: -3px; right: -3px;">
+            <svg viewBox="0 0 10 10" style="display: block; width: 100%; height: 100%; fill: #FAFAFA; stroke: #3980AA; stroke-width: 0.12rem;"><circle cx="5" cy="5" r="4.5"/></svg>
+          </div>
+          <div class="cs-metric-dot dot-bottom-left" style="position: absolute; width: 6px; height: 6px; bottom: -3px; left: -3px;">
+            <svg viewBox="0 0 10 10" style="display: block; width: 100%; height: 100%; fill: #FAFAFA; stroke: #3980AA; stroke-width: 0.12rem;"><circle cx="5" cy="5" r="4.5"/></svg>
+          </div>
+          <div class="cs-metric-dot dot-bottom-right" style="position: absolute; width: 6px; height: 6px; bottom: -3px; right: -3px;">
+            <svg viewBox="0 0 10 10" style="display: block; width: 100%; height: 100%; fill: #FAFAFA; stroke: #3980AA; stroke-width: 0.12rem;"><circle cx="5" cy="5" r="4.5"/></svg>
+          </div>
+        </div>
+
+        <!-- Metric Card 3 -->
+        <div class="cs-metric-card" style="position: relative; min-width: 270px; min-height: 6rem;">
+          <div class="cs-metric-content" style="box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 0.5rem; height: 100%; min-height: 6rem; padding: 0.75rem; background-color: rgba(250, 250, 250, 0.9); position: relative; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);">
+            <div class="cs-metric-top" style="display: flex; flex-direction: column; align-items: center;">
+              <div class="cs-metric-icon-wrapper" style="position: relative; overflow: hidden; width: 24px; height: 24px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem;">
+                <i class="iconoir-link cs-metric-icon" style="font-size: 1.5rem; color: #3980AA; line-height: 1;"></i>
+              </div>
+            </div>
+            <div class="cs-metric-value" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500; font-size: 1.125rem; line-height: 1.21; color: #3980AA; text-align: center; white-space: nowrap; position: relative; flex-shrink: 0; width: 100%; margin-bottom: 0.5rem;">1 Magic Link</div>
+            <div class="cs-metric-label" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 0.875rem; line-height: 1.1; color: #5c584f; text-align: center; width: 100%; position: relative; flex-shrink: 0;">From unreliable email system</div>
+          </div>
+          <div class="cs-metric-border" style="position: absolute; inset: 0; border: 0.12rem solid #3980AA; pointer-events: none; border-radius: 0;"></div>
+          <div class="cs-metric-dot dot-top-left" style="position: absolute; width: 6px; height: 6px; top: -3px; left: -3px;">
+            <svg viewBox="0 0 10 10" style="display: block; width: 100%; height: 100%; fill: #FAFAFA; stroke: #3980AA; stroke-width: 0.12rem;"><circle cx="5" cy="5" r="4.5"/></svg>
+          </div>
+          <div class="cs-metric-dot dot-top-right" style="position: absolute; width: 6px; height: 6px; top: -3px; right: -3px;">
+            <svg viewBox="0 0 10 10" style="display: block; width: 100%; height: 100%; fill: #FAFAFA; stroke: #3980AA; stroke-width: 0.12rem;"><circle cx="5" cy="5" r="4.5"/></svg>
+          </div>
+          <div class="cs-metric-dot dot-bottom-left" style="position: absolute; width: 6px; height: 6px; bottom: -3px; left: -3px;">
+            <svg viewBox="0 0 10 10" style="display: block; width: 100%; height: 100%; fill: #FAFAFA; stroke: #3980AA; stroke-width: 0.12rem;"><circle cx="5" cy="5" r="4.5"/></svg>
+          </div>
+          <div class="cs-metric-dot dot-bottom-right" style="position: absolute; width: 6px; height: 6px; bottom: -3px; right: -3px;">
+            <svg viewBox="0 0 10 10" style="display: block; width: 100%; height: 100%; fill: #FAFAFA; stroke: #3980AA; stroke-width: 0.12rem;"><circle cx="5" cy="5" r="4.5"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="code-toggle">
+      <span>Show Code</span>
+      <span class="code-toggle-icon">▼</span>
+    </button>
+    <div class="block-code">
+      <div class="code-tabs">
+        <button class="code-tab active" data-tab="html">HTML Structure</button>
+        <button class="code-tab" data-tab="scss">SCSS Mixin</button>
+      </div>
+      <div class="code-content">
+        <div class="code-panel active" data-panel="html">
+          <pre>// Metric cards are auto-generated from JSON detailMetrics array
+
+// In your JSON:
+"detailMetrics": [
+  {
+    "icon": "iconoir:network-right",
+    "value": "+15 System States",
+    "label": "Translated into human language"
+  },
+  {
+    "icon": "iconoir:user-scan",
+    "value": "Self-diagnosis",
+    "label": "Customer autonomy"
+  }
+]
+
+// Generates HTML:
+&lt;div class="cs-metric-card"&gt;
+  &lt;div class="cs-metric-content"&gt;
+    &lt;div class="cs-metric-top"&gt;
+      &lt;div class="cs-metric-icon-wrapper"&gt;
+        &lt;i class="iconoir-network-right cs-metric-icon"&gt;&lt;/i&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="cs-metric-value"&gt;+15 System States&lt;/div&gt;
+    &lt;div class="cs-metric-label"&gt;Translated into human language&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="cs-metric-border"&gt;&lt;/div&gt;
+  &lt;div class="cs-metric-dot dot-top-left"&gt;...&lt;/div&gt;
+  &lt;div class="cs-metric-dot dot-top-right"&gt;...&lt;/div&gt;
+  &lt;div class="cs-metric-dot dot-bottom-left"&gt;...&lt;/div&gt;
+  &lt;div class="cs-metric-dot dot-bottom-right"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <div class="code-panel" data-panel="scss">
+          <pre>// SCSS Mixin
+@mixin metric-card(
+  $min-width: 270px,
+  $min-height: 130px,
+  $content-min-height: 6rem,
+  $padding: $space-12,
+  $border-color: $color-blue-200,
+  $border-width: 0.12rem,
+  $bg-color: $color-white-alpha,
+  $icon-size: 1.5rem,
+  $value-color: $color-blue-400,
+  $value-font-size: $font-size-base,
+  $label-color: $color-neutral-light,
+  $label-font-size: $font-size-xs
+)
+
+// Classes:
+.cs-metric-card           // Container
+.cs-metric-content        // Main content wrapper
+.cs-metric-border         // Border overlay
+.cs-metric-icon-wrapper   // Icon container
+.cs-metric-icon           // Icon element
+.cs-metric-value          // Metric value text
+.cs-metric-label          // Metric label text
+.cs-metric-dot            // Corner dot decoration</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Hint -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Scroll Hint (Ripple Animation)</h2>
+      <code>Auto-behavior component</code>
+    </div>
+    <div class="block-preview">
+      <p style="margin: 0 0 1.5rem; color: #666;"><strong>Auto-behavior:</strong> The scroll hint appears at the bottom of the About section (first screen). When user scrolls or clicks it, it fades out. Features ripple animation with 3 expanding circles and pulsing text.</p>
+      <p style="margin: 0 0 1.5rem; font-size: 0.875rem; color: #666;"><strong>Interaction states:</strong> On hover, animation slows down and circles get blue tint. On click, compresses and fades.</p>
+
+      <!-- Visual Example -->
+      <div style="position: relative; height: 180px; background: linear-gradient(to bottom, #edf1f3, #d4dfe5); border-radius: 8px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 1rem;">
+        <div class="scroll-hint" style="position: relative; bottom: 0; left: 0; right: auto; transform: none; opacity: 1; transition: opacity 0.3s ease-in-out; pointer-events: auto; display: flex; align-items: flex-end; cursor: pointer;">
+          <div class="scroll-hint-inner" style="position: relative; height: 120px; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;">
+            <div class="scroll-hint-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; animation: scroll-hint-pulse 4s infinite ease-in-out; z-index: 999;">
+              <p style="color: #3980AA; font-size: 0.75rem; font-family: 'Bricolage Grotesque', sans-serif; text-transform: lowercase; letter-spacing: 0.05em; margin: 0; animation: text-scale 4s infinite ease-in-out; text-align: center;">scroll</p>
+            </div>
+            <div class="ripple-box" style="position: absolute; border-radius: 50%; animation: ripple 4s infinite ease-in-out; transition: background 0.6s ease-in-out, animation-duration 0.6s ease-in-out; inset: 20%; z-index: 98; background: rgba(245, 243, 240, 0.3); border: 1px solid rgba(245, 243, 240, 0.4); box-shadow: rgba(57, 128, 170, 0.2) 0 10px 10px 0; animation-delay: 0.3s;"></div>
+            <div class="ripple-box" style="position: absolute; border-radius: 50%; animation: ripple 4s infinite ease-in-out; transition: background 0.6s ease-in-out, animation-duration 0.6s ease-in-out; inset: 10%; z-index: 97; background: rgba(245, 243, 240, 0.2); border: 1px solid rgba(245, 243, 240, 0.3); box-shadow: rgba(57, 128, 170, 0.15) 0 10px 10px 0; animation-delay: 0.6s;"></div>
+            <div class="ripple-box" style="position: absolute; border-radius: 50%; animation: ripple 4s infinite ease-in-out; transition: background 0.6s ease-in-out, animation-duration 0.6s ease-in-out; inset: 0; z-index: 96; background: rgba(245, 243, 240, 0.1); border: 1px solid rgba(245, 243, 240, 0.2); box-shadow: rgba(57, 128, 170, 0.1) 0 10px 10px 0; animation-delay: 0.9s;"></div>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        @keyframes ripple {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.3); }
+          100% { transform: scale(1); }
+        }
+        @keyframes scroll-hint-pulse {
+          0% { opacity: 0.7; }
+          50% { opacity: 1; }
+          100% { opacity: 0.7; }
+        }
+        @keyframes text-scale {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.3); }
+          100% { transform: scale(1); }
+        }
+      </style>
+    </div>
+    <button class="code-toggle">
+      <span>Show Code</span>
+      <span class="code-toggle-icon">▼</span>
+    </button>
+    <div class="block-code">
+      <div class="code-tabs">
+        <button class="code-tab active" data-tab="html">HTML Structure</button>
+        <button class="code-tab" data-tab="scss">SCSS Classes</button>
+      </div>
+      <div class="code-content">
+        <div class="code-panel active" data-panel="html">
+          <pre>&lt;div class="scroll-hint"&gt;
+  &lt;div class="scroll-hint-inner"&gt;
+    &lt;div class="scroll-hint-text"&gt;
+      &lt;p&gt;scroll&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="ripple-box"&gt;&lt;/div&gt; &lt;!-- Innermost circle --&gt;
+    &lt;div class="ripple-box"&gt;&lt;/div&gt; &lt;!-- Middle circle --&gt;
+    &lt;div class="ripple-box"&gt;&lt;/div&gt; &lt;!-- Outermost circle --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <div class="code-panel" data-panel="scss">
+          <pre>// Main classes
+.scroll-hint               // Container (absolute position, bottom center)
+.scroll-hint.hidden        // Hidden state
+.scroll-hint-inner         // Inner wrapper (120px square)
+.scroll-hint-text          // Text container
+.ripple-box                // Ripple circle layer
+
+// Animations
+@keyframes ripple          // Circle expansion (scale 1 → 1.3 → 1)
+@keyframes scroll-hint-pulse // Opacity pulse for text
+@keyframes text-scale      // Text scale animation
+
+// States
+&:hover                    // Slows animation, adds blue tint
+&:active                   // Compresses on click</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kit-header" style="margin-top: 3rem;">
+    <h2>🎨 Theme Support</h2>
+    <p>All blocks automatically adapt to the project theme (blue, green, neutral, red). Colors for links, buttons, and accents change based on the <code>data-theme</code> attribute.</p>
+  </div>
+
+  </div>
+  <!-- END PANEL 1: CONTENT BLOCKS -->
+
+  <!-- PANEL 2: DESIGN SYSTEM -->
+  <div class="main-panel" data-main-panel="design">
+
+  <div class="kit-header" style="margin-top: 0;">
+    <h1>🎨 Design System</h1>
+    <p>Core design tokens and variables used throughout the case studies</p>
+  </div>
+
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Color Palette</h2>
+      <code>From variables.scss</code>
+    </div>
+    <div class="block-preview">
+      <div style="display: grid; gap: 2rem;">
+        <!-- Blue Colors -->
+        <div>
+          <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem; font-weight: 600;">Blue (Primary Theme)</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div style="padding: 1rem; background: #edf1f3; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: #edf1f3; border-radius: 4px; margin-bottom: 0.5rem; border: 1px solid #ddd;"></div>
+              <code style="font-size: 0.75rem;">$color-blue-light</code><br>
+              <span style="font-size: 0.75rem; color: #666;">#edf1f3</span>
+            </div>
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: #3980AA; border-radius: 4px; margin-bottom: 0.5rem;"></div>
+              <code style="font-size: 0.75rem;">$color-blue-primary</code><br>
+              <span style="font-size: 0.75rem; color: #666;">#3980AA</span>
+            </div>
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: #286F98; border-radius: 4px; margin-bottom: 0.5rem;"></div>
+              <code style="font-size: 0.75rem;">$color-blue-dark</code><br>
+              <span style="font-size: 0.75rem; color: #666;">#286F98</span>
+            </div>
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: #203A48; border-radius: 4px; margin-bottom: 0.5rem;"></div>
+              <code style="font-size: 0.75rem;">$color-blue-darker</code><br>
+              <span style="font-size: 0.75rem; color: #666;">#203A48</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Green Colors -->
+        <div>
+          <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem; font-weight: 600;">Green</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div style="padding: 1rem; background: #e8ebe0; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: #e8ebe0; border-radius: 4px; margin-bottom: 0.5rem; border: 1px solid #ddd;"></div>
+              <code style="font-size: 0.75rem;">$color-green-light</code><br>
+              <span style="font-size: 0.75rem; color: #666;">#e8ebe0</span>
+            </div>
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: #79854f; border-radius: 4px; margin-bottom: 0.5rem;"></div>
+              <code style="font-size: 0.75rem;">$color-green-primary</code><br>
+              <span style="font-size: 0.75rem; color: #666;">#79854f</span>
+            </div>
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: #525d2e; border-radius: 4px; margin-bottom: 0.5rem;"></div>
+              <code style="font-size: 0.75rem;">$color-green-dark</code><br>
+              <span style="font-size: 0.75rem; color: #666;">#525d2e</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Red Colors -->
+        <div>
+          <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem; font-weight: 600;">Red</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: #A84844; border-radius: 4px; margin-bottom: 0.5rem;"></div>
+              <code style="font-size: 0.75rem;">$color-red-primary</code><br>
+              <span style="font-size: 0.75rem; color: #666;">#A84844</span>
+            </div>
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: #d4a5a2; border-radius: 4px; margin-bottom: 0.5rem;"></div>
+              <code style="font-size: 0.75rem;">$color-red-light</code><br>
+              <span style="font-size: 0.75rem; color: #666;">#d4a5a2</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Neutral Colors -->
+        <div>
+          <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem; font-weight: 600;">Neutral</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div style="padding: 1rem; background: #f5f3f0; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: #f5f3f0; border-radius: 4px; margin-bottom: 0.5rem; border: 1px solid #ddd;"></div>
+              <code style="font-size: 0.75rem;">$color-cream</code><br>
+              <span style="font-size: 0.75rem; color: #666;">#f5f3f0</span>
+            </div>
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: #5c584f; border-radius: 4px; margin-bottom: 0.5rem;"></div>
+              <code style="font-size: 0.75rem;">$color-neutral</code><br>
+              <span style="font-size: 0.75rem; color: #666;">#5c584f</span>
+            </div>
+            <div style="padding: 1rem; background: #FAFAFA; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: #FAFAFA; border-radius: 4px; margin-bottom: 0.5rem; border: 1px solid #ddd;"></div>
+              <code style="font-size: 0.75rem;">$color-white</code><br>
+              <span style="font-size: 0.75rem; color: #666;">#FAFAFA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Special Colors -->
+        <div>
+          <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem; font-weight: 600;">Shadows & Special</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: rgba(136, 159, 194, 0.1); border-radius: 4px; margin-bottom: 0.5rem; border: 1px solid #ddd;"></div>
+              <code style="font-size: 0.75rem;">$color-shadows</code><br>
+              <span style="font-size: 0.75rem; color: #666;">rgba(136, 159, 194, 0.1)</span>
+            </div>
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: rgba(32,58,72, 0.25); border-radius: 4px; margin-bottom: 0.5rem;"></div>
+              <code style="font-size: 0.75rem;">$color-shadows-dark</code><br>
+              <span style="font-size: 0.75rem; color: #666;">rgba(32,58,72, 0.25)</span>
+            </div>
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <div style="width: 100%; height: 60px; background: radial-gradient(circle, rgba(0, 102, 255, 0.05) 0%, rgba(255, 255, 255, 0.50) 100%); border-radius: 4px; margin-bottom: 0.5rem; border: 1px solid #ddd;"></div>
+              <code style="font-size: 0.75rem;">$color-cards-background</code><br>
+              <span style="font-size: 0.75rem; color: #666;">radial-gradient</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Text Styles</h2>
+      <code>Typography hierarchy</code>
+    </div>
+    <div class="block-preview">
+      <div style="display: grid; gap: 1.5rem;">
+        <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1rem;">
+          <code style="font-size: 0.75rem; color: #666; display: block; margin-bottom: 0.5rem;">h1 — 40px (font-size-3xl), Bold (700)</code>
+          <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 40px; font-weight: 700; margin: 0; line-height: 150%;">Heading 1</h1>
+        </div>
+        <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1rem;">
+          <code style="font-size: 0.75rem; color: #666; display: block; margin-bottom: 0.5rem;">h2 — 22px (font-size-l), Medium (500)</code>
+          <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 500; margin: 0; line-height: 1.5;">Heading 2</h2>
+        </div>
+        <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1rem;">
+          <code style="font-size: 0.75rem; color: #666; display: block; margin-bottom: 0.5rem;">h3 — 22px (font-size-l), Medium (500)</code>
+          <h3 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 500; margin: 0; line-height: 150%;">Heading 3</h3>
+        </div>
+        <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1rem;">
+          <code style="font-size: 0.75rem; color: #666; display: block; margin-bottom: 0.5rem;">h4 — 22px (font-size-l), Medium (500)</code>
+          <h4 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 500; margin: 0;">Heading 4</h4>
+        </div>
+        <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1rem;">
+          <code style="font-size: 0.75rem; color: #666; display: block; margin-bottom: 0.5rem;">p — 18px (font-size-base), Light (300)</code>
+          <p style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; font-weight: 300; margin: 0; line-height: 150%;">Body paragraph text</p>
+        </div>
+        <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 1rem;">
+          <code style="font-size: 0.75rem; color: #666; display: block; margin-bottom: 0.5rem;">p.mid — 16px (font-size-s), Regular (400)</code>
+          <p style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 400; margin: 0; line-height: 150%;">Medium paragraph text</p>
+        </div>
+        <div>
+          <code style="font-size: 0.75rem; color: #666; display: block; margin-bottom: 0.5rem;">p.caption — 14px (font-size-xs), Regular (400)</code>
+          <p style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 14px; font-weight: 400; margin: 0; line-height: 150%;">Caption text</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Typography</h2>
+      <code>Font families, sizes, and weights</code>
+    </div>
+    <div class="block-preview">
+      <div style="display: grid; gap: 2rem;">
+        <!-- Font Families -->
+        <div>
+          <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem; font-weight: 600;">Font Families</h3>
+          <div style="display: grid; gap: 1rem;">
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <code style="font-size: 0.75rem; color: #666;">$font-bricolage</code>
+              <p style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.5rem; margin: 0.5rem 0 0;">Bricolage Grotesque</p>
+              <p style="font-family: 'Bricolage Grotesque', sans-serif; margin: 0.5rem 0 0;">Used for headings and primary content</p>
+            </div>
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <code style="font-size: 0.75rem; color: #666;">$font-anonymous</code>
+              <p style="font-family: 'Anonymous Pro', monospace; font-size: 1.5rem; margin: 0.5rem 0 0;">Anonymous Pro</p>
+              <p style="font-family: 'Anonymous Pro', monospace; margin: 0.5rem 0 0;">Used for callouts and technical content</p>
+            </div>
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+              <code style="font-size: 0.75rem; color: #666;">$font-fascinate</code>
+              <p style="font-family: 'Fascinate', cursive; font-size: 1.5rem; margin: 0.5rem 0 0;">Fascinate</p>
+              <p style="font-family: 'Bricolage Grotesque', sans-serif; margin: 0.5rem 0 0;">Decorative display font</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Font Sizes -->
+        <div>
+          <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem; font-weight: 600;">Font Sizes</h3>
+          <div style="display: grid; gap: 0.5rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+              <code style="min-width: 150px; font-size: 0.75rem;">$font-size-4xl</code>
+              <span style="font-size: 0.875rem; color: #666; min-width: 60px;">48px</span>
+              <span style="font-size: 48px; line-height: 1;">Aa</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+              <code style="min-width: 150px; font-size: 0.75rem;">$font-size-3xl</code>
+              <span style="font-size: 0.875rem; color: #666; min-width: 60px;">40px</span>
+              <span style="font-size: 40px; line-height: 1;">Aa</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+              <code style="min-width: 150px; font-size: 0.75rem;">$font-size-2xl</code>
+              <span style="font-size: 0.875rem; color: #666; min-width: 60px;">32px</span>
+              <span style="font-size: 32px; line-height: 1;">Aa</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+              <code style="min-width: 150px; font-size: 0.75rem;">$font-size-xl</code>
+              <span style="font-size: 0.875rem; color: #666; min-width: 60px;">28px</span>
+              <span style="font-size: 28px; line-height: 1;">Aa</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+              <code style="min-width: 150px; font-size: 0.75rem;">$font-size-l</code>
+              <span style="font-size: 0.875rem; color: #666; min-width: 60px;">22px</span>
+              <span style="font-size: 22px; line-height: 1;">Aa</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+              <code style="min-width: 150px; font-size: 0.75rem;">$font-size-base</code>
+              <span style="font-size: 0.875rem; color: #666; min-width: 60px;">18px</span>
+              <span style="font-size: 18px; line-height: 1;">Aa</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+              <code style="min-width: 150px; font-size: 0.75rem;">$font-size-s</code>
+              <span style="font-size: 0.875rem; color: #666; min-width: 60px;">16px</span>
+              <span style="font-size: 16px; line-height: 1;">Aa</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem;">
+              <code style="min-width: 150px; font-size: 0.75rem;">$font-size-xs</code>
+              <span style="font-size: 0.875rem; color: #666; min-width: 60px;">14px</span>
+              <span style="font-size: 14px; line-height: 1;">Aa</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Font Weights -->
+        <div>
+          <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem; font-weight: 600;">Font Weights</h3>
+          <div style="display: grid; gap: 0.5rem;">
+            <div style="padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+              <code style="font-size: 0.75rem; color: #666;">$font-weight-light (300)</code>
+              <p style="font-weight: 300; font-size: 1.25rem; margin: 0.5rem 0 0;">The quick brown fox jumps</p>
+            </div>
+            <div style="padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+              <code style="font-size: 0.75rem; color: #666;">$font-weight-regular (400)</code>
+              <p style="font-weight: 400; font-size: 1.25rem; margin: 0.5rem 0 0;">The quick brown fox jumps</p>
+            </div>
+            <div style="padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+              <code style="font-size: 0.75rem; color: #666;">$font-weight-medium (500)</code>
+              <p style="font-weight: 500; font-size: 1.25rem; margin: 0.5rem 0 0;">The quick brown fox jumps</p>
+            </div>
+            <div style="padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+              <code style="font-size: 0.75rem; color: #666;">$font-weight-semibold (600)</code>
+              <p style="font-weight: 600; font-size: 1.25rem; margin: 0.5rem 0 0;">The quick brown fox jumps</p>
+            </div>
+            <div style="padding: 0.5rem;">
+              <code style="font-size: 0.75rem; color: #666;">$font-weight-bold (700)</code>
+              <p style="font-weight: 700; font-size: 1.25rem; margin: 0.5rem 0 0;">The quick brown fox jumps</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Spacing Scale</h2>
+      <code>Based on rem units (1rem = 16px)</code>
+    </div>
+    <div class="block-preview">
+      <div style="display: grid; gap: 0.5rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+          <code style="min-width: 120px; font-size: 0.75rem;">$space-4</code>
+          <span style="font-size: 0.875rem; color: #666; min-width: 80px;">0.25rem</span>
+          <span style="font-size: 0.875rem; color: #666; min-width: 50px;">4px</span>
+          <div style="width: 4px; height: 20px; background: #3980AA;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+          <code style="min-width: 120px; font-size: 0.75rem;">$space-8</code>
+          <span style="font-size: 0.875rem; color: #666; min-width: 80px;">0.5rem</span>
+          <span style="font-size: 0.875rem; color: #666; min-width: 50px;">8px</span>
+          <div style="width: 8px; height: 20px; background: #3980AA;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+          <code style="min-width: 120px; font-size: 0.75rem;">$space-12</code>
+          <span style="font-size: 0.875rem; color: #666; min-width: 80px;">0.75rem</span>
+          <span style="font-size: 0.875rem; color: #666; min-width: 50px;">12px</span>
+          <div style="width: 12px; height: 20px; background: #3980AA;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+          <code style="min-width: 120px; font-size: 0.75rem;">$space-16</code>
+          <span style="font-size: 0.875rem; color: #666; min-width: 80px;">1rem</span>
+          <span style="font-size: 0.875rem; color: #666; min-width: 50px;">16px</span>
+          <div style="width: 16px; height: 20px; background: #3980AA;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+          <code style="min-width: 120px; font-size: 0.75rem;">$space-20</code>
+          <span style="font-size: 0.875rem; color: #666; min-width: 80px;">1.25rem</span>
+          <span style="font-size: 0.875rem; color: #666; min-width: 50px;">20px</span>
+          <div style="width: 20px; height: 20px; background: #3980AA;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+          <code style="min-width: 120px; font-size: 0.75rem;">$space-24</code>
+          <span style="font-size: 0.875rem; color: #666; min-width: 80px;">1.5rem</span>
+          <span style="font-size: 0.875rem; color: #666; min-width: 50px;">24px</span>
+          <div style="width: 24px; height: 20px; background: #3980AA;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+          <code style="min-width: 120px; font-size: 0.75rem;">$space-32</code>
+          <span style="font-size: 0.875rem; color: #666; min-width: 80px;">2rem</span>
+          <span style="font-size: 0.875rem; color: #666; min-width: 50px;">32px</span>
+          <div style="width: 32px; height: 20px; background: #3980AA;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+          <code style="min-width: 120px; font-size: 0.75rem;">$space-40</code>
+          <span style="font-size: 0.875rem; color: #666; min-width: 80px;">2.5rem</span>
+          <span style="font-size: 0.875rem; color: #666; min-width: 50px;">40px</span>
+          <div style="width: 40px; height: 20px; background: #3980AA;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+          <code style="min-width: 120px; font-size: 0.75rem;">$space-60</code>
+          <span style="font-size: 0.875rem; color: #666; min-width: 80px;">3.75rem</span>
+          <span style="font-size: 0.875rem; color: #666; min-width: 50px;">60px</span>
+          <div style="width: 60px; height: 20px; background: #3980AA;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid #e0e0e0;">
+          <code style="min-width: 120px; font-size: 0.75rem;">$space-80</code>
+          <span style="font-size: 0.875rem; color: #666; min-width: 80px;">5rem</span>
+          <span style="font-size: 0.875rem; color: #666; min-width: 50px;">80px</span>
+          <div style="width: 80px; height: 20px; background: #3980AA;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem;">
+          <code style="min-width: 120px; font-size: 0.75rem;">$space-120</code>
+          <span style="font-size: 0.875rem; color: #666; min-width: 80px;">7.5rem</span>
+          <span style="font-size: 0.875rem; color: #666; min-width: 50px;">120px</span>
+          <div style="width: 120px; height: 20px; background: #3980AA;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <!-- END PANEL 2: DESIGN SYSTEM -->
+
+  <script type="module" src="/src/js/content-blocks-kit.js"></script>
+  <script>
+    // Toggle code accordion
+    document.addEventListener('DOMContentLoaded', () => {
+      // Main tab switching
+      document.querySelectorAll('.main-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabName = tab.dataset.mainTab;
+
+          // Deactivate all main tabs and panels
+          document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.main-panel').forEach(p => p.classList.remove('active'));
+
+          // Activate clicked tab and corresponding panel
+          tab.classList.add('active');
+          document.querySelector(`.main-panel[data-main-panel="${tabName}"]`).classList.add('active');
+        });
+      });
+
+      // Code accordion toggle
+      document.querySelectorAll('.code-toggle').forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const codeBlock = toggle.nextElementSibling;
+          const isExpanded = codeBlock.classList.contains('expanded');
+
+          toggle.classList.toggle('active');
+          codeBlock.classList.toggle('expanded');
+
+          toggle.querySelector('span').textContent = isExpanded ? 'Show Code' : 'Hide Code';
+        });
+      });
+
+      // Code tab switching (within blocks)
+      document.querySelectorAll('.code-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabGroup = tab.closest('.block-code');
+          const tabName = tab.dataset.tab;
+
+          // Deactivate all tabs and panels in this group
+          tabGroup.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+          tabGroup.querySelectorAll('.code-panel').forEach(p => p.classList.remove('active'));
+
+          // Activate clicked tab and corresponding panel
+          tab.classList.add('active');
+          tabGroup.querySelector(`.code-panel[data-panel="${tabName}"]`).classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
