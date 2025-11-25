@@ -17,63 +17,59 @@
         "type": "two-column-with-sidebar",
         "sectionTitle": "Context / The Problem",
         "left": [
-          {
-            "heading": "The Problem",
-            "blocks": [
               {
-                "type": "paragraph",
-                "text": "Switching energy suppliers in the UK is a weeks-long process—that's just how it works. Behind the scenes, there's a complex choreography: your old supplier needs to approve the transfer, industry databases need updating, meter readings get verified, and about a dozen other things have to happen in the right order."
-              },
-              {
-                "type": "paragraph",
-                "text": "Most energy companies handle this by sending customers occasional email updates as they hit major milestones. The problem? If something gets stuck—a debt objection, a meter access issue, a database mismatch—the silence between emails can stretch on for days or weeks."
-              },
-              {
-                "type": "paragraph",
-                "text": "Anxious customers start calling support to check on their switch, clogging up customer service lines. The frustrating part? Half the time, the bottleneck isn't even the energy company's fault—it's the previous supplier dragging their feet, a bank payment issue, a meter reading problem, or something else entirely in the switching ecosystem."
-              },
-              {
-                "type": "paragraph",
-                "html": "<strong>Tomato's specific challenge?</strong> Their email system was notoriously unreliable:"
-              },
-              {
-                "type": "list",
-                "style": "ul",
-                "items": [
-                  "Notifications often failed to send altogether",
-                  "Emails arrived delayed, sometimes days after the actual status change",
-                  "Outdated data meant customers were seeing old information",
-                  "No way to proactively check status—just wait and hope for an email"
-                ]
-              },
-              {
-                "type": "paragraph",
-                "text": "This created a double problem: customers had no visibility into an already opaque process, and support couldn't reliably direct them to \"check your email\" when those emails weren't arriving."
-              },
-              {
-                "type": "paragraph",
-                "html": "<strong>Oh, and one more thing:</strong> no one at Tomato could actually explain how the full switching process worked—not customer service, not even the backend engineers who'd each built their slice of it. No documentation existed. Just a technical flow diagram that meant nothing to anyone outside the dev team."
+                "heading": "The Problem",
+                "blocks": [
+                  {
+                    "type": "paragraph",
+                    "html": "Switching energy suppliers in the UK can take <i>weeks:</i> That's just how it works. <br>So many cogs have to turn for things to happen <i>(old supplier approves the transfer, industry databases get updated, meter readings verified...)</i> and all needs to happen in the right order."
+                  },
+                  {
+                    "type": "paragraph",
+                    "html": "Most energy companies handle this by <strong>sending occasional email updates </strong> when customers hit major milestones. Simple enough, right?"
+                  },
+                  {
+                    "type": "paragraph",
+                    "html": "But then something gets stuck and the time between emails stretches. Customers grow anxious flooding support lines (often for <i>bottlenecks that aren't even the company's fault</i>)."
+                  },
+                  {
+                    "type": "paragraph",
+                    "class": "callout",
+                    "html": "<strong>Tomato's specific mess?</strong><br>Their email system was unreliable, and nobody could explain how the switching process actually worked."
+                  },
+                  {
+                    "type": "list",
+                    "style": "ul",
+                    "items": [
+                      "Email notifications <i>often</i> failed to send",
+                      "Customers had <em>no way to check status</em> except via direct contact",
+                      "Support couldn't say <i>\"check your email\"</i> when emails weren't arriving",
+                      "<em>No documentation existed</em>. Not for customer service, not for the rest of the company except backend"
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "html": "<strong> Double problem:</strong> customers had no visibility into an already opaque process, and support had no reliable way to help them."
+                  }
+                ],
+                "imageFull": {
+                  "src": "/microsite/backendflow.png",
+                  "alt": "Technical backend flow diagram",
+                  "caption": "<strong>What I was given:</strong> technical flow diagram that no one could fully explain"
+                }
               }
-            ],
-            "imageFull": {
-              "src": "/microsite/backendflow.png",
-              "alt": "Technical backend flow diagram",
-              "caption": "What I was given: Technical flow diagram that no one could fully explain"
-            }
-          }
         ],
         "sidebar": {
           "Role & Timeline": [
             "Solo Product Designer",
             "Brought in from main project",
-            "6 weeks discovery to handoff",
-            "2024"
+            "4 weeks = discovery → handoff",
+            "2025"
           ],
           "Context": [
             "Mobile-first launch",
-            "Desktop planned later",
-            "Separate frontend team",
-            "Standard web tech"
+            "Direct request from CEO",
+            "No front-end team assigned (TBD)"
           ]
         }
       },
@@ -85,42 +81,30 @@
           {
             "title": "Understanding the Market",
             "period": "Week 1",
-            "icon": "iconoir:learning",
+            "icon": "iconoir:light-bulb",
             "highlights": [
               "Researched UK energy market as non-UK resident",
-              "Studied Ofgem's switching reforms, MPAN numbers, objection windows",
-              "Learned about smart vs traditional meters",
-              "Filled the knowledge gap that UK residents take for granted"
+              "Customer service couldn't help—directed me to backend team",
+              "Got technical flow diagram that meant nothing to customers (nor me)",
+              "Verdict: ''No one knows the full picture''"
             ],
             "outcome": "Built foundational understanding from scratch"
           },
           {
-            "title": "Information Archaeology",
-            "period": "Week 1-2",
-            "icon": "iconoir:search",
-            "highlights": [
-              "Customer service couldn't help—directed me to backend team",
-              "Called 3 backend devs who each knew fragments",
-              "Got technical flow diagram that meant nothing to customers",
-              "Verdict: 'No one knows the full picture'"
-            ],
-            "outcome": "Pieced together system knowledge through targeted questions"
-          },
-          {
             "title": "Translation & Mapping",
-            "period": "Week 2-3",
-            "icon": "iconoir:map",
+            "period": "Week 2",
+            "icon": "iconoir:translate",
             "highlights": [
               "Translated backend states into human language",
-              "Discovered two distinct customer paths: smart vs traditional meters",
-              "Categorised errors into: application, switching, technical",
-              "Explored Tomato's playful brand assets and tone"
+              "Noted two distinct customer paths: smart vs traditional meters",
+              "Simplified and categorised errors into 3 large groups: application, switching, technical",
+              "Got re-familiarised with Tomato's playful brand assets and tone"
             ],
             "outcome": "Created comprehensive error taxonomy and journey maps"
           },
           {
             "title": "Design & Prototype",
-            "period": "Week 3-5",
+            "period": "Week 2-3",
             "icon": "iconoir:design-pencil",
             "highlights": [
               "Designed mobile-first tracking interface",
@@ -132,12 +116,12 @@
           },
           {
             "title": "Handoff & Launch",
-            "period": "Week 6",
-            "icon": "iconoir:send-diagonal",
+            "period": "Week 4",
+            "icon": "iconoir:rocket",
             "highlights": [
               "Got stakeholder approval",
               "Prepared comprehensive documentation",
-              "Handed off to separate frontend team",
+              "Handed off to future frontend team",
               "Returned to main project"
             ],
             "outcome": "Clean handoff with animation specs and edge case documentation"
@@ -148,27 +132,26 @@
         "type": "key-insight",
         "icon": "iconoir:search",
         "title": "Building Knowledge from Fragments",
-        "insight": "No one could explain the full switching process—not customer service, not the backend team. As a non-UK resident, I had to learn the market from scratch while piecing together system knowledge that even the engineers couldn't articulate.",
-        "result": "Created the company's first comprehensive documentation of their own switching process."
+        "insight": "No one could explain the full switching process; not customer service, not the backend team. As a non-UK resident, I had to learn the market from scratch while piecing together system knowledge that even the engineers couldn't articulate.",
+        "result": "Created acomprehensive documentation for the company of their own switching process."
       },
       {
         "type": "full-width-image",
-        "src": "",
-        "alt": "Simplified customer journey map showing 4 clear stages",
-        "caption": "What I created: Customer-facing journey broken into 4 understandable stages"
+        "src": "/microsite/ux-customer journey.png",
+        "alt": "Simplified customer journey map showing 5 clear stages",
+        "caption": "<strong>What I created:</strong> Customer-facing journey broken into 5 understandable stages"
       },
       {
         "type": "before-after-comparison",
         "sectionTitle": "The Outcome",
-        "heading": "From Email Chaos to Self-Service Clarity",
+        "heading": "From Email Chaos to Self-Service Diagnosis",
         "before": {
           "label": "The Old Way",
           "items": [
             "Multiple (often failed) email notifications",
             "\"Did you get our email?\" support tickets",
             "No visibility into delays or bottlenecks",
-            "Generic 'processing' messages with no context",
-            "Customers completely in the dark about who was responsible for delays"
+            "Customers in the dark about who was responsible for delays"
           ]
         },
         "after": {
@@ -177,8 +160,7 @@
             "One magic link email to personalised microsite",
             "Direct real-time backend connection",
             "Clear bottleneck diagnosis showing whose fault and why",
-            "Contextual actions for each state",
-            "Self-service transparency that eliminated support queries"
+            "Contextual actions for each state"
           ]
         }
       },
@@ -195,7 +177,7 @@
               },
               {
                 "type": "paragraph",
-                "text": "Bypassed Tomato's unreliable email system entirely. Instead of multiple (often failed) notifications throughout the journey, customers received one magic link to access their personalised tracking microsite—directly connected to the backend, always up to date."
+                "html": "Bypassed company's unreliable email system entirely. <br>Instead of multiple (often failed) notifications throughout the journey, <b>customers received one magic link </b>to access their <strong>personalised tracking microsite—directly</strong> connected to the backend, always up to date."
               },
               {
                 "type": "heading",
@@ -210,10 +192,11 @@
                 "type": "list",
                 "style": "ol",
                 "items": [
-                  "Application — \"We've received your switch request\"",
-                  "Switch Initiation — \"Your current supplier has been notified\"",
-                  "Approval — \"Good news! Your switch is approved for [date]\"",
-                  "Completion — \"Welcome! You're now on Tomato\""
+                  "<em>Application</em> — \"We've received your switch request\"",
+                  "<em>Switch Initiation</em> — \"Your current supplier has been notified\"",
+                  "<em>Approval</em> — \"Good news! Your switch is approved for [date]\"",
+                  "<em>Meter reading</em> — \"Collecting data! Your first bill will be issued by [date].\"",
+                  "<em>Completion</em> — \"Welcome! You're now on Tomato\""
                 ]
               },
               {
@@ -223,7 +206,7 @@
               },
               {
                 "type": "paragraph",
-                "text": "Designed the interface to clearly show where delays were happening and whose fault they were. \"Your switch is delayed because your previous supplier hasn't approved the transfer\" beats silence or generic \"processing\" messages every time."
+                "html": "Designed the interface to <b>clearly show where delays were happening</b> so client could take action (if needed on his side). \"Your switch is delayed because your previous supplier/your bank/ the grid hasn't approved the transfer\" beats silence or generic \"processing\" messages every time."
               },
               {
                 "type": "heading",
@@ -232,14 +215,14 @@
               },
               {
                 "type": "paragraph",
-                "text": "Built parallel experiences for different meter types:"
+                "text": "Built parallel experiences for different meter types, as their journey's were considerably different (more action required on traditional meters from customer):"
               },
               {
                 "type": "list",
                 "style": "ul",
                 "items": [
-                  "Smart meters: Automated reading collection, fewer manual steps",
-                  "Traditional meters: Clear callouts when manual readings were required"
+                  "<em>Smart meters:</em> Automated reading collection, fewer manual steps",
+                  "<em>Traditional meters:</em> Clear callouts when manual readings were required"
                 ]
               },
               {
@@ -255,9 +238,9 @@
                 "type": "list",
                 "style": "ul",
                 "items": [
-                  "Application errors: Wrong MPAN, incorrect address, missing information",
-                  "Switching errors: Debt objections, contract disputes, supplier blocking",
-                  "Technical issues: Meter access problems, database mismatches, system failures"
+                  "<em>Application errors:</em> Wrong MPAN, incorrect address, missing information",
+                  "<em>Switching errors:</em> Debt objections, contract disputes, supplier blocking",
+                  "<em>Technical issues:</em> Meter access problems, database mismatches, system failures"
                 ]
               },
               {
@@ -293,12 +276,28 @@
           ]
         }
       },
+            {
+        "type": "image-grid",
+        "columns": 2,
+        "images": [
+          {
+            "src": "/microsite/micro animations.png",
+            "alt": "TBD",
+            "caption": "Static design of animation"
+          },
+          {
+            "src": "/microsite/loading-tomato.gif",
+            "alt": "tbd",
+            "caption": "loading animation - Figma only animation"
+          }
+        ]
+      },
       {
         "type": "text-image-split",
         "layout": "text-left",
         "heading": "Starting Point",
         "text": "Stakeholders provided an initial draft showing their vision for the tracker—a simple vertical progress indicator. This became the foundation I built upon, adding error handling, dual journey paths, and brand personality.",
-        "image": "",
+        "image": "/microsite/first draft by stakeholders.png",
         "alt": "Stakeholder's initial wireframe draft",
         "caption": "Initial stakeholder wireframe"
       },
@@ -314,7 +313,7 @@
               }
             ],
             "imageFull": {
-              "src": "",
+              "src": "/microsite/first playground ui iterations.png",
               "alt": "Early design iterations showing different layout approaches",
               "caption": "Early explorations: testing vertical vs horizontal flows, dropdown vs always-visible information"
             }
@@ -410,32 +409,27 @@
         "columns": 3,
         "images": [
           {
-            "src": "",
+            "src": "/microsite/application.mov",
             "alt": "Smart meter journey - Application stage",
             "caption": "Application received - Smart meter journey"
           },
           {
-            "src": "",
+            "src": "/microsite/switching-smart.mov",
             "alt": "Smart meter journey - Switch initiated",
             "caption": "Switch initiation - Smart meter flow"
           },
           {
-            "src": "",
-            "alt": "Smart meter journey - Approved",
-            "caption": "Approval stage with scheduled date"
-          },
-          {
-            "src": "",
+            "src": "/microsite/trad meter and end.mov",
             "alt": "Traditional meter journey - Manual reading required",
             "caption": "Traditional meter with manual reading callout"
           },
           {
-            "src": "",
+            "src": "/microsite/payment error.mov",
             "alt": "Error state - Application error",
             "caption": "Application error with actionable next steps"
           },
           {
-            "src": "",
+            "src": "/microsite/errores.mov",
             "alt": "Error state - Switching error",
             "caption": "Switching error showing bottleneck source"
           }
@@ -443,7 +437,7 @@
       },
       {
         "type": "full-width-image",
-        "src": "",
+        "src": "/microsite/ui designs.png",
         "alt": "Complete UI design system showing all screens and states",
         "caption": "Full UI system: Both journey types with all states and error scenarios"
       },
@@ -452,12 +446,12 @@
         "columns": 2,
         "images": [
           {
-            "src": "",
+            "src": "/microsite/sunny.gif",
             "alt": "Micro-interaction animations and loading states",
             "caption": "Loading animations featuring bouncing tomatoes and falling tomato transitions"
           },
           {
-            "src": "",
+            "src": "/microsite/tomatoend.gif",
             "alt": "Tomato Energy brand reference materials",
             "caption": "Brand reference materials showing Tomato's playful personality and visual language"
           }

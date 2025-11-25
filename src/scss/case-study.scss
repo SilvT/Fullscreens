@@ -303,7 +303,7 @@
     align-items: center; // Center align vertically
 
     .cs-hero-content {
-      max-width: 100%; // Take full column width
+      max-width: 90%;
     }
 
     .cs-hero-images {
@@ -316,23 +316,24 @@
       opacity: 1;
       pointer-events: all;
       position: relative; // Change from absolute
-      right: auto; // Reset positioning
-      top: auto; // Reset positioning
-      width: 100%; // Full column width
-      max-width: 100%; // Remove max-width restriction
+      right: 5vh; 
+      top: auto; 
+      width: 100%; 
+      max-width: 100%; 
     }
 
     .cs-hero-title {
-      font-size: 36px; // Reduced from 40px
+      font-size: $font-size-xl; 
       margin-top: 1rem;
     }
 
     .cs-hero-subtitle,
-    .cs-hero-overview {
+    .cs-hero-overview, .cs-hero-company {
       opacity: 0;
       max-height: 0;
       margin: 0;
       overflow: hidden;
+      display: none;
     }
   }
 
@@ -658,9 +659,10 @@
 
     & .cs-text-block-heading{
       font-size: $font-size-l;
-      color: $color-blue-500;
+      color: $color-blue-dark;
       margin-bottom: $space-12;
       line-height: 130%;
+      margin-top: 1.2rem;
     }
     & .subtit{
       color:$color-blue-200;
@@ -675,22 +677,19 @@
       line-height: 130%;
       color:$color-neutral-light;
       margin-bottom: $space-4;
-      & strong{
-        font-weight: $font-weight-medium;
-        color:$color-blue-200;
-      }
     }
     & .callout{
       background: $color-blue-light;
       border-radius: $space-20;
-      padding: $space-24 $space-32;
+      padding: $space-20 $space-24;
       color: $color-blue-darker;
       font-family: $font-anonymous;
       font-style: italic;
-      font-size: $font-size-l;
+      font-size: calc($font-size-base*1.1);
       font-weight: $font-weight-regular;
       line-height: 1.5;
-      margin: $space-32 $space-40;
+      // margin: $space-32 $space-40;
+      margin: 2rem -6rem 2rem 6rem;
       position: relative;
 
       &::before {
@@ -929,6 +928,7 @@
 
     &.cs-image-grid-2 {
       grid-template-columns: repeat(2, 1fr);
+      align-items: baseline;
     }
 
     &.cs-image-grid-3 {
@@ -1539,6 +1539,12 @@
       font-size: $font-size-xs;
       margin-bottom: 0.5rem;
     }
+
+    .cs-timeline-outcome {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      font-size: $font-size-xs;
+    }
   }
 
   .cs-before-after {
@@ -1790,6 +1796,18 @@
         margin-bottom: 0;
       }
     }
+  }
+
+  .cs-timeline-outcome {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid $color-blue-light;
+    font-size: $font-size-s;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    font-weight: $font-weight-medium;
+    color: $color-blue-main;
+    font-style: italic;
+    text-align: center;
   }
 }
 
@@ -2155,5 +2173,13 @@
         color: $color-blue-main;
       }
     }
+  }
+}
+a.glightbox{
+  max-height: 300px;
+  & img.cs-grid-img{
+    // height: auto;
+    width: auto;
+    max-width: 60vw;
   }
 }

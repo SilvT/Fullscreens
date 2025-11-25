@@ -4,11 +4,8 @@
   "duration": "18 months",
   "detailMetrics": [
       { "icon": "iconoir:collapse", "value": "4 → 1", "label": "Departments unified into single platform" },
-      { "icon": "iconoir:frame-select", "value": "400+", "label": "Design tokens created from scratch" },
-      { "icon": "iconoir:component", "value": "200+", "label": "Components built systematically" },
-      { "icon": "iconoir:clock", "value": "90%", "label": "QA cycles reduced through design systems" },
-      { "icon": "iconoir:community", "value": "5", "label": "Designers trained in systems thinking" },
-      { "icon": "iconoir:trophy", "value": "Design Ops", "label": "New team created (first in company)" }
+      { "icon": "iconoir:mail-open", "value": "30%", "label": "Social inbox reduction" },
+      { "icon": "iconoir:timer", "value": "50%", "label": "Data collection time saved" }
     ],
     
     "contentBlocks": [

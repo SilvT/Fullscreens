@@ -17,63 +17,58 @@
         "type": "two-column-with-sidebar",
         "sectionTitle": "Context / The Problem",
         "left": [
-          {
-            "heading": "The Problem",
-            "blocks": [
               {
-                "type": "paragraph",
-                "text": "Switching energy suppliers in the UK is a weeks-long process—that's just how it works. Behind the scenes, there's a complex choreography: your old supplier needs to approve the transfer, industry databases need updating, meter readings get verified, and about a dozen other things have to happen in the right order."
-              },
-              {
-                "type": "paragraph",
-                "text": "Most energy companies handle this by sending customers occasional email updates as they hit major milestones. The problem? If something gets stuck—a debt objection, a meter access issue, a database mismatch—the silence between emails can stretch on for days or weeks."
-              },
-              {
-                "type": "paragraph",
-                "text": "Anxious customers start calling support to check on their switch, clogging up customer service lines. The frustrating part? Half the time, the bottleneck isn't even the energy company's fault—it's the previous supplier dragging their feet, a bank payment issue, a meter reading problem, or something else entirely in the switching ecosystem."
-              },
-              {
-                "type": "paragraph",
-                "html": "<strong>Tomato's specific challenge?</strong> Their email system was notoriously unreliable:"
-              },
-              {
-                "type": "list",
-                "style": "ul",
-                "items": [
-                  "Notifications often failed to send altogether",
-                  "Emails arrived delayed, sometimes days after the actual status change",
-                  "Outdated data meant customers were seeing old information",
-                  "No way to proactively check status—just wait and hope for an email"
-                ]
-              },
-              {
-                "type": "paragraph",
-                "text": "This created a double problem: customers had no visibility into an already opaque process, and support couldn't reliably direct them to \"check your email\" when those emails weren't arriving."
-              },
-              {
-                "type": "paragraph",
-                "html": "<strong>Oh, and one more thing:</strong> no one at Tomato could actually explain how the full switching process worked—not customer service, not even the backend engineers who'd each built their slice of it. No documentation existed. Just a technical flow diagram that meant nothing to anyone outside the dev team."
+                "heading": "The Problem",
+                "blocks": [
+                  {
+                    "type": "paragraph",
+                    "html": "Switching energy suppliers in the UK can take <i>weeks:</i> That's just how it works. <br>So many cogs have to turn for things to happen <i>(old supplier approves the transfer, industry databases get updated, meter readings verified...)</i> and all needs to happen in the right order."
+                  },
+                  {
+                    "type": "paragraph",
+                    "html": "Most energy companies handle this by <strong>sending occasional email updates </strong> when customers hit major milestones. Simple enough, right?"
+                  },
+                  {
+                    "type": "paragraph",
+                    "html": "But then something gets stuck and the time between emails stretches. Customers grow anxious flooding support lines (often for <i>bottlenecks that aren't even the company's fault</i>)."
+                  },
+                  {
+                    "type": "paragraph",
+                    "class": "callout",
+                    "html": "<strong>Tomato's specific mess?</strong><br>Their email system was unreliable, and nobody could explain how the switching process actually worked."
+                  },
+                  {
+                    "type": "list",
+                    "style": "ul",
+                    "items": [
+                      "Email notifications <i>often</i> failed to send",
+                      "Customers had <em>no way to check status</em> except via direct contact",
+                      "Support couldn't say <i>\"check your email\"</i> when emails weren't arriving",
+                      "<em>No documentation existed</em>. Not for customer service, not for the rest of the company except backend"
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "html": "<strong> Double problem:</strong> customers had no visibility into an already opaque process, and support had no reliable way to help them."
+                  }
+                ],
+                "imageFull": {
+                  "src": "/microsite/backendflow.png",
+                  "alt": "Technical backend flow diagram",
+                  "caption": "<strong>What I was given:</strong> technical flow diagram that no one could fully explain"
+                }
               }
-            ],
-            "imageFull": {
-              "src": "/microsite/backendflow.png",
-              "alt": "Technical backend flow diagram",
-              "caption": "What I was given: Technical flow diagram that no one could fully explain"
-            }
-          }
         ],
         "sidebar": {
           "Role & Timeline": [
             "Solo Product Designer",
             "Brought in from main project",
-            "6 weeks discovery to handoff",
-            "2024"
+            "4 weeks = discovery → handoff",
+            "2025"
           ],
           "Context": [
             "Mobile-first launch",
-            "Desktop planned later",
-            "Separate frontend team",
-            "Standard web tech"
+            "No contact with front-end, only CEO"
           ]
         }
       },
@@ -85,42 +80,30 @@
           {
             "title": "Understanding the Market",
             "period": "Week 1",
-            "icon": "iconoir:learning",
+            "icon": "iconoir:light-bulb",
             "highlights": [
               "Researched UK energy market as non-UK resident",
-              "Studied Ofgem's switching reforms, MPAN numbers, objection windows",
-              "Learned about smart vs traditional meters",
-              "Filled the knowledge gap that UK residents take for granted"
+              "Customer service couldn't help—directed me to backend team",
+              "Got technical flow diagram that meant nothing to customers (nor me)",
+              "Verdict: ''No one knows the full picture''"
             ],
             "outcome": "Built foundational understanding from scratch"
           },
           {
-            "title": "Information Archaeology",
-            "period": "Week 1-2",
-            "icon": "iconoir:search",
-            "highlights": [
-              "Customer service couldn't help—directed me to backend team",
-              "Called 3 backend devs who each knew fragments",
-              "Got technical flow diagram that meant nothing to customers",
-              "Verdict: 'No one knows the full picture'"
-            ],
-            "outcome": "Pieced together system knowledge through targeted questions"
-          },
-          {
             "title": "Translation & Mapping",
-            "period": "Week 2-3",
-            "icon": "iconoir:map",
+            "period": "Week 2",
+            "icon": "iconoir:translate",
             "highlights": [
               "Translated backend states into human language",
-              "Discovered two distinct customer paths: smart vs traditional meters",
-              "Categorised errors into: application, switching, technical",
-              "Explored Tomato's playful brand assets and tone"
+              "Noted two distinct customer paths: smart vs traditional meters",
+              "Simplified and categorised errors into 3 large groups: application, switching, technical",
+              "Got re-familiarised with Tomato's playful brand assets and tone"
             ],
             "outcome": "Created comprehensive error taxonomy and journey maps"
           },
           {
             "title": "Design & Prototype",
-            "period": "Week 3-5",
+            "period": "Week 2-3",
             "icon": "iconoir:design-pencil",
             "highlights": [
               "Designed mobile-first tracking interface",
@@ -132,12 +115,12 @@
           },
           {
             "title": "Handoff & Launch",
-            "period": "Week 6",
-            "icon": "iconoir:send-diagonal",
+            "period": "Week 4",
+            "icon": "iconoir:rocket",
             "highlights": [
               "Got stakeholder approval",
               "Prepared comprehensive documentation",
-              "Handed off to separate frontend team",
+              "Handed off to future frontend team",
               "Returned to main project"
             ],
             "outcome": "Clean handoff with animation specs and edge case documentation"
@@ -149,13 +132,13 @@
         "icon": "iconoir:search",
         "title": "Building Knowledge from Fragments",
         "insight": "No one could explain the full switching process—not customer service, not the backend team. As a non-UK resident, I had to learn the market from scratch while piecing together system knowledge that even the engineers couldn't articulate.",
-        "result": "Created the company's first comprehensive documentation of their own switching process."
+        "result": "Created acomprehensive documentation for the company of their own switching process."
       },
       {
         "type": "full-width-image",
-        "src": "",
+        "src": "/microsite/ux-customer journey.png",
         "alt": "Simplified customer journey map showing 4 clear stages",
-        "caption": "What I created: Customer-facing journey broken into 4 understandable stages"
+        "caption": "<strong>What I created:</strong> Customer-facing journey broken into 4 understandable stages"
       },
       {
         "type": "before-after-comparison",

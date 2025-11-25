@@ -5,18 +5,20 @@ $color-cream: #f5f3f0;
 $color-cream-alpha:rgba(227, 221, 211, 0.4);
 
 $color-blue-100:#edf1f3;
-$color-blue-200:#3980AA;
-$color-blue-300:#286F98;
+$color-blue-200:#7CB1CA;
+$color-blue-300:#3980AA;
 $color-blue-400:#3C5E70;
-$color-blue-400:#203A48;
 $color-blue-500:#203a48;
 $color-blue-alpha:rgba(0, 102, 255, 0.1);
 
 
 $color-blue-light: $color-blue-100;
-$color-blue-main: $color-blue-200;
-$color-blue-dark: $color-blue-300;
-$color-blue-darker: $color-blue-400;
+$color-blue-soft: $color-blue-200;
+$color-blue-main: $color-blue-300;
+$color-blue-dark: $color-blue-400;
+$color-blue-darker: $color-blue-500;
+$color-blue-darkest: $color-blue-500; //to be eliminated**
+
 
 $color-green-light: #e8ebe0;
 $color-green-main: #79854f;
@@ -29,6 +31,7 @@ $color-red-alpha: rgba(168, 72, 68, 0.1);
 
 $color-neutral: #5c584f;
 $color-neutral-light: #6B7280;
+$color-neutral-lighter: hsl(220, 9%, 70%);
 
 $color-cards-background: radial-gradient(circle, rgba(0, 102, 255, 0.05) 0%, rgba(255, 255, 255, 0.50) 100%);
 $color-shadows:rgba(136, 159, 194, 0.1);
@@ -113,3 +116,19 @@ $space-60:3.75rem;
 $space-80:5rem;
 $space-120:7.5rem;
 
+em{ //only colour change//
+    color: $color-blue-main;
+    font-style: inherit;
+}
+b{//weight and darker change//
+    font-weight: $font-weight-medium;
+    color: $color-neutral;
+}
+strong{//weight and colour change//
+    font-weight: $font-weight-medium;
+    color: $color-blue-main;
+}
+i{
+    color: $color-blue-darker;
+    font-weight: $font-weight-light;
+}

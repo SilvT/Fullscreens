@@ -589,7 +589,7 @@ function renderTextBlock(block) {
       list.className = 'cs-text-block-list';
       block.items.forEach((item) => {
         const li = document.createElement('li');
-        li.textContent = item;
+        li.innerHTML = item;
         list.appendChild(li);
       });
       return list;
@@ -676,7 +676,7 @@ function renderTwoColumnWithSidebar(block) {
       if (section.imageFull.caption) {
         const figcaption = document.createElement('figcaption');
         figcaption.className = 'cs-image-caption';
-        figcaption.textContent = section.imageFull.caption;
+        figcaption.innerHTML = section.imageFull.caption;
         figure.appendChild(figcaption);
       }
 
@@ -778,7 +778,7 @@ function renderFullWidthImage(block) {
   if (block.caption) {
     const figcaption = document.createElement('figcaption');
     figcaption.className = 'cs-image-caption';
-    figcaption.textContent = block.caption;
+    figcaption.innerHTML = block.caption;
     figure.appendChild(figcaption);
   }
 
@@ -1117,6 +1117,14 @@ function renderTimelineProcess(block) {
       });
 
       phaseEl.appendChild(highlightsList);
+    }
+
+    // Outcome
+    if (phase.outcome) {
+      const outcome = document.createElement('p');
+      outcome.className = 'cs-timeline-outcome';
+      outcome.textContent = phase.outcome;
+      phaseEl.appendChild(outcome);
     }
 
     timeline.appendChild(phaseEl);
