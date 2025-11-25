@@ -529,33 +529,53 @@ async function loadCaseStudyContent(contentFile) {
  * @returns {HTMLElement|null} - Rendered block element
  */
 function renderBlock(block, project) {
+  let element = null;
+
   switch (block.type) {
     case 'two-column-with-sidebar':
-      return renderTwoColumnWithSidebar(block);
+      element = renderTwoColumnWithSidebar(block);
+      break;
     case 'text-image-split':
-      return renderTextImageSplit(block);
+      element = renderTextImageSplit(block);
+      break;
     case 'full-width-text':
-      return renderFullWidthText(block);
+      element = renderFullWidthText(block);
+      break;
     case 'full-width-image':
-      return renderFullWidthImage(block);
+      element = renderFullWidthImage(block);
+      break;
     case 'image-grid':
-      return renderImageGrid(block);
+      element = renderImageGrid(block);
+      break;
     case 'metrics-inline':
-      return renderMetricsInline(block);
+      element = renderMetricsInline(block);
+      break;
     case 'gallery':
-      return renderGallery(block, project);
+      element = renderGallery(block, project);
+      break;
     case 'story-hook':
-      return renderStoryHook(block);
+      element = renderStoryHook(block);
+      break;
     case 'timeline-process':
-      return renderTimelineProcess(block);
+      element = renderTimelineProcess(block);
+      break;
     case 'before-after-comparison':
-      return renderBeforeAfterComparison(block);
+      element = renderBeforeAfterComparison(block);
+      break;
     case 'key-insight':
-      return renderKeyInsight(block);
+      element = renderKeyInsight(block);
+      break;
     default:
       console.warn(`Unknown block type: ${block.type}`);
       return null;
   }
+
+  // Add section title as data attribute if present
+  if (element && block.sectionTitle) {
+    element.setAttribute('data-section-title', block.sectionTitle);
+  }
+
+  return element;
 }
 
 /**
@@ -1485,18 +1505,26 @@ function setupSideNavigation() {
 
   if (!sideNav || !navList || !indicator) return;
 
-  // Find all navigable sections - start with metrics, then content blocks
+  // Find all navigable sections - start with metrics, then blocks with sectionTitle
   const sections = [];
+  const sectionTitles = [];
 
   // Add metrics section as first item (01)
   if (metricsSection) {
     sections.push(metricsSection);
+    sectionTitles.push('Impact Metrics');
   }
 
-  // Add content blocks
+  // Add content blocks that have sectionTitle attribute
   if (contentContainer) {
-    const contentBlocks = contentContainer.querySelectorAll('.cs-block, .cs-content-section');
-    sections.push(...contentBlocks);
+    const allBlocks = contentContainer.querySelectorAll('.cs-block, .cs-content-section');
+    allBlocks.forEach((block) => {
+      const sectionTitle = block.getAttribute('data-section-title');
+      if (sectionTitle) {
+        sections.push(block);
+        sectionTitles.push(sectionTitle);
+      }
+    });
   }
 
   if (sections.length === 0) return;
@@ -1518,6 +1546,12 @@ function setupSideNavigation() {
     link.textContent = String(index + 1).padStart(2, '0');
     link.href = `#cs-section-${index + 1}`;
     link.dataset.sectionIndex = index;
+
+    // Add title attribute for tooltip
+    if (sectionTitles[index]) {
+      link.setAttribute('title', sectionTitles[index]);
+      link.dataset.sectionName = sectionTitles[index];
+    }
 
     // Smooth scroll on click
     link.addEventListener('click', (e) => {

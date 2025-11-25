@@ -14,12 +14,14 @@
     "contentBlocks": [
       {
         "type": "story-hook",
+        "sectionTitle": "The Story",
         "quote": "How did I get here? This definitely wasn't in the job description for Mid UI Designer.",
         "context": "Seven months in, I found myself presenting, not just a complex UI dashboard app, but a design system to a room full of engineers. This wasn't in the job description for Mid UI Designer.",
         "image": "/mkm/presenting-moment.jpg"
       },
       {
         "type": "before-after-comparison",
+        "sectionTitle": "The Challenge",
         "heading": "From Manual Chaos to Unified Platform",
         "before": {
           "label": "The Reality I Walked Into",
@@ -46,9 +48,10 @@
           "image": "/mkm/unified-platform.png"
         }
       },
-      
+
       {
         "type": "two-column-with-sidebar",
+        "sectionTitle": "Discovery & Constraints",
         "left": [
           {
             "heading": "The Brief: 20-minute meeting + 2 CEO sketches",
@@ -173,6 +176,7 @@
       },
       {
         "type": "timeline-process",
+        "sectionTitle": "The Process",
         "heading": "The Journey: Building the Plane While Flying It",
         "phases": [
           {
@@ -218,6 +222,7 @@
       },
       {
         "type": "key-insight",
+        "sectionTitle": "Key Decisions",
         "icon": "iconoir:light-bulb",
         "title": "Strategic Decision: Design System First",
         "insight": "Observed chaos across company projects and pitched a design system approach. CEO initially denied it. VP of Frontend tentatively approved. My response? Do it anyway and prove the value.",
@@ -279,6 +284,7 @@
       },
       {
         "type": "metrics-inline",
+        "sectionTitle": "Results & Impact",
         "heading": "The Results",
         "metrics": [
           { "icon": "iconoir:group", "value": "50%", "label": "Customer growth support" },
@@ -440,6 +446,7 @@
       },
       {
         "type": "image-grid",
+        "sectionTitle": "Final Designs",
         "columns": 3,
         "images": [
           { "src": "/mkm/dashboard-final.png", "alt": "Main dashboard", "caption": "Unified dashboard bringing all marketing data together" },

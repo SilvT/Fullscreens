@@ -3,12 +3,121 @@
 This document lists all available content block types you can use in your `projects.json` file. These blocks provide a flexible, structured way to build your case study content.
 
 ## Table of Contents
+- [Side Navigation Control](#side-navigation-control)
 - [Main Content Blocks](#main-content-blocks)
   - [Layout Blocks](#layout-blocks)
   - [Storytelling Blocks](#storytelling-blocks)
 - [Text Block Types (for nested content)](#text-block-types-for-nested-content)
 - [Icon System](#icon-system)
 - [Complete Examples](#complete-examples)
+
+---
+
+## Side Navigation Control
+
+Case studies include a fixed side navigation that shows numbered sections (01, 02, 03...). You control which blocks appear in this navigation using the `sectionTitle` property.
+
+### How It Works
+
+**With `sectionTitle`**: Block becomes a navigable section
+```json
+{
+  "type": "before-after-comparison",
+  "sectionTitle": "The Challenge",
+  "heading": "From Manual Chaos to Unified Platform",
+  ...
+}
+```
+
+**Without `sectionTitle`**: Block is not included in navigation
+```json
+{
+  "type": "image-grid",
+  "columns": 3,
+  "images": [...]
+}
+```
+
+### Navigation Structure
+
+The side navigation always includes:
+1. **Section 01: Impact Metrics** (automatic - the metrics section)
+2. **Sections 02+**: Only blocks with `sectionTitle` property
+
+### User Experience
+
+- **Numbers**: Display as "01", "02", "03", etc.
+- **Tooltips**: Hovering over numbers shows the section title
+- **Click behavior**: Smooth scroll to that section
+- **Active indicator**: Animated line showing current section
+- **Visibility**: Only shows after user scrolls past hero section
+- **Mobile**: Hidden on mobile devices
+
+### Example Navigation Setup
+
+```json
+{
+  "contentBlocks": [
+    {
+      "type": "story-hook",
+      "sectionTitle": "The Story",
+      "quote": "How did I get here?..."
+    },
+    {
+      "type": "before-after-comparison",
+      "sectionTitle": "The Challenge",
+      "heading": "From Manual Chaos to Unified Platform"
+    },
+    {
+      "type": "two-column-with-sidebar",
+      "sectionTitle": "Discovery & Constraints",
+      "left": [...]
+    },
+    {
+      "type": "image-grid",
+      "columns": 3,
+      "images": [...]
+    },
+    {
+      "type": "timeline-process",
+      "sectionTitle": "The Process",
+      "heading": "The Journey"
+    },
+    {
+      "type": "key-insight",
+      "sectionTitle": "Key Decisions",
+      "icon": "iconoir:light-bulb"
+    },
+    {
+      "type": "metrics-inline",
+      "sectionTitle": "Results & Impact",
+      "heading": "The Results"
+    },
+    {
+      "type": "image-grid",
+      "sectionTitle": "Final Designs",
+      "columns": 3
+    }
+  ]
+}
+```
+
+**This creates navigation:**
+- 01: Impact Metrics
+- 02: The Story
+- 03: The Challenge
+- 04: Discovery & Constraints
+- 05: The Process (image-grid without sectionTitle is skipped)
+- 06: Key Decisions
+- 07: Results & Impact
+- 08: Final Designs
+
+### Best Practices
+
+1. **Logical Grouping**: Group related content blocks under one section title rather than adding `sectionTitle` to every block
+2. **Clear Names**: Use concise, descriptive titles (e.g., "The Challenge", "Discovery", "Results")
+3. **Strategic Sections**: Aim for 5-8 main sections for optimal navigation experience
+4. **Content Flow**: Place image grids, galleries, and supporting visuals between major sections without `sectionTitle`
 
 ---
 
@@ -712,6 +821,8 @@ A complete narrative-driven case study using storytelling blocks:
 9. **Storytelling Flow**: Start case studies with `story-hook`, use `before-after-comparison` to show impact, `timeline-process` to show journey, and `key-insight` to highlight important moments.
 
 10. **Empty Sidebars**: If you don't need sidebar content in a `two-column-with-sidebar` block, pass an empty object `{}` - the sidebar will automatically hide.
+
+11. **Section Navigation**: Use the `sectionTitle` property to control which blocks appear in the side navigation. Only add it to major content sections - not every block needs to be navigable. See [Side Navigation Control](#side-navigation-control) for details.
 
 ---
 
