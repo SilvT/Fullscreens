@@ -182,7 +182,7 @@ function initEllipseVisibility() {
     // Check Footer section
     if (footerSection) {
       const footerRect = footerSection.getBoundingClientRect();
-      const footerVisible = footerRect.top < windowHeight && footerRect.bottom > 0;
+      const footerVisible = footerRect.top < windowHeight / 2 && footerRect.bottom > windowHeight / 2;
       if (footerVisible) isVisible = true;
     }
 

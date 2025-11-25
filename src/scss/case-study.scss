@@ -526,11 +526,12 @@
 
     // When populated with story-hook content
     &.cs-story-hook-style {
+      padding:1rem 0 2rem 0;
       .cs-story-hook-quote {
         font-size: $font-size-l;
         font-weight: $font-weight-medium;
         font-style: italic;
-        color: $color-blue-darker;
+        color: $color-blue-primary;
         margin: 0 0 1rem 0;
         line-height: 1.4;
         position: relative;
@@ -542,7 +543,7 @@
           left: 0;
           top: -0.5rem;
           font-size: 3rem;
-          color: $color-blue-primary;
+          color: $color-blue-darker;
           opacity: 0.3;
           line-height: 1;
         }
@@ -550,7 +551,7 @@
 
       .cs-story-hook-context {
         font-size: $font-size-s;
-        color: $color-blue-dark;
+        color: $color-blue-darker;
         line-height: 1.6;
         margin: 0;
       }
@@ -591,7 +592,7 @@
   .cs-metrics-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
 
     @include breakpoint(mobile) {
       grid-template-columns: 1fr;
@@ -600,6 +601,7 @@
 
   .cs-metric-card {
     @include metric-card();
+    height: 7.5rem;
   }
 }
 
@@ -677,14 +679,29 @@
       }
     }
     & .callout{
-      background: $color-cards-background;
-      padding: 2px 0;
-      min-height: 40px;
-      color: $color-blue-300;
-      font-weight: $font-weight-medium;
-      text-align: center;
-      padding:$space-16 12rem;
-      margin:$space-8 0;
+      background: $color-blue-light;
+      border-radius: $space-20;
+      padding: $space-24 $space-32;
+      color: $color-blue-darker;
+      font-family: $font-anonymous;
+      font-style: italic;
+      font-size: $font-size-l;
+      font-weight: $font-weight-regular;
+      line-height: 1.5;
+      margin: $space-32 $space-40;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: $space-32;
+        bottom: -12px;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 12px solid $color-blue-light;
+      }
     }
 
     // Text block list styling
@@ -1324,9 +1341,8 @@
 
       .callout {
         padding: $space-12 $space-16;
-        margin: $space-12 0;
-        font-size: $font-size-s;
-        min-height: auto;
+        margin: $space-24 0;
+        font-size: $font-size-base;
       }
 
       .cs-text-block-list {
@@ -1801,18 +1817,18 @@
 
   .cs-before-after-col {
     padding: 2rem;
-    border-radius: 0.5rem;
+    // border-radius: 0.5rem;
     position: relative;
   }
 
   .cs-before-col {
-    background: linear-gradient(135deg, rgba(255, 107, 107, 0.08) 0%, rgba(255, 255, 255, 0.6) 100%);
-    border: 2px solid rgba(255, 107, 107, 0.2);
+    // background: linear-gradient(135deg, rgba(92, 88, 79, 0.08) 0%, rgba(255, 255, 255, 0.6) 100%);
+    // border: 2px solid rgba(92, 88, 79, 0.2);
   }
 
   .cs-after-col {
-    background: linear-gradient(135deg, rgba(121, 133, 79, 0.08) 0%, rgba(255, 255, 255, 0.6) 100%);
-    border: 2px solid rgba(121, 133, 79, 0.2);
+    background: linear-gradient(135deg, rgba(57, 128, 170, 0.08) 0%, rgba(255, 255, 255, 0.6) 100%);
+    // border: 2px solid rgba(57, 128, 170, 0.2);
   }
 
   .cs-before-after-label {
@@ -1820,29 +1836,14 @@
     font-weight: $font-weight-semibold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
     margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    &::before {
-      font-size: 1.5rem;
-    }
   }
 
   .cs-before-col .cs-before-after-label {
-    color: #d32f2f;
-
-    &::before {
-      content: '❌';
-    }
+    color: $color-neutral;
   }
 
   .cs-after-col .cs-before-after-label {
-    color: $color-green-primary;
-
-    &::before {
-      content: '✅';
-    }
+    color: $color-blue-primary;
   }
 
   .cs-before-after-list {
@@ -1856,14 +1857,18 @@
       color: $color-blue-darker;
       line-height: 1.6;
       margin-bottom: 1rem;
-      padding-left: 1.5rem;
-      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
 
-      &::before {
-        content: '•';
-        position: absolute;
-        left: 0;
-        font-weight: bold;
+      i {
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        margin-top: 0.1rem;
+      }
+
+      span {
+        flex: 1;
       }
 
       &:last-child {
@@ -1872,12 +1877,12 @@
     }
   }
 
-  .cs-before-col .cs-before-after-list li::before {
-    color: #d32f2f;
+  .cs-before-list li i {
+    color: $color-red-primary;
   }
 
-  .cs-after-col .cs-before-after-list li::before {
-    color: $color-green-primary;
+  .cs-after-list li i {
+    color: $color-blue-primary;
   }
 
   .cs-before-after-image {
@@ -1891,71 +1896,60 @@
 
 // Block: Key Insight - Callout/highlight moment
 .cs-key-insight {
-  padding: 3rem 4rem;
-  margin-bottom: 3rem;
-  background: $color-white;
-  border: 2px solid $color-blue-primary;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 12px rgba(57, 128, 170, 0.1);
+  padding: $space-40 0;
+  margin: $space-60 0;
+  background: transparent;
+  border-top: 1px solid rgba(92, 88, 79, 0.15);
+  border-bottom: 1px solid rgba(92, 88, 79, 0.15);
   position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(135deg, $color-blue-primary, $color-blue-light);
-    border-radius: 0.5rem;
-    z-index: -1;
-    opacity: 0.1;
-  }
 
   .cs-key-insight-content {
     max-width: 700px;
+    margin: 0 auto;
   }
 
   .cs-key-insight-header {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    align-items: baseline;
+    gap: $space-12;
+    margin-bottom: $space-20;
   }
 
   .cs-key-insight-icon {
-    font-size: 2rem;
+    font-size: $font-size-l;
     color: $color-blue-primary;
     flex-shrink: 0;
+    line-height: 1;
   }
 
   .cs-key-insight-title {
-    font-size: $font-size-l;
-    font-weight: $font-weight-semibold;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
-    color: $color-blue-darker;
+    color: $color-blue-primary;
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .cs-key-insight-text {
-    font-size: $font-size-base;
+    font-size: $font-size-xl;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
-    color: $color-blue-darker;
-    line-height: 1.7;
-    margin-bottom: 1rem;
+    color: $color-neutral;
+    line-height: 1.4;
+    margin-bottom: $space-24;
+    font-weight: $font-weight-medium;
   }
 
   .cs-key-insight-result {
     font-size: $font-size-base;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
-    color: $color-blue-dark;
-    line-height: 1.7;
+    color: $color-neutral-light;
+    line-height: 1.6;
     margin: 0;
-    padding-left: 1.5rem;
-    border-left: 3px solid $color-green-primary;
 
     strong {
-      color: $color-green-primary;
+      color: $color-blue-primary;
       font-weight: $font-weight-semibold;
     }
   }
@@ -1988,4 +1982,114 @@
 @keyframes pulse-opacity {
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
+}
+
+// ============================================
+// SIDE NAVIGATION
+// ============================================
+
+.cs-side-nav {
+  position: fixed;
+  right: $space-40;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1001;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  @include breakpoint(mobile) {
+    display: none !important; // Hide on mobile
+  }
+}
+
+.cs-side-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+  padding-right: $space-20;
+}
+
+.cs-side-nav-item {
+  position: relative;
+  z-index: 2;
+}
+
+.cs-side-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $space-40;
+  height: $space-40;
+  font-family: $font-anonymous;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: rgba(92, 88, 79, 0.5);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 50%;
+  position: relative;
+
+  &:hover {
+    color: $color-blue-primary;
+    transform: scale(1.05);
+  }
+
+  &.active {
+    color: $color-blue-primary;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.cs-side-nav-indicator {
+  position: absolute;
+  right: 0;
+  width: 3px;
+  background-color: $color-blue-primary;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 2px;
+}
+
+// Theme variations
+.case-study-page[data-theme="green"] {
+  .cs-side-nav-link {
+    &:hover {
+      color: $color-green-primary;
+    }
+
+    &.active {
+      color: $color-green-primary;
+    }
+  }
+
+  .cs-side-nav-indicator {
+    background-color: $color-green-primary;
+  }
+}
+
+.case-study-page[data-theme="red"] {
+  .cs-side-nav-link {
+    &:hover {
+      color: $color-red-primary;
+    }
+
+    &.active {
+      color: $color-red-primary;
+    }
+  }
+
+  .cs-side-nav-indicator {
+    background-color: $color-red-primary;
+  }
 }

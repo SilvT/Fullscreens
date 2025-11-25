@@ -5,12 +5,15 @@
  */
 
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import projectData from '../../data/projects.json';
 import { updateProjectMetaTags, clearProjectMetaTags } from './structuredData.js';
 import { initLightbox, refreshLightbox } from './lightbox.js';
 import { trackProjectView, trackCaseStudyInteraction } from './analytics.js';
 import '@phosphor-icons/web/light';
 import 'iconoir/css/iconoir.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Explicit project order to preserve intended display sequence
@@ -467,6 +470,9 @@ function populateCaseStudy(project) {
 
           // Initialize lightbox after content is loaded
           refreshLightbox();
+
+          // Setup side navigation
+          setTimeout(() => setupSideNavigation(), 100);
         })
         .catch((error) => {
           console.error('Failed to load case study content:', error);
@@ -487,6 +493,9 @@ function populateCaseStudy(project) {
 
       // Initialize lightbox after inline content is rendered
       refreshLightbox();
+
+      // Setup side navigation
+      setTimeout(() => setupSideNavigation(), 100);
     }
   }
 }
@@ -1143,11 +1152,11 @@ function renderBeforeAfterComparison(block) {
 
   if (block.before.items && block.before.items.length > 0) {
     const beforeList = document.createElement('ul');
-    beforeList.className = 'cs-before-after-list';
+    beforeList.className = 'cs-before-after-list cs-before-list';
 
     block.before.items.forEach((item) => {
       const li = document.createElement('li');
-      li.textContent = item;
+      li.innerHTML = `<i class="iconoir-xmark"></i><span>${item}</span>`;
       beforeList.appendChild(li);
     });
 
@@ -1175,11 +1184,11 @@ function renderBeforeAfterComparison(block) {
 
   if (block.after.items && block.after.items.length > 0) {
     const afterList = document.createElement('ul');
-    afterList.className = 'cs-before-after-list';
+    afterList.className = 'cs-before-after-list cs-after-list';
 
     block.after.items.forEach((item) => {
       const li = document.createElement('li');
-      li.textContent = item;
+      li.innerHTML = `<i class="iconoir-check"></i><span>${item}</span>`;
       afterList.appendChild(li);
     });
 
@@ -1393,8 +1402,8 @@ function setupHeroScrollAnimation() {
       window.requestAnimationFrame(() => {
         const scrollTop = caseStudyPage.scrollTop;
 
-        // Shrink sticky header after scrolling down 250px (increased from 100px)
-        if (scrollTop > 250) {
+        // Shrink sticky header immediately when user starts scrolling
+        if (scrollTop > 0) {
           stickyHeader.classList.add('scrolled');
           // Hide original metrics section when hero is scrolled
           if (metricsSection) {
@@ -1458,3 +1467,138 @@ function resumeAboutAnimations() {
     }
   }
 }
+
+/**
+ * Setup side navigation for case study content
+ * Generates numbered nav items for each content block and tracks scroll position
+ */
+function setupSideNavigation() {
+  const caseStudyPage = document.querySelector('#case-study-page');
+  if (!caseStudyPage) return;
+
+  // Side nav is now outside case-study-page for true fixed positioning
+  const sideNav = document.querySelector('.cs-side-nav');
+  const navList = document.querySelector('.cs-side-nav-list');
+  const indicator = document.querySelector('.cs-side-nav-indicator');
+  const metricsSection = caseStudyPage.querySelector('.cs-metrics');
+  const contentContainer = caseStudyPage.querySelector('.cs-content-container');
+
+  if (!sideNav || !navList || !indicator) return;
+
+  // Find all navigable sections - start with metrics, then content blocks
+  const sections = [];
+
+  // Add metrics section as first item (01)
+  if (metricsSection) {
+    sections.push(metricsSection);
+  }
+
+  // Add content blocks
+  if (contentContainer) {
+    const contentBlocks = contentContainer.querySelectorAll('.cs-block, .cs-content-section');
+    sections.push(...contentBlocks);
+  }
+
+  if (sections.length === 0) return;
+
+  // Clear existing nav items
+  navList.innerHTML = '';
+
+  // Generate nav items
+  sections.forEach((section, index) => {
+    // Add ID to section for anchoring
+    section.id = `cs-section-${index + 1}`;
+
+    // Create nav item
+    const li = document.createElement('li');
+    li.className = 'cs-side-nav-item';
+
+    const link = document.createElement('a');
+    link.className = 'cs-side-nav-link';
+    link.textContent = String(index + 1).padStart(2, '0');
+    link.href = `#cs-section-${index + 1}`;
+    link.dataset.sectionIndex = index;
+
+    // Smooth scroll on click
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    li.appendChild(link);
+    navList.appendChild(li);
+  });
+
+  // Show side nav only when hero is collapsed
+  const checkHeroCollapse = () => {
+    const scrollTop = caseStudyPage.scrollTop;
+    if (scrollTop > 0) {
+      sideNav.classList.add('active');
+    } else {
+      sideNav.classList.remove('active');
+    }
+  };
+
+  // Setup scroll tracking with GSAP
+  updateSideNavIndicator();
+
+  // Listen to scroll events
+  caseStudyPage.addEventListener('scroll', () => {
+    requestAnimationFrame(() => {
+      checkHeroCollapse();
+      updateSideNavIndicator();
+    });
+  }, { passive: true });
+
+  // Update on resize
+  window.addEventListener('resize', updateSideNavIndicator);
+
+  function updateSideNavIndicator() {
+    const navLinks = navList.querySelectorAll('.cs-side-nav-link');
+    const scrollTop = caseStudyPage.scrollTop;
+    const viewportHeight = caseStudyPage.clientHeight;
+    const scrollCenter = scrollTop + (viewportHeight / 2);
+
+    let activeIndex = 0;
+    let minDistance = Infinity;
+
+    // Find which section is closest to center of viewport
+    sections.forEach((section, index) => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = scrollTop + rect.top;
+      const sectionCenter = sectionTop + (rect.height / 2);
+      const distance = Math.abs(scrollCenter - sectionCenter);
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        activeIndex = index;
+      }
+    });
+
+    // Update active state
+    navLinks.forEach((link, index) => {
+      if (index === activeIndex) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    // Animate indicator with GSAP
+    const activeLink = navLinks[activeIndex];
+    if (activeLink) {
+      const activeLinkRect = activeLink.getBoundingClientRect();
+      const navListRect = navList.getBoundingClientRect();
+      const offsetY = activeLinkRect.top - navListRect.top;
+
+      gsap.to(indicator, {
+        y: offsetY,
+        height: activeLinkRect.height,
+        duration: 0.4,
+        ease: 'power2.out'
+      });
+    }
+  }
+}
+
+

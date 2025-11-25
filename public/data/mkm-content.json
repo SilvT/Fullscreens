@@ -51,7 +51,7 @@
         "type": "two-column-with-sidebar",
         "left": [
           {
-            "heading": "The Brief (20-minute meeting + 2 CEO sketches)",
+            "heading": "The Brief: 20-minute meeting + 2 CEO sketches",
             "blocks": [
               {
                 "type": "paragraph",
@@ -287,7 +287,7 @@
           { "icon": "iconoir:frame-select", "value": "400+", "label": "Design tokens" },
           { "icon": "iconoir:component", "value": "200+", "label": "Components built" },
           { "icon": "iconoir:community", "value": "5", "label": "Designers trained" },
-          { "icon": "iconoir:mail-opened", "value": "30%", "label": "Social inbox reduction" },
+          { "icon": "iconoir:mail-open", "value": "30%", "label": "Social inbox reduction" },
           { "icon": "iconoir:timer", "value": "50%", "label": "Data collection time saved" }
         ]
       },
