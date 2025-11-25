@@ -26,7 +26,7 @@
  * Focus Visible Mixin
  * Accessible focus states for keyboard navigation
  */
-@mixin focus-visible($color: $color-blue-primary, $offset: 2px) {
+@mixin focus-visible($color: $color-blue-main, $offset: 2px) {
   &:focus-visible {
     outline: 2px solid $color;
     outline-offset: $offset;

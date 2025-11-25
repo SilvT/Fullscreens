@@ -26,7 +26,7 @@ body {
 	background:
 		linear-gradient(90deg, $color-cream calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
 		linear-gradient( $color-cream calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-		$color-blue-primary;
+		$color-blue-main;
 }
 
 
@@ -55,7 +55,7 @@ body {
 	background:
 		linear-gradient(90deg, $color-cream calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
 		linear-gradient( $color-cream calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-		$color-blue-primary;
+		$color-blue-main;
 
   // Contentbox inherits the dotted background
   .contentbox {
@@ -64,7 +64,7 @@ body {
     background:
       linear-gradient(90deg, $color-cream calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
       linear-gradient( $color-cream calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-      $color-blue-primary;
+      $color-blue-main;
   }
 }
 
@@ -231,7 +231,7 @@ body {
   align-items: flex-start;
   gap: $space-8;
   font-size: $font-size-xl;
-  color: $color-blue-primary;
+  color: $color-blue-main;
   position: relative;
 
   // Laptop: column 3
@@ -250,7 +250,7 @@ body {
 
   .flip-char {
     display: inline-block;
-    color: $color-blue-primary;
+    color: $color-blue-main;
     transition: color 0.2s ease, opacity 0.2s ease;
 
     &.flipping {
@@ -264,7 +264,7 @@ body {
     display: inline-block;
     width: 2px;
     height: 1em;
-    background-color: $color-blue-primary;
+    background-color: $color-blue-main;
     margin-left: 2px;
     vertical-align: middle;
     opacity: 0;
@@ -342,7 +342,7 @@ body {
 
     // Style SVG elements directly
     circle, path {
-      stroke: $color-blue-primary; // Override stroke color
+      stroke: $color-blue-main; // Override stroke color
       stroke-width: 0.5; // Override stroke width
       fill: none; // Keep fill transparent
     }
@@ -358,7 +358,7 @@ body {
     @keyframes longTrail {
     from {
     stroke-dashoffset: 0;
-    stroke:$color-blue-primary;
+    stroke:$color-blue-main;
    }
    to {
     stroke-dashoffset: -3010;

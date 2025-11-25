@@ -71,8 +71,8 @@
   transition: color 0.3s ease, border-color 0.3s ease;
 
   &:hover {
-    color: $color-blue-primary;
-    border-left-color: $color-blue-primary;
+    color: $color-blue-main;
+    border-left-color: $color-blue-main;
   }
 
   &__text {
@@ -98,8 +98,8 @@
   transition: opacity 0.2s ease;
 
   &:hover {
-    color: $color-blue-primary;
-    border-left-color: $color-blue-primary;
+    color: $color-blue-main;
+    border-left-color: $color-blue-main;
   }
 
   &:active {
@@ -120,7 +120,7 @@
       left: 100%;
       top: 50%;
       transform: translateX(8px) translateY(-50%);
-      background-color: $color-blue-primary;
+      background-color: $color-blue-main;
       color: $color-white;
       padding: $space-12;
       border-radius: 4px;
@@ -146,7 +146,7 @@
       top: 50%;
       transform: translateX(2px) translateY(-50%);
       border: 12px solid transparent;
-      border-right-color: $color-blue-primary;
+      border-right-color: $color-blue-main;
       opacity: 0;
       visibility: hidden;
       border-radius: 8px;

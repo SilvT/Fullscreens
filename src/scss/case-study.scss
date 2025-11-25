@@ -50,11 +50,11 @@
         color: $color-green-dark;
 
         .cs-nav-title {
-          color: rgba($color-green-primary, 0.6);
+          color: rgba($color-green-main, 0.6);
         }
 
         &:hover .cs-nav-title {
-          color: $color-green-primary;
+          color: $color-green-main;
         }
       }
     }
@@ -209,7 +209,7 @@
     }
 
     &:focus-visible {
-      outline: 2px solid $color-blue-primary;
+      outline: 2px solid $color-blue-main;
       outline-offset: 2px;
     }
 
@@ -533,7 +533,7 @@
         font-size: $font-size-l;
         font-weight: $font-weight-medium;
         font-style: italic;
-        color: $color-blue-primary;
+        color: $color-blue-main;
         margin: 0 0 1rem 0;
         line-height: 1.4;
         position: relative;
@@ -585,7 +585,7 @@
     font-size: $font-size-xs;
     font-weight: $font-weight-semibold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
-    color: $color-blue-primary;
+    color: $color-blue-main;
     margin-bottom: 2rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -648,7 +648,7 @@
     font-size: $font-size-xl;
     font-weight: $font-weight-medium;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
-    color: $color-blue-primary;
+    color: $color-blue-main;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
   }
@@ -882,7 +882,7 @@
         content: '•';
         position: absolute;
         left: 0;
-        color: $color-blue-primary;
+        color: $color-blue-main;
       }
 
       &:last-child {
@@ -1653,7 +1653,7 @@
       position: absolute;
       top: -1rem;
       left: -2rem;
-      color: $color-blue-primary;
+      color: $color-blue-main;
       opacity: 0.3;
     }
   }
@@ -1707,7 +1707,7 @@
       left: 10%;
       right: 10%;
       height: 2px;
-      background: linear-gradient(90deg, $color-blue-primary 0%, $color-blue-light 100%);
+      background: linear-gradient(90deg, $color-blue-main 0%, $color-blue-light 100%);
       z-index: 0;
 
       @include breakpoint(mobile) {
@@ -1741,7 +1741,7 @@
     background: $color-blue-light;
     border-radius: 50%;
     font-size: 2rem;
-    color: $color-blue-primary;
+    color: $color-blue-main;
   }
 
   .cs-timeline-phase-header {
@@ -1760,7 +1760,7 @@
   .cs-timeline-phase-period {
     font-size: $font-size-s;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
-    color: $color-blue-primary;
+    color: $color-blue-main;
     font-weight: $font-weight-medium;
   }
 
@@ -1782,7 +1782,7 @@
         content: '•';
         position: absolute;
         left: 0;
-        color: $color-blue-primary;
+        color: $color-blue-main;
         font-weight: bold;
       }
 
@@ -1845,7 +1845,7 @@
   }
 
   .cs-after-col .cs-before-after-label {
-    color: $color-blue-primary;
+    color: $color-blue-main;
   }
 
   .cs-before-after-list {
@@ -1880,11 +1880,11 @@
   }
 
   .cs-before-list li i {
-    color: $color-red-primary;
+    color: $color-red-main;
   }
 
   .cs-after-list li i {
-    color: $color-blue-primary;
+    color: $color-blue-main;
   }
 
   .cs-before-after-image {
@@ -1919,7 +1919,7 @@
 
   .cs-key-insight-icon {
     font-size: $font-size-l;
-    color: $color-blue-primary;
+    color: $color-blue-main;
     flex-shrink: 0;
     line-height: 1;
   }
@@ -1928,7 +1928,7 @@
     font-size: $font-size-base;
     font-weight: $font-weight-medium;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
-    color: $color-blue-primary;
+    color: $color-blue-main;
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1951,7 +1951,7 @@
     margin: 0;
 
     strong {
-      color: $color-blue-primary;
+      color: $color-blue-main;
       font-weight: $font-weight-semibold;
     }
   }
@@ -2043,7 +2043,7 @@
   position: relative;
 
   &:hover {
-    color: $color-blue-primary;
+    color: $color-blue-main;
     transform: scale(1.05);
 
     .cs-side-nav-label {
@@ -2054,11 +2054,11 @@
   }
 
   &.active {
-    color: $color-blue-primary;
+    color: $color-blue-main;
     font-weight: $font-weight-semibold;
 
     .cs-side-nav-label {
-      color: $color-blue-primary;
+      color: $color-blue-main;
       font-weight: $font-weight-semibold;
     }
   }
@@ -2091,7 +2091,7 @@
   position: absolute;
   right: 0;
   width: 3px;
-  background-color: $color-blue-primary;
+  background-color: $color-blue-main;
   pointer-events: none;
   z-index: 1;
   border-radius: 2px;
@@ -2101,50 +2101,50 @@
 .case-study-page[data-theme="green"] {
   .cs-side-nav-link {
     &:hover {
-      color: $color-green-primary;
+      color: $color-green-main;
 
       .cs-side-nav-label {
-        color: $color-green-primary;
+        color: $color-green-main;
       }
     }
 
     &.active {
-      color: $color-green-primary;
+      color: $color-green-main;
 
       .cs-side-nav-label {
-        color: $color-green-primary;
+        color: $color-green-main;
         font-weight: $font-weight-semibold;
       }
     }
   }
 
   .cs-side-nav-indicator {
-    background-color: $color-green-primary;
+    background-color: $color-green-main;
   }
 }
 
 .case-study-page[data-theme="red"] {
   .cs-side-nav-link {
     &:hover {
-      color: $color-red-primary;
+      color: $color-red-main;
 
       .cs-side-nav-label {
-        color: $color-red-primary;
+        color: $color-red-main;
       }
     }
 
     &.active {
-      color: $color-red-primary;
+      color: $color-red-main;
 
       .cs-side-nav-label {
-        color: $color-red-primary;
+        color: $color-red-main;
         font-weight: $font-weight-semibold;
       }
     }
   }
 
   .cs-side-nav-indicator {
-    background-color: $color-red-primary;
+    background-color: $color-red-main;
   }
 }
 
@@ -2152,7 +2152,7 @@
   .cs-side-nav-link {
     &:hover {
       .cs-side-nav-label {
-        color: $color-blue-primary;
+        color: $color-blue-main;
       }
     }
   }

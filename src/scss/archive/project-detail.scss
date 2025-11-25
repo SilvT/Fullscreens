@@ -89,12 +89,12 @@
     cursor: pointer;
 
     &:hover {
-      color: $color-blue-primary;
+      color: $color-blue-main;
       text-decoration: underline;
     }
 
     &.active {
-      color: $color-blue-primary;
+      color: $color-blue-main;
       font-weight: $font-weight-semibold;
     }
   }
@@ -208,7 +208,7 @@
         content: '•';
         position: absolute;
         left: 0;
-        color: $color-blue-primary;
+        color: $color-blue-main;
         font-weight: bold;
       }
     }
@@ -261,7 +261,7 @@
 
       &:hover,
       &.active {
-        color: $color-green-primary;
+        color: $color-green-main;
       }
     }
 
@@ -278,7 +278,7 @@
     }
 
     .detail-subtitle {
-      color: $color-green-primary;
+      color: $color-green-main;
     }
   }
 
@@ -289,7 +289,7 @@
     }
 
     .technical-list li::before {
-      color: $color-green-primary;
+      color: $color-green-main;
     }
   }
 }

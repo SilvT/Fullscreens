@@ -123,12 +123,12 @@
     }
 
     &:focus {
-      outline: 2px solid $color-blue-primary;
+      outline: 2px solid $color-blue-main;
       outline-offset: 4px;
     }
 
     &:focus-visible {
-      outline: 2px solid $color-blue-primary;
+      outline: 2px solid $color-blue-main;
       outline-offset: 4px;
     }
 
@@ -302,7 +302,7 @@
       }
 
       &.green {
-        color: $color-green-primary;
+        color: $color-green-main;
       }
 
       &.neutral {
@@ -331,7 +331,7 @@
       }
 
       &.green {
-        color: $color-green-primary;
+        color: $color-green-main;
       }
 
       &.neutral {
@@ -555,7 +555,7 @@
         width: 3px;
         height: 3px;
         border-radius: 50%;
-        background-color: $color-blue-primary;
+        background-color: $color-blue-main;
         animation: typing-dot 2.8s infinite ease-in-out;
 
         &:nth-child(1) {
@@ -651,7 +651,7 @@
     &.green-gradient {
       background: radial-gradient(
         circle at 0% 0%,
-        $color-green-primary 0%,
+        $color-green-main 0%,
         $color-green-alpha 42.5%,
         rgba(252, 253, 253, 1) 85%
       );
