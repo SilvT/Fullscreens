@@ -186,7 +186,6 @@ async function animationLoop(container, wrapperElement, cursorElement) {
       swapTextInstantly(container, nextTitle);
       wrapperElement.setAttribute('aria-label', nextTitle);
     }, CONFIG.pauseDuration);
-    console.log('Flip-board animation disabled: user prefers reduced motion');
     return;
   }
 
@@ -223,7 +222,6 @@ export function initFlipBoardAnimation() {
   const wrapper = document.querySelector('.dynamic-job-title');
 
   if (!wrapper) {
-    console.warn('Flip-board animation: .dynamic-job-title not found');
     return;
   }
 
@@ -248,7 +246,6 @@ export function initFlipBoardAnimation() {
   // Start animation loop with cursor
   animationLoop(container, wrapper, cursor);
 
-  console.log('Flip-board animation initialized with pulsating cursor');
 }
 
 /**
@@ -258,5 +255,4 @@ export function stopFlipBoardAnimation() {
   // Note: The animation loop runs indefinitely with async/await
   // To properly stop it, we'd need to track the loop and use a flag
   // For now, this is a placeholder for future cleanup if needed
-  console.log('Flip-board animation stopped');
 }

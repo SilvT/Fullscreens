@@ -35,7 +35,6 @@ export function initProjectCards() {
     const projectsContainer = document.querySelector('#projects-container');
 
     if (!projectsContainer) {
-      console.warn('Projects container not found');
       resolve();
       return;
     }
@@ -47,17 +46,14 @@ export function initProjectCards() {
     PROJECT_ORDER.forEach((projectId, index) => {
       const project = projectData[projectId];
       if (!project) {
-        console.warn(`Project ${projectId} not found in projectData`);
         return;
       }
-      console.log(`Creating card ${index} for project ID: ${projectId}, title: ${project.title}`);
       const projectCard = createProjectCard(projectId, project, index);
       projectsContainer.appendChild(projectCard);
 
       // VERIFY: Check the href in the DOM immediately after appending
       const ctaButton = projectCard.querySelector('.cta-button');
       if (ctaButton) {
-        console.log(`[VERIFY] After append, CTA button for "${project.title}" has href="${ctaButton.getAttribute('href')}" data-project-id="${ctaButton.getAttribute('data-project-id')}"`);
       }
     });
 
@@ -67,21 +63,17 @@ export function initProjectCards() {
     // Attach event listeners to project navigation buttons
     attachProjectNavListeners();
 
-    console.log(`✓ Generated ${PROJECT_ORDER.length} project cards from JSON in order: ${PROJECT_ORDER.join(', ')}`);
 
     // Wait for next frame to ensure DOM has been painted
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         // FINAL VERIFICATION: Check all CTA buttons in the DOM
-        console.log('[FINAL CHECK] Verifying all CTA buttons in DOM:');
         const allCtaButtons = document.querySelectorAll('.cta-button');
         allCtaButtons.forEach((btn, idx) => {
           const section = btn.closest('section[data-section="project"]');
           const sectionId = section ? section.id : 'unknown';
-          console.log(`  Button ${idx}: section=${sectionId}, href="${btn.getAttribute('href')}", data-project-id="${btn.getAttribute('data-project-id')}"`);
         });
 
-        console.log('✓ Project cards rendered and ready for ScrollTrigger');
         resolve();
       });
     });
@@ -108,7 +100,6 @@ function attachProjectNavListeners() {
     });
   });
 
-  console.log('✓ Project navigation listeners attached');
 }
 
 /**
@@ -169,7 +160,6 @@ function updateBreadcrumbs() {
     }
   });
 
-  console.log('✓ Breadcrumbs updated from JSON');
 }
 
 /**
@@ -202,9 +192,7 @@ function scrollToProjectCard(projectId) {
 
   if (projectSection) {
     projectSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    console.log(`Scrolled to project card: ${projectId}`);
   } else {
-    console.warn(`Project section not found: #project-${projectId}`);
   }
 }
 
@@ -216,7 +204,6 @@ function scrollToProjectCard(projectId) {
  * @returns {HTMLElement} The project section element
  */
 function createProjectCard(projectId, project, index) {
-  console.log(`[createProjectCard] Creating card for projectId="${projectId}", index=${index}, title="${project.title}"`);
 
   // CRITICAL: Store projectId in a const to prevent any scoping issues
   const currentProjectId = String(projectId);
@@ -233,7 +220,6 @@ function createProjectCard(projectId, project, index) {
   const nextProjectData = getNextProject(currentProjectId);
 
   const ctaHref = `#case-study-${currentProjectId}`;
-  console.log(`[createProjectCard] CTA href will be: "${ctaHref}" for project "${project.title}"`);
 
   section.innerHTML = `
     <div class="contentbox">
@@ -297,7 +283,6 @@ function createProjectCard(projectId, project, index) {
 
       if (wrapper && video) {
         wrapper.addEventListener('mouseenter', () => {
-          video.play().catch(err => console.log('Video play failed:', err));
         });
 
         wrapper.addEventListener('mouseleave', () => {

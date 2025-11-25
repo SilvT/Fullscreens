@@ -179,7 +179,6 @@ export function initStructuredData() {
     );
   });
 
-  console.log('✓ Structured data (JSON-LD) injected for SEO and AI scrapers');
 }
 
 /**

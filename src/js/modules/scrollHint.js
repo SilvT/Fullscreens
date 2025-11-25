@@ -16,14 +16,12 @@ export function initScrollHint() {
   const scrollHint = document.querySelector('.scroll-hint');
 
   if (!scrollHint) {
-    console.warn('Scroll hint element not found');
     return;
   }
 
   // Check for reduced motion preference
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReducedMotion) {
-    console.log('Reduced motion preferred - scroll hint disabled');
     scrollHint.style.display = 'none';
     return;
   }
@@ -58,7 +56,6 @@ export function initScrollHint() {
   // Show scroll hint when About section is in view
   showScrollHint();
 
-  console.log('✓ Scroll hint animation initialized with GSAP smooth scroll');
 }
 
 /**

@@ -105,7 +105,6 @@ function prefersReducedMotion() {
 export function initScrollTransitions(animationType = 'blink') {
   // Don't apply animations if user prefers reduced motion
   if (prefersReducedMotion()) {
-    console.log('Scroll transitions disabled: user prefers reduced motion');
     // Show all sections without animations
     gsap.set('.contentbox', { opacity: 1, visibility: 'visible' });
     return;
@@ -117,7 +116,6 @@ export function initScrollTransitions(animationType = 'blink') {
   // Get all sections with data-section attribute (excludes case study sections)
   const sections = gsap.utils.toArray('section[data-section]');
 
-  console.log(`Found ${sections.length} sections to animate`);
 
   // IMPORTANT: Make the first section visible immediately on load
   const firstSection = sections[0];
@@ -129,7 +127,6 @@ export function initScrollTransitions(animationType = 'blink') {
         visibility: 'visible',
         pointerEvents: 'auto' // CRITICAL: Enable clicks on first section
       });
-      console.log('First section set to visible with pointer events enabled');
     }
   }
 
@@ -137,11 +134,9 @@ export function initScrollTransitions(animationType = 'blink') {
     const contentbox = section.querySelector('.contentbox');
 
     if (!contentbox) {
-      console.warn('No contentbox found for section:', section.id);
       return;
     }
 
-    console.log('Setting up scroll transition for:', section.id);
 
     // DEBUG: Add click listener to detect which section is being clicked
     section.addEventListener('click', (e) => {
@@ -149,8 +144,6 @@ export function initScrollTransitions(animationType = 'blink') {
       const projectTitle = section.querySelector('.project-title')?.textContent || 'Unknown';
       const computedZ = window.getComputedStyle(contentbox).zIndex;
       const computedPointer = window.getComputedStyle(contentbox).pointerEvents;
-      console.log(`🖱️ [CLICK DETECTED] You clicked inside section: ${sectionId} (${projectTitle})`);
-      console.log(`   Current z-index: ${computedZ}, pointer-events: ${computedPointer}`);
     });
 
     // Create timeline for this section
@@ -172,7 +165,6 @@ export function initScrollTransitions(animationType = 'blink') {
           if (isVisible) {
             // Bring to front and enable clicks
             gsap.set(contentbox, { zIndex: 20, pointerEvents: 'auto' });
-            console.log(`[ScrollTrigger] Section ${section.id} is VISIBLE - z-index: 20, pointer-events: auto`);
           } else {
             // Send to back and disable clicks
             gsap.set(contentbox, { zIndex: 5, pointerEvents: 'none' });
@@ -217,17 +209,14 @@ export function initScrollTransitions(animationType = 'blink') {
 
   // DEBUG: Verify pointer events after a short delay
   setTimeout(() => {
-    console.log('[DEBUG] Checking pointer-events on all contentboxes:');
     sections.forEach((section, idx) => {
       const contentbox = section.querySelector('.contentbox');
       if (contentbox) {
         const computedStyle = window.getComputedStyle(contentbox);
-        console.log(`  Section ${idx} (${section.id}): pointer-events = "${computedStyle.pointerEvents}", opacity = ${computedStyle.opacity}`);
       }
     });
   }, 500);
 
-  console.log(`✓ Scroll transitions initialized with "${animationType}" animation for ${sections.length} sections`);
 }
 
 /**
@@ -236,7 +225,6 @@ export function initScrollTransitions(animationType = 'blink') {
  */
 export function changeAnimationType(animationType) {
   if (prefersReducedMotion()) {
-    console.log('Animation changes disabled: user prefers reduced motion');
     return;
   }
 
@@ -249,7 +237,6 @@ export function changeAnimationType(animationType) {
 
   // Re-initialize with new animation
   initScrollTransitions(animationType);
-  console.log(`✓ Switched to "${animationType}" animation`);
 }
 
 /**
@@ -264,7 +251,6 @@ export function disableScrollTransitions() {
 
   // Show all sections
   gsap.set('.contentbox', { opacity: 1, visibility: 'visible', clearProps: 'all' });
-  console.log('Scroll transitions disabled');
 }
 
 /**

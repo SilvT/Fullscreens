@@ -42,5 +42,4 @@ export function initMetricHoverEffects() {
     });
   });
 
-  console.log('Metric hover effects initialized');
 }

@@ -41,12 +41,10 @@ export function initLightbox(selector = '.glightbox') {
 
     // Callbacks
     onOpen: () => {
-      console.log('Lightbox opened');
       document.body.style.overflow = 'hidden';
     },
 
     onClose: () => {
-      console.log('Lightbox closed');
       document.body.style.overflow = '';
     }
   });

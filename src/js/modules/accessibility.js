@@ -21,7 +21,6 @@ export function initAccessibility() {
   enhanceKeyboardNavigation();
   addARIALabels();
 
-  console.log('Accessibility features initialized');
 }
 
 /**
@@ -32,10 +31,8 @@ function watchMotionPreference() {
 
   const handleMotionChange = (e) => {
     if (e.matches) {
-      console.log('Reduced motion enabled');
       disableAllAnimations();
     } else {
-      console.log('Reduced motion disabled - reload page for animations');
     }
   };
 
@@ -47,7 +44,6 @@ function watchMotionPreference() {
 
   // Log initial state
   if (prefersReducedMotion()) {
-    console.log('User prefers reduced motion - animations disabled');
   }
 }
 
@@ -77,7 +73,6 @@ function addSkipToMainLink() {
 
   document.body.insertBefore(skipLink, document.body.firstChild);
 
-  console.log('Skip to main link added');
 }
 
 /**
@@ -99,7 +94,6 @@ function enhanceKeyboardNavigation() {
     });
   });
 
-  console.log('Keyboard navigation enhanced');
 }
 
 /**
@@ -141,7 +135,6 @@ function addARIALabels() {
     hint.setAttribute('aria-label', 'Navigation hint');
   });
 
-  console.log('ARIA labels added');
 }
 
 /**
@@ -151,9 +144,4 @@ export function verifyColorContrast() {
   // This is a development helper function
   // In production, use tools like axe DevTools or WAVE
 
-  console.log('Color Contrast Verification:');
-  console.log('- Blue primary (#3980aa): 4.52:1 on light backgrounds ✓');
-  console.log('- Green primary (#79854f): 4.51:1 on light backgrounds ✓');
-  console.log('- Neutral (#5c584f): 7.21:1 on light backgrounds ✓');
-  console.log('All colors meet WCAG AA standards (4.5:1 minimum)');
 }

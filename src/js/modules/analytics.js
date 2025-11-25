@@ -12,7 +12,6 @@ import { track } from '@vercel/analytics';
  */
 export function trackCVDownload(format = 'pdf') {
   track('cv_download', { format });
-  console.log('📊 Analytics: CV download tracked', { format });
 }
 
 /**
@@ -21,7 +20,6 @@ export function trackCVDownload(format = 'pdf') {
  */
 export function trackContactFormSubmit(source = 'portfolio') {
   track('contact_form_submit', { source });
-  console.log('📊 Analytics: Contact form submission tracked', { source });
 }
 
 /**
@@ -34,7 +32,6 @@ export function trackExternalLinkClick(platform, url) {
     platform,
     url
   });
-  console.log('📊 Analytics: External link clicked', { platform, url });
 }
 
 /**
@@ -47,7 +44,6 @@ export function trackProjectView(projectName, projectId) {
     project_name: projectName,
     project_id: projectId
   });
-  console.log('📊 Analytics: Project view tracked', { projectName, projectId });
 }
 
 /**
@@ -60,7 +56,6 @@ export function trackCaseStudyInteraction(action, projectName) {
     action,
     project_name: projectName
   });
-  console.log('📊 Analytics: Case study interaction tracked', { action, projectName });
 }
 
 /**
@@ -69,7 +64,6 @@ export function trackCaseStudyInteraction(action, projectName) {
  */
 export function trackNavigation(section) {
   track('navigation', { section });
-  console.log('📊 Analytics: Navigation tracked', { section });
 }
 
 /**
@@ -77,7 +71,6 @@ export function trackNavigation(section) {
  * This function sets up event listeners for automatic tracking
  */
 export function initAnalytics() {
-  console.log('📊 Initializing portfolio analytics...');
 
   // Track external links in socials section
   initExternalLinkTracking();
@@ -88,7 +81,6 @@ export function initAnalytics() {
   // Track navigation clicks
   initNavigationTracking();
 
-  console.log('✓ Portfolio analytics initialized');
 }
 
 /**
@@ -97,7 +89,6 @@ export function initAnalytics() {
 function initExternalLinkTracking() {
   const socialsSection = document.querySelector('.socials');
   if (!socialsSection) {
-    console.warn('Socials section not found for analytics tracking');
     return;
   }
 
@@ -125,7 +116,6 @@ function initExternalLinkTracking() {
     });
   }
 
-  console.log('✓ External link tracking initialized');
 }
 
 /**
@@ -134,7 +124,6 @@ function initExternalLinkTracking() {
 function initCVDownloadTracking() {
   const cvButton = document.querySelector('#cv-download-btn');
   if (!cvButton) {
-    console.warn('CV download button not found for analytics tracking');
     return;
   }
 
@@ -151,7 +140,6 @@ function initCVDownloadTracking() {
     document.body.removeChild(link);
   });
 
-  console.log('✓ CV download tracking initialized');
 }
 
 /**
@@ -167,5 +155,4 @@ function initNavigationTracking() {
     });
   });
 
-  console.log('✓ Navigation tracking initialized');
 }

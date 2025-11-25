@@ -109,7 +109,6 @@ export function initCaseStudy() {
   const closeButton = document.querySelector('.case-study-close');
 
   if (!caseStudyPage) {
-    console.warn('Case study page not found');
     return;
   }
 
@@ -119,7 +118,6 @@ export function initCaseStudy() {
     const caseStudyButton = e.target.closest('.open-case-study, .cta-button');
 
     if (caseStudyButton) {
-      console.log('[caseStudy] CTA Button clicked! Target:', e.target, 'Button:', caseStudyButton);
       e.preventDefault();
 
       // DIAGNOSTIC: Find which section this button belongs to
@@ -127,35 +125,24 @@ export function initCaseStudy() {
       const sectionId = parentSection ? parentSection.id : 'unknown';
       const projectTitle = parentSection ? parentSection.querySelector('.project-title')?.textContent : 'unknown';
 
-      console.log(`[caseStudy] ⚠️ Button is inside section: ${sectionId}, Project: "${projectTitle}"`);
 
       const href = caseStudyButton.getAttribute('href');
       const dataProjectId = caseStudyButton.getAttribute('data-project-id');
       const dataProject = caseStudyButton.getAttribute('data-project');
-
-      console.log('[caseStudy] Button attributes:', {
-        href,
-        'data-project-id': dataProjectId,
-        'data-project': dataProject
-      });
 
       // Priority order: data-project-id > data-project > href extraction
       let projectId = dataProjectId || dataProject;
 
       // If not found, try to extract from href attribute
       if (!projectId && href) {
-        console.log('[caseStudy] Extracting projectId from href:', href);
         if (href.includes('case-study')) {
           projectId = href.replace('#case-study-', '');
-          console.log('[caseStudy] Extracted projectId:', projectId);
         }
       }
 
       if (projectId) {
-        console.log('[caseStudy] Opening case study for projectId:', projectId);
         openCaseStudy(projectId);
       } else {
-        console.warn('[caseStudy] No projectId found! Button:', caseStudyButton);
       }
     }
   });
@@ -187,7 +174,6 @@ export function initCaseStudy() {
   // Initialize lightbox
   initLightbox('.glightbox');
 
-  console.log('✓ Case study modal initialized');
 }
 
 /**
@@ -203,7 +189,6 @@ function openCaseStudy(projectId) {
   // Get project data
   const project = projectData[projectId];
   if (!project) {
-    console.warn(`No data found for project ${projectId}`);
     return;
   }
 
@@ -305,7 +290,6 @@ function openCaseStudy(projectId) {
     );
   }
 
-  console.log(`Opened case study: ${projectId} (${project.theme})`);
 }
 
 /**
@@ -566,7 +550,6 @@ function renderBlock(block, project) {
       element = renderKeyInsight(block);
       break;
     default:
-      console.warn(`Unknown block type: ${block.type}`);
       return null;
   }
 
@@ -612,7 +595,6 @@ function renderTextBlock(block) {
       return list;
 
     default:
-      console.warn(`Unknown text block type: ${block.type}`);
       return null;
   }
 }
@@ -1315,7 +1297,6 @@ function closeCaseStudy() {
     },
   });
 
-  console.log('Closed case study page');
 }
 
 /**

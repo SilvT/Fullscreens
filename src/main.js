@@ -42,8 +42,6 @@ gsap.registerPlugin(ScrollTrigger);
  * Initialize portfolio on DOM ready
  */
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('🎨 Silvia Travieso Portfolio Loading...');
-
   // Initialize accessibility features first
   initAccessibility();
 
@@ -55,8 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Generate project cards from JSON first, THEN initialize enhancements
   initProjectCards().then(() => {
-    console.log('Project cards ready, initializing enhancements...');
-
     // Initialize all card enhancements AFTER cards are generated
     initAllCardEnhancements();
 
@@ -94,9 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Add intersection observer for lazy loading optimization
   initLazyLoading();
-
-  console.log('✓ Portfolio loaded successfully');
-  console.log('✓ Sections found:', document.querySelectorAll('[data-section]').length);
 });
 
 /**
@@ -127,8 +120,6 @@ function initLazyLoading() {
   document.querySelectorAll('.project-image').forEach((img) => {
     imageObserver.observe(img);
   });
-
-  console.log('✓ Lazy loading initialized');
 }
 
 /**
@@ -139,7 +130,6 @@ window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
     ScrollTrigger.refresh();
-    console.log('ScrollTrigger refreshed on resize');
   }, 250);
 });
 
@@ -149,7 +139,6 @@ window.addEventListener('resize', () => {
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden) {
     ScrollTrigger.refresh();
-    console.log('ScrollTrigger refreshed on visibility change');
   }
 });
 
@@ -163,7 +152,6 @@ function initEllipseVisibility() {
   const footerSection = document.querySelector('#contact');
 
   if (!ellipseDecor) {
-    console.warn('Ellipse decoration not found');
     return;
   }
 
@@ -202,6 +190,4 @@ function initEllipseVisibility() {
 
   // Initial check with small delay to ensure GSAP snap has finished
   setTimeout(checkVisibility, 100);
-
-  console.log('✓ Ellipse visibility control initialized');
 }

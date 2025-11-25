@@ -42,7 +42,6 @@ export function initParallaxImages() {
     });
   });
 
-  console.log('✓ Parallax images initialized');
 }
 
 /**
@@ -87,7 +86,6 @@ export function initMagneticButtons() {
     });
   });
 
-  console.log('✓ Magnetic buttons initialized');
 }
 
 /**
@@ -98,7 +96,6 @@ export function initStaggeredReveal() {
   if (prefersReducedMotion()) return;
 
   const sections = document.querySelectorAll('.section-project');
-  console.log(`Found ${sections.length} project sections for staggered reveal`);
 
   sections.forEach((section, index) => {
     const timeline = gsap.timeline({
@@ -107,7 +104,6 @@ export function initStaggeredReveal() {
         start: 'top 70%',
         toggleActions: 'play none none reverse',
         markers: false, // Set to true for debugging
-        onEnter: () => console.log(`Stagger animation started for section ${index}`),
       },
     });
 
@@ -169,7 +165,6 @@ export function initStaggeredReveal() {
     }, 0.6);
   });
 
-  console.log('✓ Staggered content reveal initialized');
 }
 
 /**
@@ -181,7 +176,6 @@ export function initMetricCounters() {
   if (prefersReducedMotion()) return;
 
   const metricsContainers = document.querySelectorAll('.metrics');
-  console.log(`Found ${metricsContainers.length} metrics containers`);
 
   metricsContainers.forEach((container) => {
     const cards = container.querySelectorAll('.metric-card');
@@ -268,7 +262,6 @@ export function initMetricCounters() {
     setTimeout(detectScrollSettle, 100);
   });
 
-  console.log('✓ Enhanced metric counters initialized (triggers immediately on scroll settle)');
 }
 
 /**
@@ -312,7 +305,6 @@ export function initColorTransitions() {
     });
   });
 
-  console.log('✓ Color transitions initialized');
 }
 
 /**
@@ -476,7 +468,6 @@ export function initCodeSnippetTags() {
     document.head.appendChild(style);
   }
 
-  console.log('✓ Typewriter tag animations initialized with delay');
 }
 
 /**
@@ -592,7 +583,6 @@ export function initStorytellingAnimation() {
     }, '+=0.5');
   });
 
-  console.log('✓ Chatbot storytelling animations initialized');
 }
 
 /**
@@ -609,5 +599,4 @@ export function initAllCardEnhancements() {
   // Disabled: Tag typewriter animation
   // initCodeSnippetTags();
 
-  console.log('✨ All card enhancements initialized');
 }
