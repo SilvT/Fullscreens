@@ -12,7 +12,7 @@
       "cta": "Read how I went from UI executor to co-owning product strategy"
     },
     "heroImage": "/mkm/mkm-large hero.png",
-    "cardHoverImage":"/mkm/card-hover.mov",
+    "cardHoverImage":"/mkm/card-hover-2.gif",
     "theme": "blue",
     "cardMetrics": [
       { "icon": "iconoir:community", "value": "50%", "label": "Customer growth" },
