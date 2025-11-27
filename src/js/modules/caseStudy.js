@@ -303,10 +303,10 @@ function populateCaseStudy(project) {
   const heroCompany = document.querySelector('.cs-hero-company');
   const heroOverview = document.querySelector('.cs-hero-overview');
 
-  if (heroTitle) heroTitle.textContent = project.title;
-  if (heroSubtitle) heroSubtitle.textContent = project.subtitle;
-  if (heroCompany) heroCompany.textContent = project.company || '';
-  if (heroOverview) heroOverview.textContent = project.cardOverview;
+  if (heroTitle) heroTitle.innerHTML = project.title;
+  if (heroSubtitle) heroSubtitle.innerHTML = project.subtitle;
+  if (heroCompany) heroCompany.innerHTML = project.company || '';
+  if (heroOverview) heroOverview.innerHTML = project.cardOverview;
 
   // Tags
   const tagsContainer = document.querySelector('.cs-hero-tags');
@@ -315,7 +315,7 @@ function populateCaseStudy(project) {
     project.tags.forEach((tag) => {
       const span = document.createElement('span');
       span.className = 'cs-tag';
-      span.textContent = tag;
+      span.innerHTML = tag;
       tagsContainer.appendChild(span);
     });
   }
@@ -391,7 +391,7 @@ function populateCaseStudy(project) {
           // Update hero with full metadata if available
           if (contentData.subtitle) {
             const subtitleEl = document.querySelector('.cs-hero-subtitle');
-            if (subtitleEl) subtitleEl.textContent = contentData.subtitle;
+            if (subtitleEl) subtitleEl.innerHTML = contentData.subtitle;
           }
 
           // Update hero overview with story-hook content if available
@@ -404,13 +404,13 @@ function populateCaseStudy(project) {
 
               const quote = document.createElement('blockquote');
               quote.className = 'cs-story-hook-quote';
-              quote.textContent = storyHook.quote;
+              quote.innerHTML = storyHook.quote;
               heroOverview.appendChild(quote);
 
               if (storyHook.context) {
                 const context = document.createElement('p');
                 context.className = 'cs-story-hook-context';
-                context.textContent = storyHook.context;
+                context.innerHTML = storyHook.context;
                 heroOverview.appendChild(context);
               }
             }
@@ -571,16 +571,22 @@ function renderTextBlock(block) {
     case 'heading':
       const heading = document.createElement(block.level || 'h3');
       heading.className = 'cs-text-block-heading';
-      heading.textContent = block.text;
+      // Support HTML in headings
+      if (block.html) {
+        heading.innerHTML = block.html;
+      } else if (block.text) {
+        heading.innerHTML = block.text;
+      }
       return heading;
 
     case 'paragraph':
       const p = document.createElement('p');
       p.className = block.class || 'cs-section-text';
+      // Support HTML in paragraphs
       if (block.html) {
         p.innerHTML = block.html;
-      } else {
-        p.textContent = block.text;
+      } else if (block.text) {
+        p.innerHTML = block.text;
       }
       return p;
 
@@ -620,7 +626,7 @@ function renderTwoColumnWithSidebar(block) {
     if (section.heading) {
       const heading = document.createElement('h2');
       heading.className = 'cs-section-heading';
-      heading.textContent = section.heading;
+      heading.innerHTML = section.heading;
       sectionEl.appendChild(heading);
     }
 
@@ -655,7 +661,7 @@ function renderTwoColumnWithSidebar(block) {
       if (section.image.caption) {
         const figcaption = document.createElement('figcaption');
         figcaption.className = 'cs-image-caption';
-        figcaption.textContent = section.image.caption;
+        figcaption.innerHTML = section.image.caption;
         figure.appendChild(figcaption);
       }
 
@@ -667,11 +673,22 @@ function renderTwoColumnWithSidebar(block) {
       const figure = document.createElement('figure');
       figure.className = 'cs-inline-image-full';
 
+      // Wrap image in anchor for lightbox
+      const link = document.createElement('a');
+      link.href = section.imageFull.src;
+      link.className = 'glightbox';
+      link.setAttribute('data-gallery', 'case-study-gallery');
+      if (section.imageFull.alt) {
+        link.setAttribute('data-title', section.imageFull.alt);
+      }
+
       const img = document.createElement('img');
       img.src = section.imageFull.src;
       img.alt = section.imageFull.alt || '';
       img.className = 'cs-inline-img-full';
-      figure.appendChild(img);
+
+      link.appendChild(img);
+      figure.appendChild(link);
 
       if (section.imageFull.caption) {
         const figcaption = document.createElement('figcaption');
@@ -707,7 +724,7 @@ function renderTwoColumnWithSidebar(block) {
 
       const h4 = document.createElement('h4');
       h4.className = 'cs-sidebar-title';
-      h4.textContent = title;
+      h4.innerHTML = title;
       h4.setAttribute('id', `sidebar-${title.toLowerCase().replace(/\s+/g, '-')}`);
       section.appendChild(h4);
 
@@ -719,16 +736,16 @@ function renderTwoColumnWithSidebar(block) {
         if (item.includes(':')) {
           const [key, value] = item.split(':').map(s => s.trim());
           const dt = document.createElement('dt');
-          dt.textContent = key;
+          dt.innerHTML = key;
           dt.className = 'cs-sidebar-term';
           const dd = document.createElement('dd');
-          dd.textContent = value;
+          dd.innerHTML = value;
           dd.className = 'cs-sidebar-definition';
           dl.appendChild(dt);
           dl.appendChild(dd);
         } else {
           const dd = document.createElement('dd');
-          dd.textContent = item;
+          dd.innerHTML = item;
           dd.className = 'cs-sidebar-item';
           dl.appendChild(dd);
         }
@@ -818,6 +835,10 @@ function renderImageGrid(block) {
       video.autoplay = true;
       video.muted = true;
       video.loop = true;
+      video.playsInline = true;
+      video.setAttribute('autoplay', '');
+      video.setAttribute('muted', '');
+      video.setAttribute('loop', '');
       video.setAttribute('playsinline', '');
       if (image.alt) {
         video.setAttribute('aria-label', image.alt);
@@ -845,7 +866,7 @@ function renderImageGrid(block) {
     if (image.caption) {
       const figcaption = document.createElement('figcaption');
       figcaption.className = 'cs-image-caption';
-      figcaption.textContent = image.caption;
+      figcaption.innerHTML = image.caption;
       figure.appendChild(figcaption);
     }
 
@@ -932,7 +953,7 @@ function renderFullWidthText(block) {
   if (block.heading) {
     const heading = document.createElement('h2');
     heading.className = 'cs-section-heading';
-    heading.textContent = block.heading;
+    heading.innerHTML = block.heading;
     section.appendChild(heading);
   }
 
@@ -942,7 +963,7 @@ function renderFullWidthText(block) {
       if (para.trim()) {
         const p = document.createElement('p');
         p.className = 'cs-section-text';
-        p.textContent = para.trim();
+        p.innerHTML = para.trim();
         section.appendChild(p);
       }
     });
@@ -969,7 +990,7 @@ function renderTextImageSplit(block) {
   if (block.heading) {
     const heading = document.createElement('h2');
     heading.className = 'cs-section-heading';
-    heading.textContent = block.heading;
+    heading.innerHTML = block.heading;
     textSide.appendChild(heading);
   }
 
@@ -979,7 +1000,7 @@ function renderTextImageSplit(block) {
       if (para.trim()) {
         const p = document.createElement('p');
         p.className = 'cs-section-text';
-        p.textContent = para.trim();
+        p.innerHTML = para.trim();
         textSide.appendChild(p);
       }
     });
@@ -999,7 +1020,7 @@ function renderTextImageSplit(block) {
   if (block.caption) {
     const figcaption = document.createElement('figcaption');
     figcaption.className = 'cs-image-caption';
-    figcaption.textContent = block.caption;
+    figcaption.innerHTML = block.caption;
     figure.appendChild(figcaption);
   }
 
@@ -1031,14 +1052,14 @@ function renderStoryHook(block) {
   // Quote
   const quote = document.createElement('blockquote');
   quote.className = 'cs-story-hook-quote';
-  quote.textContent = block.quote;
+  quote.innerHTML = block.quote;
   content.appendChild(quote);
 
   // Context
   if (block.context) {
     const context = document.createElement('p');
     context.className = 'cs-story-hook-context';
-    context.textContent = block.context;
+    context.innerHTML = block.context;
     content.appendChild(context);
   }
 
@@ -1070,7 +1091,7 @@ function renderTimelineProcess(block) {
   if (block.heading) {
     const heading = document.createElement('h2');
     heading.className = 'cs-timeline-heading';
-    heading.textContent = block.heading;
+    heading.innerHTML = block.heading;
     wrapper.appendChild(heading);
   }
 
@@ -1095,12 +1116,12 @@ function renderTimelineProcess(block) {
 
     const title = document.createElement('h3');
     title.className = 'cs-timeline-phase-title';
-    title.textContent = phase.title;
+    title.innerHTML = phase.title;
     header.appendChild(title);
 
     const period = document.createElement('span');
     period.className = 'cs-timeline-phase-period';
-    period.textContent = phase.period;
+    period.innerHTML = phase.period;
     header.appendChild(period);
 
     phaseEl.appendChild(header);
@@ -1112,7 +1133,7 @@ function renderTimelineProcess(block) {
 
       phase.highlights.forEach((highlight) => {
         const li = document.createElement('li');
-        li.textContent = highlight;
+        li.innerHTML = highlight;
         highlightsList.appendChild(li);
       });
 
@@ -1123,7 +1144,7 @@ function renderTimelineProcess(block) {
     if (phase.outcome) {
       const outcome = document.createElement('p');
       outcome.className = 'cs-timeline-outcome';
-      outcome.textContent = phase.outcome;
+      outcome.innerHTML = phase.outcome;
       phaseEl.appendChild(outcome);
     }
 
@@ -1144,7 +1165,7 @@ function renderBeforeAfterComparison(block) {
   if (block.heading) {
     const heading = document.createElement('h2');
     heading.className = 'cs-before-after-heading';
-    heading.textContent = block.heading;
+    heading.innerHTML = block.heading;
     wrapper.appendChild(heading);
   }
 
@@ -1157,7 +1178,7 @@ function renderBeforeAfterComparison(block) {
 
   const beforeLabel = document.createElement('h3');
   beforeLabel.className = 'cs-before-after-label';
-  beforeLabel.textContent = block.before.label || 'Before';
+  beforeLabel.innerHTML = block.before.label || 'Before';
   beforeCol.appendChild(beforeLabel);
 
   if (block.before.items && block.before.items.length > 0) {
@@ -1189,7 +1210,7 @@ function renderBeforeAfterComparison(block) {
 
   const afterLabel = document.createElement('h3');
   afterLabel.className = 'cs-before-after-label';
-  afterLabel.textContent = block.after.label || 'After';
+  afterLabel.innerHTML = block.after.label || 'After';
   afterCol.appendChild(afterLabel);
 
   if (block.after.items && block.after.items.length > 0) {
@@ -1243,7 +1264,7 @@ function renderKeyInsight(block) {
   if (block.title) {
     const title = document.createElement('h3');
     title.className = 'cs-key-insight-title';
-    title.textContent = block.title;
+    title.innerHTML = block.title;
     header.appendChild(title);
   }
 
@@ -1253,7 +1274,7 @@ function renderKeyInsight(block) {
   if (block.insight) {
     const insight = document.createElement('p');
     insight.className = 'cs-key-insight-text';
-    insight.textContent = block.insight;
+    insight.innerHTML = block.insight;
     content.appendChild(insight);
   }
 

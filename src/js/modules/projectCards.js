@@ -254,7 +254,7 @@ function createProjectCard(projectId, project, index) {
               <img src="${project.heroImage || (project.images && project.images[0])}" alt="${project.title}" class="project-image project-image-default${project.theme === 'neutral' ? ' contain' : ''}" />
               ${project.cardHoverImage ? (
                 isVideoFile(project.cardHoverImage)
-                  ? `<video src="${project.cardHoverImage}" class="project-image project-image-hover${project.theme === 'neutral' ? ' contain' : ''}" muted loop playsinline></video>`
+                  ? `<video src="${project.cardHoverImage}" class="project-image project-image-hover${project.theme === 'neutral' ? ' contain' : ''}" muted loop playsinline preload="auto"></video>`
                   : `<img src="${project.cardHoverImage}" alt="${project.title} hover" class="project-image project-image-hover${project.theme === 'neutral' ? ' contain' : ''}" />`
               ) : ''}
             </div>
@@ -282,7 +282,29 @@ function createProjectCard(projectId, project, index) {
       const video = section.querySelector('.project-image-hover');
 
       if (wrapper && video) {
+        // Load the first frame immediately to prevent black screen
+        video.load();
+
+        // Pause on first frame initially (preload will load metadata and first frame)
+        video.addEventListener('loadeddata', () => {
+          video.pause();
+          video.currentTime = 0;
+        }, { once: true });
+
         wrapper.addEventListener('mouseenter', () => {
+          // Only play if video is ready
+          if (video.readyState >= 3) { // HAVE_FUTURE_DATA or HAVE_ENOUGH_DATA
+            video.play().catch(err => {
+              console.log('Video play failed:', err);
+            });
+          } else {
+            // Wait for video to be ready, then play
+            video.addEventListener('canplay', () => {
+              video.play().catch(err => {
+                console.log('Video play failed:', err);
+              });
+            }, { once: true });
+          }
         });
 
         wrapper.addEventListener('mouseleave', () => {
