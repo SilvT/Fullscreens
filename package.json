@@ -5,8 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generate-ats-content.js",
     "build": "vite build",
-    "preview": "vite preview"
+    "postbuild": "echo '\n✅ Build complete with ATS-optimized content'",
+    "preview": "vite preview",
+    "generate:ats": "node scripts/generate-ats-content.js",
+    "verify:ats": "node scripts/verify-ats.js"
   },
   "dependencies": {
     "@phosphor-icons/web": "^2.1.2",
