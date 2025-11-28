@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Management - Senapt</title>
+  <link rel="stylesheet" href="/dist/assets/main-BZuAggXR.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+</head>
+<body>
+  <div class="standalone-modal">
+    <div class="standalone-modal-header">
+      <a href="/#about" class="back-button">← Back to Portfolio</a>
+      <button class="close-button" onclick="window.location.href='/#about'">✕</button>
+    </div>
+
+    <div class="standalone-modal-content">
+      <!-- Hero Section -->
+      <div class="cs-hero">
+        <div class="cs-hero-text">
+          <h1 class="cs-hero-title">Marketing Management</h1>
+          <p class="cs-hero-subtitle">From Mid UI to Product Design Lead: Building Enterprise Software in a Startup</p>
+          <p class="cs-hero-company">Senapt LTD • 2024 - 2025</p>
+
+          <div class="cs-hero-tags">
+            <span class="cs-tag">Product Design</span>
+            <span class="cs-tag">UI/UX</span>
+            <span class="cs-tag">Design Systems</span>
+            <span class="cs-tag">B2B</span>
+            <span class="cs-tag">0→1</span>
+            <span class="cs-tag">Co-ownership</span>
+          </div>
+
+          <div class="cs-hero-overview">
+            <p>Built from scratch to unify fragmented marketing operations across 4 departments, replacing manual Excel workflows with real-time data visibility. Grew from Mid UI Designer to co-owning product strategy</p>
+          </div>
+        </div>
+
+        <div class="cs-hero-images">
+          <a href="/mkm/mkm-large hero.png" class="glightbox" data-gallery="case-study-gallery">
+            <img src="/mkm/mkm-large hero.png" alt="Marketing Management preview">
+          </a>
+        </div>
+      </div>
+
+      <!-- Metrics Section -->
+      <section class="cs-metrics">
+        <h3 class="cs-section-title">Impact</h3>
+        <div class="cs-metrics-grid"></div>
+      </section>
+
+      <!-- Content Blocks Section -->
+      <div class="cs-content-container"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script type="module">
+    import { initCaseStudyStandalone } from '/src/js/modules/caseStudy.js';
+
+    // Initialize case study for project ID 1
+    initCaseStudyStandalone(1);
+  </script>
+</body>
+</html>

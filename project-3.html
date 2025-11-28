@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energy Switching Tracker - Tomato Energy</title>
+  <link rel="stylesheet" href="/dist/assets/main-BZuAggXR.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+</head>
+<body>
+  <div class="standalone-modal">
+    <div class="standalone-modal-header">
+      <a href="/#about" class="back-button">← Back to Portfolio</a>
+      <button class="close-button" onclick="window.location.href='/#about'">✕</button>
+    </div>
+
+    <div class="standalone-modal-content">
+      <!-- Hero Section -->
+      <div class="cs-hero">
+        <div class="cs-hero-text">
+          <h1 class="cs-hero-title">Energy Switching Tracker</h1>
+          <p class="cs-hero-subtitle">Helping customers understand their energy journey</p>
+          <p class="cs-hero-company">Senapt Limited (Tomato Energy) • 2025</p>
+
+          <div class="cs-hero-tags">
+            <span class="cs-tag">Product Design</span>
+            <span class="cs-tag">UI/UX</span>
+            <span class="cs-tag">B2C</span>
+            <span class="cs-tag">Mobile-First</span>
+            <span class="cs-tag">Data Visualization</span>
+          </div>
+
+          <div class="cs-hero-overview">
+            <blockquote class="cs-story-hook-quote">Can somebody explain to me how this switching thing go?</blockquote>
+            <p class="cs-story-hook-context">As a freelance & foreigner with zero knowledge of the British energy market, I had to piece together a system that even the engineers couldn't fully explain; then make it friendly enough for anxious customers waiting weeks for their switch.</p>
+          </div>
+        </div>
+
+        <div class="cs-hero-images">
+          <a href="/microsite/tomato microsite screens.png" class="glightbox" data-gallery="case-study-gallery">
+            <img src="/microsite/tomato microsite screens.png" alt="Energy Switching Tracker preview">
+          </a>
+        </div>
+      </div>
+
+      <!-- Metrics Section -->
+      <section class="cs-metrics">
+        <h3 class="cs-section-title">Impact</h3>
+        <div class="cs-metrics-grid"></div>
+      </section>
+
+      <!-- Content Blocks Section -->
+      <div class="cs-content-container"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script type="module">
+    import { initCaseStudyStandalone } from '/src/js/modules/caseStudy.js';
+
+    // Initialize case study for project ID 3
+    initCaseStudyStandalone(3);
+  </script>
+</body>
+</html>

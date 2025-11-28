@@ -13,7 +13,7 @@
         "type": "story-hook",
         "sectionTitle": "The Story",
         "quote": "How did I get here? This definitely wasn't in the job description for Mid UI Designer.",
-        "context": "Seven months in, I found myself presenting, not just a complex UI dashboard app, but a design system to a room full of engineers. This wasn't in the job description for Mid UI Designer.",
+        "context":"Seven months in, I found myself presenting product architecture to engineers, making strategic decisions about what shipped next. No product manager. No prior product design experience. Just me, a backend engineer, and a platform that needed to exist.",
         "image": "/mkm/presenting-moment.jpg"
       },
       {
@@ -101,6 +101,10 @@
             "Month 4: + Backend specialist",
             "Month 12: + Design Ops forming",
             "Month 18: 5 designers trained"
+          ],
+          "Related Projects": [
+            "Company's First Design System",
+            "Figma Plugin"
           ]
         }
       },
@@ -222,9 +226,8 @@
         "sectionTitle": "Key Decisions",
         "icon": "iconoir:light-bulb",
         "title": "Strategic Decision: Design System First",
-        "insight": "Observed chaos across company projects and pitched a design system approach. CEO initially denied it. VP of Frontend tentatively approved. My response? Do it anyway and prove the value.",
-        "result": "By month 15, CEO approved design system expansion company-wide. Now serving multiple products with 400+ tokens and 200+ components."
-      },
+        "insight": "Observed chaos across company projects and pitched a design system approach. CEO initially denied it. VP of Frontend tentatively approved. My response? Do it anyway and prove the value.<button> See DS Case Study </button>",
+        "result": "By month 15, CEO approved design system expansion company-wide. Now serving multiple products with 400+ tokens and 200+ components."      },
       {
         "type": "two-column-with-sidebar",
         "left": [

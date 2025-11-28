@@ -525,6 +525,152 @@
     </div>
   </div>
 
+  <!-- Two Column Text -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Two Column Text</h2>
+      <code>type: "two-column-text"</code>
+    </div>
+    <div class="block-preview">
+      <div class="cs-block cs-block-two-column-text">
+        <div class="cs-two-column-grid">
+          <div class="cs-text-column">
+            <h3 class="cs-column-heading">Left Column</h3>
+            <p class="cs-section-text">This is the left column content. You can use HTML formatting like <strong>bold</strong> and <em>italic</em>.</p>
+          </div>
+          <div class="cs-text-column">
+            <h3 class="cs-column-heading">Right Column</h3>
+            <p class="cs-section-text">This is the right column content. Each column can have multiple blocks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="code-toggle">
+      <span>Show Code</span>
+      <span class="code-toggle-icon">▼</span>
+    </button>
+    <div class="block-code">
+      <div class="code-tabs">
+        <button class="code-tab active" data-tab="json">JSON</button>
+        <button class="code-tab" data-tab="scss">Usage Notes</button>
+      </div>
+      <div class="code-content">
+        <div class="code-panel active" data-panel="json">
+          <pre>{
+  "type": "two-column-text",
+  "sectionTitle": "Optional - appears in side nav",
+  "columns": [
+    {
+      "heading": "Left Column",
+      "blocks": [
+        { "type": "paragraph", "text": "Column 1 content" },
+        { "type": "list", "style": "ul", "items": ["Item 1", "Item 2"] }
+      ]
+    },
+    {
+      "heading": "Right Column",
+      "blocks": [
+        { "type": "paragraph", "text": "Column 2 content" }
+      ]
+    }
+  ]
+}</pre>
+        </div>
+        <div class="code-panel" data-panel="scss">
+          <pre>// Usage Notes:
+// - Can be used as a top-level block
+// - Can be nested inside section blocks
+// - Each column supports all text block types
+// - HTML formatting supported in text
+
+// Classes:
+.cs-block-two-column-text  // Wrapper
+.cs-two-column-grid       // Grid container
+.cs-text-column           // Individual column
+.cs-column-heading        // Column heading (h3)</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Three Column Text -->
+  <div class="block-showcase">
+    <div class="block-header">
+      <h2>Three Column Text</h2>
+      <code>type: "three-column-text"</code>
+    </div>
+    <div class="block-preview">
+      <div class="cs-block cs-block-three-column-text">
+        <div class="cs-three-column-grid">
+          <div class="cs-text-column">
+            <h3 class="cs-column-heading">Column 1</h3>
+            <p class="cs-section-text">First column content with <strong>HTML</strong> support.</p>
+          </div>
+          <div class="cs-text-column">
+            <h3 class="cs-column-heading">Column 2</h3>
+            <p class="cs-section-text">Second column content.</p>
+          </div>
+          <div class="cs-text-column">
+            <h3 class="cs-column-heading">Column 3</h3>
+            <p class="cs-section-text">Third column content.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="code-toggle">
+      <span>Show Code</span>
+      <span class="code-toggle-icon">▼</span>
+    </button>
+    <div class="block-code">
+      <div class="code-tabs">
+        <button class="code-tab active" data-tab="json">JSON</button>
+        <button class="code-tab" data-tab="scss">Usage Notes</button>
+      </div>
+      <div class="code-content">
+        <div class="code-panel active" data-panel="json">
+          <pre>{
+  "type": "three-column-text",
+  "sectionTitle": "Optional - appears in side nav",
+  "columns": [
+    {
+      "heading": "Column 1",
+      "blocks": [
+        { "type": "paragraph", "text": "Content with &lt;strong&gt;HTML&lt;/strong&gt;" }
+      ]
+    },
+    {
+      "heading": "Column 2",
+      "blocks": [
+        { "type": "paragraph", "text": "Second column" }
+      ]
+    },
+    {
+      "heading": "Column 3",
+      "blocks": [
+        { "type": "paragraph", "text": "Third column" }
+      ]
+    }
+  ]
+}</pre>
+        </div>
+        <div class="code-panel" data-panel="scss">
+          <pre>// Usage Notes:
+// - Can be used as a top-level block
+// - Can be nested inside section blocks
+// - Each column supports all text block types
+// - HTML formatting supported in text
+// - Perfect for comparisons or categorization
+
+// Classes:
+.cs-block-three-column-text  // Wrapper
+.cs-three-column-grid       // Grid container (3 columns)
+.cs-text-column             // Individual column
+.cs-column-heading          // Column heading (h3)</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Text Image Split -->
   <div class="block-showcase">
     <div class="block-header">

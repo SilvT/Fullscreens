@@ -1,0 +1,390 @@
+{
+  "subtitle": "From Mid UI to Product Design Lead: Building Enterprise Software in a Startup",
+  "jobTitle": "Solo Product Designer → Product Lead",
+  "duration": "18 months",
+  "detailMetrics": [
+      { "icon": "iconoir:collapse", "value": "4 → 1", "label": "Departments unified into single platform" },
+      { "icon": "iconoir:mail-open", "value": "30%", "label": "Social inbox opmitised" },
+      { "icon": "iconoir:timer", "value": "50%", "label": "Data collection time saved" }
+    ],
+        "contentBlocks": [
+      {
+        "type": "story-hook",
+        "sectionTitle": "The Story",
+        "quote": "How did I get here? This definitely wasn't in the job description.",
+        "context":"Seven months in, I found myself presenting product architecture to engineers, making strategic decisions about what shipped next. No product manager. No prior product design experience. Just me, a backend engineer, and a platform that needed to exist."
+      },
+
+      {
+        "type": "two-column-with-sidebar",
+        "sectionTitle": "Narrative",
+        "left": [
+          {
+            "heading": "The narrative",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "class": "callout",
+                "text": "Mid UI → Product Co-Owner"
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "type": "two-column-with-sidebar",
+        "sectionTitle": "The Problem",
+        "sidebarClass": "",
+        "left": [
+          {
+            "heading": "What I walked into",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "The marketing team was flying blind. Campaign decisions happened in spreadsheets updated when time allowed. By the time they knew something wasn't working, they'd already spent thousands. CEO saw the inefficiency: fragmented data, manual workflows, no unified visibility."
+              },
+              {
+                "type": "paragraph",
+                "class": "callout",
+                "text": "<b>CEO:</b><br> Create a unified platform for marketing data so we can have more effective spendings and support the 50% projected customer growth"
+              },
+              {
+                "type": "image-text-columns",
+                "images": [
+                  { "src": "/mkm/brief-sketch.png", "alt": "Brief sketch" },
+                  { "src": "/mkm/brief-sketch-2.png", "alt": "Brief sketch 2" }
+                ],
+                "caption": "A very brief Brief",
+                "heading": "The Brief: Direction, not Definition",
+                "blocks":[
+                {
+                    "type": "paragraph",
+                    "class":"text-higlight-center",
+                    "text": "\"Channels. Campaigns. Leads. <br>Unify the data. Make it work.\""
+                },
+                 {
+                    "type": "paragraph",
+                    "text": "That was the product spec → 3 section names and a direction.<br><i>No feature list. No MVP definition. No user stories.</i> Just trust,autonomy, and 18 months."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "<strong>The team:</strong><br>→ 1 Backend Lead<small> > Technical Stak </small><br>→ 1 Frontend<small> > +8hrs away</small><br>→ Me (Mid UI)<small> > Design + research + QA</small><br>→ Roles I absorved<small> > PM, Marketing contactperson, documentation lead</small>"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "<strong>The challenge:</strong><br>Turn 3 words into a problem-solving product."
+                }
+            ]
+              }
+            ]
+          }
+        ],
+        "sidebar": {
+          "Context": [
+            "1 Month at company",
+            "1st Corporate design job",
+            "No internal network yet",
+            "Still learning structures",
+            "<b> Month 2-3 → Pulled off for urgent 2-week project (different stack)</b>"
+          ],
+          "The brief": [
+            "2 sketches",
+            "3 section names", 
+            "\"Unify all this\"",
+            "18 months for MVP",
+            "Trust + autonomy"
+          ]
+        }
+      },
+{
+  "type": "text-image-split",
+  "layout": "text-left",
+  "blocks": [
+    {
+      "type": "section",
+      "heading": "The Reality on the Ground",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "The mess we inherited:"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "<b>14,000 customers</b> → +10,000 planned growth",
+            "<b>Manual data entry</b> across 6+ touchpoints + no visibility between teams",
+            "<b>Social Media complaints</b> manually redirected to customer support",
+            "<b>No tools</b> to track campaign ROI in real-time",
+            "<b>No component libraries, no design patterns, no brand, no precedents</b>"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "heading": "Constraints",
+      "blocks": [
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "No PM, no UX department",
+            "JavaFX (very little documentation available)",
+            "8-hour timezone gap with Front-end",
+            "Front-end onboarded month 3 with only 1 approved screen",
+            "Async-only collaboration",
+            "CEO's priority: results, not process"
+          ]
+        }
+      ]
+    }
+  ],
+  "image": "/mkm/Excel dashboard.png",
+  "alt": "Excel dashboard",
+  "caption": "Original Excel-based tracking system",
+  "hoverImage": "/mkm/Excel dashboard-hover.png"
+},
+
+      {
+        "type": "two-column-with-sidebar",
+        "sectionTitle": "Stepping Up",
+        "sidebarClass": "blue-sidebar",
+        "left": [
+          {
+            "heading": "From Screens to Strategy",
+            "blocks": [
+              {
+              "type": "paragraph",
+              "text": "I was hired as a UI designer. But one month in, faced with three section names, no feature definitions, and a backend engineer who also needed directions... someone had to answer:"
+              },
+             {
+              "type": "paragraph",
+              "class": "callout min",
+              "text": "What actually goes in \"Campaigns\"? How deep does each section go? What is v1?  and v2? Who decides all this?"
+              }
+            ]
+          }
+        ]
+        },
+{
+  "type": "two-column",
+  "columns": [
+    {
+      "heading": "The Shift: Becoming Co-Owners",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Backend Lead and I became <em>de facto co-owners</em>, not by choice, but by necessity. No one else was defining scope.<br>We operated as a hub: each handled our technical domains, but co-owned everything strategic."
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "<strong> Backend Lead </strong> → All technical architecture, data models, APIs",
+            "<strong> Me </strong> → Design, research, specs, QA",
+            "<strong> Marketing Lead </strong> → provided user validation and domain knowledge (to me)",
+            "<strong> CEO </strong> →  received results-based check-ins and design system buy-in (from both of us)"
+          ]
+        }
+      ],
+      "image": "/mkm/collaboration-model.png",
+      "alt": "Decision framework: User needs → Marketing Lead | Feasibility → Backend Lead | Design approach → Me | Strategic buy-in → Backend + Me together",
+      "caption": "Co-product ownership model: separate technical domains, shared strategic decisions"
+    },
+    {
+      "heading": "Why This Worked",
+      "blocks": [
+        { 
+          "type": "paragraph",
+          "text": "Backend had the CEO's ear. Rather than compete for access, I leveraged that relationship. Our co-owned decisions had technical and UX backing when presented upward.<br>We made product decisions by combining both perspectives: I'd propose features based on user pain points. They'd reality-check it against data availability and technical feasibility. Some ideas died there. The ones that survived both filters became the roadmap."
+        }
+      ],
+      "image": "/mkm/decisions-framework.png",
+      "alt": "Decision framework: User needs → Marketing Lead | Feasibility → Backend Lead | Design approach → Me | Strategic buy-in → Backend + Me together",
+      "caption": "Decision framework: User needs → Marketing Lead | Feasibility → Backend Lead | Design approach → Me | Strategic buy-in → Backend + Me together"
+    }
+  ]
+},
+{
+      "type": "key-insight",
+      "title": "Key Learning: Partnership over Hierarchy",
+      "insight": " The strongest validation came from daily collaborators, not executives.",
+      "result": "We built the product specs Through design and iteration. Each step was validated."
+},
+{
+  "type": "two-column",
+  "columns": [
+    {
+      "heading": "What This Actually Looked Like",
+      "blocks": [
+          {
+          "type": "list",
+          "style": "ul",
+          "class": "numbered",
+          "items": [
+            "Open conversation with <b>Marketing Lead</b>; topic: \"Campaigns\". <i> What are they? How do they work?,What do we track?...</i>",
+            "<b>Campaigns</b> moves from a title on a list to a first rough UX flow",
+            "Bring <b>Backend</b> in to verify data. They provide specifications",
+            "Rework complete UX flow, using backend names and terminology for easier tracking and <b>validation</b>",
+            "We <i>repeat and iterate</i> until structure is mostly completed",
+            "Translate flows to Wireframes, then to UI"
+          ]
+        }
+      ]
+    },
+    {
+      "blocks": [
+        {
+          "type": "image-carousel",
+          "images": [
+            { "src": "/mkm/UX-0.png", "alt": "TBD" },
+            { "src": "/mkm/UX-1.png", "alt": "TBD" },
+            { "src": "/mkm/UX-2.png", "alt": "TBD" },
+            { "src": "/mkm/UX-3.png", "alt": "TBD" }
+          ],
+          "caption": "Full cycle evolution: From original UX draft, to Ux with backend input, transfer to wireframes, until final UI deliverables",
+          "interval": 5000
+        }
+      ]
+    }
+  ]
+},
+
+
+
+      {
+        "type": "timeline-process",
+        "sectionTitle": "The Journey",
+        "heading": "Milestones: Building the Plane While Flying It",
+        "phases": [
+          {
+            "title": "Foundation, Discovery & Early Chaos",
+            "period": "Months 1-3",
+            "icon": "iconoir:learning",
+            "content": [
+              {
+                "type":"highlights",
+                "items": [
+                  "Competitor research (self-driven + Marketing Lead via informal and off-record conversations)",
+                  "<b>Month 2-3:</b> Pulled off project for urgent 2-week tablet app build (Nuxt.js stack, completely different from main project)",
+                  "Information architecture for 4 data sources",
+                  "Wireframes validated with Marketing team for 3 main sections"
+                ]
+              },
+              {
+                "type": "outcome",
+                "text": "Core structure validated. Look & Feel approved. Front-end brought in"
+              }
+            ]
+          },
+          {
+            "title": "The Systematic Thinking Kicks-in",
+            "period": "Months 3-5",
+            "icon": "iconoir:warning-triangle",
+            "content": [
+              {
+                "type": "highlights",
+                "items": [
+                  "Frontend onboarded when I had one approved screen and no component library. The pressure to deliver while building infrastructure forced systematic thinking from day one—I couldn't design every screen individually and maintain velocity",
+                  "Reusable components became necessity, not aspiration. That foundation became a company-wide design system by month 15",
+                  "Building component library from scratch in parallel",
+                  "Creating user flows with incomplete requirements",
+                  "Invented async collaboration system (+8 hour timezone gap)"
+                ]
+              },
+              {
+                "type": "outcome",
+                "text": "This was sink or swim. Partnered deeply with Backend, validated with Marketing Lead continuously"
+              }
+            ]
+          },
+          {
+            "title": "Strategic Influence",
+            "period": "Months 6-12",
+            "icon": "iconoir:trophy",
+            "content": [
+              {
+                "type": "highlights",
+                "items": [
+                  "Facebook API approval first try (design met their requirements from the start)",
+                  "Invented FB-to-CRM complaint pipeline (30% inbox reduction)",
+                  "Design system proving value through 90% fewer QA cycles",
+                  "Presenting at company developer conference",
+                  "CEO buy-in for design system expansion (month 15)"
+                ]
+              },
+              {
+                "type": "outcome",
+                "text": "Transitioned from executor to strategic partner influencing roadmap"
+              }
+            ]
+          }
+        ]
+      },
+
+
+        {
+        "type": "two-column-with-sidebar",
+        "sectionTitle": "A Breakthrough",
+        "sidebarClass": "",
+        "left": [
+          {
+            "blocks":[
+              {
+              "type":"section",
+              "heading": "A breakthrough moment: Facebook-to-CRM pipeline",
+               "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Around <b>month 5</b>, during validation with Marketing, I discovered Social Media manager's work was being overtaken by dealing with compaints arriving via Social Media:<br><br><h3>The broken flow</h3>"
+              },
+              {
+              "type": "list",
+              "style": "ul",
+              "items": [
+                "Customer complains via Facebook DM",
+                "Social media team manually copies conversation and emails to Customer Support",
+                "Support manually looks up customer in CRM",
+                "Ticket created, response sent back via email",
+                "Social team manually responds on Facebook"
+              ]
+            }
+          ]
+        },
+        {
+          "type":"section",
+          "heading": "My proposal",
+                "blocks":[
+                  {
+                    "type": "paragraph",
+                    "text": "I mapped the entire workflow. Identified the bottleneck. Proposed direct integration:"
+                  },
+                  {
+                      "type": "paragraph",
+                      "class":"text-higlight-center",
+                      "text": "FB DM → automated ID capture → CRM match → auto-ticket creation"
+                  },
+                {
+                    "type": "paragraph",
+                    "text": "Pitched it to Backend. They confirmed API feasibility and assessed data structure requirements. We added it to roadmap together and presented it as a co-owned feature to the CEO.<br>After internal demo, it became the <b>#1 requested feature.</b><br>I didn't have authority. I didn't have years of product experience. But I had access to users, curiosity about their problems, and a partner willing to build solutions with me."
+                }
+            ]
+        }
+        ]
+          }
+        ],
+        "sidebar": {
+          "ExtraTBD": [
+            "TBD"
+          ],
+          "ExtraTBD": [
+            "TBD"
+          ]
+        }
+      }
+
+
+    ]
+}

@@ -39,13 +39,44 @@ export function initLightbox(selector = '.glightbox') {
     // Custom skin/theme
     skin: 'portfolio-lightbox',
 
+    // Description settings
+    slideEffect: 'fade',
+    descPosition: 'bottom',
+
     // Callbacks
     onOpen: () => {
       document.body.style.overflow = 'hidden';
+
+      // Add navigation indicators for image grid elements
+      const lightboxElement = document.querySelector('.glightbox-container');
+      if (lightboxElement) {
+        const currentSlide = lightboxElement.querySelector('.gslide-image');
+
+        // Check if current image is part of an image grid
+        const isGridImage = currentSlide?.closest('.cs-image-grid');
+        if (isGridImage) {
+          lightboxElement.classList.add('has-navigation');
+        }
+      }
     },
 
     onClose: () => {
       document.body.style.overflow = '';
+    },
+
+    onSlideChanged: () => {
+      // Update navigation indicator visibility based on slide type
+      const lightboxElement = document.querySelector('.glightbox-container');
+      if (lightboxElement) {
+        const currentSlide = document.querySelector('.gslide.current');
+        const isGridImage = currentSlide?.querySelector('[data-grid-image]');
+
+        if (isGridImage) {
+          lightboxElement.classList.add('has-navigation');
+        } else {
+          lightboxElement.classList.remove('has-navigation');
+        }
+      }
     }
   });
 

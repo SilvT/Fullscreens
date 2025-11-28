@@ -457,6 +457,9 @@ function populateCaseStudy(project) {
 
           // Setup side navigation
           setTimeout(() => setupSideNavigation(), 100);
+
+          // Setup scroll animations
+          setTimeout(() => setupScrollAnimations(), 150);
         })
         .catch((error) => {
           console.error('Failed to load case study content:', error);
@@ -480,6 +483,9 @@ function populateCaseStudy(project) {
 
       // Setup side navigation
       setTimeout(() => setupSideNavigation(), 100);
+
+      // Setup scroll animations
+      setTimeout(() => setupScrollAnimations(), 150);
     }
   }
 }
@@ -517,7 +523,17 @@ function renderBlock(block, project) {
 
   switch (block.type) {
     case 'two-column-with-sidebar':
-      element = renderTwoColumnWithSidebar(block);
+      element = renderTwoColumnWithSidebar(block, project);
+      break;
+    case 'two-column':
+      element = renderTwoColumn(block);
+      break;
+    case 'two-column-text':
+      // Legacy support - alias for two-column
+      element = renderTwoColumnText(block);
+      break;
+    case 'three-column-text':
+      element = renderThreeColumnText(block);
       break;
     case 'text-image-split':
       element = renderTextImageSplit(block);
@@ -543,11 +559,23 @@ function renderBlock(block, project) {
     case 'timeline-process':
       element = renderTimelineProcess(block);
       break;
+    case 'timeline-horizontal-scroll':
+      element = renderTimelineHorizontalScroll(block);
+      break;
     case 'before-after-comparison':
       element = renderBeforeAfterComparison(block);
       break;
     case 'key-insight':
       element = renderKeyInsight(block);
+      break;
+    case 'container':
+      element = renderContainer(block);
+      break;
+    case 'image-text-columns':
+      element = renderImageTextColumns(block);
+      break;
+    case 'image-carousel':
+      element = renderImageCarousel(block);
       break;
     default:
       return null;
@@ -600,6 +628,29 @@ function renderTextBlock(block) {
       });
       return list;
 
+    case 'section':
+      // Handle nested section with heading and blocks
+      const section = document.createElement('div');
+      section.className = 'cs-text-block-section';
+
+      if (block.heading) {
+        const sectionHeading = document.createElement('h3');
+        sectionHeading.className = 'cs-text-block-heading';
+        sectionHeading.innerHTML = block.heading;
+        section.appendChild(sectionHeading);
+      }
+
+      if (block.blocks) {
+        block.blocks.forEach((childBlock) => {
+          const childElement = renderTextBlock(childBlock);
+          if (childElement) {
+            section.appendChild(childElement);
+          }
+        });
+      }
+
+      return section;
+
     default:
       return null;
   }
@@ -607,8 +658,10 @@ function renderTextBlock(block) {
 
 /**
  * Render two-column layout with sidebar
+ * @param {object} block - Block configuration
+ * @param {object} project - Project data for context
  */
-function renderTwoColumnWithSidebar(block) {
+function renderTwoColumnWithSidebar(block, project) {
   const wrapper = document.createElement('div');
   wrapper.className = 'cs-block cs-block-two-column';
 
@@ -633,7 +686,12 @@ function renderTwoColumnWithSidebar(block) {
     // Support new blocks structure
     if (section.blocks) {
       section.blocks.forEach((block) => {
-        const blockEl = renderTextBlock(block);
+        // Try rendering as a full block first (handles container, etc.)
+        let blockEl = renderBlock(block, project);
+        // If not a full block type, try text block (heading, paragraph, list)
+        if (!blockEl) {
+          blockEl = renderTextBlock(block);
+        }
         if (blockEl) {
           sectionEl.appendChild(blockEl);
         }
@@ -652,11 +710,23 @@ function renderTwoColumnWithSidebar(block) {
       const figure = document.createElement('figure');
       figure.className = 'cs-inline-image';
 
-      const img = document.createElement('img');
-      img.src = section.image.src;
-      img.alt = section.image.alt || '';
-      img.className = 'cs-inline-img';
-      figure.appendChild(img);
+      // Wrap image in anchor for lightbox
+      const link = document.createElement('a');
+      link.href = section.image.src;
+      link.className = 'glightbox';
+      link.setAttribute('data-gallery', 'case-study-gallery');
+
+      if (section.image.caption) {
+        link.setAttribute('data-description', section.image.caption);
+      }
+
+      if (section.image.alt) {
+        link.setAttribute('data-title', section.image.alt);
+      }
+
+      const img = createImageWithHover(section.image, 'cs-inline-img');
+      link.appendChild(img);
+      figure.appendChild(link);
 
       if (section.image.caption) {
         const figcaption = document.createElement('figcaption');
@@ -678,14 +748,17 @@ function renderTwoColumnWithSidebar(block) {
       link.href = section.imageFull.src;
       link.className = 'glightbox';
       link.setAttribute('data-gallery', 'case-study-gallery');
+
+      // Add caption as description for lightbox
+      if (section.imageFull.caption) {
+        link.setAttribute('data-description', section.imageFull.caption);
+      }
+
       if (section.imageFull.alt) {
         link.setAttribute('data-title', section.imageFull.alt);
       }
 
-      const img = document.createElement('img');
-      img.src = section.imageFull.src;
-      img.alt = section.imageFull.alt || '';
-      img.className = 'cs-inline-img-full';
+      const img = createImageWithHover(section.imageFull, 'cs-inline-img-full');
 
       link.appendChild(img);
       figure.appendChild(link);
@@ -706,6 +779,11 @@ function renderTwoColumnWithSidebar(block) {
   // Right column - sidebar
   const sidebar = document.createElement('aside');
   sidebar.className = 'cs-sidebar';
+
+  // Add custom class if provided
+  if (block.sidebarClass) {
+    sidebar.className += ' ' + block.sidebarClass;
+  }
 
   const sidebarContent = document.createElement('div');
   sidebarContent.className = 'cs-sidebar-content';
@@ -784,10 +862,7 @@ function renderFullWidthImage(block) {
     link.setAttribute('data-title', block.alt);
   }
 
-  const img = document.createElement('img');
-  img.src = block.src;
-  img.alt = block.alt || '';
-  img.className = 'cs-full-img';
+  const img = createImageWithHover(block, 'cs-full-img');
 
   link.appendChild(img);
   figure.appendChild(link);
@@ -811,6 +886,38 @@ function renderFullWidthImage(block) {
 function isVideoFile(src) {
   const videoExtensions = ['.mov', '.mp4', '.webm', '.ogg'];
   return videoExtensions.some(ext => src.toLowerCase().endsWith(ext));
+}
+
+/**
+ * Create image element with optional hover image swap
+ * @param {object} imageData - Image data object with src, alt, hoverImage, etc.
+ * @param {string} className - CSS class for the img element
+ * @returns {HTMLElement} - Image element (or wrapper if hover image exists)
+ */
+function createImageWithHover(imageData, className = '') {
+  const img = document.createElement('img');
+  img.src = imageData.src;
+  img.alt = imageData.alt || '';
+  if (className) img.className = className;
+
+  // If hoverImage exists, add hover functionality
+  if (imageData.hoverImage) {
+    const originalSrc = imageData.src;
+    const hoverSrc = imageData.hoverImage;
+
+    img.addEventListener('mouseenter', () => {
+      img.src = hoverSrc;
+    });
+
+    img.addEventListener('mouseleave', () => {
+      img.src = originalSrc;
+    });
+
+    // Add data attribute for CSS styling if needed
+    img.setAttribute('data-has-hover', 'true');
+  }
+
+  return img;
 }
 
 /**
@@ -850,14 +957,18 @@ function renderImageGrid(block) {
       link.href = image.src;
       link.className = 'glightbox';
       link.setAttribute('data-gallery', 'case-study-gallery');
+      link.setAttribute('data-grid-image', 'true');
+
+      // Add caption as description for lightbox
+      if (image.caption) {
+        link.setAttribute('data-description', image.caption);
+      }
+
       if (image.alt) {
         link.setAttribute('data-title', image.alt);
       }
 
-      const img = document.createElement('img');
-      img.src = image.src;
-      img.alt = image.alt || '';
-      img.className = 'cs-grid-img';
+      const img = createImageWithHover(image, 'cs-grid-img');
 
       link.appendChild(img);
       figure.appendChild(link);
@@ -994,7 +1105,22 @@ function renderTextImageSplit(block) {
     textSide.appendChild(heading);
   }
 
-  if (block.text) {
+  // Support new blocks structure
+  if (block.blocks) {
+    block.blocks.forEach((childBlock) => {
+      // Try rendering as a full block first (handles three-column-text, container, etc.)
+      let blockEl = renderBlock(childBlock);
+      // If not a full block type, try text block (heading, paragraph, list)
+      if (!blockEl) {
+        blockEl = renderTextBlock(childBlock);
+      }
+      if (blockEl) {
+        textSide.appendChild(blockEl);
+      }
+    });
+  }
+  // Fallback to old text structure for backwards compatibility
+  else if (block.text) {
     const paragraphs = block.text.split('\n\n');
     paragraphs.forEach((para) => {
       if (para.trim()) {
@@ -1011,11 +1137,31 @@ function renderTextImageSplit(block) {
   imageSide.className = 'cs-image-side';
 
   const figure = document.createElement('figure');
-  const img = document.createElement('img');
-  img.src = block.image;
-  img.alt = block.alt || '';
-  img.className = 'cs-split-img';
-  figure.appendChild(img);
+
+  // Wrap image in anchor for lightbox
+  const link = document.createElement('a');
+  link.href = block.image;
+  link.className = 'glightbox';
+  link.setAttribute('data-gallery', 'case-study-gallery');
+
+  if (block.caption) {
+    link.setAttribute('data-description', block.caption);
+  }
+
+  if (block.alt) {
+    link.setAttribute('data-title', block.alt);
+  }
+
+  // Create image data object for createImageWithHover
+  const imageData = {
+    src: block.image,
+    alt: block.alt || '',
+    hoverImage: block.hoverImage
+  };
+
+  const img = createImageWithHover(imageData, 'cs-split-img');
+  link.appendChild(img);
+  figure.appendChild(link);
 
   if (block.caption) {
     const figcaption = document.createElement('figcaption');
@@ -1070,10 +1216,20 @@ function renderStoryHook(block) {
     const figure = document.createElement('figure');
     figure.className = 'cs-story-hook-image';
 
+    // Wrap image in anchor for lightbox
+    const link = document.createElement('a');
+    link.href = block.image;
+    link.className = 'glightbox';
+    link.setAttribute('data-gallery', 'case-study-gallery');
+    if (block.imageAlt) {
+      link.setAttribute('data-title', block.imageAlt);
+    }
+
     const img = document.createElement('img');
     img.src = block.image;
     img.alt = block.imageAlt || '';
-    figure.appendChild(img);
+    link.appendChild(img);
+    figure.appendChild(link);
 
     wrapper.appendChild(figure);
   }
@@ -1126,26 +1282,115 @@ function renderTimelineProcess(block) {
 
     phaseEl.appendChild(header);
 
-    // Highlights
-    if (phase.highlights && phase.highlights.length > 0) {
-      const highlightsList = document.createElement('ul');
-      highlightsList.className = 'cs-timeline-highlights';
+    /**
+     * FLEXIBLE CONTENT STACK
+     * Supports two formats:
+     *
+     * 1. Structured content array (preferred):
+     *    content: [
+     *      { type: 'p', text: '...' },
+     *      { type: 'highlights', items: [...] },
+     *      { type: 'list', items: [...] },
+     *      { type: 'outcome', text: '...' },
+     *      { type: 'learnings', text: '...' }
+     *    ]
+     *
+     * 2. Legacy format (backwards compatibility):
+     *    highlights: [...],
+     *    outcome: '...',
+     *    learnings: '...'
+     */
+    if (Array.isArray(phase.content)) {
+      // New structured format
+      phase.content.forEach((item) => {
+        switch (item.type) {
+          case 'p':
+          case 'paragraph': {
+            const p = document.createElement('p');
+            p.className = 'cs-timeline-paragraph';
+            p.innerHTML = item.text;
+            phaseEl.appendChild(p);
+            break;
+          }
 
-      phase.highlights.forEach((highlight) => {
-        const li = document.createElement('li');
-        li.innerHTML = highlight;
-        highlightsList.appendChild(li);
+          case 'heading': {
+            const h4 = document.createElement('h4');
+            h4.className = 'cs-timeline-sub-heading';
+            h4.innerHTML = item.text;
+            phaseEl.appendChild(h4);
+            break;
+          }
+
+          case 'highlights': {
+            const ul = document.createElement('ul');
+            ul.className = 'cs-timeline-highlights';
+            item.items.forEach((txt) => {
+              const li = document.createElement('li');
+              li.innerHTML = txt;
+              ul.appendChild(li);
+            });
+            phaseEl.appendChild(ul);
+            break;
+          }
+
+          case 'list': {
+            const ul = document.createElement('ul');
+            ul.className = 'cs-timeline-list';
+            item.items.forEach((txt) => {
+              const li = document.createElement('li');
+              li.innerHTML = txt;
+              ul.appendChild(li);
+            });
+            phaseEl.appendChild(ul);
+            break;
+          }
+
+          case 'outcome': {
+            const outcome = document.createElement('p');
+            outcome.className = 'cs-timeline-outcome';
+            outcome.innerHTML = item.text;
+            phaseEl.appendChild(outcome);
+            break;
+          }
+
+          case 'learnings': {
+            const learn = document.createElement('p');
+            learn.className = 'cs-timeline-learnings';
+            learn.innerHTML = item.text;
+            phaseEl.appendChild(learn);
+            break;
+          }
+        }
       });
+    } else {
+      // Legacy format - direct properties on phase object
+      // Handle highlights array
+      if (phase.highlights && Array.isArray(phase.highlights)) {
+        const ul = document.createElement('ul');
+        ul.className = 'cs-timeline-highlights';
+        phase.highlights.forEach((txt) => {
+          const li = document.createElement('li');
+          li.innerHTML = txt;
+          ul.appendChild(li);
+        });
+        phaseEl.appendChild(ul);
+      }
 
-      phaseEl.appendChild(highlightsList);
-    }
+      // Handle outcome string
+      if (phase.outcome) {
+        const outcome = document.createElement('p');
+        outcome.className = 'cs-timeline-outcome';
+        outcome.innerHTML = phase.outcome;
+        phaseEl.appendChild(outcome);
+      }
 
-    // Outcome
-    if (phase.outcome) {
-      const outcome = document.createElement('p');
-      outcome.className = 'cs-timeline-outcome';
-      outcome.innerHTML = phase.outcome;
-      phaseEl.appendChild(outcome);
+      // Handle learnings string
+      if (phase.learnings) {
+        const learn = document.createElement('p');
+        learn.className = 'cs-timeline-learnings';
+        learn.innerHTML = phase.learnings;
+        phaseEl.appendChild(learn);
+      }
     }
 
     timeline.appendChild(phaseEl);
@@ -1154,6 +1399,249 @@ function renderTimelineProcess(block) {
   wrapper.appendChild(timeline);
   return wrapper;
 }
+
+/**
+ * Render timeline-horizontal-scroll block - Horizontal scroll-hijacking timeline
+ */
+function renderTimelineHorizontalScroll(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-timeline-horizontal-scroll';
+  wrapper.setAttribute('data-scroll-hijack', 'true');
+
+  if (block.heading) {
+    const heading = document.createElement('h2');
+    heading.className = 'cs-timeline-hs-heading';
+    heading.innerHTML = block.heading;
+    wrapper.appendChild(heading);
+  }
+
+  // Timeline container (will be horizontally scrolled)
+  const container = document.createElement('div');
+  container.className = 'cs-timeline-hs-container';
+
+  // Phase tabs navigation
+  const tabsNav = document.createElement('div');
+  tabsNav.className = 'cs-timeline-hs-tabs';
+
+  block.phases.forEach((phase, index) => {
+    const tab = document.createElement('button');
+    tab.className = 'cs-timeline-hs-tab';
+    if (index === 0) tab.classList.add('active');
+    tab.setAttribute('data-phase-index', index);
+
+    // Icon
+    if (phase.icon) {
+      const iconSpan = document.createElement('span');
+      iconSpan.className = 'cs-timeline-hs-tab-icon';
+      iconSpan.innerHTML = renderIcon(phase.icon);
+      tab.appendChild(iconSpan);
+    }
+
+    // Title and period
+    const textWrapper = document.createElement('div');
+    textWrapper.className = 'cs-timeline-hs-tab-text';
+
+    const title = document.createElement('span');
+    title.className = 'cs-timeline-hs-tab-title';
+    title.innerHTML = phase.title;
+    textWrapper.appendChild(title);
+
+    if (phase.period) {
+      const period = document.createElement('span');
+      period.className = 'cs-timeline-hs-tab-period';
+      period.innerHTML = phase.period;
+      textWrapper.appendChild(period);
+    }
+
+    tab.appendChild(textWrapper);
+    tabsNav.appendChild(tab);
+  });
+
+  // Progress bar
+  const progressBar = document.createElement('div');
+  progressBar.className = 'cs-timeline-hs-progress-bar';
+  const progressFill = document.createElement('div');
+  progressFill.className = 'cs-timeline-hs-progress-fill';
+  progressBar.appendChild(progressFill);
+  tabsNav.appendChild(progressBar);
+
+  container.appendChild(tabsNav);
+
+  // Phases content (horizontal scroll container)
+  const phasesWrapper = document.createElement('div');
+  phasesWrapper.className = 'cs-timeline-hs-phases-wrapper';
+
+  const phasesContainer = document.createElement('div');
+  phasesContainer.className = 'cs-timeline-hs-phases';
+
+  block.phases.forEach((phase, index) => {
+    const phaseEl = document.createElement('div');
+    phaseEl.className = 'cs-timeline-hs-phase';
+    if (index === 0) phaseEl.classList.add('active');
+    phaseEl.setAttribute('data-phase-index', index);
+
+    // Context paragraph (optional)
+    if (phase.context) {
+      const context = document.createElement('p');
+      context.className = 'cs-timeline-hs-context';
+      context.innerHTML = phase.context;
+      phaseEl.appendChild(context);
+    }
+
+    // Flexible content stack
+    if (Array.isArray(phase.content)) {
+      phase.content.forEach((item) => {
+        switch (item.type) {
+          case 'paragraph': {
+            const p = document.createElement('p');
+            p.className = 'cs-timeline-hs-paragraph';
+            p.innerHTML = item.text;
+            phaseEl.appendChild(p);
+            break;
+          }
+
+          case 'heading': {
+            const h4 = document.createElement('h4');
+            h4.className = 'cs-timeline-hs-sub-heading';
+            h4.innerHTML = item.text;
+            phaseEl.appendChild(h4);
+            break;
+          }
+
+          case 'highlights': {
+            const ul = document.createElement('ul');
+            ul.className = 'cs-timeline-hs-highlights';
+            item.items.forEach((txt) => {
+              const li = document.createElement('li');
+              li.innerHTML = txt;
+              ul.appendChild(li);
+            });
+            phaseEl.appendChild(ul);
+            break;
+          }
+        }
+      });
+    }
+
+    // Insight box at bottom (with customizable icon)
+    if (phase.insight) {
+      const insightBox = document.createElement('div');
+      insightBox.className = 'cs-timeline-hs-insight';
+
+      // Icon
+      if (phase.insight.icon) {
+        const iconSpan = document.createElement('span');
+        iconSpan.className = 'cs-timeline-hs-insight-icon';
+        iconSpan.innerHTML = renderIcon(phase.insight.icon);
+        insightBox.appendChild(iconSpan);
+      }
+
+      const insightText = document.createElement('p');
+      insightText.className = 'cs-timeline-hs-insight-text';
+      insightText.innerHTML = phase.insight.text;
+      insightBox.appendChild(insightText);
+
+      phaseEl.appendChild(insightBox);
+    }
+
+    // Learning sidebar (optional)
+    if (phase.learning) {
+      const learningSidebar = document.createElement('div');
+      learningSidebar.className = 'cs-timeline-hs-learning';
+      learningSidebar.innerHTML = phase.learning.text;
+      phaseEl.appendChild(learningSidebar);
+    }
+
+    phasesContainer.appendChild(phaseEl);
+  });
+
+  phasesWrapper.appendChild(phasesContainer);
+  container.appendChild(phasesWrapper);
+  wrapper.appendChild(container);
+
+  // Setup horizontal scroll behavior after render
+  setTimeout(() => setupHorizontalScrollTimeline(wrapper, block.phases.length), 100);
+
+  return wrapper;
+}
+
+/**
+ * Setup horizontal scroll hijacking for timeline
+ * @param {HTMLElement} wrapper - Timeline wrapper element
+ * @param {number} phaseCount - Number of phases
+ */
+function setupHorizontalScrollTimeline(wrapper, phaseCount) {
+  const caseStudyPage = document.querySelector('#case-study-page');
+  if (!caseStudyPage) return;
+
+  const tabs = wrapper.querySelectorAll('.cs-timeline-hs-tab');
+  const phases = wrapper.querySelectorAll('.cs-timeline-hs-phase');
+  const progressFill = wrapper.querySelector('.cs-timeline-hs-progress-fill');
+
+  let currentPhase = 0;
+
+  // Click tab to navigate
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      setPhase(index);
+    });
+  });
+
+  function setPhase(index) {
+    currentPhase = Math.max(0, Math.min(index, phaseCount - 1));
+
+    // Update active states
+    tabs.forEach((tab, i) => {
+      if (i === currentPhase) {
+        tab.classList.add('active');
+      } else {
+        tab.classList.remove('active');
+      }
+    });
+
+    phases.forEach((phase, i) => {
+      if (i === currentPhase) {
+        phase.classList.add('active');
+      } else {
+        phase.classList.remove('active');
+      }
+    });
+
+    // Update progress bar
+    const progress = (currentPhase / (phaseCount - 1)) * 100;
+    if (progressFill) {
+      progressFill.style.width = `${progress}%`;
+    }
+  }
+
+  // Scroll hijacking logic
+  caseStudyPage.addEventListener('scroll', () => {
+    const rect = wrapper.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+
+    // Check if timeline is in viewport
+    const isInView = rect.top < viewportHeight && rect.bottom > 0;
+
+    if (isInView) {
+      // Calculate scroll progress through this section
+      const sectionHeight = rect.height;
+      const scrollOffset = viewportHeight - rect.top;
+      const progress = Math.max(0, Math.min(1, scrollOffset / sectionHeight));
+
+      // Map progress to phases
+      const phaseProgress = progress * (phaseCount - 1);
+      const targetPhase = Math.floor(phaseProgress);
+
+      if (targetPhase !== currentPhase) {
+        setPhase(targetPhase);
+      }
+    }
+  });
+
+  // Initialize first phase
+  setPhase(0);
+}
+
 
 /**
  * Render before-after-comparison block - Impact visualization
@@ -1195,11 +1683,19 @@ function renderBeforeAfterComparison(block) {
   }
 
   if (block.before.image) {
+    // Wrap image in anchor for lightbox
+    const link = document.createElement('a');
+    link.href = block.before.image;
+    link.className = 'glightbox';
+    link.setAttribute('data-gallery', 'case-study-gallery');
+    link.setAttribute('data-title', block.before.imageAlt || 'Before state');
+
     const img = document.createElement('img');
     img.src = block.before.image;
     img.alt = block.before.imageAlt || 'Before state';
     img.className = 'cs-before-after-image';
-    beforeCol.appendChild(img);
+    link.appendChild(img);
+    beforeCol.appendChild(link);
   }
 
   grid.appendChild(beforeCol);
@@ -1227,11 +1723,19 @@ function renderBeforeAfterComparison(block) {
   }
 
   if (block.after.image) {
+    // Wrap image in anchor for lightbox
+    const link = document.createElement('a');
+    link.href = block.after.image;
+    link.className = 'glightbox';
+    link.setAttribute('data-gallery', 'case-study-gallery');
+    link.setAttribute('data-title', block.after.imageAlt || 'After state');
+
     const img = document.createElement('img');
     img.src = block.after.image;
     img.alt = block.after.imageAlt || 'After state';
     img.className = 'cs-before-after-image';
-    afterCol.appendChild(img);
+    link.appendChild(img);
+    afterCol.appendChild(link);
   }
 
   grid.appendChild(afterCol);
@@ -1287,6 +1791,336 @@ function renderKeyInsight(block) {
   }
 
   wrapper.appendChild(content);
+  return wrapper;
+}
+
+/**
+ * Render two-column block (supports text and images)
+ * @param {object} block - Block configuration with columns array
+ * @returns {HTMLElement} - Rendered two-column element
+ */
+function renderTwoColumn(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-block-two-column';
+
+  const grid = document.createElement('div');
+  grid.className = 'cs-two-column-grid';
+
+  // Render each column
+  if (block.columns && block.columns.length > 0) {
+    block.columns.forEach((column) => {
+      const columnEl = document.createElement('div');
+      columnEl.className = 'cs-column';
+
+      // Column heading
+      if (column.heading) {
+        const heading = document.createElement('h3');
+        heading.className = 'cs-column-heading';
+        heading.innerHTML = column.heading;
+        columnEl.appendChild(heading);
+      }
+
+      // Column blocks (supports both full blocks and text blocks)
+      if (column.blocks) {
+        column.blocks.forEach((block) => {
+          // Try rendering as a full block first (handles image-carousel, etc.)
+          let blockEl = renderBlock(block);
+          // If not a full block type, try text block (heading, paragraph, list)
+          if (!blockEl) {
+            blockEl = renderTextBlock(block);
+          }
+          if (blockEl) {
+            columnEl.appendChild(blockEl);
+          }
+        });
+      }
+
+      // Column image (optional)
+      if (column.image) {
+        const figure = document.createElement('figure');
+        figure.className = 'cs-column-image';
+
+        // Wrap image in anchor for lightbox
+        const link = document.createElement('a');
+        link.href = column.image;
+        link.className = 'glightbox';
+        link.setAttribute('data-gallery', 'case-study-gallery');
+
+        if (column.alt) {
+          link.setAttribute('data-title', column.alt);
+        }
+
+        if (column.caption) {
+          link.setAttribute('data-description', column.caption);
+        }
+
+        const imageData = {
+          src: column.image,
+          alt: column.alt || '',
+          hoverImage: column.hoverImage
+        };
+
+        const img = createImageWithHover(imageData, 'cs-column-img');
+        link.appendChild(img);
+        figure.appendChild(link);
+
+        if (column.caption) {
+          const figcaption = document.createElement('figcaption');
+          figcaption.className = 'cs-image-caption';
+          figcaption.innerHTML = column.caption;
+          figure.appendChild(figcaption);
+        }
+
+        columnEl.appendChild(figure);
+      }
+
+      grid.appendChild(columnEl);
+    });
+  }
+
+  wrapper.appendChild(grid);
+  return wrapper;
+}
+
+/**
+ * Legacy alias for backward compatibility
+ */
+function renderTwoColumnText(block) {
+  return renderTwoColumn(block);
+}
+
+/**
+ * Render three-column text block
+ * @param {object} block - Block configuration with columns array
+ * @returns {HTMLElement} - Rendered three-column element
+ */
+function renderThreeColumnText(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-block-three-column-text';
+
+  const grid = document.createElement('div');
+  grid.className = 'cs-three-column-grid';
+
+  // Render each column
+  if (block.columns && block.columns.length > 0) {
+    block.columns.forEach((column) => {
+      const columnEl = document.createElement('div');
+      columnEl.className = 'cs-text-column';
+
+      // Column heading
+      if (column.heading) {
+        const heading = document.createElement('h3');
+        heading.className = 'cs-column-heading';
+        heading.innerHTML = column.heading;
+        columnEl.appendChild(heading);
+      }
+
+      // Column blocks
+      if (column.blocks) {
+        column.blocks.forEach((block) => {
+          const blockEl = renderTextBlock(block);
+          if (blockEl) {
+            columnEl.appendChild(blockEl);
+          }
+        });
+      }
+
+      grid.appendChild(columnEl);
+    });
+  }
+
+  wrapper.appendChild(grid);
+  return wrapper;
+}
+
+/**
+ * Render container block - Generic div wrapper for flexible layouts
+ * @param {object} block - Block configuration with blocks array
+ * @returns {HTMLElement} - Rendered container element
+ */
+function renderContainer(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = `cs-block cs-container${block.class ? ' ' + block.class : ''}`;
+
+  // Optional heading
+  if (block.heading) {
+    const heading = document.createElement('h3');
+    heading.className = 'cs-container-heading';
+    heading.innerHTML = block.heading;
+    wrapper.appendChild(heading);
+  }
+
+  // Render nested blocks
+  if (block.blocks) {
+    block.blocks.forEach((childBlock) => {
+      // Handle raw HTML blocks
+      if (childBlock.html) {
+        const div = document.createElement('div');
+        div.innerHTML = childBlock.html;
+        wrapper.appendChild(div);
+      } else {
+        // Handle structured text blocks (heading, paragraph, list)
+        const blockEl = renderTextBlock(childBlock);
+        if (blockEl) {
+          wrapper.appendChild(blockEl);
+        }
+      }
+    });
+  }
+
+  return wrapper;
+}
+
+/**
+ * Render image-text-columns block - Two columns with images on left, text on right
+ * @param {object} block - Block configuration
+ * @returns {HTMLElement} - Rendered image-text-columns element
+ */
+function renderImageTextColumns(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-image-text-columns';
+
+  const grid = document.createElement('div');
+  grid.className = 'cs-image-text-grid';
+
+  // Images column
+  const imagesCol = document.createElement('div');
+  imagesCol.className = 'cs-images-column';
+
+  // Images wrapper
+  const imagesWrapper = document.createElement('div');
+  imagesWrapper.className = 'cs-images-wrapper';
+
+  if (block.images && block.images.length > 0) {
+    block.images.forEach((image, index) => {
+      // Wrap image in lightbox anchor
+      const link = document.createElement('a');
+      link.href = image.src || image;
+      link.className = 'glightbox';
+      link.setAttribute('data-gallery', 'case-study-gallery');
+      link.setAttribute('data-title', image.alt || '');
+
+      const img = document.createElement('img');
+      img.src = image.src || image;
+      img.alt = image.alt || '';
+
+      // Add class for hover behavior on second image
+      if (index === 1 && block.images.length === 2) {
+        link.classList.add('cs-image-hover');
+      }
+
+      link.appendChild(img);
+      imagesWrapper.appendChild(link);
+    });
+  }
+
+  imagesCol.appendChild(imagesWrapper);
+
+  // Caption for all images (optional) - supports both 'caption' and legacy 'imagesCaption'
+  if (block.caption || block.imagesCaption) {
+    const caption = document.createElement('p');
+    caption.className = 'cs-images-caption';
+    caption.innerHTML = block.caption || block.imagesCaption;
+    imagesCol.appendChild(caption);
+  }
+
+  grid.appendChild(imagesCol);
+
+  // Text column
+  const textCol = document.createElement('div');
+  textCol.className = 'cs-text-column';
+
+  if (block.heading) {
+    const heading = document.createElement('h3');
+    heading.innerHTML = block.heading;
+    textCol.appendChild(heading);
+  }
+
+  // Support both simple text and blocks structure
+  if (block.blocks && block.blocks.length > 0) {
+    // Render multiple blocks (paragraphs, lists, etc.)
+    block.blocks.forEach((childBlock) => {
+      const blockEl = renderTextBlock(childBlock);
+      if (blockEl) {
+        textCol.appendChild(blockEl);
+      }
+    });
+  } else if (block.text) {
+    // Fallback to simple text
+    const p = document.createElement('p');
+    p.innerHTML = block.text;
+    textCol.appendChild(p);
+  }
+
+  grid.appendChild(textCol);
+  wrapper.appendChild(grid);
+
+  return wrapper;
+}
+
+/**
+ * Render image carousel block - Simple auto-rotating image stack
+ * @param {object} block - Block configuration
+ * @returns {HTMLElement} - Rendered carousel element
+ */
+function renderImageCarousel(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-image-carousel';
+
+  const carouselContainer = document.createElement('div');
+  carouselContainer.className = 'cs-carousel-container';
+
+  if (block.images && block.images.length > 0) {
+    block.images.forEach((image, index) => {
+      const slide = document.createElement('div');
+      slide.className = 'cs-carousel-slide';
+      if (index === 0) slide.classList.add('active');
+
+      // Wrap image in lightbox anchor
+      const link = document.createElement('a');
+      link.href = image.src || image;
+      link.className = 'glightbox';
+      link.setAttribute('data-gallery', 'case-study-gallery');
+
+      const alt = image.alt || block.alt || '';
+      if (alt) {
+        link.setAttribute('data-title', alt);
+      }
+
+      const imageData = {
+        src: image.src || image,
+        alt: alt,
+        hoverImage: image.hoverImage
+      };
+
+      const img = createImageWithHover(imageData, 'cs-carousel-img');
+      link.appendChild(img);
+      slide.appendChild(link);
+
+      carouselContainer.appendChild(slide);
+    });
+
+    // Add caption if provided
+    if (block.caption) {
+      const caption = document.createElement('p');
+      caption.className = 'cs-carousel-caption cs-image-caption';
+      caption.innerHTML = block.caption;
+      wrapper.appendChild(caption);
+    }
+
+    // Start auto-rotation
+    let currentIndex = 0;
+    const slides = carouselContainer.querySelectorAll('.cs-carousel-slide');
+    const interval = block.interval || 3000; // Default 3 seconds
+
+    setInterval(() => {
+      slides[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % slides.length;
+      slides[currentIndex].classList.add('active');
+    }, interval);
+  }
+
+  wrapper.appendChild(carouselContainer);
   return wrapper;
 }
 
@@ -1504,6 +2338,7 @@ function resumeAboutAnimations() {
   }
 }
 
+
 /**
  * Setup side navigation for case study content
  * Generates numbered nav items for each content block and tracks scroll position
@@ -1648,6 +2483,133 @@ function setupSideNavigation() {
         ease: 'power2.out'
       });
     }
+  }
+}
+
+/**
+ * Initialize case study for standalone pages
+ * @param {number} projectId - The project ID to load
+ */
+export async function initCaseStudyStandalone(projectId) {
+  try {
+    // Load projects data
+    const response = await fetch('/data/projects.json');
+    const projects = await response.json();
+
+    // Find the project by ID
+    const project = projects.find(p => p.id === projectId);
+    if (!project) {
+      console.error(`Project with ID ${projectId} not found`);
+      return;
+    }
+
+    // Populate case study
+    populateCaseStudy(project);
+
+    // Initialize GLightbox after content is loaded
+    setTimeout(() => {
+      if (typeof GLightbox !== 'undefined') {
+        GLightbox({
+          selector: '.glightbox',
+          touchNavigation: true,
+          loop: true,
+          closeButton: true,
+          closeOnOutsideClick: true,
+          slideEffect: 'fade',
+          descPosition: 'bottom',
+          onOpen: () => {
+            // Add navigation indicators for image grid elements
+            const lightboxElement = document.querySelector('.glightbox-container');
+            if (lightboxElement) {
+              const currentSlide = lightboxElement.querySelector('.gslide-image');
+
+              // Check if current image is part of an image grid
+              const isGridImage = currentSlide?.closest('.cs-image-grid');
+              if (isGridImage) {
+                lightboxElement.classList.add('has-navigation');
+              }
+            }
+          },
+          onSlideChanged: () => {
+            // Update navigation indicator visibility based on slide type
+            const lightboxElement = document.querySelector('.glightbox-container');
+            if (lightboxElement) {
+              const currentSlide = document.querySelector('.gslide.current');
+              const isGridImage = currentSlide?.querySelector('[data-grid-image]');
+
+              if (isGridImage) {
+                lightboxElement.classList.add('has-navigation');
+              } else {
+                lightboxElement.classList.remove('has-navigation');
+              }
+            }
+          }
+        });
+      }
+
+      // Setup scroll animations for standalone page
+      setupScrollAnimationsStandalone();
+    }, 100);
+
+  } catch (error) {
+    console.error('Error loading case study:', error);
+  }
+}
+
+/**
+ * Setup scroll-triggered animations for standalone pages
+ */
+function setupScrollAnimationsStandalone() {
+  // Animate metric cards
+  const metricCards = document.querySelectorAll('.cs-metric-card');
+  if (metricCards.length > 0) {
+    gsap.set(metricCards, {
+      opacity: 0,
+      y: 30
+    });
+
+    metricCards.forEach((card, index) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+          gsap.to(card, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            delay: index * 0.1,
+            ease: 'power2.out'
+          });
+        }
+      });
+    });
+  }
+
+  // Animate timeline phases
+  const timelinePhases = document.querySelectorAll('.cs-timeline-phase');
+  if (timelinePhases.length > 0) {
+    gsap.set(timelinePhases, {
+      opacity: 0,
+      x: -30
+    });
+
+    timelinePhases.forEach((phase, index) => {
+      ScrollTrigger.create({
+        trigger: phase,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+          gsap.to(phase, {
+            opacity: 1,
+            x: 0,
+            duration: 0.7,
+            delay: index * 0.15,
+            ease: 'power2.out'
+          });
+        }
+      });
+    });
   }
 }
 

@@ -621,13 +621,32 @@
   background-color: white;
 }
 
+// General Section Heading (unified base styles)
+.cs-section-heading {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-medium;
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
+  color: $color-blue-main;
+  margin-bottom: 1rem;
+}
+
+//General Image captions
+    .cs-images-caption, .cs-image-caption{
+      font-family: $font-anonymous;
+      font-size: $font-size-xs;
+      color: $color-neutral-light;
+      line-height: 121%;
+      margin-top: $space-4;
+      text-align: left;
+    }
+
 // Main Layout Grid (reusable for two-column blocks)
 .cs-layout-grid {
   position: relative;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 4rem;
-  padding: 3rem 4rem;
+  padding: 2rem 4rem;
   align-items: start;
 
   @include breakpoint(mobile) {
@@ -646,16 +665,11 @@
   }
 
   .cs-section-heading {
-    font-size: $font-size-xl;
-    font-weight: $font-weight-medium;
-    font-variation-settings: 'opsz' 14, 'wdth' 100;
-    color: $color-blue-main;
-    margin-bottom: 1rem;
     padding-bottom: 0.5rem;
   }
 
   .cs-content-section {
-    max-width: 45vw;
+    max-width: 47vw;
 
     & .cs-text-block-heading{
       font-size: $font-size-l;
@@ -689,7 +703,7 @@
       font-weight: $font-weight-regular;
       line-height: 1.5;
       // margin: $space-32 $space-40;
-      margin: 2rem -6rem 2rem 6rem;
+      margin: 2rem -3rem 2rem 4rem;
       position: relative;
 
       &::before {
@@ -702,6 +716,27 @@
         border-left: 12px solid transparent;
         border-right: 12px solid transparent;
         border-top: 12px solid $color-blue-light;
+      }
+
+      &.min {
+        background-color: $color-cream;
+        color: $color-neutral;
+        margin: 0;
+        border-radius: 0.5rem;
+        padding: $space-12 $space-16;
+        font-size: $font-size-base;
+              &::before {
+        content: '';
+        position: absolute;
+        left: -18px;
+        bottom: 3.2rem;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 16px solid $color-cream;
+        transform: rotate(90deg);
+      }
       }
     }
 
@@ -749,16 +784,6 @@
       // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       display: block;
     }
-
-    .cs-image-caption {
-      font-family: $font-anonymous;
-      font-size: $font-size-xs;
-      color: $color-neutral-light;
-      line-height: 121%;
-      margin-top: 1rem;
-      text-align: left;
-      // font-style: italic;
-    }
   }
 
   // Full-width images that span both columns
@@ -774,15 +799,6 @@
       // box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
       display: block;
     }
-
-    // .cs-image-caption {
-    //   font-family: $font-anonymous;
-    //   font-size: $font-size-xs;
-    //   color: $color-blue-dark;
-    //   margin-top: 1rem;
-    //   text-align: center;
-    //   font-style: italic;
-    // }
   }
 }
 
@@ -1008,11 +1024,8 @@
   }
 
   .cs-section-heading {
-    font-size: $font-size-xl;
     font-weight: $font-weight-semibold;
-    font-variation-settings: 'opsz' 14, 'wdth' 100;
     color: $color-blue-darker;
-    margin-bottom: 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid $color-blue-light;
   }
@@ -1032,7 +1045,7 @@
 
 // Block: Text-Image Split
 .cs-block-text-image {
-  padding: 3rem 4rem;
+  padding: 1rem 4rem;
 
   .cs-text-image-grid {
     display: grid;
@@ -1047,11 +1060,8 @@
 
   .cs-text-side {
     .cs-section-heading {
-      font-size: $font-size-xl;
       font-weight: $font-weight-semibold;
-      font-variation-settings: 'opsz' 14, 'wdth' 100;
       color: $color-blue-darker;
-      margin-bottom: 1rem;
     }
 
     .cs-section-text {
@@ -1063,6 +1073,37 @@
 
       &:last-child {
         margin-bottom: 0;
+      }
+    }
+
+    // Text block list styling
+    .cs-text-block-list {
+      margin: $space-12 0;
+      padding: 0;
+
+      li {
+        list-style: none;
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: $space-8;
+        font-size: $font-size-base;
+        font-weight: $font-weight-light;
+        line-height: 130%;
+        color: $color-neutral-light;
+
+        &:before {
+          content: '·';
+          position: absolute;
+          left: 0;
+          top: 0;
+          color: $color-blue-400;
+          font-weight: bold;
+          font-size: 1.1em;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }
@@ -1687,8 +1728,8 @@
 
 // Block: Timeline Process - Phase storytelling
 .cs-timeline-process {
-  padding: 4rem;
-  margin-bottom: 3rem;
+  padding: 1em 4rem;
+  margin-bottom: 1rem;
 
   .cs-timeline-heading {
     font-size: $font-size-2xl;
@@ -1798,7 +1839,7 @@
     }
   }
 
-  .cs-timeline-outcome {
+  .cs-timeline-outcome, .cs-timeline-learnings {
     margin-top: 1.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid $color-blue-light;
@@ -1808,6 +1849,263 @@
     color: $color-blue-main;
     font-style: italic;
     text-align: center;
+  }
+  .cs-timeline-sub-heading {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    margin: 0.5rem 0;
+  }
+  .cs-timeline-learnings{
+    color: $color-blue-dark;
+  }
+}
+
+// Block: Timeline Horizontal Scroll - Scroll-hijacking timeline
+.cs-timeline-horizontal-scroll {
+  min-height: 400vh; // Make it tall to allow scroll hijacking through all phases
+  padding: 4rem 2rem;
+  position: relative;
+
+  .cs-timeline-hs-heading {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    color: $color-blue-darker;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .cs-timeline-hs-container {
+    position: sticky;
+    top: 10rem;
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  // Phase tabs at top
+  .cs-timeline-hs-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+
+    @include breakpoint(mobile) {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  .cs-timeline-hs-tab {
+    flex: 1;
+    background: transparent;
+    border: 1px solid rgba($color-blue-main, 0.2);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: left;
+
+    &:hover {
+      background: rgba($color-blue-main, 0.05);
+      border-color: rgba($color-blue-main, 0.3);
+    }
+
+    &.active {
+      background: rgba($color-blue-main, 0.1);
+      border-color: $color-blue-main;
+
+      .cs-timeline-hs-tab-icon {
+        color: $color-blue-main;
+      }
+
+      .cs-timeline-hs-tab-title {
+        font-weight: $font-weight-semibold;
+      }
+    }
+
+    @include breakpoint(mobile) {
+      padding: 0.75rem;
+    }
+  }
+
+  .cs-timeline-hs-tab-icon {
+    font-size: 1.5rem;
+    color: rgba($color-blue-main, 0.6);
+    transition: color 0.3s ease;
+    flex-shrink: 0;
+
+    i {
+      display: block;
+    }
+  }
+
+  .cs-timeline-hs-tab-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cs-timeline-hs-tab-title {
+    display: block;
+    font-size: $font-size-s;
+    font-weight: $font-weight-medium;
+    color: $color-blue-darker;
+    line-height: 1.3;
+    margin-bottom: 0.25rem;
+
+    @include breakpoint(mobile) {
+      font-size: $font-size-xs;
+    }
+  }
+
+  .cs-timeline-hs-tab-period {
+    display: block;
+    font-size: $font-size-xs;
+    color: rgba($color-blue-darker, 0.6);
+    font-weight: $font-weight-light;
+  }
+
+  // Progress bar
+  .cs-timeline-hs-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba($color-blue-main, 0.1);
+    border-radius: 2px;
+  }
+
+  .cs-timeline-hs-progress-fill {
+    height: 100%;
+    background: $color-blue-main;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  // Phases wrapper
+  .cs-timeline-hs-phases-wrapper {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .cs-timeline-hs-phases {
+    position: relative;
+    width: 100%;
+  }
+
+  .cs-timeline-hs-phase {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+
+    &.active {
+      display: block;
+      opacity: 1;
+    }
+  }
+
+  // Context paragraph
+  .cs-timeline-hs-context {
+    font-size: $font-size-base;
+    color: $color-blue-darker;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  // Sub heading
+  .cs-timeline-hs-sub-heading {
+    font-size: $font-size-l;
+    font-weight: $font-weight-semibold;
+    color: $color-blue-darker;
+    margin: 1.5rem 0 1rem 0;
+  }
+
+  // Paragraph
+  .cs-timeline-hs-paragraph {
+    font-size: $font-size-base;
+    color: $color-blue-darker;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  // Highlights list
+  .cs-timeline-hs-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+
+    li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+      font-size: $font-size-base;
+      color: $color-blue-darker;
+      line-height: 1.6;
+
+      &:before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: $color-blue-main;
+        font-weight: bold;
+      }
+
+      small {
+        font-size: $font-size-s;
+        color: rgba($color-blue-darker, 0.7);
+      }
+    }
+  }
+
+  // Insight box at bottom
+  .cs-timeline-hs-insight {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba($color-blue-main, 0.05);
+    border-left: 4px solid $color-blue-main;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .cs-timeline-hs-insight-icon {
+    font-size: 1.5rem;
+    color: $color-blue-main;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+
+    i {
+      display: block;
+    }
+  }
+
+  .cs-timeline-hs-insight-text {
+    flex: 1;
+    font-size: $font-size-base;
+    color: $color-blue-darker;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  // Learning sidebar (optional)
+  .cs-timeline-hs-learning {
+    margin-top: 1.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba($color-blue-dark, 0.05);
+    border-radius: 0.5rem;
+    font-size: $font-size-s;
+    color: $color-blue-dark;
+    line-height: 1.5;
   }
 }
 
@@ -2181,5 +2479,469 @@ a.glightbox{
     // height: auto;
     width: auto;
     max-width: 60vw;
+  }
+}
+
+// ============================================
+// NEW TEXT LAYOUT BLOCKS
+// ============================================
+
+// Block: Two Column Text (no sidebar)
+.cs-block-two-column-text, .cs-block-two-column{
+  padding: 1rem 4rem;
+  margin-bottom: 1rem;
+
+  .cs-two-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+
+    @include breakpoint(tablet) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @include breakpoint(mobile) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .cs-text-column, .cs-column{
+    .cs-column-heading {
+      font-size: $font-size-l;
+      font-weight: $font-weight-semibold;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      color: $color-blue-darker;
+      margin-bottom: 1.5rem;
+    }
+
+    .cs-text-block-heading {
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      color: $color-blue-darker;
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+
+    .cs-section-text {
+      font-size: $font-size-base;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      color: $color-blue-dark;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &.callout {
+        background: rgba(57, 128, 170, 0.08);
+        padding: 1rem 1.5rem;
+        border-radius: 0.25rem;
+        border-left: 3px solid $color-blue-main;
+        font-weight: $font-weight-medium;
+        margin: 1.5rem 0;
+      }
+    }
+
+    .cs-text-block-list {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+
+      li {
+        font-size: $font-size-base;
+        font-variation-settings: 'opsz' 14, 'wdth' 100;
+        color: $color-blue-dark;
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .cs-column-img{
+      width: 100%;
+    }
+  }
+}
+
+// Block: Three Column Text
+.cs-block-three-column-text {
+  padding: 3rem 4rem;
+  margin-bottom: 2rem;
+
+  .cs-three-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+
+    @include breakpoint(tablet) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @include breakpoint(mobile) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .cs-text-column {
+    .cs-column-heading {
+      font-size: $font-size-l;
+      font-weight: $font-weight-semibold;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      color: $color-blue-darker;
+      margin-bottom: 1.5rem;
+    }
+
+    .cs-text-block-heading {
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      color: $color-blue-darker;
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+
+    .cs-section-text {
+      font-size: $font-size-base;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      color: $color-blue-dark;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &.callout {
+        background: rgba(57, 128, 170, 0.08);
+        padding: 1rem 1.5rem;
+        border-radius: 0.25rem;
+        border-left: 3px solid $color-blue-main;
+        font-weight: $font-weight-medium;
+        margin: 1.5rem 0;
+      }
+    }
+
+    .cs-text-block-list {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+
+      li {
+        font-size: $font-size-base;
+        font-variation-settings: 'opsz' 14, 'wdth' 100;
+        color: $color-blue-dark;
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+// Block: Container (Generic Wrapper)
+.cs-container {
+  padding: 2rem 0;
+  margin-bottom: 1.5rem;
+
+  .cs-container-heading {
+    font-size: $font-size-l;
+    font-weight: $font-weight-semibold;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    color: $color-blue-darker;
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-text-block-heading {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    color: $color-blue-darker;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  .cs-section-text,
+  p {
+    font-size: $font-size-base;
+    font-variation-settings: 'opsz' 14, 'wdth' 100;
+    color: $color-blue-dark;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.callout {
+      background: rgba(57, 128, 170, 0.08);
+      padding: 1rem 1.5rem;
+      border-radius: 0.25rem;
+      border-left: 3px solid $color-blue-main;
+      font-weight: $font-weight-medium;
+      margin: 1.5rem 0;
+    }
+  }
+
+  .cs-text-block-list {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+
+    li {
+      font-size: $font-size-base;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      color: $color-blue-dark;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Custom class modifiers
+  &.two-column-wrapper {
+    .cs-section-text,
+    p {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+
+      @include breakpoint(mobile) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
+// ============================================
+// IMAGE-TEXT COLUMNS BLOCK
+// Can be used standalone or nested inside other blocks
+// ============================================
+.cs-image-text-columns {
+  margin: $space-24 0;
+
+  // When nested inside content section, adjust margins
+  .cs-content-section & {
+    margin: $space-16 0;
+  }
+
+  .cs-image-text-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-24;
+    align-items: start;
+
+    @include breakpoint(mobile) {
+      grid-template-columns: 1fr;
+      gap: $space-16;
+    }
+  }
+
+  .cs-images-column {
+    display: flex;
+    flex-direction: column;
+    gap: $space-8;
+    height: 100%;
+
+    .cs-images-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: $space-12;
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+
+      a {
+        display: block;
+        cursor: pointer;
+
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: 4px;
+          transition: opacity 0.3s ease, transform 0.3s ease;
+          display: block;
+        }
+      }
+
+      // Hover image behavior (second image link)
+      a.cs-image-hover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        pointer-events: none;
+
+        img {
+          transform: scale(0.98);
+        }
+      }
+
+      &:hover a.cs-image-hover {
+        opacity: 1;
+        pointer-events: all;
+
+        img {
+          transform: scale(1);
+        }
+      }
+
+      // Fade out first image on hover
+      &:hover a:first-child {
+        opacity: 0;
+      }
+    }
+  }
+
+  .cs-text-column {
+    h3 {
+      font-size: $font-size-l;
+      font-weight: $font-weight-medium;
+      color: $color-blue-darker;
+      margin-bottom: $space-12;
+      line-height: 1.3;
+    }
+
+    p {
+      font-size: $font-size-base;
+      font-weight: $font-weight-light;
+      color: $color-neutral-light;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+}
+
+// ============================================
+// INNER DOUBLE COLUMN (Legacy - for raw HTML)
+// ============================================
+.inner-two-col {
+  margin: 0;
+  padding: 0;
+
+  & > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-24;
+    align-items: start;
+
+    @include breakpoint(mobile) {
+      grid-template-columns: 1fr;
+      gap: $space-16;
+    }
+
+    // First column - Images
+    .col-images {
+      display: flex;
+      flex-direction: column;
+      gap: $space-12;
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+      }
+    }
+
+    // Second column - Text
+    .col-text {
+      h3 {
+        font-size: $font-size-l;
+        font-weight: $font-weight-medium;
+        color: $color-blue-darker;
+        margin-bottom: $space-12;
+        line-height: 1.3;
+      }
+
+      p {
+        font-size: $font-size-base;
+        font-weight: $font-weight-light;
+        color: $color-neutral-light;
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.blue-sidebar{
+  background-color: $color-blue-light;
+}
+
+.text-higlight-center{
+  font-weight: $font-weight-bold;
+  color:$color-blue-main !important;
+  text-align: center;
+  font-style: italic;
+  padding-bottom: 0.5rem;
+}
+
+// Image Carousel Block
+.cs-image-carousel {
+  width: 100%;
+  margin: $space-40 0;
+
+  .cs-carousel-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .cs-carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    pointer-events: none;
+
+    &.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .cs-carousel-caption {
+    margin-top: $space-16;
+    text-align: center;
   }
 }

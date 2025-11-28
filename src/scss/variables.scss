@@ -116,15 +116,15 @@ $space-60:3.75rem;
 $space-80:5rem;
 $space-120:7.5rem;
 
-em{ //only colour change//
+em { //only colour change//
     color: $color-blue-main;
     font-style: inherit;
 }
-b{//weight and darker change//
-    font-weight: $font-weight-medium;
+b {//weight and darker change//
+    font-weight: $font-weight-bold;
     color: $color-neutral;
 }
-strong{//weight and colour change//
+strong {//weight and colour change//
     font-weight: $font-weight-medium;
     color: $color-blue-main;
 }

@@ -1,0 +1,173 @@
+{
+  "title": "UI Blocks Reference",
+  "examples": [
+    {
+      "blockName": "two-column-text",
+      "description": "Two equal-width text columns without sidebar",
+      "example": {
+        "type": "two-column-text",
+        "sectionTitle": "Two Column Section",
+        "columns": [
+          {
+            "heading": "Left Column",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "This is the first paragraph in the left column. HTML is supported, like <strong>bold text</strong> and <em>italic text</em>."
+              },
+              {
+                "type": "paragraph",
+                "text": "Another paragraph with a <a href=\"#\">link</a>."
+              },
+              {
+                "type": "list",
+                "style": "ul",
+                "items": [
+                  "First item",
+                  "Second item with <strong>HTML</strong>",
+                  "Third item"
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "Right Column",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "This is the first paragraph in the right column."
+              },
+              {
+                "type": "heading",
+                "level": "h4",
+                "text": "Subheading in Right Column"
+              },
+              {
+                "type": "paragraph",
+                "text": "More content with HTML support."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "blockName": "three-column-text",
+      "description": "Three equal-width text columns",
+      "example": {
+        "type": "three-column-text",
+        "sectionTitle": "Three Column Section",
+        "columns": [
+          {
+            "heading": "Column 1",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "First column content with <strong>HTML support</strong>."
+              },
+              {
+                "type": "list",
+                "style": "ul",
+                "items": [
+                  "Item A",
+                  "Item B"
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "Column 2",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Second column content."
+              },
+              {
+                "type": "paragraph",
+                "text": "Another paragraph in the middle column."
+              }
+            ]
+          },
+          {
+            "heading": "Column 3",
+            "blocks": [
+              {
+                "type": "paragraph",
+                "text": "Third column content with <em>italic text</em>."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "blockName": "container",
+      "description": "Generic container div that can hold multiple blocks - useful for creating custom layouts",
+      "example": {
+        "type": "container",
+        "class": "custom-layout",
+        "heading": "Container Heading (Optional)",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "This is a flexible container that can hold any text blocks."
+          },
+          {
+            "type": "heading",
+            "level": "h4",
+            "text": "Subheading Inside Container"
+          },
+          {
+            "type": "paragraph",
+            "text": "You can use this inside other blocks to create <strong>nested layouts</strong>."
+          },
+          {
+            "type": "list",
+            "style": "ol",
+            "items": [
+              "First ordered item",
+              "Second ordered item",
+              "Third with <strong>HTML</strong>"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "blockName": "container-nested-example",
+      "description": "Example showing container used for two-column layout within another block",
+      "example": {
+        "type": "container",
+        "class": "two-column-wrapper",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "<div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;\"><div><strong>Left Side</strong><br>Content on the left side.</div><div><strong>Right Side</strong><br>Content on the right side.</div></div>"
+          }
+        ]
+      }
+    }
+  ],
+  "allBlockTypes": {
+    "paragraph": {
+      "type": "paragraph",
+      "text": "Plain paragraph text with HTML support",
+      "class": "optional-css-class"
+    },
+    "heading": {
+      "type": "heading",
+      "level": "h3",
+      "text": "Heading text with HTML support"
+    },
+    "list": {
+      "type": "list",
+      "style": "ul",
+      "items": ["Item 1", "Item 2", "Item with <strong>HTML</strong>"]
+    },
+    "orderedList": {
+      "type": "list",
+      "style": "ol",
+      "items": ["First", "Second", "Third"]
+    }
+  }
+}
