@@ -1523,33 +1523,41 @@ function renderTimelineHorizontalScroll(block) {
       });
     }
 
-    // Insight box at bottom (with customizable icon)
-    if (phase.insight) {
-      const insightBox = document.createElement('div');
-      insightBox.className = 'cs-timeline-hs-insight';
+    // Wrap insight and learning in a container
+    if (phase.insight || phase.learning) {
+      const bottomContainer = document.createElement('div');
+      bottomContainer.className = 'cs-timeline-hs-bottom-container';
 
-      // Icon
-      if (phase.insight.icon) {
-        const iconSpan = document.createElement('span');
-        iconSpan.className = 'cs-timeline-hs-insight-icon';
-        iconSpan.innerHTML = renderIcon(phase.insight.icon);
-        insightBox.appendChild(iconSpan);
+      // Insight box at bottom (with customizable icon)
+      if (phase.insight) {
+        const insightBox = document.createElement('div');
+        insightBox.className = 'cs-timeline-hs-insight';
+
+        // Icon
+        if (phase.insight.icon) {
+          const iconSpan = document.createElement('span');
+          iconSpan.className = 'cs-timeline-hs-insight-icon';
+          iconSpan.innerHTML = renderIcon(phase.insight.icon);
+          insightBox.appendChild(iconSpan);
+        }
+
+        const insightText = document.createElement('p');
+        insightText.className = 'cs-timeline-hs-insight-text';
+        insightText.innerHTML = phase.insight.text;
+        insightBox.appendChild(insightText);
+
+        bottomContainer.appendChild(insightBox);
       }
 
-      const insightText = document.createElement('p');
-      insightText.className = 'cs-timeline-hs-insight-text';
-      insightText.innerHTML = phase.insight.text;
-      insightBox.appendChild(insightText);
+      // Learning sidebar (optional)
+      if (phase.learning) {
+        const learningSidebar = document.createElement('div');
+        learningSidebar.className = 'cs-timeline-hs-learning';
+        learningSidebar.innerHTML = phase.learning.text;
+        bottomContainer.appendChild(learningSidebar);
+      }
 
-      phaseEl.appendChild(insightBox);
-    }
-
-    // Learning sidebar (optional)
-    if (phase.learning) {
-      const learningSidebar = document.createElement('div');
-      learningSidebar.className = 'cs-timeline-hs-learning';
-      learningSidebar.innerHTML = phase.learning.text;
-      phaseEl.appendChild(learningSidebar);
+      phaseEl.appendChild(bottomContainer);
     }
 
     phasesContainer.appendChild(phaseEl);

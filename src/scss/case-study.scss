@@ -2082,6 +2082,11 @@
     }
   }
 
+.cs-timeline-hs-bottom-container{
+  display: flex;
+  justify-content: space-around;
+}
+
   // Insight box at bottom
   .cs-timeline-hs-insight {
     margin-top: 2rem;
