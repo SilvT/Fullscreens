@@ -550,6 +550,12 @@ function renderBlock(block, project) {
     case 'metrics-inline':
       element = renderMetricsInline(block);
       break;
+    case 'metrics-grid':
+      element = renderMetricsGrid(block);
+      break;
+    case 'content-carousel':
+      element = renderContentCarousel(block);
+      break;
     case 'gallery':
       element = renderGallery(block, project);
       break;
@@ -1005,6 +1011,182 @@ function renderMetricsInline(block) {
 
   wrapper.appendChild(metricsGrid);
   return wrapper;
+}
+
+/**
+ * Render metrics grid block
+ * Creates individual metric cards using the metric-card mixin for each item
+ */
+function renderMetricsGrid(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-block-metrics-grid';
+
+  if (block.heading) {
+    const heading = document.createElement('h2');
+    heading.className = 'cs-section-heading';
+    heading.textContent = block.heading;
+    wrapper.appendChild(heading);
+  }
+
+  const metricsGrid = document.createElement('div');
+  metricsGrid.className = 'cs-metrics-grid';
+
+  block.metrics.forEach((metric) => {
+    // Create individual cards for each item within the metric
+    metric.items.forEach((item) => {
+      const card = createMetricCard({
+        label: metric.title,
+        value: item
+      });
+      metricsGrid.appendChild(card);
+    });
+  });
+
+  wrapper.appendChild(metricsGrid);
+  return wrapper;
+}
+
+/**
+ * Render content carousel block
+ * Creates a horizontal carousel with navigation for cycling through content blocks
+ */
+function renderContentCarousel(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-block-content-carousel';
+
+  if (block.heading) {
+    const heading = document.createElement('h2');
+    heading.className = 'cs-section-heading';
+    heading.textContent = block.heading;
+    wrapper.appendChild(heading);
+  }
+
+  const carouselContainer = document.createElement('div');
+  carouselContainer.className = 'cs-carousel-container';
+
+  // Navigation buttons
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'cs-carousel-nav cs-carousel-prev';
+  prevBtn.setAttribute('aria-label', 'Previous slide');
+  prevBtn.innerHTML = '<i class="iconoir-nav-arrow-left"></i>';
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'cs-carousel-nav cs-carousel-next';
+  nextBtn.setAttribute('aria-label', 'Next slide');
+  nextBtn.innerHTML = '<i class="iconoir-nav-arrow-right"></i>';
+
+  // Carousel track
+  const track = document.createElement('div');
+  track.className = 'cs-carousel-track';
+
+  // Create slides from items
+  block.items.forEach((item, index) => {
+    const slide = document.createElement('div');
+    slide.className = 'cs-carousel-slide';
+    if (index === 0) slide.classList.add('active');
+
+    // Title
+    const title = document.createElement('h3');
+    title.className = 'cs-carousel-slide-title';
+    title.textContent = item.title;
+    slide.appendChild(title);
+
+    // Metrics grid for items
+    if (item.items && item.items.length > 0) {
+      const metricsGrid = document.createElement('div');
+      metricsGrid.className = 'cs-carousel-metrics-grid';
+
+      item.items.forEach((metricText) => {
+        const card = createMetricCard({
+          label: item.title,
+          value: metricText
+        });
+        metricsGrid.appendChild(card);
+      });
+
+      slide.appendChild(metricsGrid);
+    }
+
+    track.appendChild(slide);
+  });
+
+  carouselContainer.appendChild(prevBtn);
+  carouselContainer.appendChild(track);
+  carouselContainer.appendChild(nextBtn);
+
+  // Indicators
+  const indicators = document.createElement('div');
+  indicators.className = 'cs-carousel-indicators';
+
+  block.items.forEach((_, index) => {
+    const indicator = document.createElement('button');
+    indicator.className = 'cs-carousel-indicator';
+    if (index === 0) indicator.classList.add('active');
+    indicator.setAttribute('aria-label', `Go to slide ${index + 1}`);
+    indicator.dataset.index = index;
+    indicators.appendChild(indicator);
+  });
+
+  wrapper.appendChild(carouselContainer);
+  wrapper.appendChild(indicators);
+
+  // Initialize carousel behavior
+  setTimeout(() => initializeCarousel(wrapper, block.items.length), 100);
+
+  return wrapper;
+}
+
+/**
+ * Initialize carousel navigation and indicators
+ */
+function initializeCarousel(wrapper, totalSlides) {
+  let currentSlide = 0;
+  const slides = wrapper.querySelectorAll('.cs-carousel-slide');
+  const indicators = wrapper.querySelectorAll('.cs-carousel-indicator');
+  const prevBtn = wrapper.querySelector('.cs-carousel-prev');
+  const nextBtn = wrapper.querySelector('.cs-carousel-next');
+
+  function goToSlide(index) {
+    // Remove active class from current slide and indicator
+    slides[currentSlide].classList.remove('active');
+    indicators[currentSlide].classList.remove('active');
+
+    // Update current slide
+    currentSlide = index;
+
+    // Add active class to new slide and indicator
+    slides[currentSlide].classList.add('active');
+    indicators[currentSlide].classList.add('active');
+  }
+
+  // Previous button
+  prevBtn.addEventListener('click', () => {
+    const newIndex = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
+    goToSlide(newIndex);
+  });
+
+  // Next button
+  nextBtn.addEventListener('click', () => {
+    const newIndex = currentSlide === totalSlides - 1 ? 0 : currentSlide + 1;
+    goToSlide(newIndex);
+  });
+
+  // Indicator clicks
+  indicators.forEach((indicator) => {
+    indicator.addEventListener('click', () => {
+      const index = parseInt(indicator.dataset.index);
+      goToSlide(index);
+    });
+  });
+
+  // Keyboard navigation
+  wrapper.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      prevBtn.click();
+    } else if (e.key === 'ArrowRight') {
+      nextBtn.click();
+    }
+  });
 }
 
 /**

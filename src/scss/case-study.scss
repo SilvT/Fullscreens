@@ -1014,6 +1014,247 @@
   }
 }
 
+// Block: Metrics Grid
+.cs-block-metrics-grid {
+  padding: 3rem 4rem;
+  background-color: white;
+
+  .cs-section-heading {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    color: $color-blue-main;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .cs-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    @include breakpoint(tablet) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    @include breakpoint(mobile) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  .cs-metric-card {
+    @include metric-card();
+    min-height: 140px;
+
+    .cs-metric-value {
+      font-size: $font-size-s;
+      line-height: 1.4;
+
+      strong {
+        font-size: $font-size-l;
+        font-weight: $font-weight-semibold;
+        color: $color-blue-darker;
+      }
+    }
+
+    .cs-metric-label {
+      font-size: $font-size-xs;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: $color-neutral-light;
+      font-weight: $font-weight-medium;
+    }
+  }
+}
+
+// Block: Content Carousel
+.cs-block-content-carousel {
+  padding: 3rem 4rem;
+  background-color: white;
+
+  .cs-section-heading {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    color: $color-blue-main;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .cs-carousel-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    @include breakpoint(tablet) {
+      max-width: 900px;
+    }
+
+    @include breakpoint(mobile) {
+      gap: 1rem;
+      min-height: 450px;
+    }
+  }
+
+  .cs-carousel-track {
+    flex: 1;
+    position: relative;
+    overflow: visible;
+    min-height: 450px;
+
+    @include breakpoint(mobile) {
+      min-height: 400px;
+    }
+  }
+
+  .cs-carousel-slide {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    background: $color-neutral-lighter;
+    border: 1px solid $color-neutral-lighter;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      position: relative;
+    }
+
+    @include breakpoint(mobile) {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  .cs-carousel-slide-title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    color: $color-blue-main;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $color-blue-light;
+
+    @include breakpoint(mobile) {
+      font-size: $font-size-l;
+    }
+  }
+
+  .cs-carousel-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+
+    @include breakpoint(mobile) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .cs-metric-card {
+      @include metric-card();
+      min-height: 120px;
+
+      .cs-metric-value {
+        font-size: $font-size-s;
+        line-height: 1.4;
+
+        strong {
+          font-size: $font-size-l;
+          font-weight: $font-weight-semibold;
+          color: $color-blue-darker;
+        }
+      }
+
+      .cs-metric-label {
+        font-size: $font-size-xs;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: $color-neutral-light;
+        font-weight: $font-weight-medium;
+      }
+    }
+  }
+
+  .cs-carousel-nav {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border: 2px solid $color-blue-main;
+    background: white;
+    color: $color-blue-main;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 24px;
+
+    &:hover {
+      background: $color-blue-main;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    @include breakpoint(mobile) {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+    }
+
+    i {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .cs-carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .cs-carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid $color-blue-light;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+
+    &:hover {
+      border-color: $color-blue-main;
+      transform: scale(1.2);
+    }
+
+    &.active {
+      background: $color-blue-main;
+      border-color: $color-blue-main;
+      width: 32px;
+      border-radius: 6px;
+    }
+  }
+}
+
 // Block: Full-Width Text
 .cs-block-full-text {
   padding: 3rem 4rem;

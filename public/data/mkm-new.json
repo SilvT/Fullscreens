@@ -450,6 +450,75 @@
         ]
       },
 
+      {
+        "type": "before-after-comparison",
+        "sectionTitle": "The Outcome",
+        "heading": "The outcome",
+        "before": {
+          "label": "Before: The Manual Chaos",
+          "items": [
+            "Marketing tracking via manual Excel sheets across 4 departments",
+            "6+ fragmented lead entry points (events, social, website, telesales)",
+            "Social media complaints not reaching Customer Care",
+            "No visibility into campaign ROI",
+            "Weekly manual reporting (2-week lag on decisions)",
+            "Data entry errors causing missed opportunities"
+          ]
+        },
+        "after": {
+          "label": "After: Unified Platform (Production-Ready)",
+          "items": [
+            "Single source of truth across 4 departments",
+            "Automated data feeds from all sources",
+            "Facebook-to-CRM complaint pipeline",
+            "Real-time campaign tracking and comparison",
+            "Instant visibility into lead journey",
+            "Projected 50% reduction in manual data collection time"
+          ]
+        }
+      },
+
+      {
+        "type": "content-carousel",
+        "heading": "Impact Metrics",
+        "items": [
+          {
+            "title": "Product Status",
+            "items": [
+              "Production-ready, entering user testing phase"
+            ]
+          },
+          {
+            "title": "Projected Impact",
+            "items": [
+              "<strong>30%</strong> reduction in Social Media Manager inbox (automated complaint routing)",
+              "<strong>50%</strong> time savings on data collection (API feeds vs manual Excel entry)",
+              "<strong>Unified visibility</strong> across digital + traditional marketing for first time",
+              "<strong>Real-time tracking</strong> replacing 2-week reporting lag",
+              "<strong>Foundation built</strong> to support 50% customer growth"
+            ]
+          },
+          {
+            "title": "Organizational Impact",
+            "items": [
+              "<strong>90%</strong> QA reduction through systematic design-to-dev handoff",
+              "<strong>Month 15: Design system approach approved company-wide</strong> and mandated for all teams",
+              "<strong>Systematic handoff became company standard</strong> across all products",
+              "<strong>First comprehensive product documentation system</strong> (Confluence hub) that I built and maintained",
+              "<strong>Design Ops team created</strong>, 5 designers trained in systematic approach"
+            ]
+          },
+          {
+            "title": "CEO Validation",
+            "items": [
+              "Congratulated on design-dev effectiveness despite async delivery (CEO surprised by 90% QA improvement)",
+              "Featured product in investor conversations",
+              "Showcased at company booth during developer events",
+              "0→MVP in 18 months with 3-person team"
+            ]
+          }
+        ]
+      },
 
         {
         "type": "two-column-with-sidebar",
