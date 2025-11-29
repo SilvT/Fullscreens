@@ -348,31 +348,103 @@
             }
           },
           {
-            "title": "Integrations & Refinement",
+            "title": "Advanced Integration & Refinement",
             "period": "Months 9-14",
             "icon": "iconoir:puzzle",
             "context": "Focused execution",
             "content": [
               {
                 "type": "heading",
-                "text": "Milestones"
+                "text": "What Happened"
               },
               {
                 "type": "highlights",
                 "items": [
-                  "Built Facebook Dm->CRM pipeline (my proposal from user research)",
-                  "Google Ads + Analytics API integration",
+                  "Built Facebook DM → CRM pipeline (my proposal from user research)",
                   "Unified inbox combining social media + customer support",
-                  "Creating user flows with incomplete requirements"
+                  "Automated lead capture from door-to-door tablet app",
+                  "Real-time campaign comparison feature",
+                  "Google Ads + Analytics API integration"
+                ]
+              },
+              {
+                "type": "heading",
+                "text": "Challenge"
+              },
+              {
+                "type": "paragraph",
+                "text": "Async collaboration with Frontend (+8hrs away, limited English fluency)"
+              },
+              {
+                "type": "heading",
+                "text": "Solution Developed"
+              },
+              {
+                "type": "paragraph",
+                "text": "Systematic handoff approach using:"
+              },
+              {
+                "type": "highlights",
+                "items": [
+                  "Detailed Figma annotations for every interaction state",
+                  "Prototypes with all microcopy included (no assumptions)",
+                  "Visual redlines for spacing/sizing where JavaFX CSS couldn't handle it",
+                  "Edge case documentation for error states",
+                  "Recorded walkthroughs for complex interactions"
                 ]
               }
             ],
             "insight": {
-              "icon": "iconoir:light-bulb",
-              "text": "Feature set solidified, systematic delivery established."
+              "icon": "iconoir:check-circle",
+              "text": "Feature set solidified, systematic delivery established"
+            }
+          },
+          {
+            "title": "Proving the System & Company-Wide Impact",
+            "period": "Months 15-18",
+            "icon": "iconoir:star",
+            "context": "From project success to organizational change",
+            "content": [
+              {
+                "type": "heading",
+                "text": "What Happened"
+              },
+              {
+                "type": "highlights",
+                "items": [
+                  "Refined annotation + prototype system for timezone gap",
+                  "Achieved <b>90% design-to-code accuracy</b> (measured by QA cycles needed)",
+                  "Zero synchronous meetings required for handoff",
+                  "<b>Month 15 MILESTONE: CEO approved design system expansion company-wide</b>",
+                  "System worked so well, CEO mandated systematic approach for all product teams",
+                  "Started mentoring other designers in systematic handoff",
+                  "Design Ops team formed, 5 designers trained"
+                ]
+              },
+              {
+                "type": "heading",
+                "text": "The Async Breakthrough"
+              },
+              {
+                "type": "paragraph",
+                "text": "With Frontend +8 hours away and limited English fluency, synchronous communication wasn't an option. The systematic handoff approach I developed out of necessity worked so well it reduced QA cycles by 90%."
+              },
+              {
+                "type": "paragraph",
+                "class": "callout",
+                "text": "<b>Month 15:</b> CEO saw the results and approved expanding this systematic approach into a full design system for the entire company."
+              },
+              {
+                "type": "paragraph",
+                "text": "<b>What this led to:</b> The foundations I built for this product became the company's design system—a separate story entirely. → <b>[Read the Design System case study]</b>"
+              }
+            ],
+            "insight": {
+              "icon": "iconoir:trophy",
+              "text": "Production-ready platform, systematic delivery proven at scale, organizational impact beyond the product"
             },
             "learning": {
-              "text": "<b>Key Learning:</b> Async collaboration with Frontend (+8hrs away, limited English fluency)"
+              "text": "<b>Key Learning:</b> Constraints breed innovation. The timezone gap forced me to develop a system that became the company standard."
             }
           }
         ]
