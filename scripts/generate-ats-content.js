@@ -167,6 +167,268 @@ function stripHTML(html) {
     .trim();
 }
 
+/**
+ * Extract portfolio images and visual samples
+ * ATS Priority #6: Visual proof of work
+ */
+function extractPortfolioSamples(projectIndex, projectDetail) {
+  const samples = [];
+
+  // Hero image (main portfolio piece)
+  if (projectIndex.heroImage) {
+    samples.push({
+      src: projectIndex.heroImage,
+      type: 'image',
+      category: 'Hero Design',
+      altPrefix: projectIndex.title
+    });
+  }
+
+  // Card hover image (interaction design)
+  if (projectIndex.cardHoverImage) {
+    const ext = projectIndex.cardHoverImage.split('.').pop().toLowerCase();
+    const type = ['gif', 'mp4', 'mov', 'webm'].includes(ext) ? 'video' : 'image';
+    samples.push({
+      src: projectIndex.cardHoverImage,
+      type: type,
+      category: type === 'video' ? 'Interactive Prototype' : 'Design Mockup',
+      altPrefix: projectIndex.title
+    });
+  }
+
+  // Images from content blocks
+  if (projectDetail?.contentBlocks) {
+    projectDetail.contentBlocks.forEach(block => {
+      // Image grid blocks
+      if (block.type === 'image-grid' && block.images) {
+        block.images.forEach(img => {
+          samples.push({
+            src: img.src,
+            type: 'image',
+            category: 'Design Deliverable',
+            altText: img.alt || '',
+            altPrefix: projectIndex.title
+          });
+        });
+      }
+
+      // Gallery blocks
+      if (block.type === 'gallery' && block.images) {
+        block.images.forEach(src => {
+          samples.push({
+            src: typeof src === 'string' ? src : src.src,
+            type: 'image',
+            category: 'Portfolio Sample',
+            altText: typeof src === 'object' ? src.alt : '',
+            altPrefix: projectIndex.title
+          });
+        });
+      }
+
+      // Full-bleed images
+      if (block.type === 'full-bleed-image' && block.src) {
+        samples.push({
+          src: block.src,
+          type: 'image',
+          category: 'Full Design',
+          altText: block.alt || '',
+          altPrefix: projectIndex.title
+        });
+      }
+
+      // Carousel content
+      if (block.type === 'content-carousel' && block.content) {
+        block.content.forEach(item => {
+          if (item.src) {
+            const ext = item.src.split('.').pop().toLowerCase();
+            const type = ['gif', 'mp4', 'mov', 'webm'].includes(ext) ? 'video' : 'image';
+            samples.push({
+              src: item.src,
+              type: type,
+              category: 'Design Sample',
+              altText: item.alt || '',
+              altPrefix: projectIndex.title
+            });
+          }
+        });
+      }
+
+      // Two-column content with images
+      if (block.left) {
+        block.left.forEach(section => {
+          if (section.blocks) {
+            section.blocks.forEach(b => {
+              if (b.type === 'image-text-columns' && b.images) {
+                b.images.forEach(img => {
+                  samples.push({
+                    src: img.src,
+                    type: 'image',
+                    category: 'Process Documentation',
+                    altText: img.alt || '',
+                    altPrefix: projectIndex.title
+                  });
+                });
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+
+  // Limit to max 10 samples for ATS (avoid overwhelming)
+  return samples.slice(0, 10);
+}
+
+/**
+ * Extract design process and methodology keywords
+ * ATS loves process-oriented terms
+ */
+function extractDesignProcess(projectIndex, projectDetail) {
+  const processSteps = new Set();
+  const methodologies = new Set();
+
+  // Infer from project tags
+  if (projectIndex.tags) {
+    projectIndex.tags.forEach(tag => {
+      const lower = tag.toLowerCase();
+      if (lower.includes('user research') || lower.includes('research')) {
+        processSteps.add('User Research & Discovery');
+      }
+      if (lower.includes('wireframe') || lower.includes('prototype')) {
+        processSteps.add('Wireframing & Prototyping');
+      }
+      if (lower.includes('design system')) {
+        processSteps.add('Design Systems Development');
+      }
+      if (lower.includes('testing') || lower.includes('usability')) {
+        processSteps.add('Usability Testing & Validation');
+      }
+      if (lower.includes('agile') || lower.includes('scrum')) {
+        methodologies.add('Agile/Scrum Methodology');
+      }
+    });
+  }
+
+  // Always include core design process steps
+  processSteps.add('User-Centered Design');
+  processSteps.add('Iterative Design Process');
+  processSteps.add('Cross-functional Collaboration');
+  processSteps.add('Stakeholder Engagement');
+
+  // Infer from content
+  if (projectDetail?.contentBlocks) {
+    projectDetail.contentBlocks.forEach(block => {
+      if (block.type === 'timeline-process') {
+        processSteps.add('Phased Design Implementation');
+      }
+      if (block.left) {
+        block.left.forEach(section => {
+          const heading = (section.heading || '').toLowerCase();
+          if (heading.includes('research')) processSteps.add('User Research & Discovery');
+          if (heading.includes('wireframe')) processSteps.add('Wireframing & Prototyping');
+          if (heading.includes('test')) processSteps.add('Usability Testing & Validation');
+          if (heading.includes('iterate')) processSteps.add('Iterative Design Process');
+        });
+      }
+    });
+  }
+
+  return {
+    processSteps: Array.from(processSteps),
+    methodologies: Array.from(methodologies)
+  };
+}
+
+/**
+ * Extract deliverables (what you actually produced)
+ * ATS wants to see tangible outputs
+ */
+function extractDeliverables(projectIndex, projectDetail, samples) {
+  const deliverables = new Set();
+
+  // Infer from portfolio samples
+  const hasImages = samples.some(s => s.type === 'image');
+  const hasVideos = samples.some(s => s.type === 'video');
+
+  if (hasImages) {
+    deliverables.add('High-fidelity UI Mockups');
+    deliverables.add('Visual Design Specifications');
+  }
+  if (hasVideos) {
+    deliverables.add('Interactive Prototypes');
+    deliverables.add('Micro-interactions & Animations');
+  }
+
+  // Infer from tags
+  if (projectIndex.tags) {
+    projectIndex.tags.forEach(tag => {
+      const lower = tag.toLowerCase();
+      if (lower.includes('design system')) {
+        deliverables.add('Design System Documentation');
+        deliverables.add('Component Library');
+        deliverables.add('Design Tokens & Variables');
+      }
+      if (lower.includes('wireframe')) {
+        deliverables.add('Wireframes & User Flows');
+      }
+      if (lower.includes('prototype')) {
+        deliverables.add('Interactive Prototypes');
+      }
+      if (lower.includes('research')) {
+        deliverables.add('User Research Reports');
+        deliverables.add('User Journey Maps');
+      }
+    });
+  }
+
+  // Add standard deliverables
+  deliverables.add('Design Documentation');
+  deliverables.add('Developer Handoff Assets');
+
+  return Array.from(deliverables).slice(0, 8); // Max 8 deliverables
+}
+
+/**
+ * Extract collaboration and soft skills
+ * ATS wants to see teamwork and communication
+ */
+function extractCollaboration(projectIndex, projectDetail) {
+  const collaborations = [];
+
+  // Infer from content
+  if (projectDetail?.contentBlocks) {
+    projectDetail.contentBlocks.forEach(block => {
+      if (block.left) {
+        block.left.forEach(section => {
+          const text = JSON.stringify(section).toLowerCase();
+
+          if (text.includes('engineer') || text.includes('developer')) {
+            collaborations.push('Collaborated with engineering teams on implementation');
+          }
+          if (text.includes('stakeholder') || text.includes('ceo') || text.includes('leadership')) {
+            collaborations.push('Engaged with stakeholders and leadership for strategic alignment');
+          }
+          if (text.includes('marketing') || text.includes('product team')) {
+            collaborations.push('Worked cross-functionally with product and marketing teams');
+          }
+          if (text.includes('user') || text.includes('customer')) {
+            collaborations.push('Conducted user research and gathered customer feedback');
+          }
+        });
+      }
+    });
+  }
+
+  // Default collaborations
+  if (collaborations.length === 0) {
+    collaborations.push('Cross-functional team collaboration');
+    collaborations.push('Stakeholder communication and alignment');
+  }
+
+  return [...new Set(collaborations)].slice(0, 4); // Dedupe and limit
+}
+
 // ============================================================================
 // HTML GENERATION FUNCTIONS (ATS-OPTIMIZED)
 // ============================================================================
@@ -174,10 +436,14 @@ function stripHTML(html) {
 /**
  * Generate semantic, ATS-friendly HTML for a single project
  */
-function generateProjectHTML(projectIndex, projectDetail, config) {
+function generateProjectHTML(projectIndex, projectDetail) {
   const skills = extractSkills(projectIndex, projectDetail);
   const metrics = extractMetrics(projectIndex, projectDetail);
   const achievements = extractAchievements(projectDetail);
+  const portfolioSamples = extractPortfolioSamples(projectIndex, projectDetail);
+  const designProcess = extractDesignProcess(projectIndex, projectDetail);
+  const deliverables = extractDeliverables(projectIndex, projectDetail, portfolioSamples);
+  const collaborations = extractCollaboration(projectIndex, projectDetail);
 
   // Job title - critical for ATS (appears multiple times for emphasis)
   const jobTitle = projectDetail?.jobTitle || projectIndex.jobTitle || 'Product Designer';
@@ -256,6 +522,70 @@ function generateProjectHTML(projectIndex, projectDetail, config) {
             ${achievement.outcome ? `<p class="outcome"><em>Outcome: ${achievement.outcome}</em></p>` : ''}
           </div>
         `).join('')}
+      </div>
+      ` : ''}
+
+      <!-- Portfolio Samples & Visual Work (ATS Priority #6: Visual Proof) -->
+      ${portfolioSamples.length > 0 ? `
+      <div class="project-portfolio-samples">
+        <h4>Portfolio Samples & Design Work:</h4>
+        <ul class="portfolio-samples-list" role="list">
+          ${portfolioSamples.map(sample => {
+            const altText = sample.altText || `${sample.category} - ${sample.altPrefix}`;
+            if (sample.type === 'image') {
+              return `
+            <li>
+              <figure>
+                <img src="${sample.src}"
+                     alt="${altText}"
+                     loading="lazy"
+                     itemprop="image">
+                <figcaption>${sample.category}: ${sample.altPrefix}</figcaption>
+              </figure>
+            </li>`;
+            } else {
+              return `
+            <li>
+              <a href="${sample.src}" target="_blank" rel="noopener">
+                View ${sample.category.toLowerCase()}: ${altText}
+              </a>
+            </li>`;
+            }
+          }).join('')}
+        </ul>
+      </div>
+      ` : ''}
+
+      <!-- Design Process & Methodology (ATS Priority #7: Process Keywords) -->
+      ${designProcess.processSteps.length > 0 ? `
+      <div class="project-design-process">
+        <h4>Design Process & Methodology:</h4>
+        <ul class="process-list" role="list">
+          ${designProcess.processSteps.map(step => `<li>${step}</li>`).join('')}
+        </ul>
+        ${designProcess.methodologies.length > 0 ? `
+        <p class="methodologies"><strong>Methodologies:</strong> ${designProcess.methodologies.join(', ')}</p>
+        ` : ''}
+      </div>
+      ` : ''}
+
+      <!-- Deliverables (ATS Priority #8: Tangible Outputs) -->
+      ${deliverables.length > 0 ? `
+      <div class="project-deliverables">
+        <h4>Design Deliverables & Outputs:</h4>
+        <ul class="deliverables-list" role="list">
+          ${deliverables.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+      </div>
+      ` : ''}
+
+      <!-- Collaboration & Teamwork (ATS Priority #9: Soft Skills) -->
+      ${collaborations.length > 0 ? `
+      <div class="project-collaboration">
+        <h4>Cross-functional Collaboration & Stakeholder Management:</h4>
+        <ul class="collaboration-list" role="list">
+          ${collaborations.map(item => `<li>${item}</li>`).join('')}
+        </ul>
       </div>
       ` : ''}
 
@@ -402,7 +732,7 @@ function generateATSContent() {
       }
 
       // Generate HTML
-      const html = generateProjectHTML(projectIndex, projectDetail, config.atsOptimization);
+      const html = generateProjectHTML(projectIndex, projectDetail);
       projectsHTML.push(html);
 
       // Generate structured data

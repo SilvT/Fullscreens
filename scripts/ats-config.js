@@ -70,17 +70,70 @@ export default {
     // Generate JSON-LD structured data
     generateStructuredData: true,
 
+    // Extract portfolio images and visual samples
+    includePortfolioSamples: true,
+
+    // Include design process and methodology sections
+    includeDesignProcess: true,
+
+    // Include deliverables and outputs
+    includeDeliverables: true,
+
+    // Include collaboration and teamwork
+    includeCollaboration: true,
+
     // Keywords to emphasize (will appear in multiple places)
     keywordEmphasis: [
+      // Core Role Keywords
       'Product Design',
       'Product Designer',
+      'UI/UX Designer',
       'Design Systems',
       'UI/UX',
+
+      // Skills & Tools
       'User Research',
       'Figma',
+      'Wireframes',
+      'Prototypes',
+      'High-fidelity Mockups',
+      'Visual Design',
+
+      // Industry & Domain
       'Enterprise',
       'B2B',
-      'CRM'
+      'B2C',
+      'CRM',
+      'SaaS',
+
+      // Process & Methodology
+      'User-Centered Design',
+      'Design Thinking',
+      'Agile',
+      'Usability Testing',
+      'User Testing',
+      'Iterative Design',
+      'Design Sprint',
+
+      // Collaboration & Soft Skills
+      'Cross-functional',
+      'Stakeholder Management',
+      'Leadership',
+      'Mentorship',
+
+      // Deliverables
+      'Design Documentation',
+      'Component Library',
+      'Design Tokens',
+      'User Flows',
+      'Journey Maps',
+
+      // Technical
+      'Responsive Design',
+      'Accessibility',
+      'WCAG',
+      'Frontend Collaboration',
+      'Design Handoff'
     ]
   },
 

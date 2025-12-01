@@ -165,7 +165,7 @@
 
 <!--
   ATS-OPTIMIZED CONTENT
-  Generated: 2025-11-29T17:39:20.825Z
+  Generated: 2025-11-29T17:41:37.163Z
 
   This content is optimized for:
   1. Applicant Tracking Systems (ATS)
@@ -207,6 +207,744 @@
         <p><strong>Overview:</strong> Built from scratch to unify fragmented marketing operations across 4 departments, replacing manual Excel workflows with real-time data visibility. Grew from Mid UI Designer to co-owning product strategy</p>
         <p>Seven months in, I found myself presenting, not just a complex UI dashboard app, but a design system to a room full of engineers. This wasn't in the job description for Mid UI Designer.</p>
       </div>
+
+      <!-- Skills & Technologies (ATS Priority #3: Keyword Matching) -->
+      
+      <div class="project-skills" itemprop="keywords">
+        <h4>Skills & Technologies:</h4>
+        <ul class="skills-list" role="list">
+          <li itemprop="skill">Product Design</li><li itemprop="skill">UI/UX</li><li itemprop="skill">Design Systems</li><li itemprop="skill">B2B</li><li itemprop="skill">0→1</li><li itemprop="skill">Co-ownership</li>
+        </ul>
+      </div>
+      
+
+      <!-- Metrics & Impact (ATS Priority #4: Quantifiable Results) -->
+      
+      <div class="project-metrics" itemprop="about">
+        <h4>Impact & Results:</h4>
+        <ul class="metrics-list" role="list">
+          
+            <li>
+              <strong>50%</strong> — Customer growth
+            </li>
+          
+            <li>
+              <strong>4 → 1</strong> — Unified Platform
+            </li>
+          
+            <li>
+              <strong>75%</strong> — Reduced Manual work
+            </li>
+          
+            <li>
+              <strong>4 → 1</strong> — Departments unified into single platform
+            </li>
+          
+            <li>
+              <strong>30%</strong> — Social inbox opmitised
+            </li>
+          
+            <li>
+              <strong>50%</strong> — Data collection time saved
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Key Achievements (ATS Priority #5: Responsibilities & Actions) -->
+      
+
+      <!-- Project Tags (Additional keywords for ATS) -->
+      
+      <div class="project-tags">
+        <strong>Tags:</strong>
+        <span class="tag">Product Design</span>, <span class="tag">UI/UX</span>, <span class="tag">Design Systems</span>, <span class="tag">B2B</span>, <span class="tag">0→1</span>, <span class="tag">Co-ownership</span>
+      </div>
+      
+
+    </article>
+  
+
+    <!-- Project: Design System from Scratch -->
+    <article class="project-summary ats-optimized"
+             itemscope
+             itemtype="https://schema.org/CreativeWork"
+             data-project-id=""
+             role="article"
+             aria-label="Design System from Scratch - Product Designer">
+
+      <!-- Job Title & Company (ATS Priority #1) -->
+      <header class="project-header">
+        <h2 itemprop="name" class="project-title">
+          <strong>Design System from Scratch</strong> — Product Designer
+        </h2>
+        <p class="project-company" itemprop="publisher">Senapt LTD</p>
+        <p class="project-duration"><time itemprop="dateCreated">18 months</time></p>
+      </header>
+
+      <!-- Subtitle (Context) -->
+      
+      <h3 class="project-subtitle" itemprop="alternativeHeadline">
+        Building design infrastructure in an engineer-first startup with zero precedent
+      </h3>
+      
+
+      <!-- Overview (ATS Priority #2: Project Description) -->
+      <div class="project-overview" itemprop="description">
+        <p><strong>Overview:</strong> Built a production-ready design system from scratch as a solo mid-level designer in an engineer-first startup. Solved JavaFX (zero references), 8-hour timezone gaps, and CEO resistance. Result: 90% QA reduction, company-wide adoption, and 1,920 hours saved through systematic reuse.</p>
+        <p>CEO rejected my design system pitch. So I built it anyway, proved it worked, and got him to mandate it company-wide 15 months later.</p>
+      </div>
+
+      <!-- Skills & Technologies (ATS Priority #3: Keyword Matching) -->
+      
+      <div class="project-skills" itemprop="keywords">
+        <h4>Skills & Technologies:</h4>
+        <ul class="skills-list" role="list">
+          <li itemprop="skill">Design Systems</li><li itemprop="skill">Token Architecture</li><li itemprop="skill">JavaFX</li><li itemprop="skill">GitHub Actions</li><li itemprop="skill">Async Collaboration</li><li itemprop="skill">JavaFX (main product)</li><li itemprop="skill">React, Flutter, Vue, Nuxt</li><li itemprop="skill">Token Studio</li><li itemprop="skill">Figma Dev Mode</li><li itemprop="skill">DTCG specification compliant</li><li itemprop="skill">Multi-platform support</li><li itemprop="skill">Automated transformation</li><li itemprop="skill">Proper token referencing</li><li itemprop="skill">Non-destructive testing</li><li itemprop="skill">Deprecation management</li>
+        </ul>
+      </div>
+      
+
+      <!-- Metrics & Impact (ATS Priority #4: Quantifiable Results) -->
+      
+      <div class="project-metrics" itemprop="about">
+        <h4>Impact & Results:</h4>
+        <ul class="metrics-list" role="list">
+          
+            <li>
+              <strong>90%</strong> — QA reduction
+            </li>
+          
+            <li>
+              <strong>864</strong> — Production tokens
+            </li>
+          
+            <li>
+              <strong>40+</strong> — Components
+            </li>
+          
+            <li>
+              <strong>7</strong> — Projects adopted
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Key Achievements (ATS Priority #5: Responsibilities & Actions) -->
+      
+      <div class="project-achievements">
+        <h4>Key Contributions:</h4>
+        
+          <div class="achievement-group">
+            <h5>Phase 1: Foundation</h5>
+            <ul role="list">
+              <li>Basic 2-layer token system (Core → Semantic)</li><li>~150 tokens, initial component library</li><li>CSS variables as output</li><li>Naming conventions still messy</li>
+            </ul>
+            <p class="outcome"><em>Outcome: Established blue primary palette and neutral scale (950→0) that stuck throughout</em></p>
+          </div>
+        
+          <div class="achievement-group">
+            <h5>Phase 2: Systematisation</h5>
+            <ul role="list">
+              <li>Moved from CSS to JSON as source of truth</li><li>3-layer architecture (Core → Semantic → Component)</li><li>Comprehensive button token set</li><li>First hand-off via Figma Dev Mode</li>
+            </ul>
+            <p class="outcome"><em>Outcome: Realised manual token delivery was unsustainable</em></p>
+          </div>
+        
+          <div class="achievement-group">
+            <h5>Phase 3: Automation Breakthrough</h5>
+            <ul role="list">
+              <li>Built GitHub Action for Figma-to-JavaFX transformation</li><li>VP of FE became biggest advocate</li><li>Zero manual token intervention</li><li>FE autonomy increased dramatically</li>
+            </ul>
+            <p class="outcome"><em>Outcome: Automation proved value to stakeholders</em></p>
+          </div>
+        
+          <div class="achievement-group">
+            <h5>Phase 4: Company-Wide Adoption</h5>
+            <ul role="list">
+              <li>7 projects adopted the system</li><li>Trained 7 designers in systems thinking</li><li>4-layer architecture with 864 tokens</li><li>CEO mandate: implement everywhere</li>
+            </ul>
+            <p class="outcome"><em>Outcome: From solo execution to collaborative governance</em></p>
+          </div>
+        
+      </div>
+      
+
+      <!-- Project Tags (Additional keywords for ATS) -->
+      
+      <div class="project-tags">
+        <strong>Tags:</strong>
+        <span class="tag">Design Systems</span>, <span class="tag">Token Architecture</span>, <span class="tag">JavaFX</span>, <span class="tag">GitHub Actions</span>, <span class="tag">Async Collaboration</span>
+      </div>
+      
+
+    </article>
+  
+
+    <!-- Project: Energy Switching Tracker -->
+    <article class="project-summary ats-optimized"
+             itemscope
+             itemtype="https://schema.org/CreativeWork"
+             data-project-id=""
+             role="article"
+             aria-label="Energy Switching Tracker - Product Designer">
+
+      <!-- Job Title & Company (ATS Priority #1) -->
+      <header class="project-header">
+        <h2 itemprop="name" class="project-title">
+          <strong>Energy Switching Tracker</strong> — Product Designer
+        </h2>
+        <p class="project-company" itemprop="publisher">Senapt Limited (Tomato Energy)</p>
+        <p class="project-duration"><time itemprop="dateCreated">1 month</time></p>
+      </header>
+
+      <!-- Subtitle (Context) -->
+      
+      <h3 class="project-subtitle" itemprop="alternativeHeadline">
+        Helping customers understand their energy journey
+      </h3>
+      
+
+      <!-- Overview (ATS Priority #2: Project Description) -->
+      <div class="project-overview" itemprop="description">
+        <p><strong>Overview:</strong> After hunting down backend engineers to map a process no one fully understood, I built a customer-facing tracker that replaced reactive 'we'll email you' communication with proactive self-service, saving CS from a lot of anxious phone calls.</p>
+        <p>No one—not customer service, not backend devs—could explain how the UK energy switching process worked. So I became an amateur backend archaeologist.</p>
+      </div>
+
+      <!-- Skills & Technologies (ATS Priority #3: Keyword Matching) -->
+      
+      <div class="project-skills" itemprop="keywords">
+        <h4>Skills & Technologies:</h4>
+        <ul class="skills-list" role="list">
+          <li itemprop="skill">Product Design</li><li itemprop="skill">UI/UX</li><li itemprop="skill">B2C</li><li itemprop="skill">Mobile-First</li><li itemprop="skill">Data Visualization</li><li itemprop="skill">Mobile-first design</li><li itemprop="skill">Figma prototyping</li><li itemprop="skill">Standard web tech</li><li itemprop="skill">Backend API integration</li><li itemprop="skill">Tomato brand system</li>
+        </ul>
+      </div>
+      
+
+      <!-- Metrics & Impact (ATS Priority #4: Quantifiable Results) -->
+      
+      <div class="project-metrics" itemprop="about">
+        <h4>Impact & Results:</h4>
+        <ul class="metrics-list" role="list">
+          
+            <li>
+              <strong>Real time</strong> — Transparent journey
+            </li>
+          
+            <li>
+              <strong>1</strong> — Magic link
+            </li>
+          
+            <li>
+              <strong>Customer</strong> — Self-diagnosis tool
+            </li>
+          
+            <li>
+              <strong>1</strong> — Source of truth
+            </li>
+          
+            <li>
+              <strong>+15 System States</strong> — Translated backend states like into human language
+            </li>
+          
+            <li>
+              <strong>Self-error diagnosis</strong> — Customer has autonomy to understand their journey
+            </li>
+          
+            <li>
+              <strong>1 Magic Link </strong> — From unreliable email system to just one click
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Key Achievements (ATS Priority #5: Responsibilities & Actions) -->
+      
+      <div class="project-achievements">
+        <h4>Key Contributions:</h4>
+        
+          <div class="achievement-group">
+            <h5>Understanding the Market</h5>
+            <ul role="list">
+              <li>Researched UK energy market as non-UK resident</li><li>Customer service couldn't help—directed me to backend team</li><li>Got technical flow diagram that meant nothing to customers (nor me)</li><li>Verdict: ''No one knows the full picture''</li>
+            </ul>
+            <p class="outcome"><em>Outcome: Built foundational understanding from scratch</em></p>
+          </div>
+        
+          <div class="achievement-group">
+            <h5>Translation & Mapping</h5>
+            <ul role="list">
+              <li>Translated backend states into human language</li><li>Noted two distinct customer paths: smart vs traditional meters</li><li>Simplified and categorised errors into 3 large groups: application, switching, technical</li><li>Got re-familiarised with Tomato's playful brand assets and tone</li>
+            </ul>
+            <p class="outcome"><em>Outcome: Created comprehensive error taxonomy and journey maps</em></p>
+          </div>
+        
+          <div class="achievement-group">
+            <h5>Design & Prototype</h5>
+            <ul role="list">
+              <li>Designed mobile-first tracking interface</li><li>Built interactive prototypes for both journey types</li><li>Created loading animations with bouncing tomatoes</li><li>Documented micro-interactions for brand personality</li>
+            </ul>
+            <p class="outcome"><em>Outcome: Complete journey prototypes covering all error scenarios</em></p>
+          </div>
+        
+          <div class="achievement-group">
+            <h5>Handoff & Launch</h5>
+            <ul role="list">
+              <li>Got stakeholder approval</li><li>Prepared comprehensive documentation</li><li>Handed off to future frontend team</li><li>Returned to main project</li>
+            </ul>
+            <p class="outcome"><em>Outcome: Clean handoff with animation specs and edge case documentation</em></p>
+          </div>
+        
+          <div class="achievement-group">
+            <h5>Solutions Delivered</h5>
+            <ul role="list">
+              <li><em>Application</em> — "We've received your switch request"</li><li><em>Switch Initiation</em> — "Your current supplier has been notified"</li><li><em>Approval</em> — "Good news! Your switch is approved for [date]"</li><li><em>Meter reading</em> — "Collecting data! Your first bill will be issued by [date]."</li><li><em>Completion</em> — "Welcome! You're now on Tomato"</li>
+            </ul>
+            
+          </div>
+        
+          <div class="achievement-group">
+            <h5>Solutions Delivered</h5>
+            <ul role="list">
+              <li><em>Smart meters:</em> Automated reading collection, fewer manual steps</li><li><em>Traditional meters:</em> Clear callouts when manual readings were required</li>
+            </ul>
+            
+          </div>
+        
+          <div class="achievement-group">
+            <h5>Solutions Delivered</h5>
+            <ul role="list">
+              <li><em>Application errors:</em> Wrong MPAN, incorrect address, missing information</li><li><em>Switching errors:</em> Debt objections, contract disputes, supplier blocking</li><li><em>Technical issues:</em> Meter access problems, database mismatches, system failures</li>
+            </ul>
+            
+          </div>
+        
+      </div>
+      
+
+      <!-- Project Tags (Additional keywords for ATS) -->
+      
+      <div class="project-tags">
+        <strong>Tags:</strong>
+        <span class="tag">Product Design</span>, <span class="tag">UI/UX</span>, <span class="tag">B2C</span>, <span class="tag">Mobile-First</span>, <span class="tag">Data Visualization</span>
+      </div>
+      
+
+    </article>
+  
+
+    <!-- Project: Figma Design Distributor Plugin -->
+    <article class="project-summary ats-optimized"
+             itemscope
+             itemtype="https://schema.org/CreativeWork"
+             data-project-id=""
+             role="article"
+             aria-label="Figma Design Distributor Plugin - Design Technologist">
+
+      <!-- Job Title & Company (ATS Priority #1) -->
+      <header class="project-header">
+        <h2 itemprop="name" class="project-title">
+          <strong>Figma Design Distributor Plugin</strong> — Design Technologist
+        </h2>
+        <p class="project-company" itemprop="publisher">Personal Project</p>
+        <p class="project-duration"><time itemprop="dateCreated">2025</time></p>
+      </header>
+
+      <!-- Subtitle (Context) -->
+      
+      <h3 class="project-subtitle" itemprop="alternativeHeadline">
+        Design token automation for Figma Variables, Collections, and styles
+      </h3>
+      
+
+      <!-- Overview (ATS Priority #2: Project Description) -->
+      <div class="project-overview" itemprop="description">
+        <p><strong>Overview:</strong> Automating Design Token Extraction for Better Design-Dev Handoff</p>
+        
+      </div>
+
+      <!-- Skills & Technologies (ATS Priority #3: Keyword Matching) -->
+      
+      <div class="project-skills" itemprop="keywords">
+        <h4>Skills & Technologies:</h4>
+        <ul class="skills-list" role="list">
+          <li itemprop="skill">Figma Plugin</li><li itemprop="skill">Design Systems</li><li itemprop="skill">Git Automation</li><li itemprop="skill">APIs</li><li itemprop="skill">AI-Assisted Dev</li><li itemprop="skill">Vibe Coding</li><li itemprop="skill">Design Systems Ops</li><li itemprop="skill">Cross-team Collaboration</li><li itemprop="skill">Performance Optimization</li><li itemprop="skill">Figma plugin API</li><li itemprop="skill">API</li><li itemprop="skill">Typescript</li><li itemprop="skill">GitHub API</li><li itemprop="skill">build-figma-plugin</li><li itemprop="skill">Claude Code</li>
+        </ul>
+      </div>
+      
+
+      <!-- Metrics & Impact (ATS Priority #4: Quantifiable Results) -->
+      
+      <div class="project-metrics" itemprop="about">
+        <h4>Impact & Results:</h4>
+        <ul class="metrics-list" role="list">
+          
+            <li>
+              <strong>100%</strong> — Automation
+            </li>
+          
+            <li>
+              <strong>5min</strong> — Time saved
+            </li>
+          
+            <li>
+              <strong>GitHub</strong> — Integration
+            </li>
+          
+            <li>
+              <strong>100%</strong> — automation of design token extraction
+            </li>
+          
+            <li>
+              <strong>5min</strong> — from manual hours to automated minutes
+            </li>
+          
+            <li>
+              <strong>GitHub</strong> — integrated workflow support
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Key Achievements (ATS Priority #5: Responsibilities & Actions) -->
+      
+
+      <!-- Project Tags (Additional keywords for ATS) -->
+      
+      <div class="project-tags">
+        <strong>Tags:</strong>
+        <span class="tag">Figma Plugin</span>, <span class="tag">Design Systems</span>, <span class="tag">Git Automation</span>, <span class="tag">APIs</span>, <span class="tag">AI-Assisted Dev</span>
+      </div>
+      
+
+    </article>
+  
+</div>
+
+<!-- Structured Data for ATS & SEO -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Silvia Travieso",
+  "url": "https://silviatravieso.com",
+  "jobTitle": "UI/UX Designer & Product Designer",
+  "description": "Product Designer specializing in design systems, enterprise applications, and user-centered design. Experience leading end-to-end product design and building scalable design infrastructure.",
+  "alumniOf": "Design",
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "Product Designer",
+    "skills": "Product Design, UI/UX, Design Systems, B2B, 0→1, Co-ownership, Token Architecture, JavaFX, GitHub Actions, Async Collaboration, JavaFX (main product), React, Flutter, Vue, Nuxt, Token Studio, Figma Dev Mode, DTCG specification compliant, Multi-platform support, Automated transformation, Proper token referencing, Non-destructive testing, Deprecation management, B2C, Mobile-First, Data Visualization, Mobile-first design, Figma prototyping, Standard web tech, Backend API integration, Tomato brand system, Figma Plugin, Git Automation, APIs, AI-Assisted Dev, Vibe Coding, Design Systems Ops, Cross-team Collaboration, Performance Optimization, Figma plugin API, API, Typescript, GitHub API, build-figma-plugin, Claude Code",
+    "occupationLocation": {
+      "@type": "Place",
+      "name": "Remote"
+    }
+  },
+  "knowsAbout": [
+    "Product Design",
+    "UI/UX",
+    "Design Systems",
+    "B2B",
+    "0→1",
+    "Co-ownership",
+    "Token Architecture",
+    "JavaFX",
+    "GitHub Actions",
+    "Async Collaboration",
+    "JavaFX (main product)",
+    "React, Flutter, Vue, Nuxt",
+    "Token Studio",
+    "Figma Dev Mode",
+    "DTCG specification compliant",
+    "Multi-platform support",
+    "Automated transformation",
+    "Proper token referencing",
+    "Non-destructive testing",
+    "Deprecation management",
+    "B2C",
+    "Mobile-First",
+    "Data Visualization",
+    "Mobile-first design",
+    "Figma prototyping",
+    "Standard web tech",
+    "Backend API integration",
+    "Tomato brand system",
+    "Figma Plugin",
+    "Git Automation",
+    "APIs",
+    "AI-Assisted Dev",
+    "Vibe Coding",
+    "Design Systems Ops",
+    "Cross-team Collaboration",
+    "Performance Optimization",
+    "Figma plugin API",
+    "API",
+    "Typescript",
+    "GitHub API",
+    "build-figma-plugin",
+    "Claude Code"
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/in/silvia-travieso-gonzalez",
+    "https://www.behance.net/silviatravieso"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Marketing Management-NEW",
+    "alternativeHeadline": "From Mid UI to Product Design Lead: Building Enterprise Software in a Startup",
+    "description": "Built from scratch to unify fragmented marketing operations across 4 departments, replacing manual Excel workflows with real-time data visibility. Grew from Mid UI Designer to co-owning product strategy",
+    "author": {
+      "@type": "Person",
+      "name": "Silvia Travieso",
+      "jobTitle": "Solo Product Designer → Product Lead",
+      "url": "https://silviatravieso.com"
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "Silvia Travieso",
+      "jobTitle": "Solo Product Designer → Product Lead"
+    },
+    "keywords": "Product Design, UI/UX, Design Systems, B2B, 0→1, Co-ownership",
+    "dateCreated": "2024 - 2025",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Senapt LTD"
+    },
+    "about": [
+      {
+        "@type": "QuantitativeValue",
+        "value": "50%",
+        "description": "Customer growth"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "4 → 1",
+        "description": "Unified Platform"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "75%",
+        "description": "Reduced Manual work"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "4 → 1",
+        "description": "Departments unified into single platform"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "30%",
+        "description": "Social inbox opmitised"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "50%",
+        "description": "Data collection time saved"
+      }
+    ],
+    "workExample": {
+      "@type": "CreativeWork",
+      "position": "Solo Product Designer → Product Lead",
+      "description": "Built from scratch to unify fragmented marketing operations across 4 departments, replacing manual Excel workflows with real-time data visibility. Grew from Mid UI Designer to co-owning product strategy"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Design System from Scratch",
+    "alternativeHeadline": "Building design infrastructure in an engineer-first startup with zero precedent",
+    "description": "Built a production-ready design system from scratch as a solo mid-level designer in an engineer-first startup. Solved JavaFX (zero references), 8-hour timezone gaps, and CEO resistance. Result: 90% QA reduction, company-wide adoption, and 1,920 hours saved through systematic reuse.",
+    "author": {
+      "@type": "Person",
+      "name": "Silvia Travieso",
+      "jobTitle": "Product Designer",
+      "url": "https://silviatravieso.com"
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "Silvia Travieso",
+      "jobTitle": "Product Designer"
+    },
+    "keywords": "Design Systems, Token Architecture, JavaFX, GitHub Actions, Async Collaboration, JavaFX (main product), React, Flutter, Vue, Nuxt, Token Studio, Figma Dev Mode, DTCG specification compliant, Multi-platform support, Automated transformation, Proper token referencing, Non-destructive testing, Deprecation management",
+    "dateCreated": "2024 - 2025",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Senapt LTD"
+    },
+    "about": [
+      {
+        "@type": "QuantitativeValue",
+        "value": "90%",
+        "description": "QA reduction"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "864",
+        "description": "Production tokens"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "40+",
+        "description": "Components"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "7",
+        "description": "Projects adopted"
+      }
+    ],
+    "workExample": {
+      "@type": "CreativeWork",
+      "position": "Product Designer",
+      "description": "Built a production-ready design system from scratch as a solo mid-level designer in an engineer-first startup. Solved JavaFX (zero references), 8-hour timezone gaps, and CEO resistance. Result: 90% QA reduction, company-wide adoption, and 1,920 hours saved through systematic reuse."
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Energy Switching Tracker",
+    "alternativeHeadline": "Helping customers understand their energy journey",
+    "description": "After hunting down backend engineers to map a process no one fully understood, I built a customer-facing tracker that replaced reactive 'we'll email you' communication with proactive self-service, saving CS from a lot of anxious phone calls.",
+    "author": {
+      "@type": "Person",
+      "name": "Silvia Travieso",
+      "jobTitle": "Product Designer",
+      "url": "https://silviatravieso.com"
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "Silvia Travieso",
+      "jobTitle": "Product Designer"
+    },
+    "keywords": "Product Design, UI/UX, B2C, Mobile-First, Data Visualization, Mobile-first design, Figma prototyping, Standard web tech, Backend API integration, Tomato brand system",
+    "dateCreated": "2025",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Senapt Limited (Tomato Energy)"
+    },
+    "about": [
+      {
+        "@type": "QuantitativeValue",
+        "value": "Real time",
+        "description": "Transparent journey"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "1",
+        "description": "Magic link"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "Customer",
+        "description": "Self-diagnosis tool"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "1",
+        "description": "Source of truth"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "+15 System States",
+        "description": "Translated backend states like into human language"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "Self-error diagnosis",
+        "description": "Customer has autonomy to understand their journey"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "1 Magic Link ",
+        "description": "From unreliable email system to just one click"
+      }
+    ],
+    "workExample": {
+      "@type": "CreativeWork",
+      "position": "Product Designer",
+      "description": "After hunting down backend engineers to map a process no one fully understood, I built a customer-facing tracker that replaced reactive 'we'll email you' communication with proactive self-service, saving CS from a lot of anxious phone calls."
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Figma Design Distributor Plugin",
+    "alternativeHeadline": "Design token automation for Figma Variables, Collections, and styles",
+    "description": "Automating Design Token Extraction for Better Design-Dev Handoff",
+    "author": {
+      "@type": "Person",
+      "name": "Silvia Travieso",
+      "jobTitle": "Design Technologist",
+      "url": "https://silviatravieso.com"
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "Silvia Travieso",
+      "jobTitle": "Design Technologist"
+    },
+    "keywords": "Figma Plugin, Design Systems, Git Automation, APIs, AI-Assisted Dev, Vibe Coding, Design Systems Ops, Cross-team Collaboration, Performance Optimization, Figma plugin API, API, Typescript, GitHub API, build-figma-plugin, Claude Code",
+    "dateCreated": "2025",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Personal Project"
+    },
+    "about": [
+      {
+        "@type": "QuantitativeValue",
+        "value": "100%",
+        "description": "Automation"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "5min",
+        "description": "Time saved"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "GitHub",
+        "description": "Integration"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "100%",
+        "description": "automation of design token extraction"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "5min",
+        "description": "from manual hours to automated minutes"
+      },
+      {
+        "@type": "QuantitativeValue",
+        "value": "GitHub",
+        "description": "integrated workflow support"
+      }
+    ],
+    "workExample": {
+      "@type": "CreativeWork",
+      "position": "Design Technologist",
+      "description": "Automating Design Token Extraction for Better Design-Dev Handoff"
+    }
+  }
+]
+}
+</script>
+
+
+  </div>
 
       <!-- Skills & Technologies (ATS Priority #3: Keyword Matching) -->
       
