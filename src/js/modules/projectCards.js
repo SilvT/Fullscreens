@@ -15,6 +15,25 @@ import 'iconoir/css/iconoir.css';
 const PROJECT_ORDER = ['1', '2', '3', '4'];
 
 /**
+ * Project slug mappings for URL generation
+ */
+const PROJECT_SLUGS = {
+  '1': 'marketing-management',
+  '2': 'design-system',
+  '3': 'energy-tracker',
+  '4': 'figma-plugin'
+};
+
+/**
+ * Get project URL slug
+ * @param {string} projectId - The project ID
+ * @returns {string} The URL slug for the project
+ */
+function getProjectSlug(projectId) {
+  return PROJECT_SLUGS[projectId] || `project-${projectId}`;
+}
+
+/**
  * Check if a file is a video based on extension
  * @param {string} filePath - The file path to check
  * @returns {boolean} True if the file is a video
@@ -219,7 +238,9 @@ function createProjectCard(projectId, project, index) {
   const prevProjectData = getPreviousProject(currentProjectId);
   const nextProjectData = getNextProject(currentProjectId);
 
-  const ctaHref = `#case-study-${currentProjectId}`;
+  // NEW: Link to dedicated project page instead of modal
+  const projectSlug = getProjectSlug(currentProjectId);
+  const ctaHref = `/${projectSlug}`;
 
   section.innerHTML = `
     <div class="contentbox">
