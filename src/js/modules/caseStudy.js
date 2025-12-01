@@ -1096,11 +1096,25 @@ function renderContentCarousel(block) {
       const metricsGrid = document.createElement('div');
       metricsGrid.className = 'cs-carousel-metrics-grid';
 
-      item.items.forEach((metricText) => {
-        const card = createMetricCard({
-          label: item.title,
-          value: metricText
-        });
+      item.items.forEach((metricItem) => {
+        let card;
+
+        // Check if item is an object with icon/value/label or just a string
+        if (typeof metricItem === 'object' && metricItem !== null) {
+          // Full metric card format with icon, value, and label
+          card = createMetricCard({
+            icon: metricItem.icon,
+            value: metricItem.value,
+            label: metricItem.label
+          });
+        } else {
+          // Simple text format - use category title as label
+          card = createMetricCard({
+            label: item.title,
+            value: metricItem
+          });
+        }
+
         metricsGrid.appendChild(card);
       });
 
@@ -1179,14 +1193,52 @@ function initializeCarousel(wrapper, totalSlides) {
     });
   });
 
-  // Keyboard navigation
-  wrapper.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      prevBtn.click();
-    } else if (e.key === 'ArrowRight') {
-      nextBtn.click();
+  // Track if carousel is in viewport
+  let isInViewport = false;
+
+  // Intersection Observer to detect when carousel is visible
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -20% 0px', // Trigger when carousel is in middle 60% of viewport
+    threshold: 0.5
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      isInViewport = entry.isIntersecting;
+      if (isInViewport) {
+        wrapper.setAttribute('data-carousel-active', 'true');
+      } else {
+        wrapper.removeAttribute('data-carousel-active');
+      }
+    });
+  }, observerOptions);
+
+  observer.observe(wrapper);
+
+  // Global keyboard navigation hijacking
+  const handleGlobalKeydown = (e) => {
+    if (isInViewport && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+      // Prevent default behavior (modal navigation)
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (e.key === 'ArrowLeft') {
+        prevBtn.click();
+      } else if (e.key === 'ArrowRight') {
+        nextBtn.click();
+      }
     }
-  });
+  };
+
+  // Add global listener with capture phase to intercept before modal handlers
+  document.addEventListener('keydown', handleGlobalKeydown, true);
+
+  // Clean up observer and event listener when needed
+  wrapper.carouselCleanup = () => {
+    observer.disconnect();
+    document.removeEventListener('keydown', handleGlobalKeydown, true);
+  };
 }
 
 /**
@@ -1662,51 +1714,80 @@ function renderTimelineHorizontalScroll(block) {
     if (index === 0) phaseEl.classList.add('active');
     phaseEl.setAttribute('data-phase-index', index);
 
+    // Wrap context and content in a container
+    const contentContainer = document.createElement('div');
+    contentContainer.className = 'cs-timeline-hs-content-container';
+
     // Context paragraph (optional)
     if (phase.context) {
       const context = document.createElement('p');
       context.className = 'cs-timeline-hs-context';
       context.innerHTML = phase.context;
-      phaseEl.appendChild(context);
+      contentContainer.appendChild(context);
     }
 
-    // Flexible content stack
+    // Flexible content stack with section grouping
     if (Array.isArray(phase.content)) {
-      phase.content.forEach((item) => {
-        switch (item.type) {
-          case 'paragraph': {
-            const p = document.createElement('p');
-            p.className = 'cs-timeline-hs-paragraph';
-            p.innerHTML = item.text;
-            phaseEl.appendChild(p);
-            break;
+      let currentSection = null;
+
+      phase.content.forEach((item, index) => {
+        // Create new section when we encounter a heading
+        if (item.type === 'heading') {
+          // Close previous section if exists
+          if (currentSection) {
+            contentContainer.appendChild(currentSection);
           }
 
-          case 'heading': {
-            const h4 = document.createElement('h4');
-            h4.className = 'cs-timeline-hs-sub-heading';
-            h4.innerHTML = item.text;
-            phaseEl.appendChild(h4);
-            break;
+          // Create new section wrapper
+          currentSection = document.createElement('div');
+          currentSection.className = 'cs-timeline-hs-section';
+
+          const h4 = document.createElement('h4');
+          h4.className = 'cs-timeline-hs-sub-heading';
+          h4.innerHTML = item.text;
+          currentSection.appendChild(h4);
+        } else {
+          // If no current section, create one (for content without heading)
+          if (!currentSection) {
+            currentSection = document.createElement('div');
+            currentSection.className = 'cs-timeline-hs-section';
           }
 
-          case 'highlights': {
-            const ul = document.createElement('ul');
-            ul.className = 'cs-timeline-hs-highlights';
-            item.items.forEach((txt) => {
-              const li = document.createElement('li');
-              li.innerHTML = txt;
-              ul.appendChild(li);
-            });
-            phaseEl.appendChild(ul);
-            break;
+          switch (item.type) {
+            case 'paragraph': {
+              const p = document.createElement('p');
+              p.className = 'cs-timeline-hs-paragraph';
+              p.innerHTML = item.text;
+              currentSection.appendChild(p);
+              break;
+            }
+
+            case 'highlights': {
+              const ul = document.createElement('ul');
+              ul.className = 'cs-timeline-hs-highlights';
+              item.items.forEach((txt) => {
+                const li = document.createElement('li');
+                li.innerHTML = txt;
+                ul.appendChild(li);
+              });
+              currentSection.appendChild(ul);
+              break;
+            }
           }
+        }
+
+        // Append last section at the end
+        if (index === phase.content.length - 1 && currentSection) {
+          contentContainer.appendChild(currentSection);
         }
       });
     }
 
+    // Append content container to phase
+    phaseEl.appendChild(contentContainer);
+
     // Wrap insight and learning in a container
-    if (phase.insight || phase.learning) {
+    if (phase.insight || phase.learning || phase.action) {
       const bottomContainer = document.createElement('div');
       bottomContainer.className = 'cs-timeline-hs-bottom-container';
 
@@ -1737,6 +1818,14 @@ function renderTimelineHorizontalScroll(block) {
         learningSidebar.className = 'cs-timeline-hs-learning';
         learningSidebar.innerHTML = phase.learning.text;
         bottomContainer.appendChild(learningSidebar);
+      }
+
+      // Action element (optional - for buttons, CTAs, etc.)
+      if (phase.action) {
+        const actionContainer = document.createElement('div');
+        actionContainer.className = 'cs-timeline-hs-action';
+        actionContainer.innerHTML = phase.action.html || phase.action;
+        bottomContainer.appendChild(actionContainer);
       }
 
       phaseEl.appendChild(bottomContainer);
@@ -2086,7 +2175,7 @@ function renderTwoColumnText(block) {
  */
 function renderThreeColumnText(block) {
   const wrapper = document.createElement('div');
-  wrapper.className = 'cs-block cs-block-three-column-text';
+  wrapper.className = `cs-block cs-block-three-column-text${block.class ? ' ' + block.class : ''}`;
 
   const grid = document.createElement('div');
   grid.className = 'cs-three-column-grid';
@@ -2095,7 +2184,7 @@ function renderThreeColumnText(block) {
   if (block.columns && block.columns.length > 0) {
     block.columns.forEach((column) => {
       const columnEl = document.createElement('div');
-      columnEl.className = 'cs-text-column';
+      columnEl.className = `cs-text-column${column.class ? ' ' + column.class : ''}`;
 
       // Column heading
       if (column.heading) {

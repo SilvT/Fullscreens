@@ -42,7 +42,7 @@
             "blocks": [
               {
                 "type": "paragraph",
-                "text": "The marketing team was flying blind. Campaign decisions happened in spreadsheets updated when time allowed. By the time they knew something wasn't working, they'd already spent thousands. CEO saw the inefficiency: fragmented data, manual workflows, no unified visibility."
+                "text": "The marketing team was flying blind. Campaign decisions happened in spreadsheets updated when time allowed. By the time they knew something wasn't working, they'd already spent thousands. CEO saw the inefficiency: fragmented data, manual workflows and no unified visibility."
               },
               {
                 "type": "paragraph",
@@ -148,26 +148,33 @@
 },
 
       {
-        "type": "two-column-with-sidebar",
+        "type": "three-column-text",
+        "class":"line-breaker",
         "sectionTitle": "Stepping Up",
-        "sidebarClass": "blue-sidebar",
-        "left": [
+        "columns": [
           {
-            "heading": "From Screens to Strategy",
+            "heading": "From Screens to Strategy"
+          },
+          {
             "blocks": [
               {
-              "type": "paragraph",
-              "text": "I was hired as a UI designer. But one month in, faced with three section names, no feature definitions, and a backend engineer who also needed directions... someone had to answer:"
-              },
-             {
-              "type": "paragraph",
-              "class": "callout min",
-              "text": "What actually goes in \"Campaigns\"? How deep does each section go? What is v1?  and v2? Who decides all this?"
+                "type": "paragraph",
+                "text": "I was hired as a UI designer. But one month in, faced with three section names, no feature definitions, and a backend engineer who also needed directions... someone had to answer:"
+              }
+            ]
+          },
+          {
+            "blocks": [
+              {
+                "type": "paragraph",
+                "class": "callout min",
+                "text": "What actually goes in \"Campaigns\"? How deep does each section go? What is v1?  and v2? Who decides all this?"
               }
             ]
           }
         ]
-        },
+      },
+
 {
   "type": "two-column",
   "columns": [
@@ -185,7 +192,7 @@
             "<strong> Backend Lead </strong> → All technical architecture, data models, APIs",
             "<strong> Me </strong> → Design, research, specs, QA",
             "<strong> Marketing Lead </strong> → provided user validation and domain knowledge (to me)",
-            "<strong> CEO </strong> →  received results-based check-ins and design system buy-in (from both of us)"
+            "<strong> CEO </strong> →  received results-based check-ins (from both of us)"
           ]
         }
       ],
@@ -229,7 +236,8 @@
             "Bring <b>Backend</b> in to verify data. They provide specifications",
             "Rework complete UX flow, using backend names and terminology for easier tracking and <b>validation</b>",
             "We <i>repeat and iterate</i> until structure is mostly completed",
-            "Translate flows to Wireframes, then to UI"
+            "Translate flows to Wireframes, then to UI",
+            "Async Handoff to Frontend keeping backend names and terminology for proper endpoint connections"
           ]
         }
       ]
@@ -272,56 +280,60 @@
                 "type": "highlights",
                 "items": [
                   "Competitor research (self-driven + Marketing Lead via informal and off-record conversations)",
-                  "<b>Month 2-3:</b> Pulled off project for urgent 2-week tablet app build <small>(Nuxt.js stack, completely different from main project)</small>",
+                  "Context-switching between side (table app) and main project",
+                  "Building for users while still learning marketing terminology (via LLM + traditional research)",
                   "Information architecture for 4 data sources",
-                  "Building for users while still learning marketing terminology via AI and research",
-                  "Context-switching between table app and main project",
-                  "CEO visual direction unclear until month 3"
+                  "CEO visual direction unclear until month 3 (5 proposals)"
                 ]
               }
             ],
             "insight": {
               "icon": "iconoir:chat-bubble",
-              "text": "Core structure validated. Look & Feel approved. Frontend brought in"
+              "text": "<b>Outcome:</b><br>Core structure validated. Look & Feel approved."
             },
             "learning": {
-              "text": "<b>Key Learning:</b> Partnership, Early validation and open communication"
-            }
+              "text": "<b>Key Learning:</b><br> Partnership, Early validation and open communication"
+            },
+            "action":{
+            "html": "<span class=\"tbd\"><b>Month 2-3:</b> Pulled off project for urgent 2-week tablet app build <small>(Nuxt.js stack, completely different from main project)</small></span>"
+          }
           },
           {
             "title": "Systematic Thinking Kicks-in",
             "period": "Months 3-5",
             "icon": "iconoir:puzzle",
-            "context": "Frontend onboarded with only 1 screen approved. The pressure to deliver while building infrastructure forces systematic thinking from day one.",
             "content": [
               {
                 "type": "heading",
                 "text": "Challenges"
               },
               {
+                "type":"paragraph",
+                "text": "<em>Frontend onboarded with only 1 screen approved.</em> The pressure to deliver while building infrastructure forces systematic thinking from day one."
+              },
+              {
                 "type": "highlights",
                 "items": [
-                  "Frontend onboarded with one 1 screen approved",
+                  "Async collaboration with Frontend (+8hrs away, limited English fluency)",
                   "No component library",
                   "Understanding JavaFX restrictions and limitations <small>(zero precedent for design systems)</small>",
-                  "Building component library from scratch in parallel with UI delivery",
+                  "Building component library from scratch in parallel with UI delivery and continue UX architecture",
                   "Creating user flows with incomplete requirements"
                 ]
               }
             ],
             "insight": {
               "icon": "iconoir:light-bulb",
-              "text": "Sink or swim; Reusable components were a necessity, not an aspiration."
+              "text": "<b>Outcome:</b><br>Sink or swim; Reusable components were a necessity, not an aspiration."
             },
             "learning": {
-              "text": "<b>Key Learning:</b> Design System thinking became the foundation for a company-wide switch by month 15"
+              "text": "<b>Key Learning:</b><br> Design System thinking proofed by results provided the foundation for a company-wide switch by month 15"
             }
           },
           {
             "title": "Core Features & Finding MVP",
             "period": "Months 4-8",
             "icon": "iconoir:doc-magnifying-glass",
-            "context": "Building while defining.",
             "content": [
               {
                 "type": "heading",
@@ -330,41 +342,41 @@
               {
                 "type": "highlights",
                 "items": [
-                  "\"Leads\" Section and Dashboard v1: <b>shipped</b>",
-                  "Component Library V1.0 + Tokens:",
-                  "Discover Facebook messages bottleneck → Propose FB-to-CRM pipeline integration",
-                  "Took over sprint coordination and ticket management (no PM to do it)",
-                  "Backend and I presented features and state of dev to whole company → Got validated and +1 backend assigned to project",
-                  "New section added: \"Analytics\""
+                  "\"Leads\" Section and Dashboard v.1: <em>shipped</em>",
+                  "Component Library V1.0 + Tokens: implemented",
+                  "Discover Facebook messages bottleneck → <b>Propose FB-to-CRM pipeline integration</b>",
+                  "<b>Took over</b> sprint coordination and ticket management (no PM to do it)",
+                  "Backend and I <b>presented features and state of dev to whole company</b> → Got validated!",
+                  "New section added:<b> \"Analytics\"</b>",
+                  "Second Backend is brought it for architecture support"
                 ]
               }
             ],
             "insight": {
               "icon": "iconoir:check-circle",
-              "text": "MVP scope crystallised"
+              "text": "<b>Outcome:</b><br>MVP scope crystallised: we have a solid foundation now"
             },
             "learning": {
-              "text": "<b>Key Learning:</b> Pivot from \"just display data\" to \"automate workflows\""
+              "text": "<b>Key Learning:</b><br> Building while defining"
             }
           },
           {
             "title": "Advanced Integration & Refinement",
             "period": "Months 9-14",
             "icon": "iconoir:puzzle",
-            "context": "Focused execution",
             "content": [
               {
                 "type": "heading",
-                "text": "What Happened"
+                "text": "Milestones"
               },
               {
                 "type": "highlights",
                 "items": [
-                  "Built Facebook DM → CRM pipeline (my proposal from user research)",
+                  "\"Campaigns Dashboard and Management\"v.1: <b>shipped</b>",
+                  "<b>Built Facebook DM → CRM pipeline</b> (my proposal from user research)",
                   "Unified inbox combining social media + customer support",
-                  "Automated lead capture from door-to-door tablet app",
-                  "Real-time campaign comparison feature",
-                  "Google Ads + Analytics API integration"
+                  "Google Ads + Analytics API integration",
+                  "Got new proposal accepted for a real-time campaign comparison feature"
                 ]
               },
               {
@@ -373,80 +385,57 @@
               },
               {
                 "type": "paragraph",
-                "text": "Async collaboration with Frontend (+8hrs away, limited English fluency)"
-              },
-              {
-                "type": "heading",
-                "text": "Solution Developed"
-              },
-              {
-                "type": "paragraph",
-                "text": "Systematic handoff approach using:"
+                "text": "CEO's praised async collaboration with Frontend."
               },
               {
                 "type": "highlights",
                 "items": [
                   "Detailed Figma annotations for every interaction state",
                   "Prototypes with all microcopy included (no assumptions)",
-                  "Visual redlines for spacing/sizing where JavaFX CSS couldn't handle it",
                   "Edge case documentation for error states",
-                  "Recorded walkthroughs for complex interactions"
+                  "Recorded video-only walkthroughs for complex interactions (language barrier)",
+                  "Review with backend before handoff so endpoints correct names were delivered alongside with design"
                 ]
               }
             ],
             "insight": {
               "icon": "iconoir:check-circle",
-              "text": "Feature set solidified, systematic delivery established"
+              "text": "<b>Outcome:</b><br>Feature set solidified, systematic delivery established"
+            },
+            "learning": {
+              "text": "<b>Key:</b> Developed personalised GitAction for tokens delivery tailored to JavaFX environment"
             }
           },
           {
-            "title": "Proving the System & Company-Wide Impact",
+            "title": "Proving the System - Company-Wide Impact",
             "period": "Months 15-18",
             "icon": "iconoir:star",
-            "context": "From project success to organizational change",
             "content": [
               {
                 "type": "heading",
-                "text": "What Happened"
+                "text": "Milestones"
               },
               {
                 "type": "highlights",
                 "items": [
-                  "Refined annotation + prototype system for timezone gap",
-                  "Achieved <b>90% design-to-code accuracy</b> (measured by QA cycles needed)",
-                  "Zero synchronous meetings required for handoff",
-                  "<b>Month 15 MILESTONE: CEO approved design system expansion company-wide</b>",
-                  "System worked so well, CEO mandated systematic approach for all product teams",
-                  "Started mentoring other designers in systematic handoff",
-                  "Design Ops team formed, 5 designers trained"
+                  "Systematic asynchronous handoff achieved <b>90% design-to-code</b> accuracy",
+                  "<b>Month 15:</b> CEO approved design system expansion company-wide on proven results</b>",
+                  "Design Ops team formed, 5 designers currently training in systematic handoff methods (by me)",
+                  "The foundations built for this product became the company's design system."
                 ]
-              },
-              {
-                "type": "heading",
-                "text": "The Async Breakthrough"
-              },
-              {
-                "type": "paragraph",
-                "text": "With Frontend +8 hours away and limited English fluency, synchronous communication wasn't an option. The systematic handoff approach I developed out of necessity worked so well it reduced QA cycles by 90%."
-              },
-              {
-                "type": "paragraph",
-                "class": "callout",
-                "text": "<b>Month 15:</b> CEO saw the results and approved expanding this systematic approach into a full design system for the entire company."
-              },
-              {
-                "type": "paragraph",
-                "text": "<b>What this led to:</b> The foundations I built for this product became the company's design system—a separate story entirely. → <b>[Read the Design System case study]</b>"
               }
             ],
             "insight": {
               "icon": "iconoir:trophy",
-              "text": "Production-ready platform, systematic delivery proven at scale, organizational impact beyond the product"
+              "text": "<b>Outcome:</b><br>Production-ready platform, systematic delivery proven at scale, organizational impact beyond the product"
             },
             "learning": {
-              "text": "<b>Key Learning:</b> Constraints breed innovation. The timezone gap forced me to develop a system that became the company standard."
-            }
+              "text": "<b>Key Learning:</b><br> Constraints breed innovation. The extreme asycn gap forced me to develop a system that became the company standard."
+            },
+            "action":{
+            "html": "<button class=\"cs-CTA\">Read about this Design System</button>"
           }
+        }
         ]
       },
 
@@ -458,7 +447,7 @@
           "label": "Before: The Manual Chaos",
           "items": [
             "Marketing tracking via manual Excel sheets across 4 departments",
-            "6+ fragmented lead entry points (events, social, website, telesales)",
+            "6+ fragmented lead entry points (events, social, website, telesales...)",
             "Social media complaints not reaching Customer Care",
             "No visibility into campaign ROI",
             "Weekly manual reporting (2-week lag on decisions)",
@@ -480,41 +469,38 @@
 
       {
         "type": "content-carousel",
-        "heading": "Impact Metrics",
+        "sectionTitle":"Metrics",
+        "heading": "Metrics",
         "items": [
-          {
-            "title": "Product Status",
-            "items": [
-              "Production-ready, entering user testing phase"
-            ]
-          },
+
           {
             "title": "Projected Impact",
             "items": [
-              "<strong>30%</strong> reduction in Social Media Manager inbox (automated complaint routing)",
-              "<strong>50%</strong> time savings on data collection (API feeds vs manual Excel entry)",
-              "<strong>Unified visibility</strong> across digital + traditional marketing for first time",
-              "<strong>Real-time tracking</strong> replacing 2-week reporting lag",
-              "<strong>Foundation built</strong> to support 50% customer growth"
+              { "icon": "iconoir:collapse", "value": "4 → 1", "label": "Departments unified into single platform" },
+              { "icon": "iconoir:mail-open", "value": "30%", "label": "Social inbox optimized" },
+              { "icon": "iconoir:timer", "value": "50%", "label": "Data collection time saved" },
+              { "icon": "iconoir:eye", "value": "Unified visibility", "label": "Digital + traditional marketing for 1st time" },
+              { "icon": "iconoir:flash", "value": "Real-time", "label": "Replacing 2-week reporting lag" },
+              { "icon": "iconoir:graph-up", "value": "50%", "label": "Customer growth foundation built" }
             ]
           },
           {
             "title": "Organizational Impact",
             "items": [
-              "<strong>90%</strong> QA reduction through systematic design-to-dev handoff",
-              "<strong>Month 15: Design system approach approved company-wide</strong> and mandated for all teams",
-              "<strong>Systematic handoff became company standard</strong> across all products",
-              "<strong>First comprehensive product documentation system</strong> (Confluence hub) that I built and maintained",
-              "<strong>Design Ops team created</strong>, 5 designers trained in systematic approach"
+              { "icon": "iconoir:check-square", "value": "90%", "label": "QA reduction through systematic design-to-dev handoff" },
+              { "icon": "iconoir:star", "value": "Month 15", "label": "Design system approved company-wide and mandated for all teams" },
+              { "icon": "iconoir:delivery-truck", "value": "Company-wide", "label": "Systematic handoff became standard across all products" },
+              { "icon": "iconoir:page-star", "value": "First ever", "label": "Comprehensive product documentation system (Confluence hub)" },
+              { "icon": "iconoir:group", "value": "5 designers", "label": "Design Ops team created and trained in systematic approach" }
             ]
           },
           {
             "title": "CEO Validation",
             "items": [
-              "Congratulated on design-dev effectiveness despite async delivery (CEO surprised by 90% QA improvement)",
-              "Featured product in investor conversations",
-              "Showcased at company booth during developer events",
-              "0→MVP in 18 months with 3-person team"
+              { "icon": "iconoir:trophy", "value": "Congratulated", "label": "Design-dev effectiveness despite async delivery (90% QA improvement)" },
+              { "icon": "iconoir:presentation", "value": "Featured", "label": "Product in investor conversations" },
+              { "icon": "iconoir:media-video", "value": "Showcased", "label": "At company booth during developer events" },
+              { "icon": "iconoir:rocket", "value": "0 → MVP", "label": "Production Ready in 18 months with 3-person team" }
             ]
           }
         ]

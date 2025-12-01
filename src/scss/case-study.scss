@@ -1074,6 +1074,29 @@
 .cs-block-content-carousel {
   padding: 3rem 4rem;
   background-color: white;
+  transition: background-color 0.3s ease;
+
+  // Visual feedback when carousel hijacks keyboard
+  &[data-carousel-active="true"] {
+    background-color: rgba($color-blue-light, 0.05);
+
+    .cs-carousel-nav {
+      // box-shadow: 0 0 0 2px rgba($color-blue-main, 0.2);
+      border:none;
+      border-color: $color-blue-alpha;
+      border-radius: 50%;
+      & i{
+        color:$color-blue-dark;
+      }
+      
+      &:hover{
+        border-radius: 50%;
+        background: $color-blue-alpha;
+        & i{
+          // color:;
+        }}
+      }
+  }
 
   .cs-section-heading {
     font-size: $font-size-2xl;
@@ -1121,11 +1144,9 @@
     left: 0;
     width: 100%;
     transition: opacity 0.5s ease, visibility 0.5s ease;
-    background: $color-neutral-lighter;
-    border: 1px solid $color-neutral-lighter;
     border-radius: 12px;
     padding: 2.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
     &.active {
       opacity: 1;
@@ -1139,12 +1160,13 @@
   }
 
   .cs-carousel-slide-title {
-    font-size: $font-size-xl;
-    font-weight: $font-weight-semibold;
-    color: $color-blue-main;
+    font-size: $font-size-l;
+    font-family: $font-anonymous;
+    font-weight: $font-weight-medium;
+    color: $color-blue-dark;
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid $color-blue-light;
+    // border-bottom: 2px solid $color-blue-light;
 
     @include breakpoint(mobile) {
       font-size: $font-size-l;
@@ -1165,8 +1187,20 @@
       @include metric-card();
       min-height: 120px;
 
+
+      .cs-metric-icon-wrapper {
+        width: 2rem;
+        height: 2rem;
+        .cs-metric-icon {       
+          i {
+            color:$color-blue-main;
+            font-size: 2rem;
+          }
+        }
+      }
+
       .cs-metric-value {
-        font-size: $font-size-s;
+        font-size: $font-size-base;
         line-height: 1.4;
 
         strong {
@@ -1178,10 +1212,11 @@
 
       .cs-metric-label {
         font-size: $font-size-xs;
-        text-transform: uppercase;
+        // text-transform: uppercase;
         letter-spacing: 0.05em;
-        color: $color-neutral-light;
-        font-weight: $font-weight-medium;
+        color: $color-blue-dark;
+        font-weight: $font-weight-light;
+        line-height: 130%;
       }
     }
   }
@@ -2265,6 +2300,12 @@
     &.active {
       display: block;
       opacity: 1;
+      display: flex;
+      gap: 2rem;
+    }
+    .cs-timeline-hs-content-container{
+      display: flex;
+      gap:2rem;
     }
   }
 
@@ -2326,6 +2367,7 @@
 .cs-timeline-hs-bottom-container{
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
 }
 
   // Insight box at bottom
@@ -3207,4 +3249,91 @@ a.glightbox{
     margin-top: $space-16;
     text-align: center;
   }
+}
+// CTA Button
+.cs-CTA {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 2px;
+  background-color: $color-blue-300;
+  font-weight: 500;
+  font-size: $font-size-base;
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
+  color: $color-white;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  min-height:3rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  width: 100%;
+
+  &:hover {
+    background-color: $color-blue-100;
+    color: $color-blue-400;
+  }
+
+  @include breakpoint(large-desktop, min) {
+    min-height: 4rem;
+  }
+
+  @include breakpoint(mobile) {
+    font-size: 14px;
+    min-height: 44px;
+    padding: 8px 16px;
+  }
+}
+.line-breaker{
+  background: transparent;
+  border-top: 1px solid $color-blue-alpha;
+  border-bottom: 1px solid $color-blue-alpha;
+  padding-right:12rem ;
+  margin: 2rem 0;
+  
+  & .cs-text-column{
+  & p.cs-section-text{
+    color: $color-neutral-light;
+  }
+
+  & .cs-column-heading{
+    font-size: 18px;
+    font-weight: 500;
+    font-variation-settings: "opsz" 14, "wdth" 100;
+    color: $color-blue-main;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: right;
+  }
+ & p.callout.min{
+      background-color: $color-cream;
+      border-radius: 0.5rem;
+      padding: $space-12 $space-16;
+      color: $color-neutral;
+      font-family: $font-anonymous;
+      font-style: italic;
+      font-size: $font-size-s;
+      font-weight: $font-weight-regular;
+      line-height: 1.7;
+      margin: 0;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -18px;
+        bottom: 3.2rem;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 16px solid $color-cream;
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+
 }
