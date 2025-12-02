@@ -6,12 +6,29 @@
 @use 'variables';
 @use 'mixins';
 
+/* Standalone Page Body Overrides */
+.project-page-body {
+  // Hide main page navigation
+  .top-nav {
+    display: none !important;
+  }
+
+  // Override modal's fixed positioning for standalone pages
+  .case-study-page {
+    position: static !important;
+    opacity: 1 !important;
+    pointer-events: all !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+}
+
 /* Breadcrumb Navigation for standalone pages */
 .cs-breadcrumbs-standalone {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.95);
+  background: inherit; // Inherit theme color from parent
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 

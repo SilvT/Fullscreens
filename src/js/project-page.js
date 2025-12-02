@@ -218,6 +218,8 @@ function populateCaseStudy(project) {
           // Reinitialize lightbox for dynamically loaded images
           setTimeout(() => {
             initLightbox();
+            // Setup hero scroll animation after content is loaded
+            setupPageHeroScrollAnimation();
           }, 100);
         })
         .catch((error) => {
@@ -236,6 +238,11 @@ function populateCaseStudy(project) {
           contentContainer.appendChild(blockElement);
         }
       });
+
+      // Setup hero scroll animation after inline content is rendered
+      setTimeout(() => {
+        setupPageHeroScrollAnimation();
+      }, 100);
     }
   }
 }
@@ -312,24 +319,38 @@ function setupPageHeroScrollAnimation() {
   const stickyHeader = document.querySelector('.cs-sticky-header');
   const metricsSection = document.querySelector('.cs-metrics');
 
-  if (!projectContent || !stickyHeader) return;
+  console.log('setupPageHeroScrollAnimation called');
+  console.log('projectContent:', projectContent);
+  console.log('stickyHeader:', stickyHeader);
+  console.log('metricsSection:', metricsSection);
+
+  if (!projectContent || !stickyHeader) {
+    console.error('Missing elements for hero scroll animation');
+    return;
+  }
 
   let ticking = false;
 
-  // Use window scroll instead of modal scroll
-  window.addEventListener('scroll', () => {
+  // Scroll handler function
+  const handleScroll = () => {
+    console.log('handleScroll called');
+
     if (!ticking) {
       window.requestAnimationFrame(() => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
+        console.log('Scroll event - scrollTop:', scrollTop);
+
         // Shrink sticky header immediately when user starts scrolling
         if (scrollTop > 0) {
+          console.log('Adding scrolled class');
           stickyHeader.classList.add('scrolled');
           // Hide original metrics section when hero is scrolled
           if (metricsSection) {
             metricsSection.style.display = 'none';
           }
         } else {
+          console.log('Removing scrolled class');
           stickyHeader.classList.remove('scrolled');
           // Show original metrics section when at top
           if (metricsSection) {
@@ -342,7 +363,15 @@ function setupPageHeroScrollAnimation() {
 
       ticking = true;
     }
-  });
+  };
+
+  // Try both window and document scroll events
+  console.log('Attaching scroll listener...');
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  document.addEventListener('scroll', handleScroll, { passive: true });
+
+  // Test immediately
+  console.log('Testing scroll position on init:', window.pageYOffset);
 }
 
 /**
@@ -389,8 +418,8 @@ async function init() {
   // Track page view
   trackProjectView(projectId, project.title);
 
-  // Setup hero scroll animation (adapted for page scroll)
-  setupPageHeroScrollAnimation();
+  // Note: setupPageHeroScrollAnimation() is called after content loads
+  // in populateCaseStudy() to ensure page has scrollable height
 
   console.log('Project page initialized');
 }
