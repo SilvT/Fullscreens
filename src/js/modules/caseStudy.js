@@ -118,6 +118,11 @@ export function initCaseStudy() {
     const caseStudyButton = e.target.closest('.open-case-study, .cta-button');
 
     if (caseStudyButton) {
+      // Skip if this is the secondary button (HTML access) - let it navigate normally
+      if (caseStudyButton.classList.contains('cta-button-secondary')) {
+        return; // Allow default navigation
+      }
+
       e.preventDefault();
 
       // DIAGNOSTIC: Find which section this button belongs to
@@ -2892,4 +2897,5 @@ function setupScrollAnimationsStandalone() {
   }
 }
 
-
+// Export functions for use in project-page.js
+export { renderBlock, loadCaseStudyContent, createMetricCard };

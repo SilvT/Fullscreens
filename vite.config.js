@@ -24,6 +24,10 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, 'index.html'),
         'content-blocks-kit': path.resolve(__dirname, 'content-blocks-kit.html'),
+        'marketing-management': path.resolve(__dirname, 'marketing-management.html'),
+        'design-system': path.resolve(__dirname, 'design-system.html'),
+        'energy-tracker': path.resolve(__dirname, 'energy-tracker.html'),
+        'figma-plugin': path.resolve(__dirname, 'figma-plugin.html'),
       },
     },
   },

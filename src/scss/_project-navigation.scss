@@ -1,0 +1,138 @@
+/**
+ * Project Navigation Styles
+ * Breadcrumbs and footer navigation for standalone project pages
+ */
+
+@use 'variables';
+@use 'mixins';
+
+/* Breadcrumb Navigation for standalone pages */
+.cs-breadcrumbs-standalone {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  // Breadcrumbs inherit the modal styles from case-study.scss
+  // Just need positioning adjustments for standalone pages
+}
+
+/* Project Navigation Footer */
+.project-navigation-footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 3rem 2rem;
+  margin-top: 4rem;
+
+  .project-nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .project-nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    background: white;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    min-width: 250px;
+
+    &:hover {
+      border-color: variables.$color-blue-300;
+      background-color: variables.$color-blue-100;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-arrow {
+      font-size: 2rem;
+      line-height: 1;
+      color: variables.$color-blue-300;
+    }
+
+    .nav-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #333;
+      text-align: center;
+    }
+
+    &.prev-project,
+    &.next-project {
+      flex: 1;
+    }
+
+    &.back-home {
+      flex-shrink: 0;
+      border-width: 2px;
+
+      &:hover {
+        background-color: variables.$color-blue-300;
+        border-color: variables.$color-blue-300;
+
+        .nav-label {
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cs-breadcrumbs {
+    padding: 0.5rem 1rem;
+
+    .breadcrumb-container {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .project-nav-link {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+
+      &.prev-project,
+      &.next-project {
+        max-width: 45%;
+      }
+
+      .nav-title {
+        display: none;
+      }
+    }
+  }
+
+  .project-navigation-footer {
+    padding: 2rem 1rem;
+
+    .project-nav-container {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .project-nav-link {
+      min-width: 100%;
+    }
+  }
+}

@@ -736,6 +736,14 @@ h2{
 }
 
 // CTA Button
+// CTA buttons group container
+.cta-buttons-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
 .cta-button {
   display: inline-flex;
   align-items: center;
@@ -757,6 +765,19 @@ h2{
   &:hover {
     background-color: $color-blue-100;
     color: $color-blue-400;
+  }
+
+  // Secondary button variant
+  &.cta-button-secondary {
+    background-color: transparent;
+    color: $color-blue-300;
+    border: 2px solid $color-blue-300;
+
+    &:hover {
+      background-color: $color-blue-100;
+      color: $color-blue-400;
+      border-color: $color-blue-100;
+    }
   }
 
   @include breakpoint(large-desktop, min) {

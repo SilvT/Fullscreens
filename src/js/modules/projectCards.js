@@ -15,6 +15,16 @@ import 'iconoir/css/iconoir.css';
 const PROJECT_ORDER = ['1', '2', '3', '4'];
 
 /**
+ * Project slug mappings for HTML pages
+ */
+const PROJECT_SLUGS = {
+  '1': 'marketing-management',
+  '2': 'design-system',
+  '3': 'energy-tracker',
+  '4': 'figma-plugin'
+};
+
+/**
  * Check if a file is a video based on extension
  * @param {string} filePath - The file path to check
  * @returns {boolean} True if the file is a video
@@ -262,9 +272,14 @@ function createProjectCard(projectId, project, index) {
             <!-- Group 2: Storytelling text + CTA -->
             <div class="storytelling-group">
               ${createProjectDetails(project)}
-              <a href="${ctaHref}" class="cta-button" data-project-id="${currentProjectId}">
-                → Read Case Study
-              </a>
+              <div class="cta-buttons-group">
+                <a href="${ctaHref}" class="cta-button" data-project-id="${currentProjectId}">
+                  → Read Case Study
+                </a>
+                <a href="/${PROJECT_SLUGS[currentProjectId]}" class="cta-button cta-button-secondary">
+                  → HTML access
+                </a>
+              </div>
             </div>
           </div>
         </div>

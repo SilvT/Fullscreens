@@ -7,6 +7,7 @@
 @use 'project-card';
 // @use 'project-detail'; // ARCHIVED: Not currently in use
 @use 'case-study';
+@use 'project-navigation'; // Breadcrumbs and footer navigation for project pages
 @use 'footer';
 @use 'accessibility';
 @use 'responsive';
