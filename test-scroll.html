@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scroll Test</title>
+  <style>
+    body { margin: 0; padding: 0; }
+    .tall { height: 3000px; background: linear-gradient(red, blue); }
+  </style>
+</head>
+<body>
+  <div class="tall">Scroll me</div>
+  <script>
+    window.addEventListener('scroll', () => {
+      console.log('SCROLL EVENT:', window.pageYOffset);
+    });
+    console.log('Initial scroll:', window.pageYOffset);
+  </script>
+</body>
+</html>
