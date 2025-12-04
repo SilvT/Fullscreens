@@ -129,15 +129,20 @@ function initCVDownloadTracking() {
 
   cvButton.addEventListener('click', (e) => {
     e.preventDefault();
-    trackCVDownload('pdf');
+    trackCVDownload('html');
 
-    // Trigger download
-    const link = document.createElement('a');
-    link.href = '/cv-silvia-travieso.pdf';
-    link.download = 'CV-Silvia-Travieso.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Open CV page in new window
+    // The CV page has print styles, so users can easily print to PDF
+    const cvWindow = window.open('/cv-silvia-travieso.html', '_blank');
+
+    // Optional: Auto-trigger print dialog after page loads
+    if (cvWindow) {
+      cvWindow.addEventListener('load', () => {
+        setTimeout(() => {
+          cvWindow.print();
+        }, 500);
+      });
+    }
   });
 
 }

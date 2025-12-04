@@ -23,6 +23,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
+        'cv-silvia-travieso': path.resolve(__dirname, 'cv-silvia-travieso.html'),
         'content-blocks-kit': path.resolve(__dirname, 'content-blocks-kit.html'),
         'marketing-management': path.resolve(__dirname, 'marketing-management.html'),
         'design-system': path.resolve(__dirname, 'design-system.html'),
