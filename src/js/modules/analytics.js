@@ -133,8 +133,8 @@ function initCVDownloadTracking() {
 
     // Download the PDF directly
     const link = document.createElement('a');
-    link.href = '/cv-silvia-travieso.pdf';
-    link.download = 'CV-Silvia-Travieso.pdf';
+    link.href = '/cv-silvia-travieso-2025.pdf';
+    link.download = 'CV-Silvia-Travieso-2025.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
