@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silvia Travieso González - CV</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Anonymous+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Import variables from your SCSS - converted to CSS */
+    :root {
+      /* Colors */
+      --color-white: #FAFAFA;
+      --color-cream: #f5f3f0;
+      --color-blue-100: #edf1f3;
+      --color-blue-200: #7CB1CA;
+      --color-blue-300: #3980AA;
+      --color-blue-400: #3C5E70;
+      --color-blue-500: #203a48;
+
+      --color-blue-light: var(--color-blue-100);
+      --color-blue-soft: var(--color-blue-200);
+      --color-blue-main: var(--color-blue-300);
+      --color-blue-dark: var(--color-blue-400);
+      --color-blue-darker: var(--color-blue-500);
+
+      --color-neutral: #5c584f;
+      --color-neutral-light: #6B7280;
+
+      /* Fonts */
+      --font-bricolage: 'Bricolage Grotesque', sans-serif;
+      --font-anonymous: 'Anonymous Pro', monospace;
+
+      /* Font Sizes */
+      --font-size-4xl: 48px;
+      --font-size-3xl: 40px;
+      --font-size-2xl: 32px;
+      --font-size-xl: 28px;
+      --font-size-l: 22px;
+      --font-size-base: 18px;
+      --font-size-s: 16px;
+      --font-size-xs: 14px;
+
+      /* Font Weights */
+      --font-weight-light: 300;
+      --font-weight-regular: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+
+      /* Spacing */
+      --space-8: 0.5rem;
+      --space-12: 0.75rem;
+      --space-16: 1rem;
+      --space-20: 1.25rem;
+      --space-24: 1.5rem;
+      --space-32: 2rem;
+      --space-40: 2.5rem;
+    }
+
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-bricolage);
+      color: var(--color-blue-darker);
+      background: var(--color-white);
+      line-height: 1.5;
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-light);
+    }
+
+    .cv-container {
+      max-width: 210mm; /* A4 width */
+      margin: 0 auto;
+      padding: 15mm;
+      background: var(--color-white);
+    }
+
+    /* Print Styles */
+    @media print {
+      @page {
+        size: A4;
+        margin: 15mm;
+      }
+
+      body {
+        background: white;
+      }
+
+      .cv-container {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      /* Prevent page breaks inside sections */
+      .cv-section {
+        page-break-inside: avoid;
+      }
+
+      h1, h2, h3 {
+        page-break-after: avoid;
+      }
+    }
+
+    /* Screen-only: Print button */
+    .print-button {
+      position: fixed;
+      top: var(--space-24);
+      right: var(--space-24);
+      padding: var(--space-12) var(--space-24);
+      background: var(--color-blue-main);
+      color: var(--color-white);
+      border: none;
+      border-radius: 4px;
+      font-family: var(--font-bricolage);
+      font-size: var(--font-size-s);
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      z-index: 1000;
+    }
+
+    .print-button:hover {
+      opacity: 0.8;
+    }
+
+    @media print {
+      .print-button {
+        display: none;
+      }
+    }
+
+    /* Typography */
+    h1 {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-blue-darker);
+      margin-bottom: var(--space-8);
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: var(--font-size-l);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-blue-main);
+      margin-top: var(--space-32);
+      margin-bottom: var(--space-16);
+      border-bottom: 2px solid var(--color-blue-light);
+      padding-bottom: var(--space-8);
+      display: flex;
+      align-items: center;
+      gap: var(--space-12);
+    }
+
+    h2 .icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    h2 .icon svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: var(--color-blue-main);
+    }
+
+    h2:first-of-type {
+      margin-top: var(--space-24);
+    }
+
+    h3 {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-blue-dark);
+      margin-top: var(--space-20);
+      margin-bottom: var(--space-8);
+    }
+
+    h4 {
+      font-size: var(--font-size-s);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-neutral);
+      margin-top: var(--space-12);
+      margin-bottom: var(--space-8);
+    }
+
+    p {
+      font-size: var(--font-size-s);
+      font-weight: var(--font-weight-light);
+      margin-bottom: var(--space-12);
+      line-height: 1.6;
+    }
+
+    strong {
+      font-weight: var(--font-weight-medium);
+      color: var(--color-blue-main);
+    }
+
+    em {
+      color: var(--color-blue-main);
+      font-style: italic;
+    }
+
+    /* Header Section */
+    .cv-header {
+      margin-bottom: var(--space-32);
+      padding-bottom: var(--space-24);
+      border-bottom: 3px solid var(--color-blue-main);
+    }
+
+    .cv-header h1 {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .cv-header .logo {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+
+    .cv-header .logo svg,
+    .cv-header .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .cv-header .logo svg {
+      fill: var(--color-blue-darker);
+    }
+
+    .cv-subtitle {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-regular);
+      color: var(--color-neutral);
+      margin-bottom: var(--space-12);
+      line-height: 1.4;
+    }
+
+    .cv-location {
+      font-size: var(--font-size-s);
+      color: var(--color-neutral-light);
+      font-weight: var(--font-weight-light);
+    }
+
+    /* Contact Info */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-8);
+      margin-top: var(--space-16);
+    }
+
+    .contact-item {
+      font-size: var(--font-size-xs);
+      color: var(--color-neutral);
+    }
+
+    .contact-item strong {
+      color: var(--color-blue-dark);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .contact-item a {
+      color: var(--color-blue-main);
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+ 
+ .two-col-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+}
+ .two-col-data .col p{
+  opacity: 0.7;
+  font-size: var(--font-size-xs);
+ }
+    
+    /* Skills Section */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-8);
+      margin-bottom: var(--space-16);
+    }
+
+    .skill-tag {
+      background: var(--color-blue-light);
+      color: var(--color-blue-dark);
+      padding: var(--space-8) var(--space-12);
+      border-radius: 4px;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-regular);
+    }
+
+    /* Languages Section */
+    .languages-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-12);
+      margin-bottom: var(--space-16);
+    }
+
+    .language-item {
+      font-size: var(--font-size-s);
+    }
+
+    .language-item strong {
+      color: var(--color-blue-dark);
+    }
+
+    /* Summary Section */
+    .summary-text {
+      font-size: var(--font-size-s);
+      line-height: 1.7;
+      color: var(--color-neutral);
+      margin-bottom: var(--space-12);
+    }
+
+    /* Experience Section */
+    .experience-item {
+      margin-bottom: var(--space-32);
+    }
+
+    .company-name {
+      font-size: var(--font-size-l);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-blue-darker);
+      margin-bottom: var(--space-8);
+    }
+
+    .company-duration {
+      font-size: var(--font-size-xs);
+      color: var(--color-neutral-light);
+      font-style: italic;
+      margin-bottom: var(--space-16);
+    }
+
+    .position {
+      margin-bottom: var(--space-24);
+    }
+
+    .position-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: var(--space-8);
+      flex-wrap: wrap;
+      gap: var(--space-8);
+    }
+
+    .position-title {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-blue-dark);
+    }
+
+    .position-duration {
+      font-size: var(--font-size-xs);
+      color: var(--color-neutral-light);
+      font-family: var(--font-anonymous);
+    }
+
+    .position-location {
+      font-size: var(--font-size-xs);
+      color: var(--color-neutral-light);
+      font-style: italic;
+      margin-bottom: var(--space-12);
+    }
+
+    /* Bullet Lists */
+    ul {
+      margin-left: var(--space-24);
+      margin-bottom: var(--space-16);
+    }
+
+    li {
+      font-size: var(--font-size-s);
+      line-height: 1.6;
+      margin-bottom: var(--space-8);
+      color: var(--color-neutral);
+    }
+
+    li::marker {
+      color: var(--color-blue-main);
+    }
+
+    /* Education Section */
+    .education-item {
+      margin-bottom: var(--space-12);
+    }
+    .education-item .two-col{
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+
+    .education-institution {
+      font-size: var(--font-size-s);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-blue-dark);
+    }
+
+    .education-degree {
+      font-size: var(--font-size-xs);
+      color: var(--color-neutral);
+      margin-top: var(--space-8);
+    }
+
+    .education-years {
+      font-size: var(--font-size-xs);
+      color: var(--color-neutral-light);
+      font-style: italic;
+      margin-top: var(--space-8);
+    }
+
+    /* Utilities */
+    .cv-section {
+      margin-bottom: var(--space-40);
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--color-blue-light);
+      margin: var(--space-32) 0;
+    }
+
+    /* Minimal experience items */
+    .experience-item.minimal, .experience-item.minimal-sub {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      margin-bottom: var(--space-12);
+    }
+
+    .experience-item.minimal .company-name {
+      font-size: var(--font-size-s);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-neutral);
+      margin-bottom: 0.25rem;
+    }
+
+    .experience-item.minimal .company-duration {
+      font-size: var(--font-size-xs);
+      margin-bottom: 0.25rem;
+    }
+
+    .experience-item.minimal .position {
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-item.minimal .position-header {
+      margin-bottom: 0.25rem;
+      gap: var(--space-8);
+    }
+
+    .experience-item.minimal .position-title {
+      font-size: var(--font-size-s);
+      font-weight: var(--font-weight-light);
+      color: var(--color-neutral);
+    }
+
+    .experience-item.minimal .position-duration {
+      font-size: var(--font-size-xs);
+      opacity: 0.6;
+    }
+
+    .experience-item.minimal .position-location {
+      font-size: var(--font-size-xs);
+      margin-bottom: 0.25rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <button class="print-button no-print" onclick="window.print()">Save as PDF / Print</button>
+
+  <div class="cv-container">
+    <!-- Header -->
+    <header class="cv-header">
+      <h1>
+        <span class="logo">
+          <img src="/logo-filled.svg" alt="Silvia Travieso Logo" />
+        </span>
+        <span>Silvia Travieso González</span>
+      </h1>
+      <p class="cv-subtitle"><strong>Senior UI Designer | Design Systems Lead | Token Architecture | Tool Development</strong></p>
+      <p class="cv-location">Barcelona, Catalonia, Spain</p>
+    </header>
+
+    <!-- Contact -->
+    <section class="cv-section">
+      <h2>
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </span>
+        <span>Contact</span>
+      </h2>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <strong>Email:</strong><br><a href="mailto:silvia.travieso.g@gmail.com">silvia.travieso.g@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <strong>LinkedIn:</strong><br><a href="https://www.linkedin.com/in/silvia-traviesogonzalez" target="_blank">linkedin.com/in/silvia-traviesogonzalez</a>
+        </div>
+        <div class="contact-item">
+          <strong>Portfolio:</strong><br><a href="https://silviatravieso.es/portfolio/index.html" target="_blank">silviatravieso.es/portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="cv-section">
+      <h2>
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+        </span>
+        <span>Summary</span>
+      </h2>
+      <p class="summary-text">I build design systems that work in the real world—with metrics to prove it.</p>
+
+      <p class="summary-text">I built my last company's first design system from scratch, solo, in an engineer-first culture. The results: <strong>90% QA reduction, 70% clean handoff rate, ~1,920 hours saved through component reuse</strong>, now deployed across 7 products. I didn't just design it—I built the automation too. I'm quick to adopt new technologies when they solve real problems: leveraged AI tools to build custom GitHub Actions that push design tokens from Figma straight into production CSS.</p>
+
+      <p class="summary-text">The last 2 years have been deep in UI and product work. I've stepped into product strategy on small teams with zero PM structure, co-owned full product lifecycles from pitch to MVP, and learned to think like a product person while staying a designer.</p>
+
+      <p class="summary-text">I think in systems and token architecture. I thrive in ambiguous environments where you have to build the plane while flying it. <strong>Currently developing a Figma plugin</strong> (under review by Figma for community release) that democratises design token workflows while seeking <strong>Senior UI Designer or Design Systems Lead roles</strong> where craft meets strategic impact.</p>
+    </section>
+
+        <!-- Technical Skills -->
+    <section class="cv-section">
+      <h2>
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </span>
+        <span>Technical Skills</span>
+      </h2>
+  <div class="two-col-data">
+      <div class="col">
+        <div>
+          <h4>Design & Prototyping</h4>
+          <p>Figma, FigJam, TokenStudio Plugin, Figma Variables, Figma Prototypes, Figma Sites, Figma Slides, Miro</p>
+        </div>
+        <div>
+          <h4>Version Control & Automation</h4>
+          <p>Git, GitHub, GitHub Actions</p>
+        </div>
+        <div>
+          <h4>Documentation & Collaboration</h4>
+          <p>Confluence, Notion, Miro</p>
+        </div>
+        <div>
+          <h4>AI Tools</h4>
+          <p>Claude, Claude Code, GPT, Copilot, Perplexity</p>
+        </div>
+        
+      </div>
+      <div class="col">
+    <div>
+          <h4>Front-end & Development</h4>
+          <p>HTML, CSS, SCSS, JavaScript, GSAP, Anime.js, npm, Bootstrap</p>
+        </div>
+        <div>
+          <h4>Plugin Development</h4>
+          <p>Figma Plugin API</p>
+        </div>
+        <div>
+          <h4>Standards & Specifications</h4>
+          <p>DTCG (Design Token Community Group) spec, WCAG accessibility compliance</p>
+        </div>
+        <div>
+          <h4>Research & Testing</h4>
+          <p>Manual user interviews, questionnaires (Google Forms, Microsoft Forms)</p>
+        </div>
+      </div>
+  </div>
+ </section>
+
+    <!-- Current Projects -->
+    <section class="cv-section">
+      <h2>
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </span>
+        <span>Current Projects</span>
+      </h2>
+
+      <h3>Figma-to-GitHub Plugin</h3>
+      <p class="position-duration">December 2025 - Present · Under review by Figma for community plugins</p>
+
+      <p>Building a Figma-native plugin that eliminates the TokenStudio workflow complexity and bypasses Figma API subscription barriers.</p>
+
+      <p><strong>What it solves:</strong></p>
+      <ul>
+        <li>Direct push from Figma Variables to GitHub (JSON format): no expensive API tier required</li>
+        <li>Eliminates multi-step translation: Figma → TokenStudio → Git transformation</li>
+        <li>User-controlled PR creation on push</li>
+        <li>One-click GitHub Action deployment for automated CSS transformation</li>
+      </ul>
+
+      <p><strong>Status:</strong> Submitted to Figma for community plugin review, December 2025.</p>
+    </section>
+
+    <!-- Experience -->
+    <section class="cv-section">
+      <h2>
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+        </span>
+        <span>Experience</span>
+      </h2>
+
+      <!-- Senapt -->
+      <div class="experience-item">
+        <div class="company-name">Senapt</div>
+        <div class="company-duration">February 2024 - November 2025 (1 year 9 months)</div>
+
+        <!-- Design System & Product Designer -->
+        <div class="position">
+          <div class="position-header">
+            <h3 class="position-title">Design System & Product Designer</h3>
+            <span class="position-duration">March 2025 - November 2025 (9 months)</span>
+          </div>
+          <p>Built the company's first design system from zero while maintaining product design ownership. Started as UI Designer, proved the system's value through working proof-of-concept, evolved into design system leadership.</p>
+
+          <p><strong>Key achievements:</strong></p>
+          <ul>
+            <li>Secured CEO buy-in by building proof-of-concept showing real efficiency gains—working system beats theoretical pitch decks</li>
+            <li>Built automated Figma-to-Git pipeline (with AI assistance) transforming design tokens into JavaFX-specific CSS</li>
+            <li>Delivered measurable impact: <strong>90% QA reduction, 70% clean handoff rate, ~1,920 hours saved</strong> through component reuse</li>
+            <li>Grew system from 150 messy tokens to <strong>864+ systematically structured tokens</strong> following DTCG spec and WCAG accessibility requirements</li>
+            <li>Led adoption across <strong>7+ products</strong>, conducting audits to establish global token architecture serving 80% of use cases</li>
+            <li>Ran workshops and training sessions to build design system culture and drive designer contribution</li>
+          </ul>
+        </div>
+
+        <!-- Product Designer -->
+        <div class="position">
+          <div class="position-header">
+            <h3 class="position-title">Product Designer</h3>
+            <span class="position-duration">September 2024 - March 2025 (7 months)</span>
+          </div>
+          <p>Stepped into product strategy on 3-person team (back-end, front-end, me) with zero PM structure. Learned product thinking by doing it.</p>
+
+          <p><strong>Key achievements:</strong></p>
+          <ul>
+            <li>Co-owned full product lifecycle alongside back-end lead: CEO pitches, requirements gathering, user validation, market research, information architecture</li>
+            <li>Co-drove product roadmap based on research insights and technical opportunities</li>
+            <li>Designed comprehensive UI system + component library with detailed written handoffs</li>
+            <li>Built two iterations of bespoke design system—this became the proof-of-concept that convinced leadership to invest in company-wide system</li>
+          </ul>
+        </div>
+
+        <!-- UI Designer -->
+        <div class="position">
+          <div class="position-header">
+            <h3 class="position-title">UI Designer</h3>
+            <span class="position-duration">February 2024 - September 2024 (8 months)</span>
+          </div>
+          <p class="position-location">Remote - Basingstoke, England, United Kingdom</p>
+
+          <p><strong>Key achievements:</strong></p>
+          <ul>
+            <li>Designed across multiple concurrent products at different stages (0→1, in development, production, live)</li>
+            <li>Optimised features for existing products with UX and UI improvements</li>
+            <li>Established clean handoff processes with front-end developer working across 8-hour timezone gap</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Silvarium Visuals -->
+      <div class="experience-item">
+        <div class="company-name">Silvarium Visuals</div>
+        <div class="position">
+          <div class="position-header">
+            <h3 class="position-title">Freelance Designer</h3>
+            <span class="position-duration">April 2021 - Present (4 years 9 months)</span>
+          </div>
+          <p class="position-location">Barcelona, Catalonia, Spain</p>
+          <p><strong>Brand Identity | Art Direction | Illustration | Front-end Design</strong></p>
+          <p>Occasional freelance projects—brand work, illustration, front-end prototyping. 10+ clients including Spain's 2nd most influential aesthetic doctor (grew Instagram following from 14k to 140k). Full-suite brand work from identity to websites and social media. Medical illustration work published in Europe's leading cardiology journal.</p>
+        </div>
+      </div>
+
+      <!-- Castlexperience -->
+      
+      <div class="experience-item minimal">
+        <div class="company-name">Castlexperience</div>
+        <!-- <span class="position-title">|</span> -->
+          <p class="position-title">Assistant Community Manager</p>
+      </div>
+      <div class="experience-item minimal-sub">
+          <p class="position-location">Barcelona, Catalonia, Spain</p>
+          <span class="position-duration">—</span>
+          <div class="company-duration">2 years 7 months (2019-2021)</div>
+        </div>
+
+      <!-- Boyarsky Murphy Architects -->
+      <div class="experience-item minimal">
+        <div class="company-name">Boyarsky Murphy Architects</div>
+        <!-- <span class="position-title">|</span> -->
+          <p class="position-title">Architect</p>
+      </div>
+      <div class="experience-item minimal-sub">
+          <p class="position-location">London, United Kingdom</p>
+          <span class="position-duration">—</span>
+          <div class="company-duration">September 2017 - May 2018 (9 months)</div>
+        </div>
+
+      <!-- rectArquitectos -->
+      <div class="experience-item minimal">
+        <div class="company-name">rectArquitectos</div>
+        <!-- <span class="position-title">|</span> -->
+          <p class="position-title">Architect</p>
+      </div>
+      <div class="experience-item minimal-sub">
+          <p class="position-location"> Canary Islands, Spain</p>
+          <span class="position-duration">—</span>
+          <div class="company-duration">February 2016 - August 2017 (1 year 7 months)</div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="cv-section">
+      <h2>
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+        </span>
+        <span>Education</span>
+      </h2>
+
+      <div class="education-item">
+        <div class="education-institution">EINA Centre Universitari de Disseny i Art de Barcelona</div>
+        <div class="two-col">
+          <div class="education-years">2020 - 2021</div>
+          <div class="education-degree">Master's Degree, Graphic Design</div>
+        </div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-institution">Universidad de Las Palmas de Gran Canaria</div>
+        <div class="two-col">
+          <div class="education-years">2009 - 2017</div>
+          <div class="education-degree">Bachelor of Architecture (B.Arch.)</div>
+        </div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-institution">Politecnico di Milano</div>
+        <div class="two-col">
+          <div class="education-years">2012 - 2013</div>
+          <div class="education-degree">Erasmus: Bachelor of Architecture (B.Arch.), Architecture</div>
+        </div>
+      </div>
+    </section>
+        <!-- Languages -->
+    <section class="cv-section">
+      <h2>
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+        </span>
+        <span>Languages</span>
+      </h2>
+      <div class="languages-grid">
+        <div class="language-item"><strong>Spanish:</strong> Native or Bilingual</div>
+        <div class="language-item"><strong>English:</strong> Native or Bilingual</div>
+        <div class="language-item"><strong>Catalan:</strong> Professional Working</div>
+        <div class="language-item"><strong>Italian:</strong> Limited Working</div>
+      </div>
+</section>
+  </div>
+</body>
+</html>
