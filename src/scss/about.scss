@@ -459,3 +459,32 @@ body {
     grid-column: 1;
   }
 }
+
+.about-cv{
+margin-top: 2rem;
+z-index: 10000;
+  & .about-button-cv{
+    background-color: $color-white;
+    padding: $space-8;
+    border-radius: 0.5rem;
+    min-width: 10vw;
+    border: 2px solid transparent;
+    & a{
+      font-family: $font-bricolage;
+      color: #3C5E70;
+      font-size: $font-size-base;
+    }
+    &:hover{
+      border-bottom: 2px solid $color-blue-main;
+      background-color: white;
+      & a{
+        color: $color-blue-main;
+        font-weight: $font-weight-medium;
+        text-decoration: none;
+      }
+    }
+    &:active{
+    background-color: $color-blue-light;
+
+  }}
+}

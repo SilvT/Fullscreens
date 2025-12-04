@@ -89,13 +89,13 @@
   &[data-hover-text] {
     &::after {
       content: attr(data-hover-text);
-      position: absolute;
-      left: 50%;
-      top: 100%;
+      position: relative;
+      left: 0;
+      top: 70%;
       transform: translateX(-50%) translateY(8px);
       font-family: $font-anonymous;
-      font-size: $font-size-xs;
-      font-weight: $font-weight-regular;
+      font-size: $font-size-s;
+      font-weight: $font-weight-bold;
       color: $color-blue-main;
       white-space: nowrap;
       opacity: 0;
@@ -103,12 +103,14 @@
       transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
       pointer-events: none;
       z-index: 10;
+
+
     }
 
     &:hover::after {
       opacity: 1;
       visibility: visible;
-      transform: translateX(-50%) translateY($space-16);
+      transform: translateX(-60%) translateY($space-32);
     }
   }
 }
