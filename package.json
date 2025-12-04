@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node scripts/generate-ats-content.js",
+    "prebuild": "node scripts/generate-ats-content.js && node scripts/generate-cv-pdf.js",
     "build": "vite build",
     "postbuild": "echo '\n✅ Build complete with ATS-optimized content'",
     "preview": "vite preview",
     "generate:ats": "node scripts/generate-ats-content.js",
+    "generate:cv-pdf": "node scripts/generate-cv-pdf.js",
     "verify:ats": "node scripts/verify-ats.js"
   },
   "dependencies": {
@@ -21,6 +22,7 @@
     "iconoir": "^7.11.0"
   },
   "devDependencies": {
+    "puppeteer": "^24.32.0",
     "sass": "^1.69.5",
     "vite": "^6.4.0"
   }
