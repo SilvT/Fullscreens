@@ -1,0 +1,860 @@
+@use 'variables' as *;
+
+/**
+ * Timeline Component Styles
+ * Includes both scroll-hijacking timeline and case study timeline variants
+ */
+
+// ======================
+// SCROLL-HIJACKING TIMELINE
+// ======================
+
+// Timeline Container (wraps intro, timeline, outro)
+.timeline-container {
+  width: 100%;
+  position: relative;
+}
+
+// Intro/Outro Panels
+.intro-panel {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #3980AA 0%, #203a48 100%);
+  color: $color-white;
+  position: relative;
+  padding: $space-60;
+
+  &.outro-panel {
+    background: linear-gradient(135deg, #79854f 0%, #525d2e 100%);
+  }
+}
+
+.intro-panel__content {
+  max-width: 800px;
+  text-align: center;
+
+  h1, h2 {
+    font-size: 4rem;
+    font-weight: $font-weight-bold;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  .intro-panel__subtitle {
+    font-size: 1.5rem;
+    font-weight: $font-weight-light;
+    opacity: 0.9;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  animation: bounce 2s infinite;
+
+  span {
+    display: block;
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    opacity: 0.7;
+  }
+
+  svg {
+    opacity: 0.7;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+.impact-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: $space-32;
+  margin: $space-40 0;
+
+  .metric {
+    text-align: center;
+
+    .metric__value {
+      display: block;
+      font-size: 3rem;
+      font-weight: $font-weight-bold;
+      margin-bottom: $space-8;
+      color: $color-white;
+    }
+
+    .metric__label {
+      display: block;
+      font-size: $font-size-s;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.outro-panel__text {
+  font-size: $font-size-l;
+  font-weight: $font-weight-light;
+  opacity: 0.9;
+  font-style: italic;
+}
+
+// Timeline Scroll Wrapper (Pinned Container)
+.timeline-scroll-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background: $color-cream;
+}
+
+// Navigation Sidebar
+.timeline-nav {
+  position: fixed;
+  left: 0;
+  top: 35vh;
+  transform: translateY(-50%);
+  z-index: 100;
+  padding: 30px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  ul {
+    margin: 0 0 100px 30px;
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    position: relative;
+    transition: all 0.3s ease-out;
+    margin-bottom: 1em;
+
+    // L-shaped connector line
+    &:after {
+      content: '';
+      display: block;
+      border-left: 2px solid currentColor;
+      border-top: 2px solid currentColor;
+      height: 250px;
+      width: 20px;
+      position: absolute;
+      left: -30px;
+      top: 15px;
+      opacity: 0.3;
+      transition: all 0.3s ease-out;
+    }
+
+    &.active {
+      pointer-events: none;
+      padding-left: 1em;
+
+      &:after {
+        width: 35px;
+        height: 400px;
+        top: 35px;
+        opacity: 1;
+      }
+
+      .timeline-nav__counter {
+        font-size: 48px;
+      }
+
+      .timeline-nav__title {
+        height: 40px;
+        opacity: 1;
+        overflow: visible;
+      }
+
+      .timeline-nav__label {
+        height: 100px;
+        opacity: 1;
+        overflow: visible;
+      }
+    }
+  }
+
+  a {
+    display: block;
+    padding: 0;
+    color: $color-blue-main;
+    text-decoration: none;
+    transition: all 0.15s ease-out;
+
+    &:hover {
+      padding-left: 1em;
+    }
+  }
+}
+
+.timeline-nav__counter {
+  font-size: 24px;
+  transition: all 0.15s ease-out;
+  font-weight: $font-weight-semibold;
+  color: $color-blue-main;
+}
+
+.timeline-nav__title {
+  font-size: 32px;
+  font-weight: $font-weight-light;
+  margin: 0 0 0.25em;
+  width: 300px;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: height 0.3s ease-out, opacity 0.2s ease-out;
+  color: $color-blue-dark;
+}
+
+.timeline-nav__label {
+  font-weight: $font-weight-light;
+  font-size: 18px;
+  width: 300px;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: height 0.3s ease-out, opacity 0.2s ease-out;
+  color: $color-neutral;
+}
+
+// Sections Container (80vh to allow peek)
+.timeline-sections {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.timeline-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-60 320px $space-60 $space-60;
+  will-change: transform;
+
+  // Section backgrounds with gradients
+  &[data-section="0"] { background: linear-gradient(135deg, #fafafa 0%, #f5f3f0 100%); }
+  &[data-section="1"] { background: linear-gradient(135deg, #f5f3f0 0%, #edf1f3 100%); }
+  &[data-section="2"] { background: linear-gradient(135deg, #edf1f3 0%, #e8ebe0 100%); }
+  &[data-section="3"] { background: linear-gradient(135deg, #e8ebe0 0%, #f5f3f0 100%); }
+  &[data-section="4"] { background: linear-gradient(135deg, #f5f3f0 0%, #fafafa 100%); }
+  &[data-section="5"] { background: linear-gradient(135deg, #fafafa 0%, #edf1f3 100%); }
+  &[data-section="6"] { background: linear-gradient(135deg, #edf1f3 0%, #e8ebe0 100%); }
+  &[data-section="7"] { background: linear-gradient(135deg, #e8ebe0 0%, #f5f3f0 100%); }
+}
+
+.timeline-section__content {
+  max-width: 1000px;
+  width: 100%;
+
+  h2, h3 {
+    font-size: $font-size-2xl;
+    color: $color-blue-dark;
+    margin-bottom: $space-24;
+    font-weight: $font-weight-bold;
+  }
+
+  h3 {
+    font-size: $font-size-l;
+    margin-bottom: $space-16;
+  }
+
+  p {
+    font-size: $font-size-base;
+    color: $color-neutral;
+    line-height: 1.7;
+    margin-bottom: $space-20;
+  }
+
+  ul {
+    padding-left: $space-24;
+    margin-bottom: $space-20;
+
+    li {
+      font-size: $font-size-l;
+      margin-bottom: $space-12;
+      color: $color-blue-dark;
+      line-height: 1.5;
+
+      &::marker {
+        color: $color-blue-main;
+      }
+    }
+  }
+}
+
+// Content blocks layout (from converted format)
+.timeline-content-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: $space-32;
+}
+
+.timeline-content-block {
+  background: rgba($color-white, 0.5);
+  padding: $space-24;
+  border-radius: 8px;
+  border: 1px solid rgba($color-blue-dark, 0.1);
+
+  h3:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.timeline-media {
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: $space-16;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Peek indicator (bottom sliver)
+.timeline-peek {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, rgba($color-blue-main, 0.1));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+// Transition section (after last section)
+.timeline-transition {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, $color-cream 0%, $color-white 100%);
+
+  .timeline-transition__content {
+    text-align: center;
+    padding: $space-40;
+
+    h3 {
+      font-size: $font-size-xl;
+      color: $color-blue-dark;
+      margin-bottom: $space-16;
+      font-weight: $font-weight-semibold;
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: $color-neutral-light;
+    }
+  }
+}
+
+// ======================
+// CASE STUDY TIMELINE (OLD VARIANT)
+// ======================
+
+.cs-timeline-container {
+  width: 100%;
+  position: relative;
+  padding: 0;
+  // Height no longer needed - using scroll hijacking instead
+}
+
+.cs-timeline-wrapper {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  max-width: 1400px;
+  // height: 100vh;
+  height: 90vh;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 4rem;
+  align-items: center;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1rem;
+  }
+}
+
+// ======================
+// TABS SIDEBAR (Desktop: Left, Mobile: Top)
+// ======================
+
+.cs-timeline-tabs {
+  position: sticky;
+  top: 120px;
+  // height: fit-content;
+  height: 100%;
+
+  @media (max-width: 1024px) {
+    position: relative;
+    top: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 2px;
+    }
+  }
+}
+
+.cs-timeline-tabs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  @media (max-width: 1024px) {
+    flex-direction: row;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.cs-timeline-tab {
+  position: relative;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: 1024px) {
+    flex-shrink: 0;
+    min-width: 200px;
+  }
+}
+
+.cs-timeline-tab-button {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 1rem 1.25rem;
+  text-align: left;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+
+  @media (max-width: 1024px) {
+    border-left: none;
+    border-top: 3px solid transparent;
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent-color, #007aff);
+    outline-offset: 2px;
+  }
+
+  .cs-timeline-tab.active & {
+    border-left-color: var(--accent-color, #007aff);
+    background: rgba(0, 0, 0, 0.02);
+
+    @media (max-width: 1024px) {
+      border-left-color: transparent;
+      border-top-color: var(--accent-color, #007aff);
+    }
+  }
+}
+
+.cs-timeline-tab-icon {
+  font-size: 1.25rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  flex-shrink: 0;
+
+  .cs-timeline-tab.active & {
+    opacity: 1;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 1.5rem;
+  }
+}
+
+.cs-timeline-tab-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.cs-timeline-tab-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary, #000);
+  transition: color 0.3s ease;
+  line-height: 1.4;
+
+  .cs-timeline-tab.active & {
+    color: var(--accent-color, #007aff);
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 0.9rem;
+  }
+}
+
+.cs-timeline-tab-subtitle {
+  font-size: 0.875rem;
+  margin: 0.25rem 0 0;
+  color: var(--text-secondary, #666);
+  line-height: 1.3;
+
+  @media (max-width: 1024px) {
+    font-size: 0.8rem;
+  }
+  display: none; //hide temporarily
+}
+
+// ======================
+// CONTENT AREA (Right)
+// ======================
+
+.cs-timeline-content {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.cs-timeline-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 2rem;
+  transition: opacity 0.5s ease-in-out;
+
+  &.active {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-timeline-section {
+    transition: opacity 0.1s;
+  }
+}
+
+// ======================
+// CONTENT BLOCKS
+// ======================
+
+.cs-timeline-block {
+  // Base styles for all blocks
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--text-primary, #000);
+  }
+
+  p {
+    margin: 0 0 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary, #333);
+  }
+
+  ul, ol {
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+  }
+
+  a {
+    color: var(--accent-color, #007aff);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+// Block 1: First text block
+.cs-timeline-block-1 {
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 12px;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+}
+
+// Block 2: Second text block
+.cs-timeline-block-2 {
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 12px;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+}
+
+// Block 3: Media block
+.cs-timeline-block-3 {
+  padding: 1rem;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    min-height: 200px;
+    padding: 0.5rem;
+  }
+}
+
+.cs-timeline-media {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  // For multiple media items, consider grid layout
+  &:has(.cs-timeline-media-item:nth-child(2)) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.cs-timeline-media-item {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  // Video specific styles
+  &[controls] {
+    background: #000;
+  }
+}
+
+// ======================
+// LOADING STATE
+// ======================
+
+.cs-timeline-container.loading {
+  .cs-timeline-section {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+// ======================
+// EMPTY STATE
+// ======================
+
+.cs-timeline-empty {
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--text-secondary, #666);
+
+  h3 {
+    margin: 0 0 0.5rem;
+    color: var(--text-primary, #000);
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+// ======================
+// MOBILE RESPONSIVE
+// ======================
+
+@media (max-width: 768px) {
+  .intro-panel__content {
+    h1, h2 {
+      font-size: 2.5rem;
+    }
+
+    .intro-panel__subtitle {
+      font-size: 1.2rem;
+    }
+  }
+
+  .impact-metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-24;
+
+    .metric__value {
+      font-size: 2rem;
+    }
+  }
+
+  .timeline-nav {
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: none;
+    width: 100%;
+    padding: $space-20 $space-16;
+
+    ul {
+      display: flex;
+      overflow-x: auto;
+      gap: $space-16;
+      padding-bottom: $space-8;
+
+      &::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba($color-blue-main, 0.3);
+        border-radius: 2px;
+      }
+    }
+
+    li {
+      flex-shrink: 0;
+      margin-bottom: 0;
+
+      &.active .timeline-nav__label {
+        max-height: 0;
+        opacity: 0;
+      }
+    }
+
+    a {
+      white-space: nowrap;
+    }
+  }
+
+  .timeline-section {
+    padding: $space-40 $space-20;
+    height: auto;
+    min-height: 70vh;
+  }
+
+  .timeline-sections {
+    height: auto;
+    min-height: 70vh;
+  }
+
+  .timeline-section__content {
+    h2 {
+      font-size: $font-size-xl;
+    }
+  }
+}
+
+// ======================
+// ACCESSIBILITY
+// ======================
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-section,
+  .timeline-nav li,
+  .timeline-nav a,
+  .timeline-peek,
+  .cs-timeline-section,
+  .cs-timeline-tab-button,
+  .cs-timeline-media-item {
+    transition: none !important;
+  }
+}

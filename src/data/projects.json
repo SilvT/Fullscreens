@@ -21,8 +21,8 @@
     ],
     "contentFile": "/data/mkm-content.json"
   },
-  "2": {
-    "title": "Design System from Scratch",
+  "6": {
+    "title": "Design System from Scratch-OLD",
     "subtitle": "Building design infrastructure in an engineer-first startup with zero precedent",
     "shortSubtitle": "Building design infrastructure in an engineer-first startup with zero precedent",
     "company": "Senapt LTD",
@@ -48,6 +48,37 @@
       { "icon": "ph:users-three", "value": "7", "label": "Projects adopted" }
     ],
     "contentFile": "/data/mkm-ds.json"
+  },
+
+
+
+
+    "2": {
+    "title": "Design System from Scratch",
+    "subtitle": "Building design infrastructure in an engineer-first startup with zero precedent",
+    "company": "Senapt LTD",
+    "year": "2024 - 2025",
+    "duration": "18 months",
+    "tags": ["Design Systems", "Token Architecture", "JavaFX", "GitHub Actions", "Greenfield 0 → 1"],
+    
+    "cardOverview": "Built a production-ready design system from scratch as a solo mid-level designer in an engineer-first startup. Solved JavaFX (zero references), 8-hour timezone gaps, and CEO resistance. Result: 90% QA reduction, company-wide adoption, and 1,920 hours saved through systematic reuse.",
+    
+    "storyTeaser": {
+      "text": "CEO rejected my design system pitch. So I built it anyway, proved it worked, and got him to mandate it company-wide 15 months later.",
+      "cta": "Read how I turned organisational resistance into strategic infrastructure"
+    },
+    
+    "heroImage": "/ds/ds-hero.png",
+    "cardHoverImage":"/ds/ds-card-hover.png",
+    "theme": "green",
+    
+    "cardMetrics": [
+      { "icon": "iconoir:clock", "value": "90%", "label": "QA reduction" },
+      { "icon": "iconoir:frame-select", "value": "864", "label": "Production tokens" },
+      { "icon": "iconoir:component", "value": "40+", "label": "Components" },
+      { "icon": "ph:users-three", "value": "7", "label": "Projects adopted" }
+    ],
+    "contentFile": "/data/ds.json"
   },
     "3": {
    "title": "Energy Switching Tracker",

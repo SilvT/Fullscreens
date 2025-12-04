@@ -10,6 +10,7 @@ import projectData from '../../data/projects.json';
 import { updateProjectMetaTags, clearProjectMetaTags } from './structuredData.js';
 import { initLightbox, refreshLightbox } from './lightbox.js';
 import { trackProjectView, trackCaseStudyInteraction } from './analytics.js';
+import { renderTimelineBlock } from './case-study-new.js';
 import '@phosphor-icons/web/light';
 import 'iconoir/css/iconoir.css';
 
@@ -313,17 +314,17 @@ function populateCaseStudy(project) {
   if (heroCompany) heroCompany.innerHTML = project.company || '';
   if (heroOverview) heroOverview.innerHTML = project.cardOverview;
 
-  // Tags
-  const tagsContainer = document.querySelector('.cs-hero-tags');
-  if (tagsContainer && project.tags) {
-    tagsContainer.innerHTML = '';
-    project.tags.forEach((tag) => {
-      const span = document.createElement('span');
-      span.className = 'cs-tag';
-      span.innerHTML = tag;
-      tagsContainer.appendChild(span);
-    });
-  }
+  // Tags - REMOVED from hero section
+  // const tagsContainer = document.querySelector('.cs-hero-tags');
+  // if (tagsContainer && project.tags) {
+  //   tagsContainer.innerHTML = '';
+  //   project.tags.forEach((tag) => {
+  //     const span = document.createElement('span');
+  //     span.className = 'cs-tag';
+  //     span.innerHTML = tag;
+  //     tagsContainer.appendChild(span);
+  //   });
+  // }
 
   // Hero Image(s)
   const heroImagesContainer = document.querySelector('.cs-hero-images');
@@ -587,6 +588,12 @@ function renderBlock(block, project) {
       break;
     case 'image-carousel':
       element = renderImageCarousel(block);
+      break;
+    case 'timeline':
+      element = renderTimelineBlock(block);
+      break;
+    case 'time-carousel':
+      element = renderTimeCarousel(block);
       break;
     default:
       return null;
@@ -1059,6 +1066,11 @@ function renderContentCarousel(block) {
   const wrapper = document.createElement('div');
   wrapper.className = 'cs-block cs-block-content-carousel';
 
+  // Add custom class if provided
+  if (block.class) {
+    wrapper.classList.add(block.class);
+  }
+
   if (block.heading) {
     const heading = document.createElement('h2');
     heading.className = 'cs-section-heading';
@@ -1068,17 +1080,6 @@ function renderContentCarousel(block) {
 
   const carouselContainer = document.createElement('div');
   carouselContainer.className = 'cs-carousel-container';
-
-  // Navigation buttons
-  const prevBtn = document.createElement('button');
-  prevBtn.className = 'cs-carousel-nav cs-carousel-prev';
-  prevBtn.setAttribute('aria-label', 'Previous slide');
-  prevBtn.innerHTML = '<i class="iconoir-nav-arrow-left"></i>';
-
-  const nextBtn = document.createElement('button');
-  nextBtn.className = 'cs-carousel-nav cs-carousel-next';
-  nextBtn.setAttribute('aria-label', 'Next slide');
-  nextBtn.innerHTML = '<i class="iconoir-nav-arrow-right"></i>';
 
   // Carousel track
   const track = document.createElement('div');
@@ -1129,9 +1130,7 @@ function renderContentCarousel(block) {
     track.appendChild(slide);
   });
 
-  carouselContainer.appendChild(prevBtn);
   carouselContainer.appendChild(track);
-  carouselContainer.appendChild(nextBtn);
 
   // Indicators
   const indicators = document.createElement('div');
@@ -1150,7 +1149,7 @@ function renderContentCarousel(block) {
   wrapper.appendChild(indicators);
 
   // Initialize carousel behavior
-  setTimeout(() => initializeCarousel(wrapper, block.items.length), 100);
+  setTimeout(() => initializeCarousel(wrapper), 100);
 
   return wrapper;
 }
@@ -1158,39 +1157,45 @@ function renderContentCarousel(block) {
 /**
  * Initialize carousel navigation and indicators
  */
-function initializeCarousel(wrapper, totalSlides) {
+function initializeCarousel(wrapper) {
   let currentSlide = 0;
   const slides = wrapper.querySelectorAll('.cs-carousel-slide');
   const indicators = wrapper.querySelectorAll('.cs-carousel-indicator');
-  const prevBtn = wrapper.querySelector('.cs-carousel-prev');
-  const nextBtn = wrapper.querySelector('.cs-carousel-next');
+  const isStackedMetrics = wrapper.classList.contains('stacked-metrics');
 
   function goToSlide(index) {
-    // Remove active class from current slide and indicator
-    slides[currentSlide].classList.remove('active');
-    indicators[currentSlide].classList.remove('active');
+    if (isStackedMetrics) {
+      // For stacked metrics, manually trigger rotation to bring selected slide to front
+      const targetSlide = slides[index];
+      const currentPosition = targetSlide.classList.value.match(/slide-position-(\d+|stacked)/)?.[1];
 
-    // Update current slide
-    currentSlide = index;
+      // Calculate how many rotations needed to bring this slide to position-1
+      let rotationsNeeded = 0;
+      if (currentPosition === '2') rotationsNeeded = 1;
+      else if (currentPosition === '3') rotationsNeeded = 2;
+      else if (currentPosition === '4') rotationsNeeded = 3;
+      else if (currentPosition === 'stacked') {
+        // Find which stacked position
+        const stackOrder = parseInt(targetSlide.dataset.stackOrder) || 0;
+        rotationsNeeded = 4 + stackOrder;
+      }
 
-    // Add active class to new slide and indicator
-    slides[currentSlide].classList.add('active');
-    indicators[currentSlide].classList.add('active');
+      // Trigger manual rotations
+      const rotateEvent = new CustomEvent('manualRotate', { detail: { count: rotationsNeeded } });
+      wrapper.dispatchEvent(rotateEvent);
+    } else {
+      // Standard carousel behavior
+      slides[currentSlide].classList.remove('active');
+      indicators[currentSlide].classList.remove('active');
+
+      currentSlide = index;
+
+      slides[currentSlide].classList.add('active');
+      indicators[currentSlide].classList.add('active');
+    }
   }
 
-  // Previous button
-  prevBtn.addEventListener('click', () => {
-    const newIndex = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
-    goToSlide(newIndex);
-  });
-
-  // Next button
-  nextBtn.addEventListener('click', () => {
-    const newIndex = currentSlide === totalSlides - 1 ? 0 : currentSlide + 1;
-    goToSlide(newIndex);
-  });
-
-  // Indicator clicks
+  // Indicator clicks - make dots clickable for navigation
   indicators.forEach((indicator) => {
     indicator.addEventListener('click', () => {
       const index = parseInt(indicator.dataset.index);
@@ -1221,28 +1226,127 @@ function initializeCarousel(wrapper, totalSlides) {
 
   observer.observe(wrapper);
 
-  // Global keyboard navigation hijacking
-  const handleGlobalKeydown = (e) => {
-    if (isInViewport && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
-      // Prevent default behavior (modal navigation)
-      e.preventDefault();
-      e.stopPropagation();
-
-      if (e.key === 'ArrowLeft') {
-        prevBtn.click();
-      } else if (e.key === 'ArrowRight') {
-        nextBtn.click();
-      }
-    }
-  };
-
-  // Add global listener with capture phase to intercept before modal handlers
-  document.addEventListener('keydown', handleGlobalKeydown, true);
-
-  // Clean up observer and event listener when needed
+  // Clean up observer when needed
   wrapper.carouselCleanup = () => {
     observer.disconnect();
-    document.removeEventListener('keydown', handleGlobalKeydown, true);
+  };
+
+  // Initialize stacked metrics rotation if present
+  initializeStackedMetrics(wrapper);
+}
+
+/**
+ * Initialize stacked metrics slide rotation
+ * Rotates slides through positions: position-1 -> position-2 -> position-3 -> position-4 -> stacked
+ */
+function initializeStackedMetrics(wrapper) {
+  // Only apply to stacked-metrics carousels
+  if (!wrapper.classList.contains('stacked-metrics')) return;
+
+  const slides = Array.from(wrapper.querySelectorAll('.cs-carousel-slide'));
+  if (slides.length === 0) return;
+
+  // Initialize slides with starting positions
+  slides.forEach((slide, index) => {
+    if (index === 0) {
+      slide.classList.add('slide-position-1');
+    } else if (index === 1) {
+      slide.classList.add('slide-position-2');
+    } else if (index === 2) {
+      slide.classList.add('slide-position-3');
+    } else if (index === 3) {
+      slide.classList.add('slide-position-4');
+    } else {
+      // Slides beyond position 4 start in the stack
+      slide.classList.add('slide-position-stacked');
+      slide.dataset.stackOrder = index - 4; // Track order in stack
+    }
+  });
+
+  let rotationInterval;
+  let isPaused = false;
+
+  // Function to rotate slides
+  const rotateSlides = () => {
+    if (isPaused) return;
+
+    // Find the next slide in the stack (lowest stackOrder)
+    const stackedSlides = slides.filter(slide => slide.classList.contains('slide-position-stacked'));
+    let nextFromStack = null;
+
+    if (stackedSlides.length > 0) {
+      nextFromStack = stackedSlides.reduce((prev, curr) => {
+        const prevOrder = parseInt(prev.dataset.stackOrder) || 0;
+        const currOrder = parseInt(curr.dataset.stackOrder) || 0;
+        return currOrder < prevOrder ? curr : prev;
+      });
+    }
+
+    slides.forEach((slide) => {
+      // Get current position
+      const currentPosition = slide.classList.value.match(/slide-position-(\d+|stacked)/)?.[1];
+
+      // Remove current position class
+      slide.classList.remove(
+        'slide-position-1',
+        'slide-position-2',
+        'slide-position-3',
+        'slide-position-4',
+        'slide-position-stacked'
+      );
+
+      // Move to next position
+      if (currentPosition === '1') {
+        // Position 1 goes to back of stack
+        slide.classList.add('slide-position-stacked');
+        slide.dataset.stackOrder = stackedSlides.length;
+      } else if (currentPosition === '2') {
+        slide.classList.add('slide-position-1');
+      } else if (currentPosition === '3') {
+        slide.classList.add('slide-position-2');
+      } else if (currentPosition === '4') {
+        slide.classList.add('slide-position-3');
+      } else if (currentPosition === 'stacked') {
+        // Only the next slide from stack moves to position-4
+        if (slide === nextFromStack) {
+          slide.classList.add('slide-position-4');
+          delete slide.dataset.stackOrder;
+        } else {
+          // Other stacked slides stay stacked but update order
+          slide.classList.add('slide-position-stacked');
+          const currentOrder = parseInt(slide.dataset.stackOrder) || 0;
+          slide.dataset.stackOrder = currentOrder > 0 ? currentOrder - 1 : 0;
+        }
+      }
+    });
+  };
+
+  // Start rotation interval
+  rotationInterval = setInterval(rotateSlides, 3000);
+
+  // Listen for manual rotation events (from indicator clicks)
+  wrapper.addEventListener('manualRotate', (e) => {
+    const count = e.detail.count;
+    for (let i = 0; i < count; i++) {
+      rotateSlides();
+    }
+  });
+
+  // Pause on hover
+  wrapper.addEventListener('mouseenter', () => {
+    isPaused = true;
+  });
+
+  // Resume on mouse leave
+  wrapper.addEventListener('mouseleave', () => {
+    isPaused = false;
+  });
+
+  // Clean up interval when carousel is cleaned up
+  const originalCleanup = wrapper.carouselCleanup;
+  wrapper.carouselCleanup = () => {
+    clearInterval(rotationInterval);
+    if (originalCleanup) originalCleanup();
   };
 }
 
@@ -1493,9 +1597,13 @@ function renderTimelineProcess(block) {
   const timeline = document.createElement('div');
   timeline.className = 'cs-timeline';
 
-  block.phases.forEach((phase) => {
+  const phases = [];
+
+  block.phases.forEach((phase, index) => {
     const phaseEl = document.createElement('div');
-    phaseEl.className = 'cs-timeline-phase';
+    // First phase gets 'active', others get 'min'
+    phaseEl.className = index === 0 ? 'cs-timeline-phase active' : 'cs-timeline-phase min';
+    phases.push(phaseEl);
 
     // Icon
     if (phase.icon) {
@@ -1508,6 +1616,14 @@ function renderTimelineProcess(block) {
     // Phase header
     const header = document.createElement('div');
     header.className = 'cs-timeline-phase-header';
+
+    // Sneak number
+    if (phase.sneak) {
+      const sneak = document.createElement('h2');
+      sneak.className = 'cs-timeline-phase-sneak';
+      sneak.textContent = phase.sneak;
+      header.appendChild(sneak);
+    }
 
     const title = document.createElement('h3');
     title.className = 'cs-timeline-phase-title';
@@ -1633,6 +1749,22 @@ function renderTimelineProcess(block) {
     }
 
     timeline.appendChild(phaseEl);
+  });
+
+  // Add hover event listeners to toggle active/min states
+  phases.forEach((phaseEl) => {
+    phaseEl.addEventListener('mouseenter', () => {
+      // Set all phases to 'min' except the hovered one
+      phases.forEach((p) => {
+        if (p === phaseEl) {
+          p.classList.remove('min');
+          p.classList.add('active');
+        } else {
+          p.classList.remove('active');
+          p.classList.add('min');
+        }
+      });
+    });
   });
 
   wrapper.appendChild(timeline);
@@ -2409,6 +2541,233 @@ function renderImageCarousel(block) {
 }
 
 /**
+ * Render Time Carousel Block
+ * Full-width carousel with slides containing title and HTML content
+ */
+function renderTimeCarousel(block) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cs-block cs-time-carousel';
+
+  // Add custom class if provided
+  if (block.class) {
+    wrapper.classList.add(block.class);
+  }
+
+  // Optional heading
+  if (block.heading) {
+    const heading = document.createElement('h2');
+    heading.className = 'cs-section-heading';
+    heading.textContent = block.heading;
+    wrapper.appendChild(heading);
+  }
+
+  const carouselContainer = document.createElement('div');
+  carouselContainer.className = 'cs-time-carousel-container';
+
+  // Carousel track
+  const track = document.createElement('div');
+  track.className = 'cs-time-carousel-track';
+
+  // Create slides from slides array
+  if (block.slides && block.slides.length > 0) {
+    block.slides.forEach((slideData, index) => {
+      const slide = document.createElement('div');
+      slide.className = 'cs-time-carousel-slide';
+      if (index === 0) slide.classList.add('active');
+
+      // Slide title
+      if (slideData.slideTitle) {
+        const title = document.createElement('h3');
+        title.className = 'cs-time-carousel-slide-title';
+        title.textContent = slideData.slideTitle;
+        slide.appendChild(title);
+      }
+
+      // Slide content (accepts HTML)
+      if (slideData.slideContent) {
+        const content = document.createElement('div');
+        content.className = 'cs-time-carousel-slide-content';
+        content.innerHTML = slideData.slideContent;
+        slide.appendChild(content);
+      }
+
+      track.appendChild(slide);
+    });
+  }
+
+  carouselContainer.appendChild(track);
+
+  // Navigation arrows
+  const prevButton = document.createElement('button');
+  prevButton.className = 'cs-time-carousel-nav cs-time-carousel-prev';
+  prevButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>';
+  prevButton.setAttribute('aria-label', 'Previous slide');
+
+  const nextButton = document.createElement('button');
+  nextButton.className = 'cs-time-carousel-nav cs-time-carousel-next';
+  nextButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>';
+  nextButton.setAttribute('aria-label', 'Next slide');
+
+  carouselContainer.appendChild(prevButton);
+  carouselContainer.appendChild(nextButton);
+
+  // Indicators
+  const indicators = document.createElement('div');
+  indicators.className = 'cs-time-carousel-indicators';
+
+  if (block.slides && block.slides.length > 0) {
+    block.slides.forEach((_, index) => {
+      const indicator = document.createElement('button');
+      indicator.className = 'cs-time-carousel-indicator';
+      if (index === 0) indicator.classList.add('active');
+      indicator.setAttribute('aria-label', `Go to slide ${index + 1}`);
+      indicator.dataset.index = index;
+      indicators.appendChild(indicator);
+    });
+  }
+
+  wrapper.appendChild(carouselContainer);
+  wrapper.appendChild(indicators);
+
+  // Initialize carousel behavior
+  setTimeout(() => initializeTimeCarousel(wrapper), 100);
+
+  return wrapper;
+}
+
+/**
+ * Initialize time carousel navigation
+ */
+function initializeTimeCarousel(wrapper) {
+  console.log('initializeTimeCarousel called with wrapper:', wrapper);
+
+  let currentSlide = 0;
+  let autoScrollInterval = null;
+  const slides = wrapper.querySelectorAll('.cs-time-carousel-slide');
+  const indicators = wrapper.querySelectorAll('.cs-time-carousel-indicator');
+  const prevButton = wrapper.querySelector('.cs-time-carousel-prev');
+  const nextButton = wrapper.querySelector('.cs-time-carousel-next');
+  const autoScrollDelay = 3000; // 3 seconds between slides
+
+  console.log(`Found ${slides.length} slides, ${indicators.length} indicators`);
+  console.log('Prev button:', prevButton, 'Next button:', nextButton);
+
+  if (slides.length === 0) {
+    console.warn('No slides found, exiting initialization');
+    return;
+  }
+
+  function goToSlide(index) {
+    // Remove active class from current slide and indicator
+    slides[currentSlide].classList.remove('active');
+    indicators[currentSlide].classList.remove('active');
+
+    // Update current slide index
+    currentSlide = index;
+
+    // Add active class to new slide and indicator
+    slides[currentSlide].classList.add('active');
+    indicators[currentSlide].classList.add('active');
+  }
+
+  function nextSlide() {
+    const nextIndex = (currentSlide + 1) % slides.length;
+    goToSlide(nextIndex);
+  }
+
+  function prevSlide() {
+    const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+    goToSlide(prevIndex);
+  }
+
+  // Auto-scroll functions
+  function startAutoScroll() {
+    console.log('startAutoScroll called');
+    // Clear any existing interval
+    stopAutoScroll();
+
+    // Start new interval
+    console.log(`Starting auto-scroll with ${autoScrollDelay}ms delay`);
+    autoScrollInterval = setInterval(() => {
+      console.log('Auto-scroll: moving to next slide');
+      nextSlide();
+    }, autoScrollDelay);
+    console.log('Auto-scroll interval ID:', autoScrollInterval);
+  }
+
+  function stopAutoScroll() {
+    console.log('stopAutoScroll called, interval ID:', autoScrollInterval);
+    if (autoScrollInterval) {
+      clearInterval(autoScrollInterval);
+      autoScrollInterval = null;
+      console.log('Auto-scroll stopped');
+    }
+  }
+
+  // Mouse enter/leave events for auto-scroll
+  console.log('Setting up time-carousel mouse events on wrapper:', wrapper);
+
+  wrapper.addEventListener('mouseenter', () => {
+    console.log('Mouse entered time-carousel!');
+    startAutoScroll();
+  });
+
+  wrapper.addEventListener('mouseleave', () => {
+    console.log('Mouse left time-carousel!');
+    stopAutoScroll();
+  });
+
+  // Navigation buttons
+  if (nextButton) {
+    nextButton.addEventListener('click', () => {
+      nextSlide();
+      // Restart auto-scroll timer on manual interaction
+      if (autoScrollInterval) {
+        startAutoScroll();
+      }
+    });
+  }
+
+  if (prevButton) {
+    prevButton.addEventListener('click', () => {
+      prevSlide();
+      // Restart auto-scroll timer on manual interaction
+      if (autoScrollInterval) {
+        startAutoScroll();
+      }
+    });
+  }
+
+  // Indicators
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+      goToSlide(index);
+      // Restart auto-scroll timer on manual interaction
+      if (autoScrollInterval) {
+        startAutoScroll();
+      }
+    });
+  });
+
+  // Keyboard navigation
+  wrapper.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      prevSlide();
+      // Restart auto-scroll timer on manual interaction
+      if (autoScrollInterval) {
+        startAutoScroll();
+      }
+    } else if (e.key === 'ArrowRight') {
+      nextSlide();
+      // Restart auto-scroll timer on manual interaction
+      if (autoScrollInterval) {
+        startAutoScroll();
+      }
+    }
+  });
+}
+
+/**
  * Close case study page
  */
 function closeCaseStudy() {
@@ -2485,6 +2844,16 @@ function updateBreadcrumbs(currentProjectId) {
   `;
   prevButton.addEventListener('click', () => openCaseStudy(prevProjectId));
   breadcrumbs.appendChild(prevButton);
+
+  // Create home logo button (center)
+  const homeButton = document.createElement('button');
+  homeButton.className = 'cs-breadcrumb-logo';
+  homeButton.setAttribute('aria-label', 'Back to home');
+  homeButton.innerHTML = `
+    <img src="/17b81efd17076f9f44d848e6169d69edec56397d.png" alt="Silvia Travieso Logo" />
+  `;
+  homeButton.addEventListener('click', closeCaseStudy);
+  breadcrumbs.appendChild(homeButton);
 
   // Create next button
   const nextButton = document.createElement('button');
@@ -2833,6 +3202,9 @@ export async function initCaseStudyStandalone(projectId) {
 
       // Setup scroll animations for standalone page
       setupScrollAnimationsStandalone();
+
+      // Setup side navigation for standalone page
+      setupSideNavigationStandalone();
     }, 100);
 
   } catch (error) {
@@ -2894,6 +3266,153 @@ function setupScrollAnimationsStandalone() {
         }
       });
     });
+  }
+}
+
+/**
+ * Setup side navigation for standalone pages
+ * Adapted for window scroll instead of modal scroll
+ */
+function setupSideNavigationStandalone() {
+  const caseStudyPage = document.querySelector('#project-content');
+  if (!caseStudyPage) return;
+
+  // Side nav is now outside case-study-page for true fixed positioning
+  const sideNav = document.querySelector('.cs-side-nav');
+  const navList = document.querySelector('.cs-side-nav-list');
+  const indicator = document.querySelector('.cs-side-nav-indicator');
+  const contentContainer = caseStudyPage.querySelector('.cs-content-container');
+
+  if (!sideNav || !navList || !indicator) return;
+
+  // Find all navigable sections - only blocks with sectionTitle
+  const sections = [];
+  const sectionTitles = [];
+
+  // Add content blocks that have sectionTitle attribute
+  if (contentContainer) {
+    const allBlocks = contentContainer.querySelectorAll('.cs-block');
+    allBlocks.forEach((block) => {
+      const sectionTitle = block.getAttribute('data-section-title');
+      if (sectionTitle) {
+        sections.push(block);
+        sectionTitles.push(sectionTitle);
+      }
+    });
+  }
+
+  if (sections.length === 0) return;
+
+  // Clear existing nav items
+  navList.innerHTML = '';
+
+  // Generate nav items
+  sections.forEach((section, index) => {
+    // Add ID to section for anchoring
+    section.id = `cs-section-${index + 1}`;
+
+    // Create nav item
+    const li = document.createElement('li');
+    li.className = 'cs-side-nav-item';
+
+    const link = document.createElement('a');
+    link.className = 'cs-side-nav-link';
+    link.href = `#cs-section-${index + 1}`;
+    link.dataset.sectionIndex = index;
+
+    // Create label element for section title
+    if (sectionTitles[index]) {
+      const label = document.createElement('span');
+      label.className = 'cs-side-nav-label';
+      label.textContent = sectionTitles[index];
+      link.appendChild(label);
+    }
+
+    // Create number element
+    const number = document.createElement('span');
+    number.className = 'cs-side-nav-number';
+    number.textContent = String(index + 1).padStart(2, '0');
+    link.appendChild(number);
+
+    // Smooth scroll on click
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    li.appendChild(link);
+    navList.appendChild(li);
+  });
+
+  // Show side nav only when hero is collapsed (for standalone pages, check window scroll)
+  const checkHeroCollapse = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > 200) {
+      sideNav.classList.add('active');
+    } else {
+      sideNav.classList.remove('active');
+    }
+  };
+
+  // Setup scroll tracking
+  updateSideNavIndicator();
+
+  // Listen to scroll events on window for standalone pages
+  window.addEventListener('scroll', () => {
+    requestAnimationFrame(() => {
+      checkHeroCollapse();
+      updateSideNavIndicator();
+    });
+  }, { passive: true });
+
+  // Update on resize
+  window.addEventListener('resize', updateSideNavIndicator);
+
+  function updateSideNavIndicator() {
+    const navLinks = navList.querySelectorAll('.cs-side-nav-link');
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const viewportHeight = window.innerHeight;
+    const scrollCenter = scrollTop + (viewportHeight / 2);
+
+    let activeIndex = 0;
+    let minDistance = Infinity;
+
+    // Find which section is closest to center of viewport
+    sections.forEach((section, index) => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = scrollTop + rect.top;
+      const sectionCenter = sectionTop + (rect.height / 2);
+      const distance = Math.abs(scrollCenter - sectionCenter);
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        activeIndex = index;
+      }
+    });
+
+    // Update active state
+    navLinks.forEach((link, index) => {
+      if (index === activeIndex) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    // Animate indicator with GSAP
+    const activeLink = navLinks[activeIndex];
+    if (activeLink) {
+      const activeLinkRect = activeLink.getBoundingClientRect();
+      const navListRect = navList.getBoundingClientRect();
+      const offsetY = activeLinkRect.top - navListRect.top;
+
+      gsap.to(indicator, {
+        y: offsetY,
+        height: activeLinkRect.height,
+        duration: 0.4,
+        ease: 'power2.out'
+      });
+    }
   }
 }
 

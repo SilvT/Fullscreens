@@ -1,0 +1,979 @@
+{
+  "subtitle": "18 months. Zero precedent. One solo designer.",
+  "jobTitle": "Design Systems Lead (self-initiated)",
+  "duration": "18 months",
+  "detailMetrics": [
+      { "icon": "iconoir:refresh-double", "value": "90%", "label": "QA cycles reduced" },
+      { "icon": "iconoir:stackoverflow", "value": "0 → 864", "label": "Four-layered tokens" },
+      { "icon": "iconoir:component", "value": "40+", "label": "Components" }
+        ],
+        "contentBlocks": [
+      {
+        "type": "story-hook",
+        "sectionTitle": "The Story",
+        "quote": "When Standard Tools Don’t Exist, You Build Your Own.",
+        "context":"Building a design system in JavaFX felt like being handed a puzzle with no picture on the box. No existing examples, no standard tools, no safety net. Just me, a proof-of-concept deadline, and a CEO who’d already said no once."
+      },
+
+     {
+        "type": "two-column-with-sidebar",
+        "sectionTitle": "The Problem",
+        "sidebarClass": "",
+        "left": [
+          {
+            "heading": "Design Chaos all around",
+            "blocks": [
+                {
+                  "type": "paragraph",
+                  "class":"callout",
+                  "text": "From the moment I walked in I realised I was in an engineer-first environment. Design was seen as “nice to have” rather than essential. Developers didn’t understand what value a design system could bring to them."
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Senapt is a UK-based startup building energy software (B2B). The company had already built one successful white-label product. This <a href=\"../marketing-management.html\" class=\"link-with-tooltip\" data-tooltip=\"→ Read more about this project \">marketing management platform </a>was to be the second one, and proof of concept for a larger future Suite. Design culture was still growing when I joined in February 2024"
+                },
+            {
+            "type": "two-column-text",
+            "class":"sub-content-two-col",
+            "columns": [
+                {
+                "heading": "System issues",
+                "blocks": [
+                    {
+                    "type": "list",
+                    "style": "ul",
+                    "items": [
+                        "Zero systematisation — no libraries, no variables, no styles, no naming conventions in any of the products",
+                        "Legacy projects scattered across Sketch and other tools with no documentation",
+                        "Prior designer's work with zero handoff notes",
+                        "No UX research, minimal wireframing, almost no prototyping",
+                        "No component reuse strategy",
+                        "No single source of truth for brand or UI decisions"
+                    ]
+                    }
+                ]
+                },
+                {
+                "heading": "Handoff hell",
+                "blocks": [
+                {
+                    "type": "list",
+                    "style": "ul",
+                    "items": [
+                        "100% static Figma designs with basic annotations",
+                        "4-5 QA rounds per feature as standard",
+                        "Developers sometimes bypassed design and pushed directly to production",
+                        "Corrections happening post-launch regularly",
+                        "Limited \"respect\" for design as a discipline"
+                    ]
+                    }
+                ]
+                }
+            ]
+            }
+            ]
+          }
+        ],
+        "sidebar": {
+          "The Context": [
+            "UK energy software startup",
+            "Greenfield project",
+            "No Design Systems precedent in the company",
+            "No component libraries; no variables",
+            "Multiple handoff languages", 
+            "Occasional push to prod without QA"
+          ],
+          "The Project's Team": [
+            " Me<br><small>UIX, Product and Design Systems (solo)</small>",
+            " Frontend Dev<br><small>+8h timezone different, limited English, written communication only</small>",
+            " VP of Frontend<br><small>Coordinator role</small>",
+            " Design Lead<br><small>Supported pitch. Gave autonomy</small>",
+            "External Dev<br><small>Assistance with Git setup</small>"
+          ]
+        }
+      },
+
+  {
+  "type": "two-column-text",
+  "columns": [
+    {
+      "heading": "The Results that Changed Everything",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "In 16 months, I built a design system from absolute zero.<br>The CEO who initially rejected my design system pitch eventually asked me to <strong>implement it company-wide</strong>. This is the story of how I proved its value by building it anyway. "
+        }
+      ]
+    },
+    {
+      "blocks": [
+      {
+        "type": "content-carousel",
+        "class":"stacked-metrics",
+        "items": [
+            {
+              "items": [
+                { "icon": "iconoir:clock-rotate-right", "value": "1,920 Hours", "label": "saved through component reuse across the team" }
+              ]
+            },
+            {
+              "items": [
+                { "icon": "iconoir:flash", "value": "In seconds", "label": "Automated handoffs with a custom Figma-to-Git pipeline" }
+              ]
+            },
+          {
+            "items": [
+              { "icon": "iconoir:send-diagonal", "value": "70% Rate", "label": "Clean handoffs" }
+            ]
+          },
+         { 
+            "items":[
+                {"icon": "iconoir:trophy", "value": "CEO", "label": "Buy-in" }
+            ]
+            },
+          {
+            "items": [
+              { "icon": "ph:users-three", "value": "7 Projects ", "label": "onboarded to system spanning multiple tech stacks after CEO validation" }
+            ]
+          }
+        ]
+      }
+      ]
+    }
+  ]
+},
+
+      {
+        "type": "three-column-text",
+        "columns": [
+          {
+            "heading": "The Constraints that made it nearly impossible",
+              "blocks": [
+                {
+                "type": "heading",
+                "level":"h3",
+                "text": "JavaFX"
+              },
+              {
+                "type": "paragraph",
+                "text": "After much research I found no existing design system examples or precedent.<br>None of the standard DS tools (Supernova, Storybook, Zeroheight) gave support for JavaFX.<br>It also required specific output that differs from standard web CSS and there were no documented token naming conventions, structures or component libraries"
+              }
+            ]
+          },
+          {
+            "blocks": [
+                {
+                "type": "heading",
+                "level":"h3",
+                "text": "Collaboration Barriers"
+              },
+              {
+                "type": "paragraph",
+                "text": "My Frontend dev was not only +8hours ahead of me, but there was also a language barrier only allowing for written English communication (no video calls).<br> As many developers, his familiarity with Figma was limited.<br> We worked side by side to elaborate the most asynchronous yet precise system possible; meaning I could overstep into \"code territory\" and handle the variables transformations and delivery myself."
+              }
+            ]
+          },
+          {
+            "blocks": [
+              {
+                "type": "heading",
+                "level":"h3",
+                "text": "Greenfield Everything"
+              },
+              {
+                "type": "paragraph",
+                "text": "This was one of those rare oportunities were you get to built something from scratch. I had no existing product to audit, no legacy brand or components; but I also had NO prior experience building a whole design system from the ground up.<br>This could have been my full-time job, but with no product manager, no UX and no resources allocated I ended up building the product and simultaneosly building the system."
+              }
+            ]
+          }
+        ]
+      },
+
+{
+      "type": "key-insight",
+      "title": "CEO:<br>\"Products are working. Nobody's complained. This isn't a priority.\"",
+      "insight": " Before being assigned this project, I observed the chaos and pitched design systems to the CEO and stakeholders. VP of Frontend saw potential selfish value for developers; but proposal was denied.",
+      "result": "I chose to build it anyway — without formal approval, without dedicated resources, on top of my UI/UX/Product responsibilities."
+},
+
+{
+  "type": "timeline-process",
+  "heading": "The Process: Building in Chaos",
+  "phases": [
+    {
+      "sneak": 1,
+      "title": "Months 1-3: Foundations While Flying Blind",
+      "period": "Feb-April 2024",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "I drafted a priority roadmap in three stages, attempting to balance theory with the reality of FE waiting for deliverables:"
+        },
+        {
+          "type": "heading",
+          "text": "Stage 1 (Core Foundations):"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Colour ramps for brand and neutrals",
+            "Typography values (font-size, line-height, letter-spacing)",
+            "Spacing system",
+            "Border radius",
+            "System colours (error, success, warning)",
+            "Basic reusable components (buttons, inputs, navigation)"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Stage 2 (Semantic Layer):"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Define semantics for backgrounds, text, icons, strokes",
+            "Gradients and shadows",
+            "Component-specific tokens"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Stage 3 (Advanced Components):"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Cards, sections, slots",
+            "Nested, complex components"
+          ]
+        },
+        {
+          "type": "outcome",
+          "text": "<strong>Reality:</strong> This roadmap lasted approximately 2 weeks before the actual needs of shipping a product took over."
+        }
+      ]
+    },
+    {
+      "sneak": 2,
+      "title": "Months 3-5: Look & Feel + First Mistakes",
+      "period": "May-June 2024",
+      "content": [
+        {
+          "type": "heading",
+          "text": "What Happened:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Researched visual direction and proof-of-concept screens",
+            "Look & Feel approved in June",
+            "<strong>Front-end brought into the project in the same meeting</strong> where designs were approved",
+            "FE asked to start working immediately"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "State of Design at This Stage:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Rough brand colours defined",
+            "Rough text styles",
+            "Rough colour treatment",
+            "Bento box card-based system",
+            "Icon library (Material Symbols)",
+            "Library contained <em>only</em> colours and text family"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "<strong>The Problem:</strong> I was trying to set design system foundations with only a rough idea of look and feel. No component library. No system to build on. Just custom-made everything while FE was already waiting for deliverables."
+        },
+        {
+          "type": "heading",
+          "text": "Design Decisions Made Under Pressure:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "One font family",
+            "One primary colour + neutrals",
+            "Bento grid layout system",
+            "Icon and graph-heavy approach",
+            "Solids and gradients"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "FE Constraints Immediately Added:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Flat design",
+            "Minimal shadows",
+            "\"Line Spacing\" terminology (not \"line-height\")"
+          ]
+        }
+      ]
+    },
+    {
+      "sneak": 3,
+      "title": "Months 5-8: The Iteration Nightmare",
+      "period": "June-September 2024",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "This is where my inexperience became very apparent. I made classic novice mistakes:"
+        },
+        {
+          "type": "heading",
+          "text": "Mistake #1: Jumping to Component Tokens Too Early"
+        },
+        {
+          "type": "paragraph",
+          "text": "I created component-level tokens (for buttons, inputs, cards) that pointed directly to <strong>core tokens</strong>, skipping the semantic layer entirely."
+        },
+        {
+          "type": "paragraph",
+          "text": "<strong>Why this was wrong:</strong> No logical hierarchy. When I needed to change a button's hover state, I had to edit the component token directly rather than updating a semantic \"interactive-hover\" token that could apply everywhere."
+        },
+        {
+          "type": "heading",
+          "text": "Mistake #2: Approaching Semantics from Theory, Not Reality"
+        },
+        {
+          "type": "paragraph",
+          "text": "When I finally built the semantic layer, I based it on what I'd <em>read</em> about design systems, not on what I'd <em>actually built</em> in the UI."
+        },
+        {
+          "type": "heading",
+          "text": "The result:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Confusing naming (e.g., \"Elevation\" for neutral surfaces)",
+            "Chaotic categories (surfaces AND backgrounds as separate concepts?)",
+            "Semantics included gradients at the wrong level",
+            "No clear hierarchy between semantic categories"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mistake #3: Too Many Transparencies"
+        },
+        {
+          "type": "paragraph",
+          "text": "I initially created dozens of alpha values for transparency (70%, 50%, 30%, 15%, 5%) without auditing if solid equivalents existed. This created inconsistency and confusion."
+        },
+        {
+          "type": "outcome",
+          "text": "<strong>The fix:</strong> Standardised to fewer alpha values and searched for solid colour equivalents wherever possible."
+        }
+      ]
+    },
+    {
+      "sneak": 4,
+      "title": "The Rework",
+      "period": "Ongoing through September 2024",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "I had to rebuild the semantic layer from scratch."
+        },
+        {
+          "type": "heading",
+          "text": "New Approach:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<strong>Audited what actually existed in the UI</strong> rather than theorising",
+            "<strong>Defined key semantic categories:</strong> Surface (backgrounds for cards, containers), Stroke (borders, dividers), Content (text, icons), Spacing (margin, padding, gaps), Overlays (modals, tooltips, scrims), Effects (shadows, blurs), Feedback (error, success, warning, info states)",
+            "<strong>Created \"Flavours + Levels\" naming system:</strong> Flavours: Neutral, Brand | Levels: 2XS, XS, S, M, L, XL, 2XL (for sizing) | Intensity: extrabold, bold, contrast, main, light, subtle, extrasubtle, inverted, hidden (for colour)",
+            "<strong>All component tokens now pointed to semantics</strong>, creating proper hierarchy"
+          ]
+        }
+      ]
+    },
+    {
+      "sneak": 5,
+      "title": "The Handoff Hell",
+      "period": "Months 5-10",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "While reworking tokens, I still had to deliver features to FE. The async timezone gap (+8 hours) and language barrier made this brutal."
+        },
+        {
+          "type": "heading",
+          "text": "Initial Handoff Flow:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Export CSS values via Figma plugin",
+            "Manually rearrange tokens in correct order (core, semantics, components)",
+            "Add comment headers between sections",
+            "Send ZIP file of CSS to FE",
+            "FE requests changes",
+            "Repeat"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Problems:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Took hours per handoff",
+            "High error rate (manual copying)",
+            "FE received plain CSS, but needed JavaFX-specific CSS",
+            "No version control",
+            "No change tracking"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "First Attempt: Token Studio JSON"
+        },
+        {
+          "type": "paragraph",
+          "text": "I tried using Token Studio to push JSON files directly to Git."
+        },
+        {
+          "type": "paragraph",
+          "text": "<strong>FE Response:</strong> <em>\"Why JSON? That's not a useful file format for us.\"</em>"
+        },
+        {
+          "type": "paragraph",
+          "text": "<strong>Denied.</strong>"
+        },
+        {
+          "type": "heading",
+          "text": "Second Attempt: Direct Git Access"
+        },
+        {
+          "type": "paragraph",
+          "text": "VP of FE gave me access to the company repo. I pushed CSS files directly from my machine."
+        },
+        {
+          "type": "outcome",
+          "text": "<strong>Better, but still:</strong> Manual copy-paste from Figma, manual cleaning, manual rearranging. FE still had issues with CSS transformations not being JavaFX-ready."
+        }
+      ]
+    },
+    {
+      "sneak": 6,
+      "title": "Months 10-12: The Git Automation Hero Moment",
+      "period": "October-December 2024",
+      "content": [
+        {
+          "type": "heading",
+          "text": "The Breaking Point:"
+        },
+        {
+          "type": "paragraph",
+          "text": "I was spending 2-3 hours per handoff just wrangling CSS files. FE was grateful, but I knew there had to be a better way. The pain points were:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Manual export from Figma",
+            "Token order didn't match Figma structure",
+            "Plain CSS wasn't JavaFX CSS",
+            "No timestamps or version tracking",
+            "No way to see what changed between versions"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The Research Phase:"
+        },
+        {
+          "type": "paragraph",
+          "text": "I reached out to the company's Fullstack developer (not on my project) and asked for help scoping a solution. Together, we identified GitHub Actions as the answer."
+        },
+        {
+          "type": "heading",
+          "text": "What I Needed to Learn (With Almost Zero Prior Git Knowledge):"
+        },
+        {
+          "type": "list",
+          "items": [
+            "How GitHub Actions work",
+            "How to trigger actions from Token Studio pushes",
+            "How to transform JSON to CSS programmatically",
+            "How to create multiple output files",
+            "How to add metadata and documentation to generated files"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The Build:"
+        },
+        {
+          "type": "paragraph",
+          "text": "Fullstack dev helped me set up the initial workflow. From that point, I iterated and polished it through trial, error, and long conversations with AI chatbots."
+        },
+        {
+          "type": "highlights",
+          "items": [
+            "<strong>Version 1:</strong> Basic transformation - Token Studio JSON pushed to Git, GitAction triggered, Output: Standard CSS file, Tokens ordered same as Figma Variables",
+            "<strong>Version 2:</strong> Nested variables - Added variable nesting for better organisation",
+            "<strong>Version 3:</strong> Alphabetical ordering - Tokens alphabetically sorted within their Collections, Collections ordered same as in Figma",
+            "<strong>Version 4:</strong> Documentation layer - Timestamps added to file header, Token count metadata, Number of collections and modes tracked, File becomes self-documenting",
+            "<strong>Version 5:</strong> Figma comments - Comments from Figma Variables appear as inline CSS comments",
+            "<strong>Version 6:</strong> Dual output - Standard CSS (:root), JavaFX-specific CSS (.root + grammar adjustments)",
+            "<strong>Version 7:</strong> Gradient handling - Separate GitAction for gradients (different syntax in JavaFX)"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The Result"
+        },
+        {
+          "type": "outcome",
+          "text": "<strong>Handoff time: 3 seconds.</strong>"
+        },
+        {
+          "type": "paragraph",
+          "text": "Whenever I accumulated enough token changes, I pushed to Git. GitAction ran automatically. Both CSS files updated and were ready for FE to consume."
+        },
+        {
+          "type": "heading",
+          "text": "The impact on FE:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "No more chasing me for handoffs",
+            "No more manual errors",
+            "Clear version history",
+            "Self-documenting files with timestamps",
+            "Immediate access to latest tokens"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The impact on me:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Freed up 2-3 hours per handoff",
+            "Could iterate faster",
+            "Reduced stress",
+            "Proved value through developer pain point solved, not just designer convenience"
+          ]
+        }
+      ]
+    }
+  ]
+},
+
+{
+  "type": "two-column-text",
+  "columns": [
+    {
+      "heading": "September 2024: The CEO Showcase",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "During a design team meeting, the CEO showed particular interest in this project. He was dealing directly with my FE developer on a separate issue and experiencing the same async and language barriers I was."
+        },
+        {
+          "type": "paragraph",
+          "text": "I walked through my handoff process:"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Detailed component annotations",
+            "Screen recordings and grabs with arrows",
+            "Component breakdowns into atomic elements",
+            "Variables system",
+            "<strong>The automated Figma-to-Git pipeline</strong>"
+          ]
+        }
+      ]
+    },
+    {
+      "blocks": [
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "CEO Response:"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Git automation was the highlight. He immediately understood its effectiveness and value to FE teams — less errors, less chasing, less imprecision."
+        },
+        {
+          "type": "paragraph",
+          "class": "callout",
+          "text": "<strong>CEO validated design systems.</strong>"
+        },
+        {
+          "type": "paragraph",
+          "text": "He asked to implement the approach in other projects."
+        }
+      ]
+    }
+  ]
+},
+
+{
+  "type": "two-column-with-sidebar",
+  "sectionTitle": "October 2024: UI Kit v1.0 + Component Library Maturity",
+  "sidebarClass": "",
+  "left": [
+    {
+      "heading": "Component Library Evolution",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "By October, the component library had matured significantly:"
+        },
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "First Layer (Basic Interactive Elements):"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Buttons (primary, secondary, tertiary) with full state variants",
+            "Sidebar navigation menu with item states",
+            "Input fields with validation, feedback, states",
+            "User chips with states",
+            "Switches, checkboxes, radio buttons",
+            "Loaders, calendar, popups"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "Second Layer (Data Display):"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Tables (cells, rows, headers, sorting states)",
+            "Feedback chips",
+            "Dropdowns with nested options"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "Third Layer (Complex Nested Components):"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Action menus",
+            "Tabs with dynamic content",
+            "Filter chips with multi-select",
+            "Card titles and page titles with consistent hierarchy"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "Component Documentation:"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "General guides and usage principles",
+            "Visual review logs tracking modifications",
+            "\"Ready to Dev\" / \"Completed\" tag system in Figma",
+            "Interaction descriptions via annotations",
+            "Atomic nesting for scalability"
+          ]
+        }
+      ]
+    }
+  ],
+  "sidebar": {
+    "Token Evolution": [
+      "<strong>Starting point:</strong><br>150 CSS variables (mostly colour and type)",
+      "<strong>October 2024:</strong><br>864+ tokens across four layers:",
+      "1. <strong>Core</strong> (primitive values)",
+      "2. <strong>Semantic</strong> (context-specific aliases)",
+      "3. <strong>Component</strong> (component-specific tokens)",
+      "4. <strong>Modes</strong> (themes, states, variants)"
+    ]
+  }
+},
+
+{
+  "type": "two-column-text",
+  "sectionTitle": "The Async Handoff Solutions",
+  "columns": [
+    {
+      "heading": "Systems to Bridge the Gap",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "With no real-time communication possible, I developed systems to bridge the gap:"
+        },
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "1. Heavy Use of Annotations"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Component-specific styling notes",
+            "Element behaviour descriptions (\"on hover X, on click Y\")",
+            "Data origin explanations",
+            "TBD markers for future features",
+            "Style change highlights",
+            "Interaction flows",
+            "State specifications"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "2. Edit & Review Logs"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Bright colour-coded sections for easy scanning",
+            "Tracked all modifications chronologically",
+            "Once marked \"Completed\" by dev, colour removed but log preserved",
+            "Created visual history of iteration"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "3. Prototypes + Screen Recordings"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Built isolated prototypes for specific features",
+            "Delivered screen recordings showing flows across multiple screens",
+            "Visual documentation of interaction patterns",
+            "Ensured flows made sense without verbal explanation"
+          ]
+        }
+      ]
+    },
+    {
+      "blocks": [
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "4. File Structure as Communication"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Clear indentation for page hierarchy",
+            "Visual separators between design and dev content",
+            "Separate playground file for testing (kept main file lightweight)",
+            "\"Ready to Dev\" space clearly labelled",
+            "Archive space for deprecated components",
+            "\"Changes and Mods\" sections visible at a glance"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "5. Component Specifications in Figma"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Used component configuration space for documentation",
+            "Specifications for both developers and future designers",
+            "Usage notes, constraints, accessibility considerations"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "6. Clear Deprecation System"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Visual \"Deprecated\" markers in bright, unmissable colours",
+            "Clear communication about what replaces deprecated elements",
+            "Non-destructive structure to test new approaches: \"To-Be-DEP\" (deprecated) folder, \"To-Change\" testing folder, \"MOD\" prefix on modified values (prevents Git overwrites)"
+          ]
+        }
+      ]
+    }
+  ]
+},
+
+{
+  "type": "two-column-with-sidebar",
+  "sectionTitle": "December 2024 - June 2025: Scaling the System",
+  "sidebarClass": "",
+  "left": [
+    {
+      "heading": "Design Ops Created",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "With CEO validation, Design Ops was officially established. I joined as <strong>Design Systems Lead</strong> while continuing UI/UX/Product work on my project."
+        },
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "The Challenge:"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "6 designers total (5 joined since I started)",
+            "7 active projects needing systematisation",
+            "Multiple tech stacks (React, Flutter, Vue, Nuxt, JS, JavaFX)",
+            "Only my project had a token pipeline",
+            "1 white-label product requiring special consideration",
+            "1 multi-format project (web, webapp, email, print, billing)",
+            "Limited time availability (still primary designer on my own project)"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "The Approach Decision:"
+        },
+        {
+          "type": "paragraph",
+          "text": "<strong>Option A:</strong> Build 1 Design System per project (duplicated work, inconsistency risk)"
+        },
+        {
+          "type": "paragraph",
+          "text": "<strong>Option B:</strong> Headless Design System (complex governance, high initial overhead)"
+        },
+        {
+          "type": "paragraph",
+          "text": "<strong>Option C (Chosen):</strong> Hybrid — Global Design System with project-specific flexibility"
+        }
+      ]
+    }
+  ],
+  "sidebar": {
+    "The Hybrid Model": [
+      "<strong>Global Library</strong> (Maintained by DS Lead):<br>Basic, well-built components with atomic nesting, states, boolean variants. Only modified by DS Lead.",
+      "<strong>Project Library Template:</strong><br>Designers duplicate from base template. Already includes variable structure for brand, neutrals, system colours, spacing, typography, icons, borders.",
+      "<strong>Modification Rules:</strong><br>Core tokens: NO modifications unless discussed. Semantic tokens: Can be modified with discussion. Extra types: Can be added as needed."
+    ]
+  }
+},
+
+{
+  "type": "two-column-text",
+  "sectionTitle": "Education First, Implementation Second",
+  "columns": [
+    {
+      "heading": "Workshop Series",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Rather than mandate adoption, I chose collaborative enablement:"
+        },
+        {
+          "type": "paragraph",
+          "text": "<strong>6 designers, 7 workshops over 1.5 months:</strong>"
+        },
+        {
+          "type": "list",
+          "style": "ol",
+          "items": [
+            "<strong>What is a Design System</strong> — terminology, components, shared understanding",
+            "<strong>Components and Terminology</strong> — atomic design, nesting, variants",
+            "<strong>Design Principles</strong> — playground exercises, draft company principles",
+            "<strong>Design Tokens: Introduction</strong> — what they are, why they matter",
+            "<strong>Design Tokens: Naming & Structure</strong> — hierarchies, semantics, consistency",
+            "<strong>Governance</strong> — contribution models, versioning, decision-making",
+            "<strong>Token Studio + Git Flow</strong> — hands-on setup, transformation pipelines"
+          ]
+        }
+      ]
+    },
+    {
+      "blocks": [
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "Self-Audit Exercises:"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Each designer audited their own project's brand assets (using template)",
+            "Each designer audited their own project's components (using template)",
+            "Shared findings collectively",
+            "Used audits as starting point for global core tokens"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "Expert Session:"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "External design token expert walkthrough",
+            "Hybrid models discussion",
+            "Token transition strategies"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": "h3",
+          "text": "Playground Practice:"
+        },
+        {
+          "type": "list",
+          "style": "ul",
+          "items": [
+            "Each designer created first draft of their project's core tokens",
+            "Separate library to avoid disrupting current workflows",
+            "Used as resources by me to draft global core tokens later"
+          ]
+        }
+      ]
+    }
+  ]
+},
+
+{
+  "type": "key-insight",
+  "title": "Current State (June 2025)",
+  "insight": "<strong>Adoption Status:</strong><ul><li><strong>5 of 7 projects</strong> have at least partial sturdy core tokens implemented</li><li><strong>Education phase:</strong> Mostly complete</li><li><strong>Implementation phase:</strong> Underway</li><li><strong>Governance model:</strong> Established and documented</li><li><strong>Global library:</strong> In active use</li></ul>",
+  "result": "The design system went from a rejected pitch to company-wide adoption in 18 months."
+}
+
+  ]
+}

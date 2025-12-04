@@ -70,17 +70,17 @@ function populateCaseStudy(project) {
   if (heroCompany) heroCompany.innerHTML = project.company || '';
   if (heroOverview) heroOverview.innerHTML = project.cardOverview;
 
-  // Tags
-  const tagsContainer = document.querySelector('.cs-hero-tags');
-  if (tagsContainer && project.tags) {
-    tagsContainer.innerHTML = '';
-    project.tags.forEach((tag) => {
-      const span = document.createElement('span');
-      span.className = 'cs-tag';
-      span.innerHTML = tag;
-      tagsContainer.appendChild(span);
-    });
-  }
+  // Tags - REMOVED from hero section
+  // const tagsContainer = document.querySelector('.cs-hero-tags');
+  // if (tagsContainer && project.tags) {
+  //   tagsContainer.innerHTML = '';
+  //   project.tags.forEach((tag) => {
+  //     const span = document.createElement('span');
+  //     span.className = 'cs-tag';
+  //     span.innerHTML = tag;
+  //     tagsContainer.appendChild(span);
+  //   });
+  // }
 
   // Hero Image(s)
   const heroImagesContainer = document.querySelector('.cs-hero-images');
@@ -220,6 +220,8 @@ function populateCaseStudy(project) {
             initLightbox();
             // Setup hero scroll animation after content is loaded
             setupPageHeroScrollAnimation();
+            // Setup side navigation after content is loaded
+            setupSideNavigation();
           }, 100);
         })
         .catch((error) => {
@@ -242,6 +244,7 @@ function populateCaseStudy(project) {
       // Setup hero scroll animation after inline content is rendered
       setTimeout(() => {
         setupPageHeroScrollAnimation();
+        setupSideNavigation();
       }, 100);
     }
   }
@@ -298,6 +301,16 @@ function updateBreadcrumbs(currentProjectId) {
     <span class="cs-nav-title">${prevProject.title}</span>
   `;
   breadcrumbs.appendChild(prevLink);
+
+  // Create home logo link (center)
+  const homeLink = document.createElement('a');
+  homeLink.className = 'cs-breadcrumb-logo';
+  homeLink.href = '/';
+  homeLink.setAttribute('aria-label', 'Back to home');
+  homeLink.innerHTML = `
+    <img src="/17b81efd17076f9f44d848e6169d69edec56397d.png" alt="Silvia Travieso Logo" />
+  `;
+  breadcrumbs.appendChild(homeLink);
 
   // Create next link
   const nextLink = document.createElement('a');
@@ -375,6 +388,158 @@ function setupPageHeroScrollAnimation() {
 }
 
 /**
+ * Setup side navigation for standalone pages
+ */
+function setupSideNavigation() {
+  const projectContent = document.querySelector('#project-content');
+  if (!projectContent) return;
+
+  const sideNav = document.querySelector('.cs-side-nav');
+  const navList = document.querySelector('.cs-side-nav-list');
+  const indicator = document.querySelector('.cs-side-nav-indicator');
+  const contentContainer = projectContent.querySelector('.cs-content-container');
+
+  if (!sideNav || !navList || !indicator || !contentContainer) {
+    console.log('Missing side nav elements');
+    return;
+  }
+
+  // Find all navigable sections - only blocks with sectionTitle
+  const sections = [];
+  const sectionTitles = [];
+
+  const allBlocks = contentContainer.querySelectorAll('.cs-block');
+  allBlocks.forEach((block) => {
+    const sectionTitle = block.getAttribute('data-section-title');
+    if (sectionTitle) {
+      sections.push(block);
+      sectionTitles.push(sectionTitle);
+    }
+  });
+
+  if (sections.length === 0) {
+    console.log('No sections with sectionTitle found');
+    return;
+  }
+
+  console.log(`Found ${sections.length} navigable sections`);
+
+  // Clear existing nav items
+  navList.innerHTML = '';
+
+  // Generate nav items
+  sections.forEach((section, index) => {
+    // Add ID to section for anchoring
+    section.id = `cs-section-${index + 1}`;
+
+    // Create nav item
+    const li = document.createElement('li');
+    li.className = 'cs-side-nav-item';
+
+    const link = document.createElement('a');
+    link.className = 'cs-side-nav-link';
+    link.href = `#cs-section-${index + 1}`;
+    link.dataset.sectionIndex = index;
+
+    // Create label element for section title
+    if (sectionTitles[index]) {
+      const label = document.createElement('span');
+      label.className = 'cs-side-nav-label';
+      label.textContent = sectionTitles[index];
+      link.appendChild(label);
+    }
+
+    // Create number element
+    const number = document.createElement('span');
+    number.className = 'cs-side-nav-number';
+    number.textContent = String(index + 1).padStart(2, '0');
+    link.appendChild(number);
+
+    // Smooth scroll on click
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    li.appendChild(link);
+    navList.appendChild(li);
+  });
+
+  // Show side nav only when hero is collapsed
+  const checkHeroCollapse = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > 200) {
+      sideNav.classList.add('active');
+    } else {
+      sideNav.classList.remove('active');
+    }
+  };
+
+  // Setup scroll tracking
+  updateSideNavIndicator();
+
+  // Listen to scroll events on window
+  window.addEventListener('scroll', () => {
+    requestAnimationFrame(() => {
+      checkHeroCollapse();
+      updateSideNavIndicator();
+    });
+  }, { passive: true });
+
+  // Update on resize
+  window.addEventListener('resize', updateSideNavIndicator);
+
+  function updateSideNavIndicator() {
+    const navLinks = navList.querySelectorAll('.cs-side-nav-link');
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const viewportHeight = window.innerHeight;
+    const scrollCenter = scrollTop + (viewportHeight / 2);
+
+    let activeIndex = 0;
+    let minDistance = Infinity;
+
+    // Find which section is closest to center of viewport
+    sections.forEach((section, index) => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = scrollTop + rect.top;
+      const sectionCenter = sectionTop + (rect.height / 2);
+      const distance = Math.abs(scrollCenter - sectionCenter);
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        activeIndex = index;
+      }
+    });
+
+    // Update active state
+    navLinks.forEach((link, index) => {
+      if (index === activeIndex) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    // Animate indicator with GSAP
+    const activeLink = navLinks[activeIndex];
+    if (activeLink) {
+      const activeLinkRect = activeLink.getBoundingClientRect();
+      const navListRect = navList.getBoundingClientRect();
+      const offsetY = activeLinkRect.top - navListRect.top;
+
+      gsap.to(indicator, {
+        y: offsetY,
+        height: activeLinkRect.height,
+        duration: 0.4,
+        ease: 'power2.out'
+      });
+    }
+  }
+
+  console.log('Side navigation initialized');
+}
+
+/**
  * Initialize project page
  */
 async function init() {
@@ -417,6 +582,11 @@ async function init() {
 
   // Track page view
   trackProjectView(projectId, project.title);
+
+  // Setup side navigation after content loads
+  setTimeout(() => {
+    setupSideNavigation();
+  }, 600);
 
   // Note: setupPageHeroScrollAnimation() is called after content loads
   // in populateCaseStudy() to ensure page has scrollable height
