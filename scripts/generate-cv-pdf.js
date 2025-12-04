@@ -36,9 +36,21 @@ async function generateCVPDF() {
     const fileUrl = `file://${cvHtmlPath}`;
 
     console.log(`📖 Loading CV from: ${cvHtmlPath}`);
+
+    // Set base path to resolve relative URLs
     await page.goto(fileUrl, {
       waitUntil: 'networkidle0'
     });
+
+    // Fix absolute paths by injecting base href
+    await page.evaluate((rootPath) => {
+      // If there's no base tag, add one
+      if (!document.querySelector('base')) {
+        const base = document.createElement('base');
+        base.href = `file://${rootPath}/`;
+        document.head.insertBefore(base, document.head.firstChild);
+      }
+    }, rootDir);
 
     // Wait for fonts to load
     await page.evaluateHandle('document.fonts.ready');
