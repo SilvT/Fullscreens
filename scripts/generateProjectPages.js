@@ -66,7 +66,7 @@ function generateProjectHTML(projectId, project) {
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fascinate&family=Anonymous+Pro:wght@400;700&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
-<body class="project-page-body">
+<body class="project-page-body" data-theme="${theme}">
 
   <!-- Sticky Navigation -->
   <nav class="top-nav" role="navigation" aria-label="Main navigation">
@@ -85,6 +85,12 @@ function generateProjectHTML(projectId, project) {
   <!-- Project Breadcrumbs Navigation (outside of case-study-page for sticky positioning) -->
   <nav class="cs-breadcrumbs cs-breadcrumbs-standalone" aria-label="Case study navigation">
     <!-- Populated by JavaScript -->
+  </nav>
+
+  <!-- Side Navigation (outside scrolling container for true fixed positioning) -->
+  <nav class="cs-side-nav" aria-label="Case study sections">
+    <div class="cs-side-nav-indicator"></div>
+    <ul class="cs-side-nav-list"></ul>
   </nav>
 
   <!-- Case Study Content Container -->

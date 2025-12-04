@@ -7,6 +7,15 @@
  * Full-page case study layout (like project-detail)
  */
 
+ body.project-page-body{
+   background: none;
+  &[data-theme="blue"] {
+    background-color: $color-blue-light;
+  }
+  &[data-theme="green"] {
+    background-color: $color-green-light;
+ }
+}
 // Full Page
 .case-study-page {
   position: fixed;
@@ -1076,26 +1085,9 @@
   background-color: white;
   transition: background-color 0.3s ease;
 
-  // Visual feedback when carousel hijacks keyboard
+  // Visual feedback when carousel is active
   &[data-carousel-active="true"] {
     background-color: rgba($color-blue-light, 0.05);
-
-    .cs-carousel-nav {
-      // box-shadow: 0 0 0 2px rgba($color-blue-main, 0.2);
-      border:none;
-      border-color: $color-blue-alpha;
-      border-radius: 50%;
-      & i{
-        color:$color-blue-dark;
-      }
-      
-      &:hover{
-        border-radius: 50%;
-        background: $color-blue-alpha;
-        & i{
-          // color:;
-        }}
-      }
   }
 
   .cs-section-heading {
@@ -1221,42 +1213,9 @@
     }
   }
 
+
   .cs-carousel-nav {
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    border: 2px solid $color-blue-main;
-    background: white;
-    color: $color-blue-main;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    font-size: 24px;
-
-    &:hover {
-      background: $color-blue-main;
-      color: white;
-      transform: scale(1.1);
-    }
-
-    &:active {
-      transform: scale(0.95);
-    }
-
-    @include breakpoint(mobile) {
-      width: 40px;
-      height: 40px;
-      font-size: 20px;
-    }
-
-    i {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    display: none; // Navigation arrows removed in favor of clickable dots
   }
 
   .cs-carousel-indicators {

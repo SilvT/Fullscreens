@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Figma Design Distributor Plugin | Silvia Travieso - Design Technologist</title>
-  <meta name="description" content="Automating Design Token Extraction for Better Design-Dev Handoff. A Figma plugin that extracts design tokens and pushes them to GitHub.">
-  <meta name="keywords" content="Figma Plugin, Design Systems, Git Automation, APIs, Design Tokens, TypeScript">
+  <title>Figma Design Distributor Plugin | Silvia Travieso - Product Designer</title>
+  <meta name="description" content="Automating Design Token Extraction for Better Design-Dev Handoff">
+  <meta name="keywords" content="Figma Plugin, Design Systems, Git Automation, APIs, AI-Assisted Dev">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://silviatravieso.com/figma-plugin">
-  <meta property="og:title" content="Figma Design Distributor Plugin - Design Systems Case Study">
+  <meta property="og:title" content="Figma Design Distributor Plugin - Product Design Case Study">
   <meta property="og:description" content="Design token automation for Figma Variables, Collections, and styles">
   <meta property="og:image" content="https://silviatravieso.com/plugin/plugin-1.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Figma Design Distributor Plugin - Design Systems">
-  <meta name="twitter:description" content="100% automation of design token extraction">
+  <meta name="twitter:title" content="Figma Design Distributor Plugin - Product Design Case Study">
+  <meta name="twitter:description" content="Design token automation for Figma Variables, Collections, and styles">
   <meta name="twitter:image" content="https://silviatravieso.com/plugin/plugin-1.png">
 
   <!-- Canonical URL -->
@@ -30,14 +30,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fascinate&family=Anonymous+Pro:wght@400;700&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/main-Dr4BX-0b.js"></script>
-  <script type="module" crossorigin src="/assets/iconoir-B_doVMCY.js"></script>
-  <script type="module" crossorigin src="/assets/project-page-hzUUgynr.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-kXIpzLk4.css">
-  <link rel="stylesheet" crossorigin href="/assets/iconoir-BysfP_xg.css">
+  <script type="module" crossorigin src="/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
+  <script type="module" crossorigin src="/assets/analytics-Bb852367.js"></script>
+  <script type="module" crossorigin src="/assets/project-page-CYlho_Hk.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/analytics-BQGcjR42.css">
+  <link rel="stylesheet" crossorigin href="/assets/project-page-Dt4O2PdW.css">
+  <link rel="stylesheet" crossorigin href="/assets/main-OFvR8gVJ.css">
 </head>
 
-<body class="project-page-body">
+<body class="project-page-body" data-theme="blue">
 
   <!-- Sticky Navigation -->
   <nav class="top-nav" role="navigation" aria-label="Main navigation">
@@ -53,42 +54,65 @@
     </div>
   </nav>
 
-  <!-- Project Breadcrumbs Navigation -->
-  <div class="project-breadcrumbs">
-    <div class="breadcrumb-container">
-      <a href="/" class="breadcrumb-back">
-        <span class="back-icon">←</span>
-        <span class="back-text">Back to Projects</span>
-      </a>
-      <div class="breadcrumb-links" id="breadcrumb-navigation">
-        <!-- Populated by JavaScript -->
-      </div>
-    </div>
-  </div>
+  <!-- Project Breadcrumbs Navigation (outside of case-study-page for sticky positioning) -->
+  <nav class="cs-breadcrumbs cs-breadcrumbs-standalone" aria-label="Case study navigation">
+    <!-- Populated by JavaScript -->
+  </nav>
+
+  <!-- Side Navigation (outside scrolling container for true fixed positioning) -->
+  <nav class="cs-side-nav" aria-label="Case study sections">
+    <div class="cs-side-nav-indicator"></div>
+    <ul class="cs-side-nav-list"></ul>
+  </nav>
 
   <!-- Case Study Content Container -->
   <div class="case-study-page active" id="project-content" data-theme="blue" data-project-id="4">
-    <div class="cs-loading">
-      <p>Loading case study...</p>
+    <!-- Sticky Header Container -->
+    <div class="cs-sticky-header">
+      <!-- Hero Section -->
+      <section class="cs-hero">
+        <div class="cs-hero-content">
+          <div class="cs-hero-header">
+            <p class="cs-hero-company"></p>
+            <h1 class="cs-hero-title">Loading...</h1>
+            <h2 class="cs-hero-subtitle"></h2>
+          </div>
+          <p class="cs-hero-overview"></p>
+          <div class="cs-hero-tags"></div>
+        </div>
+        <div class="cs-hero-images"></div>
+        <div class="cs-hero-metrics"></div>
+      </section>
     </div>
+
+    <!-- Metrics Section -->
+    <section class="cs-metrics">
+      <h3 class="cs-section-title">Impact</h3>
+      <div class="cs-metrics-grid"></div>
+    </section>
+
+    <!-- Content Blocks Section -->
+    <div class="cs-content-container"></div>
   </div>
 
   <!-- Project Navigation Footer -->
   <footer class="project-navigation-footer">
     <div class="project-nav-container">
+      
       <a href="/energy-tracker" class="project-nav-link prev-project">
         <span class="nav-arrow">←</span>
         <span class="nav-label">Previous</span>
-        <span class="nav-title">Energy Tracker</span>
+        <span class="nav-title">Energy Switching Tracker</span>
       </a>
       <a href="/" class="project-nav-link back-home">
         <span class="nav-label">All Projects</span>
       </a>
       <a href="/marketing-management" class="project-nav-link next-project">
         <span class="nav-label">Next</span>
-        <span class="nav-title">Marketing Management</span>
+        <span class="nav-title">Marketing Management-NEW</span>
         <span class="nav-arrow">→</span>
       </a>
+  
     </div>
   </footer>
 

@@ -6,9 +6,10 @@
 @use 'scroll-hint';
 @use 'project-card';
 // @use 'project-detail'; // ARCHIVED: Not currently in use
-@use 'case-study';
+// @use 'case-study'; // ARCHIVED: Content moved to project-navigation.scss
 @use 'project-navigation'; // Breadcrumbs and footer navigation for project pages
 @use 'footer';
+@use 'timeline'; // Combined timeline component (scroll-hijacking + case study variants)
 @use 'accessibility';
 @use 'responsive';
 @use 'lightbox';

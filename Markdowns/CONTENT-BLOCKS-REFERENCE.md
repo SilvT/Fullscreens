@@ -1,13 +1,16 @@
-# Content Blocks Reference
+# Content Blocks Reference - Complete Guide
 
-This document lists all available content block types you can use in your `projects.json` file. These blocks provide a flexible, structured way to build your case study content.
+This document lists ALL available content block types you can use in your `projects.json` file. These blocks provide a flexible, structured way to build your case study content.
 
 ## Table of Contents
 - [Side Navigation Control](#side-navigation-control)
 - [Main Content Blocks](#main-content-blocks)
   - [Layout Blocks](#layout-blocks)
+  - [Media Blocks](#media-blocks)
+  - [Metrics & Data Visualization](#metrics--data-visualization)
   - [Storytelling Blocks](#storytelling-blocks)
   - [Column Layout Blocks](#column-layout-blocks)
+  - [Special Blocks](#special-blocks)
 - [Text Block Types (for nested content)](#text-block-types-for-nested-content)
 - [Icon System](#icon-system)
 - [Complete Examples](#complete-examples)
@@ -54,65 +57,6 @@ The side navigation always includes:
 - **Visibility**: Only shows after user scrolls past hero section
 - **Mobile**: Hidden on mobile devices
 
-### Example Navigation Setup
-
-```json
-{
-  "contentBlocks": [
-    {
-      "type": "story-hook",
-      "sectionTitle": "The Story",
-      "quote": "How did I get here?..."
-    },
-    {
-      "type": "before-after-comparison",
-      "sectionTitle": "The Challenge",
-      "heading": "From Manual Chaos to Unified Platform"
-    },
-    {
-      "type": "two-column-with-sidebar",
-      "sectionTitle": "Discovery & Constraints",
-      "left": [...]
-    },
-    {
-      "type": "image-grid",
-      "columns": 3,
-      "images": [...]
-    },
-    {
-      "type": "timeline-process",
-      "sectionTitle": "The Process",
-      "heading": "The Journey"
-    },
-    {
-      "type": "key-insight",
-      "sectionTitle": "Key Decisions",
-      "icon": "iconoir:light-bulb"
-    },
-    {
-      "type": "metrics-inline",
-      "sectionTitle": "Results & Impact",
-      "heading": "The Results"
-    },
-    {
-      "type": "image-grid",
-      "sectionTitle": "Final Designs",
-      "columns": 3
-    }
-  ]
-}
-```
-
-**This creates navigation:**
-- 01: Impact Metrics
-- 02: The Story
-- 03: The Challenge
-- 04: Discovery & Constraints
-- 05: The Process (image-grid without sectionTitle is skipped)
-- 06: Key Decisions
-- 07: Results & Impact
-- 08: Final Designs
-
 ### Best Practices
 
 1. **Logical Grouping**: Group related content blocks under one section title rather than adding `sectionTitle` to every block
@@ -128,9 +72,9 @@ These are the top-level block types used in the `contentBlocks` array of your pr
 
 ### Layout Blocks
 
-Standard layout blocks for structuring content and media.
+Standard layout blocks for structuring content and text.
 
-### 1. `two-column-with-sidebar`
+#### 1. `two-column-with-sidebar`
 
 Two-column layout with main content on the left and a sticky sidebar on the right.
 
@@ -138,6 +82,7 @@ Two-column layout with main content on the left and a sticky sidebar on the righ
 ```json
 {
   "type": "two-column-with-sidebar",
+  "sectionTitle": "Optional Section Title",
   "left": [
     {
       "heading": "Section Heading",
@@ -183,117 +128,7 @@ Two-column layout with main content on the left and a sticky sidebar on the righ
 
 ---
 
-### 2. `full-width-image`
-
-Full-width image block with optional caption and hover state.
-
-**Structure:**
-```json
-{
-  "type": "full-width-image",
-  "src": "/path/to/image.png",
-  "alt": "Image description",
-  "caption": "Optional image caption",
-  "hoverImage": "/path/to/hover-image.png"
-}
-```
-
-**Features:**
-- Image spans the full content width
-- Optional caption below the image
-- Optional `hoverImage` property for hover state swapping
-
----
-
-### 3. `image-grid`
-
-Grid layout for multiple images with optional hover states.
-
-**Structure:**
-```json
-{
-  "type": "image-grid",
-  "columns": 2,
-  "images": [
-    {
-      "src": "/path/to/image1.png",
-      "alt": "Image 1 description",
-      "caption": "Optional caption",
-      "hoverImage": "/path/to/image1-hover.png"
-    },
-    {
-      "src": "/path/to/image2.png",
-      "alt": "Image 2 description",
-      "caption": "Optional caption"
-    }
-  ]
-}
-```
-
-**Features:**
-- Configurable column count (default: 2)
-- Multiple images with individual captions
-- Responsive grid layout
-- Optional `hoverImage` property per image for hover state swapping
-
----
-
-### 4. `gallery`
-
-Gallery block for showcasing multiple images.
-
-**Structure:**
-```json
-{
-  "type": "gallery",
-  "images": [
-    "/path/to/image1.png",
-    "/path/to/image2.png",
-    "/path/to/image3.png"
-  ]
-}
-```
-
-**Features:**
-- Automatic "Gallery" heading
-- Simple array of image paths
-- Grid layout for images
-
----
-
-### 5. `metrics-inline`
-
-Inline metrics cards with icons, values, and labels.
-
-**Structure:**
-```json
-{
-  "type": "metrics-inline",
-  "heading": "The Results",
-  "metrics": [
-    {
-      "icon": "iconoir:rocket",
-      "value": "70%",
-      "label": "faster design iteration"
-    },
-    {
-      "icon": "ph:check-circle",
-      "value": "90%",
-      "label": "implementation accuracy"
-    }
-  ]
-}
-```
-
-**Features:**
-- Optional heading for the metrics section
-- Icon support (Iconoir default, Phosphor Light with `ph:` prefix)
-- Decorative borders and corner dots
-- Grid layout for metric cards
-
----
-
-### 6. `full-width-text`
+#### 2. `full-width-text`
 
 Full-width text section with heading and paragraphs.
 
@@ -301,6 +136,7 @@ Full-width text section with heading and paragraphs.
 ```json
 {
   "type": "full-width-text",
+  "sectionTitle": "Optional Section Title",
   "heading": "Section Heading",
   "text": "Paragraph 1\n\nParagraph 2\n\nParagraph 3"
 }
@@ -310,10 +146,11 @@ Full-width text section with heading and paragraphs.
 - Full-width text block
 - Automatic paragraph splitting on `\n\n`
 - Optional heading
+- HTML support in text
 
 ---
 
-### 7. `text-image-split`
+#### 3. `text-image-split`
 
 50/50 split layout with text on one side and image on the other.
 
@@ -321,6 +158,7 @@ Full-width text section with heading and paragraphs.
 ```json
 {
   "type": "text-image-split",
+  "sectionTitle": "Optional Section Title",
   "layout": "text-left",
   "heading": "Section Heading",
   "blocks": [
@@ -373,11 +211,277 @@ Full-width text section with heading and paragraphs.
 
 ---
 
+#### 4. `container`
+
+A flexible container that can hold any text blocks. Use it as a generic wrapper or to create custom layouts.
+
+**Structure:**
+```json
+{
+  "type": "container",
+  "sectionTitle": "Optional Section Title",
+  "class": "optional-css-class",
+  "heading": "Optional Container Heading",
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Any content here with <strong>full HTML support</strong>."
+    },
+    {
+      "type": "heading",
+      "level": "h4",
+      "text": "Subheading"
+    },
+    {
+      "type": "list",
+      "style": "ol",
+      "items": [
+        "First item",
+        "Second item",
+        "Third item"
+      ]
+    }
+  ]
+}
+```
+
+**Features:**
+- Flexible generic container
+- Optional custom CSS class
+- Optional heading
+- Supports all text block types (see Text Block Types section)
+- Full HTML support in all text content
+- Can be used for custom layouts with inline HTML
+
+---
+
+### Media Blocks
+
+Blocks for displaying images, galleries, and visual content.
+
+#### 5. `full-width-image`
+
+Full-width image block with optional caption and hover state.
+
+**Structure:**
+```json
+{
+  "type": "full-width-image",
+  "sectionTitle": "Optional Section Title",
+  "src": "/path/to/image.png",
+  "alt": "Image description",
+  "caption": "Optional image caption",
+  "hoverImage": "/path/to/hover-image.png"
+}
+```
+
+**Features:**
+- Image spans the full content width
+- Optional caption below the image
+- Optional `hoverImage` property for hover state swapping
+- Automatic lightbox on click
+
+---
+
+#### 6. `image-grid`
+
+Grid layout for multiple images with optional hover states.
+
+**Structure:**
+```json
+{
+  "type": "image-grid",
+  "sectionTitle": "Optional Section Title",
+  "columns": 2,
+  "images": [
+    {
+      "src": "/path/to/image1.png",
+      "alt": "Image 1 description",
+      "caption": "Optional caption",
+      "hoverImage": "/path/to/image1-hover.png"
+    },
+    {
+      "src": "/path/to/image2.png",
+      "alt": "Image 2 description",
+      "caption": "Optional caption"
+    }
+  ]
+}
+```
+
+**Features:**
+- Configurable column count (default: 2)
+- Multiple images with individual captions
+- Responsive grid layout
+- Optional `hoverImage` property per image for hover state swapping
+- Automatic video detection (.mov, .mp4, .webm, .ogg) with auto-play/loop
+- Lightbox support for all images
+
+---
+
+#### 7. `gallery`
+
+Gallery block for showcasing multiple images.
+
+**Structure:**
+```json
+{
+  "type": "gallery",
+  "sectionTitle": "Optional Section Title",
+  "images": [
+    "/path/to/image1.png",
+    "/path/to/image2.png",
+    "/path/to/image3.png"
+  ]
+}
+```
+
+**Features:**
+- Automatic "Gallery" heading
+- Simple array of image paths
+- Grid layout for images
+- Lightbox navigation between images
+
+---
+
+#### 8. `image-text-columns`
+
+**NOTE:** This block type exists in the codebase but may not be fully documented. Use with caution or prefer other layout blocks.
+
+---
+
+#### 9. `image-carousel`
+
+**NOTE:** This block type exists in the codebase but may not be fully documented. Use with caution or prefer other carousel blocks.
+
+---
+
+### Metrics & Data Visualization
+
+Blocks for displaying metrics, data, and quantitative results.
+
+#### 10. `metrics-inline`
+
+Inline metrics cards with icons, values, and labels.
+
+**Structure:**
+```json
+{
+  "type": "metrics-inline",
+  "sectionTitle": "Optional Section Title",
+  "heading": "The Results",
+  "metrics": [
+    {
+      "icon": "iconoir:rocket",
+      "value": "70%",
+      "label": "faster design iteration"
+    },
+    {
+      "icon": "ph:check-circle",
+      "value": "90%",
+      "label": "implementation accuracy"
+    }
+  ]
+}
+```
+
+**Features:**
+- Optional heading for the metrics section
+- Icon support (Iconoir default, Phosphor Light with `ph:` prefix)
+- Decorative borders and corner dots
+- Grid layout for metric cards
+
+---
+
+#### 11. `metrics-grid`
+
+Grid layout for metrics organized by categories.
+
+**Structure:**
+```json
+{
+  "type": "metrics-grid",
+  "sectionTitle": "Optional Section Title",
+  "heading": "Project Metrics",
+  "metrics": [
+    {
+      "title": "Design Deliverables",
+      "items": [
+        "200+ components",
+        "400+ design tokens",
+        "50+ screen templates"
+      ]
+    },
+    {
+      "title": "Impact",
+      "items": [
+        "70% faster iteration",
+        "90% fewer QA cycles",
+        "50% reduced development time"
+      ]
+    }
+  ]
+}
+```
+
+**Features:**
+- Categorized metrics with title headers
+- Multiple items per category
+- Each item becomes a metric card
+- Grid layout
+
+---
+
+#### 12. `content-carousel`
+
+Horizontal carousel with navigation for cycling through content slides with metrics.
+
+**Structure:**
+```json
+{
+  "type": "content-carousel",
+  "sectionTitle": "Optional Section Title",
+  "heading": "Carousel Heading",
+  "class": "optional-css-class",
+  "items": [
+    {
+      "title": "Slide 1 Title",
+      "items": [
+        "Metric 1",
+        "Metric 2",
+        "Metric 3"
+      ]
+    },
+    {
+      "title": "Slide 2 Title",
+      "items": [
+        {
+          "icon": "iconoir:rocket",
+          "value": "70%",
+          "label": "improvement"
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Features:**
+- Horizontal scrolling carousel
+- Multiple slides with individual titles
+- Supports both simple text items and full metric card objects
+- Navigation indicators (dots)
+- Click indicators to navigate between slides
+- Optional custom CSS class
+- Special `stacked-metrics` class for stacked card visualization
+
+---
+
 ### Storytelling Blocks
 
 Specialized blocks for narrative-driven case studies that engage readers and highlight key moments.
 
-### 8. `story-hook`
+#### 13. `story-hook`
 
 Opening engagement moment - captures attention with a quote or compelling statement.
 
@@ -385,6 +489,7 @@ Opening engagement moment - captures attention with a quote or compelling statem
 ```json
 {
   "type": "story-hook",
+  "sectionTitle": "Optional Section Title",
   "quote": "How did I get here? This wasn't in the job description.",
   "context": "Seven months into my first corporate design role, I found myself standing in front of a room full of engineers.",
   "image": "/path/to/image.jpg",
@@ -400,35 +505,66 @@ Opening engagement moment - captures attention with a quote or compelling statem
 
 ---
 
-### 9. `timeline-process`
+#### 14. `timeline-process`
 
-Phase-based storytelling showing project evolution over time.
+Phase-based storytelling showing project evolution over time with horizontal stacking cards.
 
 **Structure:**
 ```json
 {
   "type": "timeline-process",
+  "sectionTitle": "Optional Section Title",
   "heading": "The Journey",
   "phases": [
     {
-      "title": "Foundation",
+      "sneak": 1,
+      "title": "Foundation Phase",
       "period": "Months 1-3",
       "icon": "iconoir:learning",
-      "highlights": [
-        "Market research and competitor analysis",
-        "Building information architecture",
-        "Started documentation practice"
-      ],
-      "outcome": "Learned the domain and set foundations"
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Context paragraph for this phase."
+        },
+        {
+          "type": "heading",
+          "text": "Key Activities"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Market research and competitor analysis",
+            "Building information architecture",
+            "Started documentation practice"
+          ]
+        },
+        {
+          "type": "outcome",
+          "text": "<strong>Outcome:</strong> Learned the domain and set foundations"
+        },
+        {
+          "type": "highlights",
+          "items": [
+            "First major milestone",
+            "Partnership established"
+          ]
+        },
+        {
+          "type": "learnings",
+          "text": "<strong>Key Learning:</strong> Early validation saves time"
+        }
+      ]
     },
     {
+      "sneak": 2,
       "title": "Execution",
       "period": "Months 4-8",
       "icon": "iconoir:rocket",
-      "highlights": [
-        "Built component library from scratch",
-        "Implemented async collaboration system",
-        "Delivered MVP features"
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Built component library from scratch."
+        }
       ]
     }
   ]
@@ -436,16 +572,26 @@ Phase-based storytelling showing project evolution over time.
 ```
 
 **Features:**
-- Visual timeline with phase markers
+- Visual timeline with horizontally stacked, overlapping phase cards
+- Progressive overlap: each phase overlaps more than the previous one
+- `sneak` property: Shows phase number (1, 2, 3...) prominently on card
 - Icons for each phase (using icon system)
 - Period labels (e.g., "Months 1-3")
-- Bullet-point highlights per phase
-- Optional outcome/learning statement
+- Interactive: Hover to expand phase details
+- Minimized state (`.min`): Only shows sneak number
+- Active state: Full content visible
+- Content types supported:
+  - `paragraph` - Regular text content
+  - `heading` - Section headings within phase
+  - `list` - Bullet point lists
+  - `outcome` - Highlighted outcome statement (blue text)
+  - `highlights` - Alternative bullet point style
+  - `learnings` - Learnings statement (blue text)
 - Great for showing iterative progress
 
 ---
 
-### 10. `timeline-horizontal-scroll`
+#### 15. `timeline-horizontal-scroll`
 
 Horizontal scroll-hijacking timeline for immersive storytelling. As users scroll vertically, the timeline advances horizontally through phases.
 
@@ -482,29 +628,6 @@ Horizontal scroll-hijacking timeline for immersive storytelling. As users scroll
       "learning": {
         "text": "<b>Key Learning:</b> Partnership, Early validation and open communication"
       }
-    },
-    {
-      "title": "Systematic Thinking",
-      "period": "Months 3-5",
-      "icon": "iconoir:puzzle",
-      "context": "Frontend onboarded with only 1 screen approved...",
-      "content": [
-        {
-          "type": "heading",
-          "text": "Challenges"
-        },
-        {
-          "type": "highlights",
-          "items": [
-            "No component library",
-            "Building from scratch in parallel with UI delivery"
-          ]
-        }
-      ],
-      "insight": {
-        "icon": "iconoir:light-bulb",
-        "text": "Sink or swim: Reusable components were a necessity, not an aspiration"
-      }
     }
   ]
 }
@@ -530,12 +653,44 @@ Horizontal scroll-hijacking timeline for immersive storytelling. As users scroll
 - `paragraph` - Regular paragraph text
 - `highlights` - Bulleted list of key points
 
-**Use Case:**
-Perfect for showcasing project evolution, iterative processes, or chronological case study narratives where you want an immersive, interactive experience.
+---
+
+#### 16. `timeline`
+
+Modern timeline rendering using the new timeline system.
+
+**Structure:**
+```json
+{
+  "type": "timeline",
+  "sectionTitle": "Optional Section Title",
+  "sections": [
+    {
+      "title": "Phase 1",
+      "content": "Phase content..."
+    }
+  ]
+}
+```
+
+**Features:**
+- Uses the new timeline renderer module
+- Modern timeline visualization
+- Part of the updated timeline system
+
+**NOTE:** This uses `renderTimelineBlock` which delegates to the modern timeline renderer. See `case-study-new.js` and `timelineRenderer.js` for implementation details.
 
 ---
 
-### 11. `before-after-comparison`
+#### 17. `time-carousel`
+
+Time-based carousel for sequential content.
+
+**NOTE:** This block type exists in the codebase. Implementation details may vary. Check the renderer function for exact structure.
+
+---
+
+#### 18. `before-after-comparison`
 
 Side-by-side impact visualization showing transformation.
 
@@ -543,6 +698,7 @@ Side-by-side impact visualization showing transformation.
 ```json
 {
   "type": "before-after-comparison",
+  "sectionTitle": "Optional Section Title",
   "heading": "From Manual Chaos to Unified Platform",
   "before": {
     "label": "The Reality I Walked Into",
@@ -573,10 +729,11 @@ Side-by-side impact visualization showing transformation.
 - Bullet lists highlighting key differences
 - Optional images for visual contrast
 - Excellent for demonstrating impact and transformation
+- Images open in lightbox
 
 ---
 
-### 12. `key-insight`
+#### 19. `key-insight`
 
 Highlighted callout for important learnings, decisions, or turning points.
 
@@ -584,6 +741,7 @@ Highlighted callout for important learnings, decisions, or turning points.
 ```json
 {
   "type": "key-insight",
+  "sectionTitle": "Optional Section Title",
   "icon": "iconoir:light-bulb",
   "title": "Strategic Decision: Design System First",
   "insight": "Observed chaos across projects and pitched a design system approach. CEO initially denied it. My response? Do it anyway and prove the value.",
@@ -605,7 +763,15 @@ Highlighted callout for important learnings, decisions, or turning points.
 
 Flexible column-based layouts for structured content presentation.
 
-### 13. `two-column-text`
+#### 20. `two-column`
+
+Basic two-column layout.
+
+**NOTE:** This block type exists in the codebase. May be similar to `two-column-text`. Check renderer for exact structure.
+
+---
+
+#### 21. `two-column-text`
 
 A simple two-column text layout without a sidebar. Perfect for side-by-side comparisons or parallel content.
 
@@ -658,55 +824,9 @@ A simple two-column text layout without a sidebar. Perfect for side-by-side comp
 - Full HTML support in all text content
 - Responsive: stacks on mobile
 
-**Real Example:**
-```json
-{
-  "type": "two-column-text",
-  "sectionTitle": "Design Approach",
-  "columns": [
-    {
-      "heading": "Problems",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Users were confused by the navigation structure."
-        },
-        {
-          "type": "list",
-          "style": "ul",
-          "items": [
-            "Complex menu hierarchy",
-            "Inconsistent labeling",
-            "Hidden important features"
-          ]
-        }
-      ]
-    },
-    {
-      "heading": "Solutions",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "We simplified the navigation to three main sections."
-        },
-        {
-          "type": "list",
-          "style": "ul",
-          "items": [
-            "Flat navigation structure",
-            "Clear, consistent labels",
-            "Priority features on main menu"
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
-
 ---
 
-### 14. `three-column-text`
+#### 22. `three-column-text`
 
 A three-column text layout. Great for showcasing multiple aspects or comparisons.
 
@@ -754,164 +874,81 @@ A three-column text layout. Great for showcasing multiple aspects or comparisons
 - Full HTML support in all text content
 - Responsive: stacks on tablet/mobile
 
-**Real Example:**
-```json
-{
-  "type": "three-column-text",
-  "sectionTitle": "Design Principles",
-  "columns": [
-    {
-      "heading": "Clarity",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Every element should have a clear purpose and meaning."
-        },
-        {
-          "type": "list",
-          "style": "ul",
-          "items": [
-            "Clear hierarchy",
-            "Obvious actions",
-            "No ambiguity"
-          ]
-        }
-      ]
-    },
-    {
-      "heading": "Efficiency",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Users should accomplish tasks with minimal friction."
-        },
-        {
-          "type": "list",
-          "style": "ul",
-          "items": [
-            "Quick access",
-            "Smart defaults",
-            "Keyboard shortcuts"
-          ]
-        }
-      ]
-    },
-    {
-      "heading": "Delight",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Small moments of joy throughout the experience."
-        },
-        {
-          "type": "list",
-          "style": "ul",
-          "items": [
-            "Smooth animations",
-            "Helpful feedback",
-            "Pleasant surprises"
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
-
 ---
 
-### 15. `container`
+### Special Blocks
 
-A flexible container that can hold any text blocks. Use it as a generic wrapper or to create custom layouts.
+#### 23. `heading`
+
+Standalone heading block for section titles.
 
 **Structure:**
 ```json
 {
-  "type": "container",
-  "class": "optional-css-class",
-  "heading": "Optional Container Heading",
-  "blocks": [
-    {
-      "type": "paragraph",
-      "text": "Any content here with <strong>full HTML support</strong>."
-    },
-    {
-      "type": "heading",
-      "level": "h4",
-      "text": "Subheading"
-    },
-    {
-      "type": "list",
-      "style": "ol",
-      "items": [
-        "First item",
-        "Second item",
-        "Third item"
-      ]
-    }
-  ]
+  "type": "heading",
+  "level": "h2",
+  "text": "Section Title"
+}
+```
+
+**Options:**
+- `level`: `"h1"`, `"h2"`, `"h3"`, `"h4"`, `"h5"`, `"h6"` (default: `"h2"`)
+
+---
+
+#### 24. `paragraph`
+
+Standalone paragraph block.
+
+**Structure:**
+```json
+{
+  "type": "paragraph",
+  "text": "Your paragraph text with <strong>HTML support</strong>.",
+  "class": "optional-css-class"
 }
 ```
 
 **Features:**
-- Flexible generic container
+- Full HTML support
 - Optional custom CSS class
-- Optional heading
-- Supports all text block types (see Text Block Types section)
-- Full HTML support in all text content
-- Can be used for custom layouts with inline HTML
+- Special `callout` class for highlighted sections
 
-**Using Container for Custom Layouts:**
+---
 
-You can use the container with inline HTML to create custom layouts:
+#### 25. `list`
 
+Standalone list block.
+
+**Structure:**
 ```json
 {
-  "type": "container",
-  "blocks": [
-    {
-      "type": "paragraph",
-      "text": "<div style='display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;'><div><strong>Before</strong><br>Manual data entry took hours each day.</div><div><strong>After</strong><br>Automated pipeline saved 50% of time.</div></div>"
-    }
+  "type": "list",
+  "style": "ul",
+  "items": [
+    "First item",
+    "Second item with <strong>HTML</strong>",
+    "Third item"
   ]
 }
 ```
 
-**Real Example:**
-```json
-{
-  "type": "container",
-  "class": "highlight-section",
-  "sectionTitle": "Key Takeaways",
-  "heading": "Key Takeaways",
-  "blocks": [
-    {
-      "type": "paragraph",
-      "text": "This project taught me several important lessons:"
-    },
-    {
-      "type": "list",
-      "style": "ol",
-      "items": [
-        "<strong>User research is essential</strong> - We spent 2 weeks on research and it saved us 2 months of rework",
-        "<strong>Iterate early and often</strong> - Weekly testing sessions caught issues before they became problems",
-        "<strong>Design systems scale</strong> - Our component library reduced development time by 40%"
-      ]
-    },
-    {
-      "type": "paragraph",
-      "class": "callout",
-      "text": "💡 The most important insight: <em>Constraints breed creativity</em>. Limited resources forced us to make bold, simple decisions."
-    }
-  ]
-}
-```
+**Options:**
+- `style`: `"ul"` (bullets) or `"ol"` (numbers)
+
+---
+
+#### 26. `section`
+
+Generic section wrapper.
+
+**NOTE:** This block type exists in the codebase. Use as a generic wrapper for grouping content.
 
 ---
 
 ## Text Block Types (for nested content)
 
-These block types are used within the `blocks` array of layout blocks like `two-column-with-sidebar`, `two-column-text`, `three-column-text`, and `container`. They provide structured alternatives to raw HTML.
+These block types are used within the `blocks` array of layout blocks like `two-column-with-sidebar`, `two-column-text`, `three-column-text`, `container`, `text-image-split`, and `timeline-process` phases.
 
 ### 1. `heading`
 
@@ -995,38 +1032,71 @@ Ordered or unordered list with full HTML support in items.
 - `style`: `"ul"` (unordered/bullets) or `"ol"` (ordered/numbered) - default: `"ul"`
 - `items`: Array of list item strings with full HTML support
 
-**Examples:**
+**Features:**
+- Full HTML support in all list items
+- Both ordered and unordered list styles
+- Perfect for feature lists, requirements, steps, or highlights
 
-Unordered list:
+---
+
+### 4. `outcome`
+
+Special paragraph type for highlighting phase outcomes (used in timeline-process).
+
+**Structure:**
 ```json
 {
-  "type": "list",
-  "style": "ul",
-  "items": [
-    "1 Backend developer (my primary partner)",
-    "1 Frontend developer (8 time zones away)",
-    "No Design System culture"
-  ]
+  "type": "outcome",
+  "text": "<strong>Outcome:</strong> This was the result of this phase."
 }
 ```
 
-Ordered list with HTML:
+**Features:**
+- Styled differently from regular paragraphs (blue text)
+- Used specifically in `timeline-process` phases
+- Full HTML support
+
+---
+
+### 5. `highlights`
+
+Alternative bullet list style for highlighting key points (used in timeline-process and timeline-horizontal-scroll).
+
+**Structure:**
 ```json
 {
-  "type": "list",
-  "style": "ol",
+  "type": "highlights",
   "items": [
-    "<strong>User research is essential</strong> - We spent 2 weeks on research and it saved us 2 months of rework",
-    "<strong>Iterate early and often</strong> - Weekly testing sessions caught issues before they became problems",
-    "<strong>Design systems scale</strong> - Our component library reduced development time by 40%"
+    "Key point 1",
+    "Key point 2 with <strong>HTML</strong>",
+    "Key point 3"
   ]
 }
 ```
 
 **Features:**
-- Full HTML support in all list items
-- Both ordered and unordered list styles
-- Perfect for feature lists, requirements, steps, or highlights
+- Special styling for timeline phases
+- Full HTML support in items
+- Used in `timeline-process` and `timeline-horizontal-scroll`
+
+---
+
+### 6. `learnings`
+
+Special paragraph type for key learnings (used in timeline-process).
+
+**Structure:**
+```json
+{
+  "type": "learnings",
+  "text": "<strong>Key Learning:</strong> This is what we learned."
+}
+```
+
+**Features:**
+- Styled differently from regular paragraphs (blue text)
+- Used specifically in `timeline-process` phases
+- Full HTML support
 
 ---
 
@@ -1056,97 +1126,153 @@ Icons use a dual-library system with prefixes:
 - **Iconoir** (default): https://iconoir.com/
 - **Phosphor Light** (with `ph:` prefix): https://phosphoricons.com/
 
+**Where icons are used:**
+- `metrics-inline` - metric cards
+- `content-carousel` - metric cards in slides
+- `timeline-process` - phase markers
+- `timeline-horizontal-scroll` - phase tabs and insight boxes
+- `key-insight` - callout icon
+
 ---
 
 ## Complete Examples
 
-### Example 1: Basic Two-Column Layout with Structured Blocks
+### Example 1: Complete Narrative-Driven Case Study
 
-```json
-{
-  "type": "two-column-with-sidebar",
-  "left": [
-    {
-      "heading": "Project Overview",
-      "blocks": [
-        {
-          "type": "heading",
-          "level": "h4",
-          "text": "The Setup"
-        },
-        {
-          "type": "paragraph",
-          "class": "subtit",
-          "text": "Greenfield product, limited team"
-        },
-        {
-          "type": "paragraph",
-          "text": "I was assigned to build this platform with:"
-        },
-        {
-          "type": "list",
-          "style": "ul",
-          "items": [
-            "1 Backend developer",
-            "1 Frontend developer",
-            "No Design System culture"
-          ]
-        },
-        {
-          "type": "paragraph",
-          "html": "Between backend and myself, we became the <strong>de facto product owners</strong>."
-        }
-      ]
-    }
-  ],
-  "sidebar": {
-    "Technical Details": [
-      "Desktop Application",
-      "CRM Integration",
-      "Real-time Dashboards"
-    ],
-    "Role & Timeline": [
-      "Solo Product Designer",
-      "2024 - 2025"
-    ]
-  }
-}
-```
-
-### Example 2: Mixed Content Blocks
+A full case study structure using storytelling blocks:
 
 ```json
 {
   "contentBlocks": [
     {
-      "type": "two-column-with-sidebar",
-      "left": [
-        {
-          "heading": "The Challenge",
-          "text": "Marketing data was scattered across departments.",
-          "image": {
-            "src": "/assets/diagram.png",
-            "alt": "Data fragmentation",
-            "caption": "Before: Scattered data"
-          }
-        }
-      ],
-      "sidebar": {
-        "Impact": [
-          "4 departments unified",
-          "Real-time data sync"
+      "type": "story-hook",
+      "sectionTitle": "The Story",
+      "quote": "How did I get here? This wasn't in the job description.",
+      "context": "Seven months into my first corporate design role, I found myself presenting a design system to engineers."
+    },
+    {
+      "type": "before-after-comparison",
+      "sectionTitle": "The Challenge",
+      "heading": "From Chaos to Clarity",
+      "before": {
+        "label": "The Problem",
+        "items": [
+          "Manual Excel tracking",
+          "6+ fragmented lead sources",
+          "No design standards"
+        ]
+      },
+      "after": {
+        "label": "The Solution",
+        "items": [
+          "Unified CRM platform",
+          "400+ design tokens",
+          "90% fewer QA cycles"
         ]
       }
     },
     {
-      "type": "full-width-image",
-      "src": "/assets/dashboard.png",
-      "alt": "Unified dashboard",
-      "caption": "After: Centralized platform"
+      "type": "timeline-process",
+      "sectionTitle": "The Journey",
+      "heading": "Project Evolution",
+      "phases": [
+        {
+          "sneak": 1,
+          "title": "Foundation Phase",
+          "period": "Months 1-3",
+          "icon": "iconoir:learning",
+          "content": [
+            {
+              "type": "paragraph",
+              "text": "Started with research and domain learning."
+            },
+            {
+              "type": "list",
+              "items": [
+                "Market research",
+                "IA development",
+                "Early prototypes"
+              ]
+            },
+            {
+              "type": "outcome",
+              "text": "<strong>Outcome:</strong> Validated approach with stakeholders"
+            }
+          ]
+        },
+        {
+          "sneak": 2,
+          "title": "Execution",
+          "period": "Months 4-8",
+          "icon": "iconoir:rocket",
+          "content": [
+            {
+              "type": "paragraph",
+              "text": "Built component library from scratch."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "key-insight",
+      "sectionTitle": "Key Decision",
+      "icon": "iconoir:light-bulb",
+      "title": "Show, Don't Tell",
+      "insight": "CEO denied design system proposal. Built it anyway.",
+      "result": "15 months later: company-wide adoption, Design Ops team created."
     },
     {
       "type": "metrics-inline",
+      "sectionTitle": "Impact",
+      "heading": "Results",
       "metrics": [
+        {
+          "icon": "iconoir:rocket",
+          "value": "70%",
+          "label": "faster iteration"
+        },
+        {
+          "icon": "iconoir:check-circle",
+          "value": "90%",
+          "label": "fewer QA cycles"
+        }
+      ]
+    },
+    {
+      "type": "image-grid",
+      "columns": 3,
+      "images": [
+        {"src": "/assets/screen1.png", "alt": "Screen 1"},
+        {"src": "/assets/screen2.png", "alt": "Screen 2"},
+        {"src": "/assets/screen3.png", "alt": "Screen 3"}
+      ]
+    }
+  ]
+}
+```
+
+---
+
+### Example 2: Content Carousel with Metrics
+
+```json
+{
+  "type": "content-carousel",
+  "heading": "Design Deliverables",
+  "class": "stacked-metrics",
+  "items": [
+    {
+      "title": "Component Library",
+      "items": [
+        "200+ components",
+        "400+ design tokens",
+        "50+ screen templates"
+      ]
+    },
+    {
+      "title": "Impact Metrics",
+      "items": [
         {
           "icon": "iconoir:rocket",
           "value": "70%",
@@ -1158,284 +1284,6 @@ Icons use a dual-library system with prefixes:
           "label": "accuracy"
         }
       ]
-    },
-    {
-      "type": "image-grid",
-      "columns": 2,
-      "images": [
-        {"src": "/assets/screen1.png", "alt": "Screen 1"},
-        {"src": "/assets/screen2.png", "alt": "Screen 2"}
-      ]
-    },
-    {
-      "type": "gallery",
-      "images": [
-        "/assets/img1.png",
-        "/assets/img2.png",
-        "/assets/img3.png"
-      ]
-    }
-  ]
-}
-```
-
-### Example 3: Text-Image Split
-
-```json
-{
-  "type": "text-image-split",
-  "layout": "text-right",
-  "heading": "The Solution",
-  "text": "We created a unified platform that brought everything together.\n\nThis eliminated fragmentation and improved efficiency.",
-  "image": "/assets/solution.png",
-  "alt": "Solution overview",
-  "caption": "The final solution"
-}
-```
-
----
-
-### Example 4: Using New Column Layout Blocks
-
-A complete example using the new `two-column-text`, `three-column-text`, and `container` blocks:
-
-```json
-{
-  "contentBlocks": [
-    {
-      "type": "two-column-text",
-      "sectionTitle": "The Challenge",
-      "columns": [
-        {
-          "heading": "What We Found",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "User testing revealed critical pain points in the checkout flow."
-            },
-            {
-              "type": "list",
-              "style": "ul",
-              "items": [
-                "72% cart abandonment rate",
-                "Average completion time: 8 minutes",
-                "15 form fields required"
-              ]
-            }
-          ]
-        },
-        {
-          "heading": "What We Did",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "We redesigned the entire checkout experience from the ground up."
-            },
-            {
-              "type": "list",
-              "style": "ul",
-              "items": [
-                "Reduced to 3-step process",
-                "Smart autofill integration",
-                "Guest checkout option"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "three-column-text",
-      "sectionTitle": "Core Improvements",
-      "columns": [
-        {
-          "heading": "Speed",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Cut completion time by <strong>60%</strong>"
-            }
-          ]
-        },
-        {
-          "heading": "Simplicity",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Reduced fields from <strong>15 to 5</strong>"
-            }
-          ]
-        },
-        {
-          "heading": "Conversion",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Increased conversions by <strong>45%</strong>"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "container",
-      "sectionTitle": "Key Takeaways",
-      "heading": "Results",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "class": "callout",
-          "text": "The new checkout flow increased revenue by <strong>$2.4M annually</strong> while significantly improving customer satisfaction scores."
-        }
-      ]
-    }
-  ]
-}
-```
-
----
-
-### Example 5: Using Hover Images
-
-A practical example showing how to use `hoverImage` for interactive before/after states:
-
-```json
-{
-  "contentBlocks": [
-    {
-      "type": "full-width-image",
-      "src": "/assets/dashboard-default.png",
-      "alt": "Dashboard default state",
-      "caption": "Dashboard interface (hover to see active state)",
-      "hoverImage": "/assets/dashboard-active.png"
-    },
-    {
-      "type": "image-grid",
-      "columns": 2,
-      "images": [
-        {
-          "src": "/assets/card-default.png",
-          "alt": "Card default state",
-          "caption": "Hover to see interaction",
-          "hoverImage": "/assets/card-hover.gif"
-        },
-        {
-          "src": "/assets/button-normal.png",
-          "alt": "Button states",
-          "hoverImage": "/assets/button-pressed.png"
-        }
-      ]
-    },
-    {
-      "type": "two-column-with-sidebar",
-      "left": [
-        {
-          "heading": "Interactive Prototypes",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Hover over the images to see the interactive states."
-            }
-          ],
-          "imageFull": {
-            "src": "/assets/prototype-static.png",
-            "alt": "Prototype frame",
-            "caption": "Static frame vs. animated prototype",
-            "hoverImage": "/assets/prototype-animated.gif"
-          }
-        }
-      ],
-      "sidebar": {
-        "Hover States": [
-          "Default to Active",
-          "Static to Animated",
-          "Before to After"
-        ]
-      }
-    }
-  ]
-}
-```
-
----
-
-### Example 6: Storytelling Flow
-
-A complete narrative-driven case study using storytelling blocks:
-
-```json
-{
-  "contentBlocks": [
-    {
-      "type": "story-hook",
-      "quote": "How did I get here? This wasn't in the job description for Mid UI Designer.",
-      "context": "Seven months in, I found myself presenting a design system to a room full of engineers.",
-      "image": "/assets/presenting-moment.jpg"
-    },
-    {
-      "type": "before-after-comparison",
-      "heading": "From Chaos to Clarity",
-      "before": {
-        "label": "The Problem",
-        "items": [
-          "Marketing tracking everything via manual Excel",
-          "6+ fragmented lead entry points",
-          "No design systems or standards"
-        ],
-        "image": "/assets/before-state.png"
-      },
-      "after": {
-        "label": "The Transformation",
-        "items": [
-          "Unified CRM across 4 departments",
-          "400+ design tokens, 200+ components",
-          "90% fewer QA cycles"
-        ],
-        "image": "/assets/after-state.png"
-      }
-    },
-    {
-      "type": "timeline-process",
-      "heading": "The Journey",
-      "phases": [
-        {
-          "title": "Foundation",
-          "period": "Months 1-3",
-          "icon": "iconoir:learning",
-          "highlights": [
-            "Market research",
-            "Learning domain terminology",
-            "Building IA with Backend Lead"
-          ]
-        },
-        {
-          "title": "Execution",
-          "period": "Months 4-8",
-          "icon": "iconoir:rocket",
-          "highlights": [
-            "Building component library",
-            "Implementing features",
-            "Async collaboration system"
-          ]
-        },
-        {
-          "title": "Strategic Impact",
-          "period": "Months 9-18",
-          "icon": "iconoir:trophy",
-          "highlights": [
-            "Facebook API approval first try",
-            "Design system company-wide adoption",
-            "Presenting at developer conference"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "key-insight",
-      "icon": "iconoir:light-bulb",
-      "title": "Key Learning: Show, Don't Tell",
-      "insight": "CEO initially denied design system proposal. Instead of waiting for approval, I built it and proved value through 90% QA reduction.",
-      "result": "By month 15, CEO approved expansion company-wide. Design Ops team created."
     }
   ]
 }
@@ -1445,7 +1293,7 @@ A complete narrative-driven case study using storytelling blocks:
 
 ## HTML Support in Text Content
 
-All text fields across all block types now support full HTML formatting:
+All text fields across all block types support full HTML formatting:
 
 - `<strong>Bold text</strong>`
 - `<em>Italic text</em>`
@@ -1455,8 +1303,9 @@ All text fields across all block types now support full HTML formatting:
 - Custom `<div>` and `<span>` with inline styles
 
 This applies to:
-- All text blocks (`paragraph`, `heading`, `list` items)
+- All text blocks (`paragraph`, `heading`, `list` items, `outcome`, `highlights`, `learnings`)
 - Column layout blocks (`two-column-text`, `three-column-text`, `container`)
+- Timeline content blocks
 - Legacy `text` fields in `two-column-with-sidebar`
 
 ---
@@ -1465,62 +1314,79 @@ This applies to:
 
 All blocks are fully responsive:
 
-- **Desktop**: Shows columns side by side
+- **Desktop**: Shows columns side by side, full layouts
 - **Tablet**: Two columns side by side (three-column becomes stacked)
-- **Mobile**: All columns stack vertically
+- **Mobile**: All columns stack vertically, simplified layouts
 
 ---
 
-## Tips
+## Tips & Best Practices
 
-1. **HTML Support**: All text content now supports full HTML formatting. Use `<strong>`, `<em>`, `<br>`, and other HTML tags directly in your text fields.
+1. **HTML Support**: All text content supports full HTML formatting. Use `<strong>`, `<em>`, `<br>`, and other HTML tags directly.
 
-2. **Callout Class**: Use `"class": "callout"` on paragraph blocks to create highlighted callout boxes for important information.
+2. **Callout Class**: Use `"class": "callout"` on paragraph blocks to create highlighted callout boxes.
 
 3. **Choosing Column Layouts**:
    - Use `two-column-with-sidebar` for main content + sticky reference info
-   - Use `two-column-text` for equal-width comparisons (Problems/Solutions, Before/After)
-   - Use `three-column-text` for feature showcases or design principles
-   - Use `container` for flexible custom layouts or simple content blocks
+   - Use `two-column-text` for equal-width comparisons
+   - Use `three-column-text` for feature showcases
+   - Use `container` for flexible custom layouts
 
-4. **Backwards Compatibility**: The `text` field with HTML still works in `two-column-with-sidebar`, but the `blocks` array is recommended for better structure.
+4. **Section Navigation**: Only add `sectionTitle` to major content sections (5-8 total). Don't add it to every block.
 
-5. **Mixing Approaches**: You can mix `text` and `blocks` - some sections can use the old `text` field while others use the new `blocks` array.
+5. **Storytelling Flow**: Start with `story-hook`, use `before-after-comparison` for impact, `timeline-process` for journey, `key-insight` for key moments.
 
-6. **Image Types**: Use `image` for inline images within a column, and `imageFull` for full-width images within a section.
+6. **Hover Images**: Add `hoverImage` to any image to show before/after, active states, or animations.
 
-7. **Video Support**: The `image-grid` block automatically detects video files (.mov, .mp4, .webm, .ogg) and renders them as auto-playing, muted, looping videos instead of static images.
+7. **Video Support**: `image-grid` automatically detects and plays video files (.mov, .mp4, .webm, .ogg).
 
-8. **Lazy Loading**: You can split large case studies into separate files using the `contentFile` property in your main project data:
-   ```json
-   {
-     "contentFile": "/data/project-content.json"
-   }
-   ```
+8. **Lightbox**: All images automatically open in lightbox with navigation.
 
-9. **Sidebar Key-Value Pairs**: In the sidebar, items with `:` are automatically parsed as key-value pairs and styled differently.
+9. **Icon Libraries**:
+   - Iconoir: https://iconoir.com/
+   - Phosphor: https://phosphoricons.com/
 
-10. **Icon Names**: Check the respective icon libraries' documentation for available icon names:
-    - Iconoir: https://iconoir.com/
-    - Phosphor: https://phosphoricons.com/
+10. **Timeline Process**: Use `sneak` property (1, 2, 3...) to show phase numbers. Cards stack horizontally with progressive overlap.
 
-11. **Paragraphs**: In `full-width-text` and `text-image-split`, paragraphs are automatically created by splitting on `\n\n`.
+11. **Content Carousel**: Use `class: "stacked-metrics"` for stacked card visualization with rotation effect.
 
-12. **Storytelling Flow**: Start case studies with `story-hook`, use `before-after-comparison` to show impact, `timeline-process` to show journey, and `key-insight` to highlight important moments.
-
-13. **Empty Sidebars**: If you don't need sidebar content in a `two-column-with-sidebar` block, pass an empty object `{}` - the sidebar will automatically hide.
-
-14. **Section Navigation**: Use the `sectionTitle` property to control which blocks appear in the side navigation. Only add it to major content sections - not every block needs to be navigable. See [Side Navigation Control](#side-navigation-control) for details.
-
-15. **Hover Images**: Add `hoverImage` property to any image object to create hover state swapping. Works across all image types: `image`, `imageFull`, `full-width-image`, `image-grid` items, and `text-image-split`. Perfect for showing before/after states, active states, or interactive details.
-
-16. **Lightbox Support**: All images across all block types automatically open in a lightbox when clicked. This includes inline images, full-width images, grid images, split images, story-hook images, and before-after comparison images. The lightbox displays the full-resolution image with captions and navigation between images in the gallery.
+12. **Lazy Loading**: Split large case studies using `contentFile` property to load content from separate JSON.
 
 ---
 
 ## File Location Reference
 
 This block system is implemented in:
-- **JSON Data**: [src/data/projects.json](src/data/projects.json)
-- **Renderer**: [src/js/modules/caseStudy.js](src/js/modules/caseStudy.js)
-- **Styles**: [src/scss/case-study.scss](src/scss/case-study.scss)
+- **JSON Data**: `src/data/projects.json` and `public/data/*.json`
+- **Main Renderer**: `src/js/modules/caseStudy.js`
+- **Timeline Renderer**: `src/js/modules/case-study-new.js`, `src/js/modules/timelineRenderer.js`
+- **Styles**: `src/scss/_project-navigation.scss`, `src/scss/_timeline.scss`
+
+---
+
+## Block Type Quick Reference
+
+| Block Type | Purpose | Key Features |
+|------------|---------|--------------|
+| `two-column-with-sidebar` | Main layout with sidebar | Sections, images, sticky sidebar |
+| `full-width-text` | Full-width text section | Auto paragraph splitting |
+| `text-image-split` | 50/50 text + image | Configurable layout direction |
+| `container` | Flexible wrapper | Custom classes, generic |
+| `full-width-image` | Full-width image | Caption, hover state |
+| `image-grid` | Image gallery grid | Configurable columns, videos |
+| `gallery` | Simple image gallery | Array of image paths |
+| `metrics-inline` | Metric cards | Icons, values, labels |
+| `metrics-grid` | Categorized metrics | Grouped by category |
+| `content-carousel` | Metrics carousel | Slides with navigation |
+| `story-hook` | Opening quote | Engagement moment |
+| `timeline-process` | Stacked phase cards | Horizontal overlap, interactive |
+| `timeline-horizontal-scroll` | Scroll-hijacking timeline | Immersive experience |
+| `timeline` | Modern timeline | New timeline system |
+| `before-after-comparison` | Side-by-side comparison | Impact visualization |
+| `key-insight` | Highlighted callout | Important moments |
+| `two-column-text` | Equal columns | Comparisons, parallel content |
+| `three-column-text` | Three columns | Features, principles |
+
+---
+
+**Last Updated**: December 2024

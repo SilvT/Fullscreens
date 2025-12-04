@@ -23,6 +23,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
+        'resume': path.resolve(__dirname, 'resume.html'),
         'content-blocks-kit': path.resolve(__dirname, 'content-blocks-kit.html'),
         'marketing-management': path.resolve(__dirname, 'marketing-management.html'),
         'design-system': path.resolve(__dirname, 'design-system.html'),
@@ -33,6 +34,6 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    open: true,
+    open: '/Applications/Firefox.app',
   },
 });

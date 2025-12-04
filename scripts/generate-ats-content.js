@@ -764,7 +764,7 @@ function generateATSContent() {
   Your JavaScript will enhance/replace this content for visual presentation.
 -->
 
-<div class="ats-content" role="region" aria-label="Portfolio Projects">
+<div class="ats-content" role="region" aria-label="Portfolio Projects" style="display: none !important; visibility: hidden !important; opacity: 0 !important; position: absolute !important; left: -9999px !important; width: 0 !important; height: 0 !important; overflow: hidden !important; clip: rect(0,0,0,0) !important;" hidden aria-hidden="true">
   ${projectsHTML.join('\n')}
 </div>
 
@@ -843,6 +843,11 @@ function injectIntoHTML(content) {
 // ============================================================================
 
 try {
+  console.log('⚠️  ATS HTML content generation DISABLED');
+  console.log('   (JavaScript generates dynamic project cards instead)');
+  console.log('   JSON-LD structured data is still active for SEO\n');
+  process.exit(0);
+
   const content = generateATSContent();
   injectIntoHTML(content);
 

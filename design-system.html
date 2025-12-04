@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Design System from Scratch | Silvia Travieso - Product Designer</title>
   <meta name="description" content="Built a production-ready design system from scratch as a solo mid-level designer in an engineer-first startup. Solved JavaFX (zero references), 8-hour timezone gaps, and CEO resistance. Result: 90% QA reduction, company-wide adoption, and 1,920 hours saved through systematic reuse.">
-  <meta name="keywords" content="Design Systems, Token Architecture, JavaFX, GitHub Actions, Async Collaboration">
+  <meta name="keywords" content="Design Systems, Token Architecture, JavaFX, GitHub Actions, Greenfield 0 → 1">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://silviatravieso.com/design-system">
   <meta property="og:title" content="Design System from Scratch - Product Design Case Study">
   <meta property="og:description" content="Building design infrastructure in an engineer-first startup with zero precedent">
-  <meta property="og:image" content="https://silviatravieso.com/design-system/hero-token-architecture.png">
+  <meta property="og:image" content="https://silviatravieso.com/ds/ds-hero.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Design System from Scratch - Product Design Case Study">
   <meta name="twitter:description" content="Building design infrastructure in an engineer-first startup with zero precedent">
-  <meta name="twitter:image" content="https://silviatravieso.com/design-system/hero-token-architecture.png">
+  <meta name="twitter:image" content="https://silviatravieso.com/ds/ds-hero.png">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://silviatravieso.com/design-system">
@@ -32,7 +32,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fascinate&family=Anonymous+Pro:wght@400;700&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
-<body class="project-page-body">
+<body class="project-page-body" data-theme="green">
 
   <!-- Sticky Navigation -->
   <nav class="top-nav" role="navigation" aria-label="Main navigation">
@@ -51,6 +51,12 @@
   <!-- Project Breadcrumbs Navigation (outside of case-study-page for sticky positioning) -->
   <nav class="cs-breadcrumbs cs-breadcrumbs-standalone" aria-label="Case study navigation">
     <!-- Populated by JavaScript -->
+  </nav>
+
+  <!-- Side Navigation (outside scrolling container for true fixed positioning) -->
+  <nav class="cs-side-nav" aria-label="Case study sections">
+    <div class="cs-side-nav-indicator"></div>
+    <ul class="cs-side-nav-list"></ul>
   </nav>
 
   <!-- Case Study Content Container -->
