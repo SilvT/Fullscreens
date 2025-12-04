@@ -28,7 +28,7 @@ import {
 import { initAccessibility, verifyColorContrast } from './js/modules/accessibility.js';
 import { initFlipBoardAnimation } from './js/modules/flipBoardAnimation.js';
 // import { initProjectDetail } from './js/modules/projectDetail.js'; // ARCHIVED: Not currently in use
-import { initCaseStudy } from './js/modules/caseStudy.js';
+// import { initCaseStudy } from './js/modules/caseStudy.js'; // ARCHIVED: Case study modals disabled
 import { initScrollHint } from './js/modules/scrollHint.js';
 import { initProjectCards } from './js/modules/projectCards.js';
 import { initAllCardEnhancements } from './js/modules/cardEnhancements.js';
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // initProjectDetail(); // ARCHIVED: Not currently in use
 
   // Initialize case study modal (traditional case study format)
-  initCaseStudy();
+  // initCaseStudy(); // ARCHIVED: Case study modals disabled
 
   // Initialize scroll hint animation
   initScrollHint();

@@ -3,7 +3,7 @@
  * Handles rendering timeline blocks from JSON for case studies
  */
 
-import { renderTimeline, initializeTimeline } from './timelineRenderer.js';
+import { renderTimeline, initializeTimeline } from '../modules/timelineRenderer.js';
 
 /**
  * Render Timeline Block

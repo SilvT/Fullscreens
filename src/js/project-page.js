@@ -10,7 +10,7 @@ import projectData from '../data/projects.json';
 import { updateProjectMetaTags } from './modules/structuredData.js';
 import { initLightbox } from './modules/lightbox.js';
 import { trackProjectView } from './modules/analytics.js';
-import { renderBlock, loadCaseStudyContent, createMetricCard } from './modules/caseStudy.js';
+import { renderBlock, loadCaseStudyContent, createMetricCard } from './archive/caseStudy.js';
 import '@phosphor-icons/web/light';
 import 'iconoir/css/iconoir.css';
 import '../scss/main.scss';

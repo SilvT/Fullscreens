@@ -273,11 +273,12 @@ function createProjectCard(projectId, project, index) {
             <div class="storytelling-group">
               ${createProjectDetails(project)}
               <div class="cta-buttons-group">
-                <a href="${ctaHref}" class="cta-button" data-project-id="${currentProjectId}">
+                <!-- ARCHIVED: Case study modal disabled -->
+                <!-- <a href="${ctaHref}" class="cta-button" data-project-id="${currentProjectId}">
                   → Read Case Study
-                </a>
-                <a href="/${PROJECT_SLUGS[currentProjectId]}" class="cta-button cta-button-secondary">
-                  → HTML access
+                </a> -->
+                <a href="/${PROJECT_SLUGS[currentProjectId]}" class="cta-button">
+                  → View Case Study
                 </a>
               </div>
             </div>

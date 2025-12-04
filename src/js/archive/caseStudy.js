@@ -7,9 +7,9 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import projectData from '../../data/projects.json';
-import { updateProjectMetaTags, clearProjectMetaTags } from './structuredData.js';
-import { initLightbox, refreshLightbox } from './lightbox.js';
-import { trackProjectView, trackCaseStudyInteraction } from './analytics.js';
+import { updateProjectMetaTags, clearProjectMetaTags } from '../modules/structuredData.js';
+import { initLightbox, refreshLightbox } from '../modules/lightbox.js';
+import { trackProjectView, trackCaseStudyInteraction } from '../modules/analytics.js';
 import { renderTimelineBlock } from './case-study-new.js';
 import '@phosphor-icons/web/light';
 import 'iconoir/css/iconoir.css';

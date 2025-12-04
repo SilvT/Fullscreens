@@ -46,7 +46,7 @@ export default {
   output: {
     // Where to inject the generated HTML
     indexHtmlPath: 'index.html',
-    targetContainer: 'projects-container',
+    targetContainer: 'ats-content-placeholder',
 
     // Backup original before modifying
     createBackup: true,
