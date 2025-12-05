@@ -17,23 +17,6 @@
 
       {
         "type": "two-column-with-sidebar",
-        "sectionTitle": "Narrative",
-        "left": [
-          {
-            "heading": "The narrative",
-            "blocks": [
-              {
-                "type": "paragraph",
-                "class": "callout",
-                "text": "Mid UI → Product Co-Owner"
-              }
-            ]
-          }
-        ]
-      },
-
-      {
-        "type": "two-column-with-sidebar",
         "sectionTitle": "The Problem",
         "sidebarClass": "",
         "left": [
