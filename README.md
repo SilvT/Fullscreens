@@ -1,6 +1,6 @@
 # Portfolio 2025
-
-Right, so this is a portfolio site built from scratch to show recruiters how I think about code. I'm a Senior UI Designer who spent the last few years building a design system from the ground up (including a custom Figma-to-GitHub automation pipeline). This site demonstrates what happens when you apply that same systematic approach to writing front-end code.
+Hello!!!! 
+I'm a Senior UI Designer who spent the last few years building a design system from the ground up (including a custom Figma-to-GitHub automation pipeline). This is my portfolio, built from scratch, to show how I apply that same systematic approach to building front-end code.
 
 **Live site:** [silviatravieso.com](https://silviatravieso.com)
 
@@ -19,7 +19,8 @@ Here's what this actually proves:
 - I think systematically about architecture (whether it's Figma components or SCSS partials)
 - I know enough about performance, accessibility, and build tooling to have productive conversations with engineers
 
-This isn't me pretending to be a front-end developer. It's proof that I can bridge design and implementation without hand-holding.
+This <strong>isn't me pretending to be a front-end developer.</strong> It's proof that I can bridge design and implementation without hand-holding.<br>
+<small>I've used Claude Code to help speedrun some of the stages and help smooth out my code and knowledge gaps.</small>
 
 ---
 
@@ -48,11 +49,11 @@ Every SCSS partial maps to a specific concern. Every JavaScript module has a sin
 
 ### SCSS Built Like a Design System
 
-Okay, here's the thing — I didn't just write CSS. I built a token-based system:
+Okay, here's the thing — I don't like to just write CSS. I built it a token-based system:
 
 **Design tokens**: Colour palette, typography scale (8 sizes), spacing scale (13 values) — all defined as SCSS variables. Same principle as design tokens in Figma, just implemented in code.
 
-**Component architecture**: Each UI element lives in its own partial with clear boundaries. Navigation gets `_navigation.scss`. Project cards get `_project-card.scss`. No massive monolithic files.
+**Component architecture**: Each UI element lives in its own partial with clear boundaries. Navigation gets `_navigation.scss`. Project cards get `_project-card.scss`, etc. No massive monolithic files.
 
 **Reusable mixins**: Patterns like `touch-target()` and `focus-visible()` ensure consistency across components. The `metric-card()` mixin has 13 configurable parameters — that's the same level of systematic control I apply to Figma component variants.
 
@@ -60,9 +61,9 @@ Okay, here's the thing — I didn't just write CSS. I built a token-based system
 
 ### JavaScript: Modular and Maintainable
 
-I refactored this codebase recently (see [REFACTORING_SUMMARY.md](REFACTORING_SUMMARY.md)) to eliminate duplication and improve clarity. What changed:
+I refactored this codebase recently (see [REFACTORING_SUMMARY.md](/dev-docs/REFACTORING_SUMMARY.md)) to eliminate duplication and improve clarity. What changed:
 
-**Utils library**: Extracted common patterns into `utils/dom.js`, `utils/media.js`, `utils/constants.js`. If multiple modules need the same function, it lives in utils — simple as that.
+**Utils library**: Extracted common patterns into `utils/dom.js`, `utils/media.js`, `utils/constants.js`. If multiple modules need the same function, now it lives in until.
 
 **Single Responsibility Principle**: Each module does one thing. `projectCards.js` handles cards. `navigation.js` handles navigation. `scrollTransitions.js` handles scroll animations. No 500-line files trying to do everything.
 
@@ -72,7 +73,7 @@ I refactored this codebase recently (see [REFACTORING_SUMMARY.md](REFACTORING_SU
 
 ### JSON-Driven Content Architecture
 
-Wait, this is actually one of the more interesting bits — the entire portfolio is content-agnostic. Project cards and case study pages are dynamically generated from structured JSON data.
+This is, for me, one of the more interesting bits — the entire portfolio is content-agnostic! Project cards and case study pages are dynamically generated from structured JSON data. In my brain it's the code equivalent to components in Figma.
 
 **How it works:**
 
@@ -109,11 +110,12 @@ The content block renderer ([archive/caseStudy.js](src/js/archive/caseStudy.js))
 
 Used GSAP with ScrollTrigger for smooth, performant scroll-based animations. Scroll-linked section transitions with snap points, metric card reveals on viewport intersection, flip-board animation for dynamic text. All animations respect `prefers-reduced-motion` (because accessible animations are the only kind worth building).
 
-I'm not a motion designer, but I know enough about GSAP's API to implement what I prototype in Figma.
+I'm not a motion designer, but I understand GSAP's enough to implement what I prototyped in Figma.
 
 ### Accessibility Built In (WCAG AA)
 
-This portfolio is WCAG AA compliant. Not because I ticked some boxes, but because accessible design systems are the only kind worth building:
+This portfolio is WCAG AA compliant, of course. Why wouldn't it be?. 
+Treating accessiblity as a choice should be long gone.
 
 **Keyboard navigation**: Full focus-visible states, skip-to-main link for screen reader users.
 
@@ -144,6 +146,7 @@ The entire site loads in under 2 seconds on 3G. I didn't optimise specifically f
 **Tech stack:**
 - Vite (build + dev server)
 - SCSS with modern module system
+- gLightbox for image isolation
 - GSAP for animations
 - Vercel for deployment
 
@@ -196,15 +199,15 @@ Dev server runs on `http://localhost:3000`.
 
 ---
 
-## What This Portfolio Actually Demonstrates
+## What This Portfolio Aims to show
 
-**What I'm not claiming:**
+**I'm not:**
 - I'm not a front-end developer
-- I won't write production React or maintain a component library codebase
+- I don't write production React or maintain a component library codebase
 - I don't know advanced webpack config or TypeScript internals
 
-**What I am demonstrating:**
-- I can implement designs I create without needing a developer to translate
+**What I am :**
+- I can implement designs I create without needing a developer to translate (within reason)
 - I understand web standards well enough to make informed design decisions
 - I organise code with the same systematic approach I use for design systems
 - I can collaborate with engineers because I understand their constraints
