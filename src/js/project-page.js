@@ -7,6 +7,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import projectData from '../data/projects.json';
+import { PROJECT_ORDER, PROJECT_SLUGS, SLUG_TO_ID } from './utils/constants.js';
 import { updateProjectMetaTags } from './modules/structuredData.js';
 import { initLightbox } from './modules/lightbox.js';
 import { trackProjectView } from './modules/analytics.js';
@@ -16,28 +17,6 @@ import 'iconoir/css/iconoir.css';
 import '../scss/main.scss';
 
 gsap.registerPlugin(ScrollTrigger);
-
-/**
- * Project order configuration (matches homepage)
- */
-const PROJECT_ORDER = ['1', '2', '3', '4'];
-
-/**
- * Project slug mappings
- */
-const PROJECT_SLUGS = {
-  '1': 'marketing-management',
-  '2': 'design-system',
-  '3': 'energy-tracker',
-  '4': 'figma-plugin'
-};
-
-/**
- * Reverse lookup for project ID from slug
- */
-const SLUG_TO_ID = Object.fromEntries(
-  Object.entries(PROJECT_SLUGS).map(([id, slug]) => [slug, id])
-);
 
 /**
  * Get project ID from current page
@@ -55,199 +34,210 @@ function getCurrentProjectId() {
 }
 
 /**
+ * Update hero text content
+ * @param {object} project - Project data
+ */
+function updateHeroText(project) {
+  const elements = {
+    title: document.querySelector('.cs-hero-title'),
+    subtitle: document.querySelector('.cs-hero-subtitle'),
+    company: document.querySelector('.cs-hero-company'),
+    overview: document.querySelector('.cs-hero-overview')
+  };
+
+  if (elements.title) elements.title.innerHTML = project.title;
+  if (elements.subtitle) elements.subtitle.innerHTML = project.subtitle;
+  if (elements.company) elements.company.innerHTML = project.company || '';
+  if (elements.overview) elements.overview.innerHTML = project.cardOverview;
+}
+
+/**
+ * Render hero images with lightbox support
+ * @param {object} project - Project data
+ */
+function renderHeroImages(project) {
+  const heroImagesContainer = document.querySelector('.cs-hero-images');
+  if (!heroImagesContainer) return;
+
+  heroImagesContainer.innerHTML = '';
+
+  // Support both single heroImage and multiple heroImages
+  const imagesToDisplay = project.heroImage
+    ? [project.heroImage]
+    : (project.heroImages || []);
+
+  imagesToDisplay.forEach((imageSrc) => {
+    const link = document.createElement('a');
+    link.href = imageSrc;
+    link.className = 'glightbox';
+    link.setAttribute('data-gallery', 'case-study-gallery');
+    link.setAttribute('data-title', project.title);
+
+    const img = document.createElement('img');
+    img.src = imageSrc;
+    img.alt = `${project.title} preview`;
+    img.loading = 'eager';
+
+    link.appendChild(img);
+    heroImagesContainer.appendChild(link);
+  });
+}
+
+/**
+ * Render metrics in both main and hero sections
+ * @param {Array} metrics - Array of metric objects
+ */
+function renderMetrics(metrics) {
+  const metricsContainer = document.querySelector('.cs-metrics-grid');
+  const heroMetricsContainer = document.querySelector('.cs-hero-metrics');
+
+  if (!metricsContainer || !metrics) return;
+
+  metricsContainer.innerHTML = '';
+  if (heroMetricsContainer) {
+    heroMetricsContainer.innerHTML = '';
+  }
+
+  metrics.forEach((metric) => {
+    metricsContainer.appendChild(createMetricCard(metric));
+    if (heroMetricsContainer) {
+      heroMetricsContainer.appendChild(createMetricCard(metric));
+    }
+  });
+}
+
+/**
  * Populate case study using the same logic as the modal
  * This is adapted from populateCaseStudy() in caseStudy.js
  */
 function populateCaseStudy(project) {
-  // Hero section
-  const heroTitle = document.querySelector('.cs-hero-title');
-  const heroSubtitle = document.querySelector('.cs-hero-subtitle');
-  const heroCompany = document.querySelector('.cs-hero-company');
+  updateHeroText(project);
+  renderHeroImages(project);
+
+  if (project.detailMetrics) {
+    renderMetrics(project.detailMetrics);
+  }
+
+  handleContentBlocks(project);
+}
+
+/**
+ * Update hero with story-hook content
+ * @param {object} storyHook - Story hook block data
+ */
+function updateHeroWithStoryHook(storyHook) {
   const heroOverview = document.querySelector('.cs-hero-overview');
+  if (!heroOverview || !storyHook) return;
 
-  if (heroTitle) heroTitle.innerHTML = project.title;
-  if (heroSubtitle) heroSubtitle.innerHTML = project.subtitle;
-  if (heroCompany) heroCompany.innerHTML = project.company || '';
-  if (heroOverview) heroOverview.innerHTML = project.cardOverview;
+  heroOverview.innerHTML = '';
+  heroOverview.className = 'cs-hero-overview cs-story-hook-style';
 
-  // Tags - REMOVED from hero section
-  // const tagsContainer = document.querySelector('.cs-hero-tags');
-  // if (tagsContainer && project.tags) {
-  //   tagsContainer.innerHTML = '';
-  //   project.tags.forEach((tag) => {
-  //     const span = document.createElement('span');
-  //     span.className = 'cs-tag';
-  //     span.innerHTML = tag;
-  //     tagsContainer.appendChild(span);
-  //   });
-  // }
+  const quote = document.createElement('blockquote');
+  quote.className = 'cs-story-hook-quote';
+  quote.innerHTML = storyHook.quote;
+  heroOverview.appendChild(quote);
 
-  // Hero Image(s)
-  const heroImagesContainer = document.querySelector('.cs-hero-images');
-  if (heroImagesContainer) {
-    heroImagesContainer.innerHTML = '';
-
-    // Support both single heroImage and multiple heroImages
-    let imagesToDisplay = [];
-    if (project.heroImage) {
-      imagesToDisplay = [project.heroImage];
-    } else if (project.heroImages) {
-      imagesToDisplay = project.heroImages;
-    }
-
-    imagesToDisplay.forEach((imageSrc) => {
-      // Wrap image in anchor for lightbox
-      const link = document.createElement('a');
-      link.href = imageSrc;
-      link.className = 'glightbox';
-      link.setAttribute('data-gallery', 'case-study-gallery');
-      link.setAttribute('data-title', `${project.title}`);
-
-      const img = document.createElement('img');
-      img.src = imageSrc;
-      img.alt = `${project.title} preview`;
-      img.loading = 'eager';
-
-      link.appendChild(img);
-      heroImagesContainer.appendChild(link);
-    });
+  if (storyHook.context) {
+    const context = document.createElement('p');
+    context.className = 'cs-story-hook-context';
+    context.innerHTML = storyHook.context;
+    heroOverview.appendChild(context);
   }
+}
 
-  // Metrics (use detailMetrics for case study)
-  const metricsContainer = document.querySelector('.cs-metrics-grid');
-  const heroMetricsContainer = document.querySelector('.cs-hero-metrics');
+/**
+ * Render content blocks to container
+ * @param {Array} contentBlocks - Array of content block objects
+ * @param {object} project - Project data
+ * @param {HTMLElement} container - Container element
+ */
+function renderContentBlocks(contentBlocks, project, container) {
+  contentBlocks.forEach((block) => {
+    // Skip story-hook block since it's displayed in hero
+    if (block.type === 'story-hook') return;
 
-  if (metricsContainer && project.detailMetrics) {
-    metricsContainer.innerHTML = '';
-    if (heroMetricsContainer) {
-      heroMetricsContainer.innerHTML = '';
+    const blockElement = renderBlock(block, project);
+    if (blockElement) {
+      container.appendChild(blockElement);
     }
+  });
+}
 
-    project.detailMetrics.forEach((metric) => {
-      const card = createMetricCard(metric);
-      metricsContainer.appendChild(card);
+/**
+ * Initialize post-render features
+ */
+function initPostRenderFeatures() {
+  setTimeout(() => {
+    initLightbox();
+    setupPageHeroScrollAnimation();
+    setupSideNavigation();
+  }, 100);
+}
 
-      // Clone metric card for hero section
-      if (heroMetricsContainer) {
-        const heroCard = createMetricCard(metric);
-        heroMetricsContainer.appendChild(heroCard);
-      }
-    });
-  }
-
-  // Content Blocks - Support both inline and lazy-loaded content
+/**
+ * Handle content blocks (lazy-loaded or inline)
+ * @param {object} project - Project data
+ */
+async function handleContentBlocks(project) {
   const contentContainer = document.querySelector('.cs-content-container');
-  if (contentContainer) {
-    // Check if content should be lazy-loaded
-    if (project.contentFile) {
-      // Show loading state
-      contentContainer.innerHTML = '<div class="cs-loading">Loading case study content...</div>';
+  if (!contentContainer) return;
 
-      // Lazy load content from external file
-      loadCaseStudyContent(project.contentFile)
-        .then((contentData) => {
-          contentContainer.innerHTML = '';
-
-          // Merge lazy-loaded content with base project data
-          const mergedProject = { ...project, ...contentData };
-
-          // Update hero with full metadata if available
-          if (contentData.subtitle) {
-            const subtitleEl = document.querySelector('.cs-hero-subtitle');
-            if (subtitleEl) subtitleEl.innerHTML = contentData.subtitle;
-          }
-
-          // Update hero overview with story-hook content if available
-          if (contentData.contentBlocks) {
-            const storyHook = contentData.contentBlocks.find(block => block.type === 'story-hook');
-            if (storyHook && heroOverview) {
-              // Create story-hook styled content in hero
-              heroOverview.innerHTML = '';
-              heroOverview.className = 'cs-hero-overview cs-story-hook-style';
-
-              const quote = document.createElement('blockquote');
-              quote.className = 'cs-story-hook-quote';
-              quote.innerHTML = storyHook.quote;
-              heroOverview.appendChild(quote);
-
-              if (storyHook.context) {
-                const context = document.createElement('p');
-                context.className = 'cs-story-hook-context';
-                context.innerHTML = storyHook.context;
-                heroOverview.appendChild(context);
-              }
-            }
-          }
-
-          // Update metrics with detailMetrics from contentFile if available
-          if (contentData.detailMetrics) {
-            const metricsContainer = document.querySelector('.cs-metrics-grid');
-            const heroMetricsContainer = document.querySelector('.cs-hero-metrics');
-
-            if (metricsContainer) {
-              metricsContainer.innerHTML = '';
-              if (heroMetricsContainer) {
-                heroMetricsContainer.innerHTML = '';
-              }
-
-              contentData.detailMetrics.forEach((metric) => {
-                const card = createMetricCard(metric);
-                metricsContainer.appendChild(card);
-
-                if (heroMetricsContainer) {
-                  const heroCard = createMetricCard(metric);
-                  heroMetricsContainer.appendChild(heroCard);
-                }
-              });
-            }
-          }
-
-          // Render content blocks (skip story-hook as it's already in hero)
-          if (contentData.contentBlocks) {
-            contentData.contentBlocks.forEach((block) => {
-              // Skip story-hook block since it's displayed in hero
-              if (block.type === 'story-hook') return;
-
-              const blockElement = renderBlock(block, mergedProject);
-              if (blockElement) {
-                contentContainer.appendChild(blockElement);
-              }
-            });
-          }
-
-          // Reinitialize lightbox for dynamically loaded images
-          setTimeout(() => {
-            initLightbox();
-            // Setup hero scroll animation after content is loaded
-            setupPageHeroScrollAnimation();
-            // Setup side navigation after content is loaded
-            setupSideNavigation();
-          }, 100);
-        })
-        .catch((error) => {
-          console.error('Error loading case study content:', error);
-          contentContainer.innerHTML = '<div class="cs-error">Error loading content. Please try again.</div>';
-        });
-    } else if (project.contentBlocks) {
-      // Use inline content blocks
-      contentContainer.innerHTML = '';
-      project.contentBlocks.forEach((block) => {
-        // Skip story-hook block since it's displayed in hero
-        if (block.type === 'story-hook') return;
-
-        const blockElement = renderBlock(block, project);
-        if (blockElement) {
-          contentContainer.appendChild(blockElement);
-        }
-      });
-
-      // Setup hero scroll animation after inline content is rendered
-      setTimeout(() => {
-        setupPageHeroScrollAnimation();
-        setupSideNavigation();
-      }, 100);
-    }
+  if (project.contentFile) {
+    await loadExternalContent(project, contentContainer);
+  } else if (project.contentBlocks) {
+    renderInlineContent(project, contentContainer);
   }
+}
+
+/**
+ * Load and render external content
+ * @param {object} project - Project data
+ * @param {HTMLElement} container - Container element
+ */
+async function loadExternalContent(project, container) {
+  container.innerHTML = '<div class="cs-loading">Loading case study content...</div>';
+
+  try {
+    const contentData = await loadCaseStudyContent(project.contentFile);
+    container.innerHTML = '';
+
+    const mergedProject = { ...project, ...contentData };
+
+    // Update hero with loaded data
+    if (contentData.subtitle) {
+      const subtitleEl = document.querySelector('.cs-hero-subtitle');
+      if (subtitleEl) subtitleEl.innerHTML = contentData.subtitle;
+    }
+
+    if (contentData.contentBlocks) {
+      const storyHook = contentData.contentBlocks.find(block => block.type === 'story-hook');
+      updateHeroWithStoryHook(storyHook);
+    }
+
+    if (contentData.detailMetrics) {
+      renderMetrics(contentData.detailMetrics);
+    }
+
+    if (contentData.contentBlocks) {
+      renderContentBlocks(contentData.contentBlocks, mergedProject, container);
+    }
+
+    initPostRenderFeatures();
+  } catch (error) {
+    console.error('Error loading case study content:', error);
+    container.innerHTML = '<div class="cs-error">Error loading content. Please try again.</div>';
+  }
+}
+
+/**
+ * Render inline content blocks
+ * @param {object} project - Project data
+ * @param {HTMLElement} container - Container element
+ */
+function renderInlineContent(project, container) {
+  container.innerHTML = '';
+  renderContentBlocks(project.contentBlocks, project, container);
+  initPostRenderFeatures();
 }
 
 /**

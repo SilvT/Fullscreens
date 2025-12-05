@@ -1715,6 +1715,141 @@ function renderTimelineProcess(block) {
             phaseEl.appendChild(learn);
             break;
           }
+
+          case 'cs-timeline-two-columns': {
+            const twoColWrapper = document.createElement('div');
+            twoColWrapper.className = 'cs-timeline-two-columns';
+
+            // Helper function to render column content
+            const renderColumnContent = (column, containerEl) => {
+              // Handle content array (text blocks)
+              if (column.content && Array.isArray(column.content)) {
+                column.content.forEach((contentBlock) => {
+                  let blockEl = null;
+                  switch (contentBlock.type) {
+                    case 'paragraph': {
+                      blockEl = document.createElement('p');
+                      blockEl.className = 'cs-timeline-paragraph';
+                      blockEl.innerHTML = contentBlock.text;
+                      break;
+                    }
+                    case 'heading': {
+                      blockEl = document.createElement('h4');
+                      blockEl.className = 'cs-timeline-sub-heading';
+                      blockEl.innerHTML = contentBlock.text;
+                      break;
+                    }
+                    case 'list': {
+                      blockEl = document.createElement('ul');
+                      blockEl.className = 'cs-timeline-list';
+                      contentBlock.items.forEach((txt) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = txt;
+                        blockEl.appendChild(li);
+                      });
+                      break;
+                    }
+                  }
+                  if (blockEl) {
+                    containerEl.appendChild(blockEl);
+                  }
+                });
+              }
+
+              // Handle blocks array (complex blocks like image-carousel)
+              if (column.blocks && Array.isArray(column.blocks)) {
+                column.blocks.forEach((block) => {
+                  if (block.type === 'image-carousel') {
+                    const carouselWrapper = document.createElement('div');
+                    carouselWrapper.className = 'cs-image-carousel';
+
+                    const carouselContainer = document.createElement('div');
+                    carouselContainer.className = 'cs-carousel-container';
+
+                    // Add images
+                    if (block.images && Array.isArray(block.images)) {
+                      block.images.forEach((image, index) => {
+                        const slide = document.createElement('div');
+                        slide.className = 'cs-carousel-slide';
+                        if (index === 0) slide.classList.add('active');
+
+                        // Wrap image in lightbox anchor
+                        const link = document.createElement('a');
+                        link.href = image.src || image;
+                        link.className = 'glightbox';
+                        link.setAttribute('data-gallery', 'case-study-gallery');
+
+                        const alt = image.alt || block.alt || '';
+                        if (alt) {
+                          link.setAttribute('data-title', alt);
+                        }
+
+                        const img = document.createElement('img');
+                        img.src = image.src || image;
+                        img.alt = alt;
+                        img.className = 'cs-carousel-img';
+                        img.loading = 'lazy';
+
+                        link.appendChild(img);
+                        slide.appendChild(link);
+                        carouselContainer.appendChild(slide);
+                      });
+
+                      // Start auto-rotation
+                      const slides = carouselContainer.querySelectorAll('.cs-carousel-slide');
+                      const interval = block.interval || 5000;
+                      let currentIndex = 0;
+
+                      setInterval(() => {
+                        slides[currentIndex].classList.remove('active');
+                        currentIndex = (currentIndex + 1) % slides.length;
+                        slides[currentIndex].classList.add('active');
+                      }, interval);
+                    }
+
+                    carouselWrapper.appendChild(carouselContainer);
+
+                    // Add caption if provided
+                    if (block.caption) {
+                      const caption = document.createElement('p');
+                      caption.className = 'cs-carousel-caption cs-image-caption';
+                      caption.innerHTML = block.caption;
+                      carouselWrapper.appendChild(caption);
+                    }
+
+                    containerEl.appendChild(carouselWrapper);
+                  }
+                });
+              }
+
+              // Handle direct image
+              if (column.image) {
+                const img = document.createElement('img');
+                img.src = column.image;
+                img.alt = column.alt || '';
+                containerEl.appendChild(img);
+              }
+            };
+
+            // Left column
+            if (item.leftCol) {
+              const leftCol = document.createElement('div');
+              leftCol.className = item.leftCol.class || 'left col';
+              renderColumnContent(item.leftCol, leftCol);
+              twoColWrapper.appendChild(leftCol);
+            }
+
+            // Right column
+            if (item.rightCol) {
+              const rightCol = document.createElement('div');
+              rightCol.className = item.rightCol.class || 'right col';
+              renderColumnContent(item.rightCol, rightCol);
+              twoColWrapper.appendChild(rightCol);
+            }
+
+            phaseEl.appendChild(twoColWrapper);
+            break;
+          }
         }
       });
     } else {

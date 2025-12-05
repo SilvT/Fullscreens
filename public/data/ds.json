@@ -206,46 +206,70 @@
       "period": "Feb-April 2024",
       "content": [
         {
-          "type": "paragraph",
-          "text": "I drafted a priority roadmap in three stages, attempting to balance theory with the reality of FE waiting for deliverables:"
-        },
+          "type": "cs-timeline-two-columns",
+          "rightCol": {
+       "blocks": [
         {
-          "type": "heading",
-          "text": "Stage 1 (Core Foundations):"
-        },
-        {
-          "type": "list",
-          "items": [
-            "Colour ramps for brand and neutrals",
-            "Typography values (font-size, line-height, letter-spacing)",
-            "Spacing system",
-            "Border radius",
-            "System colours (error, success, warning)",
-            "Basic reusable components (buttons, inputs, navigation)"
-          ]
-        },
-        {
-          "type": "heading",
-          "text": "Stage 2 (Semantic Layer):"
-        },
-        {
-          "type": "list",
-          "items": [
-            "Define semantics for backgrounds, text, icons, strokes",
-            "Gradients and shadows",
-            "Component-specific tokens"
-          ]
-        },
-        {
-          "type": "heading",
-          "text": "Stage 3 (Advanced Components):"
-        },
-        {
-          "type": "list",
-          "items": [
-            "Cards, sections, slots",
-            "Nested, complex components"
-          ]
+          "type": "image-carousel",
+          "images": [
+            { "src": "/mkm/UX-0.png", "alt": "TBD" },
+            { "src": "/mkm/UX-1.png", "alt": "TBD" },
+            { "src": "/mkm/UX-2.png", "alt": "TBD" },
+            { "src": "/mkm/UX-3.png", "alt": "TBD" }
+          ],
+          "caption": "Full cycle evolution: From original UX draft, to Ux with backend input, transfer to wireframes, until final UI deliverables",
+          "interval": 5000
+        }
+      ],
+            "class": "right col"
+          },
+          "leftCol": {
+            "class": "left col",
+            "content": [
+              {
+                "type": "paragraph",
+                "text": "I drafted a priority roadmap in three stages, attempting to balance theory with the reality of FE waiting for deliverables:"
+              },
+              {
+                "type": "heading",
+                "text": "Stage 1 (Core Foundations):"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "Colour ramps for brand and neutrals",
+                  "Typography values (font-size, line-height, letter-spacing)",
+                  "Spacing system",
+                  "Border radius",
+                  "System colours (error, success, warning)",
+                  "Basic reusable components (buttons, inputs, navigation)"
+                ]
+              },
+              {
+                "type": "heading",
+                "text": "Stage 2 (Semantic Layer):"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "Define semantics for backgrounds, text, icons, strokes",
+                  "Gradients and shadows",
+                  "Component-specific tokens"
+                ]
+              },
+              {
+                "type": "heading",
+                "text": "Stage 3 (Advanced Components):"
+              },
+              {
+                "type": "list",
+                "items": [
+                  "Cards, sections, slots",
+                  "Nested, complex components"
+                ]
+              }
+            ]
+          }
         },
         {
           "type": "outcome",

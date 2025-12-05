@@ -39,57 +39,57 @@ import { initAnalytics } from './js/modules/analytics.js';
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Initialize portfolio on DOM ready
+ * Initialize core features
+ * Features that need to run before the DOM is fully ready
  */
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialize accessibility features first
+function initCoreFeatures() {
   initAccessibility();
-
-  // Initialize structured data (JSON-LD) for SEO and AI scrapers
   initStructuredData();
-
-  // Initialize analytics tracking
   initAnalytics();
+}
 
-  // Generate project cards from JSON first, THEN initialize enhancements
-  initProjectCards().then(() => {
-    // Initialize all card enhancements AFTER cards are generated
-    initAllCardEnhancements();
+/**
+ * Initialize content-dependent features
+ * Features that depend on project cards being rendered
+ */
+async function initContentFeatures() {
+  await initProjectCards();
+  initAllCardEnhancements();
+  initScrollTransitions('fade');
+  watchTransitionMotion();
+}
 
-    // Initialize scroll-driven transitions AFTER cards are ready
-    initScrollTransitions('fade');
-    watchTransitionMotion();
-  });
-
-  // Initialize navigation
+/**
+ * Initialize UI features
+ * Features that can run independently
+ */
+function initUIFeatures() {
   initNavigation();
   initKeyboardNav();
-
-  // Metric hover effects
   initMetricHoverEffects();
-
-  // Initialize flip-board animation for job titles
   initFlipBoardAnimation();
-
-  // Initialize project detail page
-  // initProjectDetail(); // ARCHIVED: Not currently in use
-
-  // Initialize case study modal (traditional case study format)
-  // initCaseStudy(); // ARCHIVED: Case study modals disabled
-
-  // Initialize scroll hint animation
   initScrollHint();
-
-  // Initialize ellipse visibility control
   initEllipseVisibility();
+  initLazyLoading();
+}
 
-  // Verify color contrast (development only)
+/**
+ * Initialize portfolio on DOM ready
+ */
+document.addEventListener('DOMContentLoaded', async () => {
+  // Core features first
+  initCoreFeatures();
+
+  // Content-dependent features
+  await initContentFeatures();
+
+  // UI features
+  initUIFeatures();
+
+  // Development-only features
   if (process.env.NODE_ENV === 'development') {
     verifyColorContrast();
   }
-
-  // Add intersection observer for lazy loading optimization
-  initLazyLoading();
 });
 
 /**
@@ -143,6 +143,18 @@ document.addEventListener('visibilitychange', () => {
 });
 
 /**
+ * Check if a section is visible in the center of viewport
+ * @param {HTMLElement} section - The section to check
+ * @param {number} windowHeight - Current window height
+ * @returns {boolean} True if section is visible in center
+ */
+function isSectionCentered(section, windowHeight) {
+  if (!section) return false;
+  const rect = section.getBoundingClientRect();
+  return rect.top < windowHeight / 2 && rect.bottom > windowHeight / 2;
+}
+
+/**
  * Initialize ellipse visibility control
  * Shows decorative ellipses when About section or Footer is in view
  */
@@ -151,42 +163,25 @@ function initEllipseVisibility() {
   const landingSection = document.querySelector('#about-landing');
   const footerSection = document.querySelector('#contact');
 
-  if (!ellipseDecor) {
-    return;
-  }
+  if (!ellipseDecor) return;
 
-  // Show ellipses when About section or Footer is in viewport
   const checkVisibility = () => {
     const windowHeight = window.innerHeight;
-    let isVisible = false;
+    const isVisible =
+      isSectionCentered(landingSection, windowHeight) ||
+      isSectionCentered(footerSection, windowHeight);
 
-    // Check About section
-    if (landingSection) {
-      const aboutRect = landingSection.getBoundingClientRect();
-      const aboutVisible = aboutRect.top < windowHeight / 2 && aboutRect.bottom > windowHeight / 2;
-      if (aboutVisible) isVisible = true;
-    }
-
-    // Check Footer section
-    if (footerSection) {
-      const footerRect = footerSection.getBoundingClientRect();
-      const footerVisible = footerRect.top < windowHeight / 2 && footerRect.bottom > windowHeight / 2;
-      if (footerVisible) isVisible = true;
-    }
-
-    if (isVisible) {
-      ellipseDecor.classList.add('visible');
-    } else {
-      ellipseDecor.classList.remove('visible');
-    }
+    ellipseDecor.classList.toggle('visible', isVisible);
   };
 
-  // Listen to scroll events
+  // Throttled scroll handler
   let scrollTimeout;
-  window.addEventListener('scroll', () => {
+  const handleScroll = () => {
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(checkVisibility, 10);
-  }, { passive: true });
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
 
   // Initial check with small delay to ensure GSAP snap has finished
   setTimeout(checkVisibility, 100);

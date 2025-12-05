@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use '_variables' as *;
 @use 'breakpoints' as *;
 
 .contact-sect {
@@ -139,7 +139,13 @@
   gap: 0.5rem;
   position: relative;
   cursor: pointer;
-
+ & a{
+  text-decoration: none;
+  color: $color-blue-darker;
+  &:hover{
+    color:$color-blue-main;
+  }
+ }
   // Tooltip
   &[data-tooltip] {
     &::before {

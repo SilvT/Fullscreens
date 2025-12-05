@@ -4,37 +4,11 @@
  */
 
 import projectData from '../../data/projects.json';
+import { PROJECT_ORDER, PROJECT_SLUGS } from '../utils/constants.js';
+import { isVideoFile } from '../utils/media.js';
+import { nextFrame, scrollToElement } from '../utils/dom.js';
 import '@phosphor-icons/web/light';
 import 'iconoir/css/iconoir.css';
-
-/**
- * Explicit project order to preserve intended display sequence
- * JavaScript sorts numeric object keys numerically (1,2,3,4,5,6)
- * regardless of JSON file order, so we define the order explicitly
- */
-const PROJECT_ORDER = ['1', '2', '3', '4'];
-
-/**
- * Project slug mappings for HTML pages
- */
-const PROJECT_SLUGS = {
-  '1': 'marketing-management',
-  '2': 'design-system',
-  '3': 'energy-tracker',
-  '4': 'figma-plugin'
-};
-
-/**
- * Check if a file is a video based on extension
- * @param {string} filePath - The file path to check
- * @returns {boolean} True if the file is a video
- */
-function isVideoFile(filePath) {
-  if (!filePath) return false;
-  const videoExtensions = ['.mp4', '.webm', '.mov', '.ogg'];
-  const extension = filePath.toLowerCase().substring(filePath.lastIndexOf('.'));
-  return videoExtensions.includes(extension);
-}
 
 /**
  * Initialize and render project cards
@@ -49,44 +23,22 @@ export function initProjectCards() {
       return;
     }
 
-    // Clear any existing content
     projectsContainer.innerHTML = '';
 
     // Generate cards for each project in the specified order
-    PROJECT_ORDER.forEach((projectId, index) => {
+    PROJECT_ORDER.forEach((projectId) => {
       const project = projectData[projectId];
-      if (!project) {
-        return;
-      }
-      const projectCard = createProjectCard(projectId, project, index);
-      projectsContainer.appendChild(projectCard);
-
-      // VERIFY: Check the href in the DOM immediately after appending
-      const ctaButton = projectCard.querySelector('.cta-button');
-      if (ctaButton) {
+      if (project) {
+        const projectCard = createProjectCard(projectId, project);
+        projectsContainer.appendChild(projectCard);
       }
     });
 
-    // Update breadcrumbs dynamically
     updateBreadcrumbs();
-
-    // Attach event listeners to project navigation buttons
     attachProjectNavListeners();
 
-
-    // Wait for next frame to ensure DOM has been painted
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        // FINAL VERIFICATION: Check all CTA buttons in the DOM
-        const allCtaButtons = document.querySelectorAll('.cta-button');
-        allCtaButtons.forEach((btn, idx) => {
-          const section = btn.closest('section[data-section="project"]');
-          const sectionId = section ? section.id : 'unknown';
-        });
-
-        resolve();
-      });
-    });
+    // Wait for DOM to be painted before resolving
+    nextFrame().then(resolve);
   });
 }
 
@@ -99,36 +51,44 @@ function attachProjectNavListeners() {
   projectNavButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
       e.preventDefault();
-
-      // Get project ID from data attribute
       const projectId = button.getAttribute('data-project-id');
-
       if (projectId) {
-        // Always scroll to the project card when clicking nav buttons on main view
         scrollToProjectCard(projectId);
       }
     });
   });
-
 }
 
 /**
- * Find project ID by matching title
- * @param {string} navTitle - Navigation title text (may include arrows)
- * @returns {string|null} Project ID or null if not found
+ * Create breadcrumb link element
+ * @param {string} projectId - Project ID
+ * @param {object} project - Project data
+ * @returns {HTMLElement} Link element
  */
-function findProjectIdByTitle(navTitle) {
-  // Remove arrow symbols and trim
-  const cleanTitle = navTitle.replace(/[↑↓]/g, '').trim();
+function createBreadcrumbLink(projectId, project) {
+  const link = document.createElement('a');
+  link.href = `#project-${projectId}`;
+  link.className = 'breadcrumb-link';
+  link.setAttribute('data-project', projectId);
+  link.textContent = project.title;
 
-  // Search through project data
-  for (const [projectId, project] of Object.entries(projectData)) {
-    if (cleanTitle.includes(project.title) || project.title.includes(cleanTitle)) {
-      return projectId;
-    }
-  }
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    handleBreadcrumbClick(projectId);
+  });
 
-  return null;
+  return link;
+}
+
+/**
+ * Create breadcrumb separator element
+ * @returns {HTMLElement} Separator element
+ */
+function createBreadcrumbSeparator() {
+  const separator = document.createElement('span');
+  separator.className = 'breadcrumb-separator';
+  separator.textContent = '→';
+  return separator;
 }
 
 /**
@@ -138,38 +98,19 @@ function updateBreadcrumbs() {
   const breadcrumbsNav = document.querySelector('.breadcrumbs');
   if (!breadcrumbsNav) return;
 
-  // Clear existing breadcrumbs
   breadcrumbsNav.innerHTML = '';
 
-  // Use the same explicit project order as card generation
   PROJECT_ORDER.forEach((projectId, index) => {
     const project = projectData[projectId];
     if (!project) return;
 
-    // Create breadcrumb link
-    const link = document.createElement('a');
-    link.href = `#project-${projectId}`;
-    link.className = 'breadcrumb-link';
-    link.setAttribute('data-project', projectId);
-    link.textContent = project.title;
-
-    // Add context-aware click handler
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      handleBreadcrumbClick(projectId);
-    });
-
-    breadcrumbsNav.appendChild(link);
+    breadcrumbsNav.appendChild(createBreadcrumbLink(projectId, project));
 
     // Add separator (except for last item)
     if (index < PROJECT_ORDER.length - 1) {
-      const separator = document.createElement('span');
-      separator.className = 'breadcrumb-separator';
-      separator.textContent = '→';
-      breadcrumbsNav.appendChild(separator);
+      breadcrumbsNav.appendChild(createBreadcrumbSeparator());
     }
   });
-
 }
 
 /**
@@ -199,23 +140,16 @@ function handleBreadcrumbClick(projectId) {
  */
 function scrollToProjectCard(projectId) {
   const projectSection = document.querySelector(`#project-${projectId}`);
-
-  if (projectSection) {
-    projectSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  } else {
-  }
+  scrollToElement(projectSection, 'center');
 }
 
 /**
  * Create a project card section element
  * @param {string} projectId - The project ID (1, 2, 3, etc.)
  * @param {object} project - The project data object
- * @param {number} index - The index in the project list
  * @returns {HTMLElement} The project section element
  */
-function createProjectCard(projectId, project, index) {
-
-  // CRITICAL: Store projectId in a const to prevent any scoping issues
+function createProjectCard(projectId, project) {
   const currentProjectId = String(projectId);
 
   const section = document.createElement('section');

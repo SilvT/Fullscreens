@@ -3,7 +3,7 @@
  * Breadcrumbs and footer navigation for standalone project pages
  */
 
-@use 'variables' as *;
+@use '_variables' as *;
 @use 'mixins' as *;
 @use 'breakpoints' as *;
 
@@ -2267,9 +2267,9 @@
     position: relative;
     z-index: 1;
     background: $color-white;
-    padding: 2rem;
+    padding: 3rem 5rem;
     border-radius: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px $color-shadows-blue-dark;
     transition: transform 0.3s ease, box-shadow 0.3s ease, margin 0.3s ease;
     flex-shrink: 0;
     // min-width: 400px;
@@ -2290,31 +2290,52 @@
     // Create progressive overlap - each phase overlaps more than the previous
     &:nth-child(2) {
       margin-right: -3vw;
+      background-color: rgba($color-blue-main, 5%);
+      & .cs-timeline-phase-title{
+        color:darken($color-blue-main, 5%);
+      }
     }
     &:nth-child(3) {
       margin-left: 3vw;
+      background-color: rgba($color-blue-main, 10%);
+      & .cs-timeline-phase-title{
+        color:darken($color-blue-main, 15%);
+      }
     }
     &:nth-child(4) {
       margin-left: 0;
+      background-color: rgba($color-blue-main, 15%);
+      & .cs-timeline-phase-title{
+        color:darken($color-blue-main, 20%);
+      }
     }
     &:nth-child(5) {
       margin-left: 0;
+      background-color: rgba($color-blue-main, 20%);
+      & .cs-timeline-phase-title{
+        color:darken($color-blue-main, 25%);
+      }
     }
     &:nth-child(6) {
       margin-left: 0;
+     background-color: rgba($color-blue-main, 25%);
+      & .cs-timeline-phase-title{
+        color:darken($color-blue-main, 30%);
+      }
     }
 
     &:hover {
       transform: translateY(-4px);
-      box-shadow: 0 4px 16px rgba(57, 128, 170, 0.15);
-      width: 60vw;
+      box-shadow: 0 4px 16px $color-shadows-blue-light;
+      width: 70vw;
       z-index:10;
+      background: $color-white;
     }
 
     // Minimized state - hide all content except sneak
     &.min {
       // width: 30px;
-      opacity: 0.5;
+      // opacity: 0.5;
       .cs-timeline-phase-title,
       .cs-timeline-phase-period,
       .cs-timeline-icon,
@@ -2335,6 +2356,17 @@
     }
   }
 
+  .cs-timeline-two-columns{
+    display: flex;
+
+    & .left col{
+      width: 50%;
+    }
+    & .right .cs-image-carousel{
+      width: 50%;
+  }}
+
+
   .cs-timeline-icon {
     display: flex;
     align-items: center;
@@ -2349,30 +2381,51 @@
   }
 
   .cs-timeline-phase-header {
+    color: $color-blue-dark;
     text-align: center;
     margin-bottom: 1.5rem;
+    font-weight: $font-weight-bold;
   }
 
   .cs-timeline-phase-title {
     font-size: $font-size-l;
     font-weight: $font-weight-semibold;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
-    color: $color-blue-darker;
+    color: $color-blue-main;
     margin-bottom: 0.5rem;
   }
 
   .cs-timeline-phase-period {
     font-size: $font-size-s;
     font-variation-settings: 'opsz' 14, 'wdth' 100;
-    color: $color-blue-main;
+    color: $color-blue-dark;
     font-weight: $font-weight-medium;
+    font-family: $font-anonymous;
   }
 
+  .cs-timeline-paragraph, .cs-timeline-sub-heading{
+    font-size: $font-size-base;
+  }
+
+  .cs-timeline-paragraph {
+    color: $color-neutral-light;
+  }
+  
+  .cs-timeline-list li {
+    line-height: 170%;
+    color: $color-neutral-light;
+    list-style:disc;
+    
+    &::marker{
+      color: $color-blue-dark;
+    }
+  }
+  
   .cs-timeline-highlights {
     list-style: none;
     padding: 0;
     margin: 0;
-
+    
     li {
       font-size: $font-size-s;
       font-variation-settings: 'opsz' 14, 'wdth' 100;
@@ -2381,7 +2434,7 @@
       margin-bottom: 0.75rem;
       padding-left: 1.5rem;
       position: relative;
-
+      
       &::before {
         content: '•';
         position: absolute;
@@ -2389,13 +2442,13 @@
         color: $color-blue-main;
         font-weight: bold;
       }
-
+      
       &:last-child {
         margin-bottom: 0;
       }
     }
   }
-
+  
   .cs-timeline-outcome, .cs-timeline-learnings {
     margin-top: 1.5rem;
     padding-top: 1.5rem;
@@ -2407,10 +2460,12 @@
     font-style: italic;
     text-align: center;
   }
-  .cs-timeline-sub-heading {
-    font-size: $font-size-base;
+  .cs-timeline-sub-heading{
+    color:$color-blue-darker;
+    line-height: 160%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     font-weight: $font-weight-medium;
-    margin: 0.5rem 0;
   }
   .cs-timeline-learnings{
     color: $color-blue-dark;

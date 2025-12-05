@@ -3,7 +3,7 @@
  * Base styles for headings, paragraphs, and inline text elements
  */
 
-@use 'variables' as *;
+@use '_variables' as *;
 
 // Base text elements
 h1, h2, h3, h4, h5, p, p.mid, p.caption {

@@ -35,6 +35,9 @@ $color-neutral-lighter: hsl(220, 9%, 70%);
 
 $color-cards-background: radial-gradient(circle, rgba(0, 102, 255, 0.05) 0%, rgba(255, 255, 255, 0.50) 100%);
 $color-shadows:rgba(136, 159, 194, 0.1);
+$color-shadows-blue:rgba($color-blue-300, 20%);
+$color-shadows-blue-dark:rgba($color-blue-400, 20%);
+$color-shadows-blue-light:rgba($color-blue-200, 20%);
 $color-shadows-dark:rgba(32,58,72, 0.25);
 
 // Fonts
