@@ -43,7 +43,7 @@
 .socials {
   flex-basis: 0;
   display: flex;
-  gap: 5rem;
+  gap: 1rem;
   flex-grow: 1;
   align-items: center;
   position: relative;
@@ -57,8 +57,8 @@
 .social-link {
   display: flex;
   align-content: center;
-  width: auto;
-  min-width: 22%;
+  width: 10vw;
+  // min-width: 10vw;
   gap: 1rem;
   align-items: center;
   position: relative;
@@ -91,7 +91,7 @@
       content: attr(data-hover-text);
       position: relative;
       left: 0;
-      top: 70%;
+      top: 80%;
       transform: translateX(-50%) translateY(8px);
       font-family: $font-anonymous;
       font-size: $font-size-s;
@@ -103,7 +103,9 @@
       transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
       pointer-events: none;
       z-index: 10;
-
+      // text-wrap: wrap;
+      min-width: 10vw;
+    }
 
     }
 
@@ -112,7 +114,7 @@
       visibility: visible;
       transform: translateX(-60%) translateY($space-32);
     }
-  }
+
 }
 
 // CV Download Button

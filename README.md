@@ -1,21 +1,25 @@
 # Portfolio 2025
 
-A design systems approach to portfolio code. Built from scratch to demonstrate how I apply systematic thinking to front-end implementation.
-
-I'm a Senior UI Designer who spent the last few years building a design system from the ground up—including a custom Figma-to-GitHub automation pipeline. This portfolio site shows what happens when you apply that same architectural mindset to writing code.
+Right, so this is a portfolio site built from scratch to show recruiters how I think about code. I'm a Senior UI Designer who spent the last few years building a design system from the ground up (including a custom Figma-to-GitHub automation pipeline). This site demonstrates what happens when you apply that same systematic approach to writing front-end code.
 
 **Live site:** [silviatravieso.com](https://silviatravieso.com)
+
+**Documentation**: See the [`/docs`](./docs) folder for detailed technical documentation:
+- [Animation Decisions](./docs/ANIMATION_DECISIONS.md) — Why GSAP, what interactions I built, accessibility considerations
+- [Performance Metrics](./docs/PERFORMANCE.md) — Lighthouse scores, load times, optimisation decisions
 
 ---
 
 ## Why I Built This From Scratch
 
-Most designers use templates. I wanted to show recruiters that I:
-- Understand modern web standards and can implement them properly
-- Organise code with the same systematic approach I use for design systems
-- Know enough about performance, accessibility, and build tooling to have productive conversations with engineers
+Most designers grab a template and call it done. I wanted to show something different — that I can implement what I design without needing a developer to translate, and that I organise code the same way I organise design systems.
 
-This isn't a developer portfolio—it's proof that I can bridge design and implementation without needing hand-holding.
+Here's what this actually proves:
+- I understand modern web standards well enough to implement them properly
+- I think systematically about architecture (whether it's Figma components or SCSS partials)
+- I know enough about performance, accessibility, and build tooling to have productive conversations with engineers
+
+This isn't me pretending to be a front-end developer. It's proof that I can bridge design and implementation without hand-holding.
 
 ---
 
@@ -23,7 +27,7 @@ This isn't a developer portfolio—it's proof that I can bridge design and imple
 
 ### Architecture That Reflects Systems Thinking
 
-The codebase is organised like a design system because that's how I think:
+The codebase is organised like a design system because that's genuinely how I think:
 
 ```
 src/
@@ -44,54 +48,96 @@ Every SCSS partial maps to a specific concern. Every JavaScript module has a sin
 
 ### SCSS Built Like a Design System
 
-- **Design tokens**: Colour palette, typography scale (8 sizes), spacing scale (13 values)—all defined as SCSS variables
-- **Component architecture**: Each UI element lives in its own partial with clear boundaries
-- **Reusable mixins**: Patterns like `touch-target()` and `focus-visible()` ensure consistency
-- **Modern SCSS**: Using `@use` (not `@import`) for proper namespacing and no global pollution
+Okay, here's the thing — I didn't just write CSS. I built a token-based system:
 
-The `_mixins.scss` file includes a `metric-card()` mixin with 13 configurable parameters. That's the same level of systematic control I apply to Figma component variants.
+**Design tokens**: Colour palette, typography scale (8 sizes), spacing scale (13 values) — all defined as SCSS variables. Same principle as design tokens in Figma, just implemented in code.
+
+**Component architecture**: Each UI element lives in its own partial with clear boundaries. Navigation gets `_navigation.scss`. Project cards get `_project-card.scss`. No massive monolithic files.
+
+**Reusable mixins**: Patterns like `touch-target()` and `focus-visible()` ensure consistency across components. The `metric-card()` mixin has 13 configurable parameters — that's the same level of systematic control I apply to Figma component variants.
+
+**Modern SCSS**: Using `@use` (not the deprecated `@import`) for proper namespacing. No global pollution, no naming conflicts.
 
 ### JavaScript: Modular and Maintainable
 
-I refactored this codebase recently (see [REFACTORING_SUMMARY.md](REFACTORING_SUMMARY.md)) to eliminate duplication and improve clarity:
+I refactored this codebase recently (see [REFACTORING_SUMMARY.md](REFACTORING_SUMMARY.md)) to eliminate duplication and improve clarity. What changed:
 
-- **Utils library**: Extracted common patterns into `utils/dom.js`, `utils/media.js`, `utils/constants.js`
-- **Single Responsibility Principle**: Each module does one thing (`projectCards.js`, `navigation.js`, `scrollTransitions.js`)
-- **Organised initialisation**: Features load in groups (core → content-dependent → UI) with proper async handling
-- **Archive folder**: Old code lives in `archive/` rather than commented-out blocks
+**Utils library**: Extracted common patterns into `utils/dom.js`, `utils/media.js`, `utils/constants.js`. If multiple modules need the same function, it lives in utils — simple as that.
 
-The main entry point ([src/main.js](src/main.js)) is 189 lines and reads like a table of contents. You can see exactly what the app does without digging through implementation details.
+**Single Responsibility Principle**: Each module does one thing. `projectCards.js` handles cards. `navigation.js` handles navigation. `scrollTransitions.js` handles scroll animations. No 500-line files trying to do everything.
+
+**Organised initialisation**: Features load in groups (core → content-dependent → UI) with proper async handling. The main entry point ([src/main.js](src/main.js)) is 189 lines and reads like a table of contents. You can see exactly what the app does without digging through implementation details.
+
+**Archive folder**: Old code lives in `archive/` rather than commented-out blocks cluttering the codebase. If it's not in use, it's not in the way.
+
+### JSON-Driven Content Architecture
+
+Wait, this is actually one of the more interesting bits — the entire portfolio is content-agnostic. Project cards and case study pages are dynamically generated from structured JSON data.
+
+**How it works:**
+
+Each project lives in `public/data/[project-id].json` with all content, metrics, images, and copy. That's the single source of truth.
+
+[src/js/modules/projectCards.js](src/js/modules/projectCards.js) reads `projects.json` and dynamically renders cards in the specified order. [src/js/project-page.js](src/js/project-page.js) hydrates project detail pages from the same JSON. The content block system lets me define flexible layouts (two-column, story-hook, metrics, image galleries) in JSON that render into HTML.
+
+**Why this matters:**
+
+Zero duplication. Update one JSON file, and changes appear on the card, the detail page, and the ATS-optimised content automatically. Adding a new project means dropping in a new JSON file and updating the `PROJECT_ORDER` constant. That's it.
+
+The data structure is consistent across all projects (enforced by the rendering logic), and the build-time ATS script parses the same JSON to generate SEO-friendly HTML for recruiters.
+
+This is the same "component + data" separation pattern used in design systems. The rendering logic is reusable; the content is swappable.
+
+Example JSON structure:
+```json
+{
+  "title": "Design System from Scratch",
+  "subtitle": "18 months. Zero precedent. One solo designer.",
+  "detailMetrics": [
+    { "icon": "iconoir:refresh-double", "value": "90%", "label": "QA cycles reduced" }
+  ],
+  "contentBlocks": [
+    { "type": "story-hook", "quote": "...", "context": "..." },
+    { "type": "two-column-with-sidebar", "left": [...], "sidebar": {...} }
+  ]
+}
+```
+
+The content block renderer ([archive/caseStudy.js](src/js/archive/caseStudy.js)) maps block types to HTML templates — same principle as Figma component variants mapping to props.
 
 ### GSAP for Scroll Animations
 
-Used GSAP with ScrollTrigger for smooth, performant scroll-based animations:
-- Scroll-linked section transitions with snap points
-- Metric card reveals on viewport intersection
-- Flip-board animation for dynamic text
-- All animations respect `prefers-reduced-motion`
+Used GSAP with ScrollTrigger for smooth, performant scroll-based animations. Scroll-linked section transitions with snap points, metric card reveals on viewport intersection, flip-board animation for dynamic text. All animations respect `prefers-reduced-motion` (because accessible animations are the only kind worth building).
 
 I'm not a motion designer, but I know enough about GSAP's API to implement what I prototype in Figma.
 
 ### Accessibility Built In (WCAG AA)
 
-This portfolio is WCAG AA compliant because accessible design systems are the only kind worth building:
+This portfolio is WCAG AA compliant. Not because I ticked some boxes, but because accessible design systems are the only kind worth building:
 
-- **Keyboard navigation**: Full focus-visible states, skip-to-main link
-- **Motion preferences**: CSS and JavaScript both respect `prefers-reduced-motion`
-- **Semantic HTML**: Proper heading hierarchy, ARIA labels, structured data
-- **Colour contrast**: All text meets 4.5:1 minimum (verified in `_accessibility.scss`)
-- **Touch targets**: 44×44px minimum for mobile (iOS/Android guidelines)
+**Keyboard navigation**: Full focus-visible states, skip-to-main link for screen reader users.
 
-Check [src/js/modules/accessibility.js](src/js/modules/accessibility.js) and [src/scss/_accessibility.scss](src/scss/_accessibility.scss) to see the implementation.
+**Motion preferences**: Both CSS and JavaScript respect `prefers-reduced-motion`. If someone's disabled animations in their OS, they won't see any scroll-jacking or unnecessary motion here.
+
+**Semantic HTML**: Proper heading hierarchy, ARIA labels where needed, structured data for search engines.
+
+**Colour contrast**: All text meets 4.5:1 minimum (verified in the `_accessibility.scss` comments).
+
+**Touch targets**: 44×44px minimum for mobile, following iOS/Android guidelines.
+
+Check [src/js/modules/accessibility.js](src/js/modules/accessibility.js) and [src/scss/_accessibility.scss](src/scss/_accessibility.scss) to see the implementation. It's not bolted on at the end — it's built into the components.
 
 ### Performance Considerations
 
-- **Lazy loading**: Images load via IntersectionObserver (not all upfront)
-- **Vite build system**: Modern bundler with tree-shaking and fast HMR
-- **Throttled scroll/resize handlers**: Using RAF and debouncing to avoid jank
-- **Vercel deployment**: CDN-distributed with analytics and speed insights
+**Lazy loading**: Images load via IntersectionObserver (not all upfront). Only load what's actually visible.
 
-The entire site loads in under 2 seconds on 3G. I didn't optimise for Lighthouse scores specifically, but systematic choices compound.
+**Vite build system**: Modern bundler that only updates changed modules (not rebuilding everything), allows for SVG optimisation, and stays lightweight.
+
+**Throttled scroll/resize handlers**: Using RequestAnimationFrame to keep interactions smooth. No janky scroll events hammering the browser.
+
+**Vercel deployment**: CDN-distributed with analytics and speed insights baked in.
+
+The entire site loads in under 2 seconds on 3G. I didn't optimise specifically for Lighthouse scores, but systematic choices compound over time.
 
 ### Build Process & Tooling
 
@@ -102,38 +148,34 @@ The entire site loads in under 2 seconds on 3G. I didn't optimise for Lighthouse
 - Vercel for deployment
 
 **Custom build scripts:**
-- `generate-ats-content.js`: Auto-generates recruiter-friendly HTML from JSON project data (runs in `prebuild` hook)
-- `verify-ats.js`: Validates content structure for ATS scanners
-- Multi-page config in `vite.config.js` for project detail pages
 
-I built an ATS optimisation script because I understand that recruiters scan portfolios differently than users browse them. Systematic thinking applies to deployment, not just design.
+`generate-ats-content.js` auto-generates recruiter-friendly HTML from the JSON project data (runs in the `prebuild` hook). `verify-ats.js` validates content structure for ATS scanners. Multi-page config in `vite.config.js` handles separate entries for project detail pages.
+
+I built the ATS optimisation script because I understand that recruiters scan portfolios differently than users browse them. Systematic thinking applies to deployment, not just design.
 
 ### Responsive Approach
 
-Breakpoints defined as mixins in `_breakpoints.scss`:
-- Mobile-first methodology
-- Touch device detection for enhanced tap targets
-- High-contrast mode support
-- Print styles (yes, some people still print CVs)
+Breakpoints defined as mixins in `_breakpoints.scss`. Mobile-first methodology, touch device detection for enhanced tap targets, high-contrast mode support, print styles (yes, some people still print CVs).
 
-No CSS framework—just a well-organised responsive system built on CSS Grid and Flexbox.
+No CSS framework — just a well-organised responsive system built on CSS Grid and Flexbox.
 
 ---
 
 ## Design Systems Connection
 
-This codebase demonstrates the same skills I use for design systems work:
+Right, so when I say "I apply design systems thinking to code," here's what that actually means:
 
 | Design Systems Skill | How It Shows Up Here |
 |----------------------|---------------------|
 | **Token architecture** | SCSS variables for colours, typography, spacing |
 | **Component thinking** | One file per UI element, clear variants |
+| **Data-driven design** | JSON content architecture (component + data separation) |
 | **Documentation** | JSDoc comments, clear naming, REFACTORING_SUMMARY.md |
 | **Systematic decisions** | Mixins for repeated patterns, utils for shared logic |
 | **Accessibility governance** | WCAG AA compliance built into components |
 | **Version control** | Archive folder instead of commented code |
 
-When I say "I think systematically," this is what I mean. The same architectural approach that works for Figma libraries works for codebases.
+The same architectural approach that works for Figma libraries works for codebases. That's the point.
 
 ---
 
@@ -150,18 +192,18 @@ npm run build
 npm run preview
 ```
 
-The dev server runs on `http://localhost:3000` (configured to open in Firefox because that's my preference).
+Dev server runs on `http://localhost:3000`.
 
 ---
 
-## What This Portfolio Demonstrates
+## What This Portfolio Actually Demonstrates
 
-**Not demonstrated here:**
+**What I'm not claiming:**
 - I'm not a front-end developer
 - I won't write production React or maintain a component library codebase
 - I don't know advanced webpack config or TypeScript internals
 
-**What is demonstrated:**
+**What I am demonstrating:**
 - I can implement designs I create without needing a developer to translate
 - I understand web standards well enough to make informed design decisions
 - I organise code with the same systematic approach I use for design systems
@@ -204,4 +246,4 @@ The dev server runs on `http://localhost:3000` (configured to open in Firefox be
 
 Built by [Silvia Travieso](https://silviatravieso.com) · Senior UI Designer · Design Systems Specialist
 
-*If you're a recruiter and you made it this far: hello! This README is part of the portfolio. I write documentation the same way I write code—systematically.*
+*If you're a recruiter reading this — hello! This README is part of the portfolio. I write documentation the same way I write code: systematically, and with the assumption that someone else will need to understand it later.*

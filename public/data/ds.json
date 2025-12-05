@@ -202,8 +202,8 @@
   "phases": [
     {
       "sneak": 1,
-      "title": "Months 1-3: Foundations While Flying Blind",
-      "period": "Feb-April 2024",
+      "title": "Foundations While Flying Blind",
+      "period": "Months 1-3 | Feb-April 2024",
       "content": [
         {
           "type": "cs-timeline-two-columns",
@@ -212,12 +212,11 @@
         {
           "type": "image-carousel",
           "images": [
-            { "src": "/mkm/UX-0.png", "alt": "TBD" },
-            { "src": "/mkm/UX-1.png", "alt": "TBD" },
-            { "src": "/mkm/UX-2.png", "alt": "TBD" },
-            { "src": "/mkm/UX-3.png", "alt": "TBD" }
+            { "src": "/ds/initial-phase-1.png", "alt": "TBD" },
+            { "src": "/ds/initial-phase-2.png", "alt": "TBD" },
+            { "src": "/ds/initial-phase-3.png", "alt": "TBD" }
           ],
-          "caption": "Full cycle evolution: From original UX draft, to Ux with backend input, transfer to wireframes, until final UI deliverables",
+          "caption": "Initial phased implementation of design system; layered in Tokens(Variables), Styles and Components",
           "interval": 5000
         }
       ],
@@ -228,43 +227,42 @@
             "content": [
               {
                 "type": "paragraph",
-                "text": "I drafted a priority roadmap in three stages, attempting to balance theory with the reality of FE waiting for deliverables:"
+                "text": "I drafted a priority roadmap in three phases, attempting to balance theory with the reality of the many backs and forths to get look and feel approved:"
               },
               {
                 "type": "heading",
-                "text": "Stage 1 (Core Foundations):"
+                "text": "Phase 1 - The Basics"
               },
               {
                 "type": "list",
                 "items": [
-                  "Colour ramps for brand and neutrals",
-                  "Typography values (font-size, line-height, letter-spacing)",
-                  "Spacing system",
-                  "Border radius",
-                  "System colours (error, success, warning)",
-                  "Basic reusable components (buttons, inputs, navigation)"
+                  "Core Tokens",
+                  "- Color ramps, typography tokens,spacings, border radius, system colors",
+                  "Styles",
+                  "- Typography styles: headers, body, captions",
+                  "Basic Reusable components (buttons, inputs, nav bar)"
                 ]
               },
               {
                 "type": "heading",
-                "text": "Stage 2 (Semantic Layer):"
+                "text": "Phase 2 - Stability and Growth"
               },
               {
                 "type": "list",
                 "items": [
-                  "Define semantics for backgrounds, text, icons, strokes",
-                  "Gradients and shadows",
-                  "Component-specific tokens"
+                  "Semantic Tokens: backgrounds, text, icons, strokes",
+                  "Styles: gradients and shadows",
+                  "Build on components by need"
                 ]
               },
               {
                 "type": "heading",
-                "text": "Stage 3 (Advanced Components):"
+                "text": "Phase 3 - Sturdy System"
               },
               {
                 "type": "list",
                 "items": [
-                  "Cards, sections, slots",
+                  "Component Tokens (if needed)",
                   "Nested, complex components"
                 ]
               }
@@ -279,21 +277,32 @@
     },
     {
       "sneak": 2,
-      "title": "Months 3-5: Look & Feel + First Mistakes",
-      "period": "May-June 2024",
-      "content": [
+      "title": "First Mistakes",
+      "period": "Months 3-5 | May-June 2024",
+       "content": [
         {
-          "type": "heading",
-          "text": "What Happened:"
-        },
+          "type": "cs-timeline-two-columns",
+          "rightCol": {
+       "blocks": [
         {
-          "type": "list",
-          "items": [
-            "Researched visual direction and proof-of-concept screens",
-            "Look & Feel approved in June",
-            "<strong>Front-end brought into the project in the same meeting</strong> where designs were approved",
-            "FE asked to start working immediately"
-          ]
+          "type": "image-carousel",
+          "images": [
+            { "src": "/ds/mistakes-1.png", "alt": "TBD" },
+            { "src": "/ds/mistakes-2.png", "alt": "TBD" },
+            { "src": "/ds/mistakes-3.png", "alt": "TBD" }
+          ],
+          "caption": "Approved look and feel and first basic tokens",
+          "interval": 5000
+        }
+      ],
+            "class": "right col"
+          },
+          "leftCol": {
+            "class": "left col",
+            "content": [
+        {
+          "type": "paragraph",
+          "text": "Look & Feel approved in June.<br><em>Front-end brought into the project in the same meeting</em> where designs were approved"
         },
         {
           "type": "heading",
@@ -302,17 +311,11 @@
         {
           "type": "list",
           "items": [
-            "Rough brand colours defined",
-            "Rough text styles",
-            "Rough colour treatment",
+            "Rough brand colours, text styles and colour treatment defined",
             "Bento box card-based system",
-            "Icon library (Material Symbols)",
+            "Icon library chosen (Material Symbols)",
             "Library contained <em>only</em> colours and text family"
           ]
-        },
-        {
-          "type": "paragraph",
-          "text": "<strong>The Problem:</strong> I was trying to set design system foundations with only a rough idea of look and feel. No component library. No system to build on. Just custom-made everything while FE was already waiting for deliverables."
         },
         {
           "type": "heading",
@@ -323,85 +326,92 @@
           "items": [
             "One font family",
             "One primary colour + neutrals",
-            "Bento grid layout system",
-            "Icon and graph-heavy approach",
-            "Solids and gradients"
-          ]
-        },
-        {
-          "type": "heading",
-          "text": "FE Constraints Immediately Added:"
-        },
-        {
-          "type": "list",
-          "items": [
-            "Flat design",
-            "Minimal shadows",
-            "\"Line Spacing\" terminology (not \"line-height\")"
+            "Flat design and minimal/no shadows (FE ask)"
           ]
         }
       ]
-    },
-    {
+    }
+  },
+          {
+          "type": "outcome",
+          "text": "<strong>⟶ The Problem:</strong> I was trying to set design system foundations with only a rough idea of look and feel. No component library. No system to build on. Just custom-made everything while FE was already waiting for deliverables."
+        }
+ ]
+},
+  {
       "sneak": 3,
-      "title": "Months 5-8: The Iteration Nightmare",
-      "period": "June-September 2024",
+      "title": "The Infinite Iteration Loop",
+      "period": "Months 5-8 | June-September 2024",
       "content": [
+        {
+          "type": "cs-timeline-two-columns",
+          "rightCol": {
+       "blocks": [
+        {
+          "type": "image-carousel",
+          "images": [
+            { "src": "/ds/learnings-1.png", "alt": "novices errors on Core: alert-info-background (semantic not core" },
+            { "src": "/ds/learnings-2.png", "alt": "novices errors: gradients. Do they belong in core? End up with their own collection" },
+            { "src": "/ds/learnings-3.png", "alt": "novice errors: transparencies. Too many and cofusing namings" }
+          ],
+          "caption": "Self-auditing Core - a multitude of novice errors",
+          "interval": 5000
+        }
+      ],
+            "class": "right col"
+          },
+          "leftCol": {
+            "class": "left col",
+            "content": [
         {
           "type": "paragraph",
           "text": "This is where my inexperience became very apparent. I made classic novice mistakes:"
         },
         {
           "type": "heading",
-          "text": "Mistake #1: Jumping to Component Tokens Too Early"
+          "text": "#1: Jumping to Component Tokens Too Early"
         },
         {
           "type": "paragraph",
-          "text": "I created component-level tokens (for buttons, inputs, cards) that pointed directly to <strong>core tokens</strong>, skipping the semantic layer entirely."
+          "text": "<small>I skipped the semantic layer altogether and had component-level tokens pointing directly to <strong>core tokens</strong>.</small>"
         },
         {
           "type": "paragraph",
-          "text": "<strong>Why this was wrong:</strong> No logical hierarchy. When I needed to change a button's hover state, I had to edit the component token directly rather than updating a semantic \"interactive-hover\" token that could apply everywhere."
+          "text": "<strong>⟶ Outcome:</strong> No logic in the hierarchy. I had to change and add more core tokens repetitively."
         },
         {
           "type": "heading",
-          "text": "Mistake #2: Approaching Semantics from Theory, Not Reality"
+          "text": "#2: Semantics from Theory, Not Reality"
         },
         {
           "type": "paragraph",
-          "text": "When I finally built the semantic layer, I based it on what I'd <em>read</em> about design systems, not on what I'd <em>actually built</em> in the UI."
+          "text": "<small>When I finally built the semantic layer, I based it on what I'd <em>seen and read</em>, not on what I'd <em>actually built</em> in the UI.</small>"
+        },
+         {
+          "type": "paragraph",
+          "text": "<strong>⟶ Outcome:</strong> Cofusing names and chaotic categories (surfaces AND backgrounds AND elevations ...???). No hierarchy, again."
         },
         {
           "type": "heading",
-          "text": "The result:"
-        },
-        {
-          "type": "list",
-          "items": [
-            "Confusing naming (e.g., \"Elevation\" for neutral surfaces)",
-            "Chaotic categories (surfaces AND backgrounds as separate concepts?)",
-            "Semantics included gradients at the wrong level",
-            "No clear hierarchy between semantic categories"
-          ]
-        },
-        {
-          "type": "heading",
-          "text": "Mistake #3: Too Many Transparencies"
+          "text": "#3: Too Many Transparencies"
         },
         {
           "type": "paragraph",
-          "text": "I initially created dozens of alpha values for transparency (70%, 50%, 30%, 15%, 5%) without auditing if solid equivalents existed. This created inconsistency and confusion."
+          "text": "<small>For transparencies I didn't follow any pattern and used various colors as bases. I ended up with \"Neutral-100-A10\", \"Neutral-500-A70\"... </small>"
         },
-        {
-          "type": "outcome",
-          "text": "<strong>The fix:</strong> Standardised to fewer alpha values and searched for solid colour equivalents wherever possible."
+         {
+          "type": "paragraph",
+          "text": "<strong>⟶ Outcome:</strong> This created inconsistency and confusion and made it harder to find the right token."
+        }
+            ]
+          }
         }
       ]
     },
     {
       "sneak": 4,
       "title": "The Rework",
-      "period": "Ongoing through September 2024",
+      "period": "September 2024 - Nov 2024",
       "content": [
         {
           "type": "paragraph",

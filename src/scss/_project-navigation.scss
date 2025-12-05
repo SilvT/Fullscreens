@@ -2272,19 +2272,7 @@
     box-shadow: 0 2px 8px $color-shadows-blue-dark;
     transition: transform 0.3s ease, box-shadow 0.3s ease, margin 0.3s ease;
     flex-shrink: 0;
-    // min-width: 400px;
-    // .cs-timeline-phase-sneak{
-      // display: none;
-      //   }
 
-    &.active{
-      min-width: 400px;
-      z-index: 10;
-      width: 75vw;
-      & .cs-timeline-phase-sneak{
-      display: none;
-      }
-    }
 
 
     // Create progressive overlap - each phase overlaps more than the previous
@@ -2331,7 +2319,16 @@
       z-index:10;
       background: $color-white;
     }
+    &.active{
+      min-width: 400px;
+      z-index: 10;
+      width: 75vw;
+      background:$color-white;
 
+      & .cs-timeline-phase-sneak{
+      display: none;
+      }
+    }
     // Minimized state - hide all content except sneak
     &.min {
       // width: 30px;
@@ -2358,14 +2355,33 @@
 
   .cs-timeline-two-columns{
     display: flex;
+    gap: 5rem;
 
-    & .left col{
-      width: 50%;
+    & .left.col{
+      width: 55%;
+    & .cs-timeline-paragraph{
+      margin-top: 1rem;
+    }
+    
     }
     & .right .cs-image-carousel{
-      width: 50%;
+      width: auto;
+      height: 100%;
+      align-content: center;
+      & .cs-carousel-container{
+        height: 80%;
+      }
+      & .cs-carousel-slide{
+        align-content: end;
+      }
+      & a.glightbox{
+        max-height: 350px;
+      }
+      & img{
+        height: 100%;
+        width: auto;
+      }
   }}
-
 
   .cs-timeline-icon {
     display: flex;
