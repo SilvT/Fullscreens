@@ -60,45 +60,6 @@ $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
-
-//Text Styles
-h1, h2, h3, h4, h5, p, p.mid, p.caption {
-    font-family: $font-bricolage;
-    line-height: 150%;
-    letter-spacing: 0;
-}
-
-h1{
-font-size: $font-size-3xl;
-font-weight: $font-weight-bold;
-}
-h2{
-font-size: $font-size-l;
-font-weight: $font-weight-medium;
-line-height: 1.5;
-}
-h3{
-font-size: $font-size-l;
-font-weight: $font-weight-medium;
-line-height: 150%;
-}
-h4{
-font-size: $font-size-l;
-font-weight: $font-weight-medium;
-}
-p{
-font-size: $font-size-base;
-font-weight: $font-weight-light;
-}
-p.mid{
-font-weight: $font-weight-regular;
-font-size: $font-size-s;
-}
-p.caption{
-font-weight: $font-weight-regular;
-font-size: $font-size-xs;
-}
-
 //Spacings
 $space-4:0.25rem;
 $space-8:0.5rem;
@@ -108,6 +69,7 @@ $space-16:1rem;
 $space-20:1.25rem;
 $space-22:1.37rem;
 $space-24:1.5rem;
+$space-28:1.75rem;
 $space-30:1.875rem;
 $space-32:2rem;
 $space-36:2.25rem;
@@ -115,20 +77,3 @@ $space-40:2.5rem;
 $space-60:3.75rem;
 $space-80:5rem;
 $space-120:7.5rem;
-
-em { //only colour change//
-    color: $color-blue-main;
-    font-style: inherit;
-}
-b {//weight and darker change//
-    font-weight: $font-weight-bold;
-    color: $color-neutral;
-}
-strong {//weight and colour change//
-    font-weight: $font-weight-medium;
-    color: $color-blue-main;
-}
-i{
-    color: $color-blue-darker;
-    font-weight: $font-weight-light;
-}

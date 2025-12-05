@@ -1,0 +1,28 @@
+/**
+ * Z-Index Scale
+ * Centralized z-index management for consistent layering
+ */
+
+// Base layers (0-10)
+$z-base: 1;
+$z-above-base: 2;
+$z-low: 5;
+$z-above-content: 10;
+
+// Mid layers (20-100)
+$z-mid-low: 20;
+$z-mid: 30;
+$z-mid-high: 40;
+$z-elevated: 100;
+
+// High layers (900-1000)
+$z-scroll-hint: 96;  // Scroll hint lowest layer
+$z-scroll-hint-mid: 97;
+$z-scroll-hint-high: 98;
+$z-scroll-hint-top: 999;
+$z-navigation: 1000;  // Main navigation layer
+
+// Top layers (1001+)
+$z-modal: 1001;  // Modals, overlays
+$z-modal-high: 1002;  // Higher priority modals
+$z-accessibility: 10000;  // Accessibility controls (always on top)

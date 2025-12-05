@@ -1,0 +1,76 @@
+/**
+ * Typography Styles
+ * Base styles for headings, paragraphs, and inline text elements
+ */
+
+@use 'variables' as *;
+
+// Base text elements
+h1, h2, h3, h4, h5, p, p.mid, p.caption {
+  font-family: $font-bricolage;
+  line-height: 150%;
+  letter-spacing: 0;
+}
+
+// Headings
+h1 {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+}
+
+h2 {
+  font-size: $font-size-l;
+  font-weight: $font-weight-medium;
+  line-height: 1.5;
+}
+
+h3 {
+  font-size: $font-size-l;
+  font-weight: $font-weight-medium;
+  line-height: 150%;
+}
+
+h4 {
+  font-size: $font-size-l;
+  font-weight: $font-weight-medium;
+}
+
+// Paragraphs
+p {
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
+}
+
+p.mid {
+  font-weight: $font-weight-regular;
+  font-size: $font-size-s;
+}
+
+p.caption {
+  font-weight: $font-weight-regular;
+  font-size: $font-size-xs;
+}
+
+// Inline text styles
+em {
+  // Only color change
+  color: $color-blue-main;
+  font-style: inherit;
+}
+
+b {
+  // Weight and darker change
+  font-weight: $font-weight-bold;
+  color: $color-neutral;
+}
+
+strong {
+  // Weight and color change
+  font-weight: $font-weight-medium;
+  color: $color-blue-main;
+}
+
+i {
+  color: $color-blue-darker;
+  font-weight: $font-weight-light;
+}

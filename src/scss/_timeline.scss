@@ -413,7 +413,6 @@
   top: 0;
   width: 100%;
   max-width: 1400px;
-  // height: 100vh;
   height: 90vh;
   margin: 0 auto;
   padding: 2rem;
@@ -436,7 +435,6 @@
 .cs-timeline-tabs {
   position: sticky;
   top: 120px;
-  // height: fit-content;
   height: 100%;
 
   @media (max-width: 1024px) {
