@@ -3,6 +3,7 @@
 /**
  * Generate PDF from CV HTML
  * Creates an exact replica of the HTML CV as a PDF file
+ * Skips generation in CI/CD environments (Vercel, GitHub Actions, etc.)
  */
 
 import puppeteer from 'puppeteer';
@@ -14,6 +15,15 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, '..');
 
 async function generateCVPDF() {
+  // Skip PDF generation in CI/CD environments
+  const isCI = process.env.CI || process.env.VERCEL || process.env.GITHUB_ACTIONS;
+
+  if (isCI) {
+    console.log('\n⏭️  Skipping CV PDF generation in CI/CD environment');
+    console.log('   Using pre-generated PDF from repository\n');
+    return;
+  }
+
   console.log('\n📄 Generating CV PDF...\n');
 
   const browser = await puppeteer.launch({
